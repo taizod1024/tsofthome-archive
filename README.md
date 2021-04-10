@@ -1,4 +1,4 @@
-# tsofthome
+# tsofthome-archive
 
 tsofthome.appspot.comのアーカイブ(2021/04サイト閉鎖)
 
