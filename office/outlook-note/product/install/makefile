@@ -1,0 +1,21 @@
+### constants
+
+PRODUCT=$(PRODUCT_SYMBOL)-$(PRODUCT_VERSION).exe
+BASELIB=$(BASELIB_SYMBOL)-$(PRODUCT_VERSION).exe
+VPATH=..\src
+FILES=$(foreach dir,$(subst ;, ,$(VPATH)),$(shell cmd /c dir /B $(dir)))
+NSIS=C:\Progra~1\NSIS\makensis.exe
+
+### rules
+
+all: $(PRODUCT)
+
+clean:
+	cmd /c del $(PRODUCT) $(BASELIB)
+
+$(PRODUCT): setup.nsi $(BASELIB) $(FILES)
+	$(NSIS) /DPRODUCT=$(PRODUCT) /DPRODUCT_NAME=$(PRODUCT_NAME) /DPRODUCT_SYMBOL=$(PRODUCT_SYMBOL) /DPRODUCT_VERSION=$(PRODUCT_VERSION) $<
+
+$(BASELIB): setup_sfcmini.nsi $(FILES)
+	$(NSIS) /DPRODUCT=$(BASELIB) /DPRODUCT_NAME=$(BASELIB_NAME) /DPRODUCT_SYMBOL=$(BASELIB_SYMBOL) /DPRODUCT_VERSION=$(PRODUCT_VERSION) $<
+
