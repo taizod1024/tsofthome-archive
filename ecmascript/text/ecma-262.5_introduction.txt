@@ -3,34 +3,85 @@
 * 導入
 
 
-This Ecma Standard is based on several originating technologies, the most well known being JavaScript (Netscape) and JScript (Microsoft). The language was invented by Brendan Eich at Netscape and first appeared in that company’s Navigator 2.0 browser. It has appeared in all subsequent browsers from Netscape and in all browsers from Microsoft starting with Internet Explorer 3.0.
+This Ecma Standard is based on several originating technologies, the most well
+known being JavaScript (Netscape) and JScript (Microsoft). The language was
+invented by Brendan Eich at Netscape and first appeared in that company’s
+Navigator 2.0 browser. It has appeared in all subsequent browsers from Netscape
+and in all browsers from Microsoft starting with Internet Explorer 3.0.
 
-このEcma標準仕様はいくつかの元となる技術を基盤としています。もっとも知られている技術はJavaScript(NetScape)とJScript(Microsoft)です。JavaScriptはNetscapeのBrendan Eichによって開発され、Netscape Navigator 2.0ではじめて公開されました。JavaScriptは、Netscapeに連なるすべてのブラウザや、Internet Explorer 3.0から始まるマイクロソフトのすべてのブラウザに搭載されました。
-
-
-The development of this Standard started in November 1996. The first edition of this Ecma Standard was adopted by the Ecma General Assembly of June 1997.
-
-この標準仕様の開発は1996年11月から始まりました。Ecma標準仕様の初版は1997年6月のEcma総会で採択されました。
-
-
-That Ecma Standard was submitted to ISO/IEC JTC 1 for adoption under the fast-track procedure, and approved as international standard ISO/IEC 16262, in April 1998. The Ecma General Assembly of June 1998 approved the second edition of ECMA-262 to keep it fully aligned with ISO/IEC 16262. Changes between the first and the second edition are editorial in nature.
-
-Ecma標準仕様は採択のためにファストトラック制度のもとでISO/IEC JTC 1に提出され、1998年4月に国際規格ISO/IEC 16262として承認されました。1998年6月のEcma総会では、ISO/IEC 16262に完全に準拠する形でECMA-262の第2版を採択しました。第1版と第2版の変更点は編集上の違いにすぎません。
+このEcma標準仕様はいくつかの元となる技術を基盤としています。もっとも知られている
+技術はJavaScript(NetScape)とJScript(Microsoft)です。JavaScriptはNetscapeの
+Brendan Eichによって開発され、Netscape Navigator 2.0ではじめて公開されました。
+JavaScriptは、Netscapeに連なるすべてのブラウザや、Internet Explorer 3.0から始ま
+るマイクロソフトのすべてのブラウザに搭載されました。
 
 
-The third edition of the Standard introduced powerful regular expressions, better string handling, new control statements, try/catch exception handling, tighter definition of errors, formatting for numeric output and minor changes in anticipation of forthcoming internationalisation facilities and future language growth. The third edition of the ECMAScript standard was adopted by the Ecma General Assembly of December 1999 and published as ISO/IEC 16262:2002 in June 2002.
+The development of this Standard started in November 1996. The first edition of
+this Ecma Standard was adopted by the Ecma General Assembly of June 1997.
 
-標準仕様の第3版には、強力な正規表現、文字列処理の改善、新しい制御構文、try/catchによる例外処理機構、エラーの厳密な定義、数値出力のフォーマット、今後の国際化や将来の言語の拡張を見込んでの小さな変更、これらが導入されました。ECMAScript標準仕様の第3版は、1999年12月のEcma総会で採択され、2002年6月にISO/IEC 16262:2002として発行されました。
-
-
-Since publication of the third edition, ECMAScript has achieved massive adoption in conjunction with the World Wide Web where it has become the programming language that is supported by essentially all web browsers. Significant work was done to develop a fourth edition of ECMAScript. Although that work was not completed and not published(1) as the fourth edition of ECMAScript, it informs continuing evolution of the language. The present fifth edition of ECMAScript (published as ECMA-262 5th edition) codifies de facto interpretations of the language specification that have become common among browser implementations and adds support for new features that have emerged since the publication of the third edition. Such features include accessor properties, reflective creation and inspection of objects, program control of property attributes, additional array manipulation functions, support for the JSON object encoding format, and a strict mode that provides enhanced error checking and program security.
-
-第3版の発行以降、ECMAScriptはすべてのWebブラウザでサポートされているプログラミング言語になり、World Wide Webとの組み合わせで広く採用されるようになりました。重要な変更作業がECMAScript第4版を開発するために行われました。この変更作業は完全ではなかったためECMAScript第4版は発行されませんでしたが、言語の進化が続いていることを知らしめました。(ECMA-262 第5版として発行された)ECMAScript第5版は、ブラウザの実装で一般的になっていた言語仕様の解釈を明文化し、第3版の発行以降に現れた新機能をサポートしています。これらの機能には、アクセサプロパティ、reflective creation、オブジェクトの調査、プロパティ属性によるプログラムの制御、配列を操作する新しい関数群、JSONオブジェクトのエンコーディング形式のサポート、拡張されたエラーチェックとプログラムセキュリティを提供するstrictモードが含まれます。
+この標準仕様の開発は1996年11月から始まりました。Ecma標準仕様の初版は1997年6月の
+Ecma総会で採択されました。
 
 
-ECMAScript is a vibrant language and the evolution of the language is not complete. Significant technical enhancement will continue with future editions of this specification.
+That Ecma Standard was submitted to ISO/IEC JTC 1 for adoption under the
+fast-track procedure, and approved as international standard ISO/IEC 16262, in
+April 1998. The Ecma General Assembly of June 1998 approved the second edition
+of ECMA-262 to keep it fully aligned with ISO/IEC 16262. Changes between the
+first and the second edition are editorial in nature.
 
-ECMAScriptは活力に満ちた言語であり、言語の進化は止まっていません。重要な技術上の拡張はこの仕様の将来の版で続けられるでしょう。
+Ecma標準仕様は採択のためにファストトラック制度のもとでISO/IEC JTC 1に提出され、
+1998年4月に国際規格ISO/IEC 16262として承認されました。1998年6月のEcma総会では、
+ISO/IEC 16262に完全に準拠する形でECMA-262の第2版を採択しました。第1版と第2版の変
+更点は編集上の違いにすぎません。
+
+
+The third edition of the Standard introduced powerful regular expressions,
+better string handling, new control statements, try/catch exception handling,
+tighter definition of errors, formatting for numeric output and minor changes in
+anticipation of forthcoming internationalisation facilities and future language
+growth. The third edition of the ECMAScript standard was adopted by the Ecma
+General Assembly of December 1999 and published as ISO/IEC 16262:2002 in June
+2002.
+
+標準仕様の第3版には、強力な正規表現、文字列処理の改善、新しい制御構文、try/catch
+による例外処理機構、エラーの厳密な定義、数値出力のフォーマット、今後の国際化や将
+来の言語の拡張を見込んでの小さな変更、これらが導入されました。ECMAScript標準仕様
+の第3版は、1999年12月のEcma総会で採択され、2002年6月にISO/IEC 16262:2002として発
+行されました。
+
+
+Since publication of the third edition, ECMAScript has achieved massive adoption
+in conjunction with the World Wide Web where it has become the programming
+language that is supported by essentially all web browsers. Significant work was
+done to develop a fourth edition of ECMAScript. Although that work was not
+completed and not published(1) as the fourth edition of ECMAScript, it informs
+continuing evolution of the language. The present fifth edition of ECMAScript
+(published as ECMA-262 5th edition) codifies de facto interpretations of the
+language specification that have become common among browser implementations and
+adds support for new features that have emerged since the publication of the
+third edition. Such features include accessor properties, reflective creation
+and inspection of objects, program control of property attributes, additional
+array manipulation functions, support for the JSON object encoding format, and a
+strict mode that provides enhanced error checking and program security.
+
+第3版の発行以降、ECMAScriptはすべてのWebブラウザでサポートされているプログラミン
+グ言語になり、World Wide Webとの組み合わせで広く採用されるようになりました。重要
+な変更作業がECMAScript第4版を開発するために行われました。この変更作業は完全では
+なかったためECMAScript第4版は発行されませんでしたが、言語の進化が続いていること
+を知らしめました。(ECMA-262 第5版として発行された)ECMAScript第5版は、ブラウザの
+実装で一般的になっていた言語仕様の解釈を明文化し、第3版の発行以降に現れた新機能
+をサポートしています。これらの機能には、アクセサプロパティ、reflective
+creation、オブジェクトの調査、プロパティ属性によるプログラムの制御、配列を操作す
+る新しい関数群、JSONオブジェクトのエンコーディング形式のサポート、拡張されたエ
+ラーチェックとプログラムセキュリティを提供するstrictモードが含まれます。
+
+
+ECMAScript is a vibrant language and the evolution of the language is not
+complete. Significant technical enhancement will continue with future editions
+of this specification.
+
+ECMAScriptは活力に満ちた言語であり、言語の進化は止まっていません。重要な技術上の
+拡張はこの仕様の将来の版で続けられるでしょう。
 
 
 This Ecma Standard has been adopted by the General Assembly of December 2009.
@@ -38,6 +89,11 @@ This Ecma Standard has been adopted by the General Assembly of December 2009.
 このEcma標準仕様は2009年12月の総会で採択されました。
 
 
-(1) Note: Please note that for ECMAScript Edition 4 the Ecma standard number “ECMA-262 Edition 4” was reserved but not used in the Ecma publication process. Therefore “ECMA-262 Edition 4” as an Ecma International publication does not exist.
+(1) Note: Please note that for ECMAScript Edition 4 the Ecma standard number
+“ECMA-262 Edition 4” was reserved but not used in the Ecma publication process.
+Therefore “ECMA-262 Edition 4” as an Ecma International publication does not
+exist.
 
-(1) 注意：ECMAScript第4版のために"ECMA-262 Edition 4"が予約されていますが、Ecmaの発行過程では使用されなかったことに注意してください。そのため、Ecmaインターナショナルの発行物としての"ECMA-262 Edition 4"は存在しません。
+(1) 注意：ECMAScript第4版のために"ECMA-262 Edition 4"が予約されていますが、Ecma
+の発行過程では使用されなかったことに注意してください。そのため、Ecmaインターナ
+ショナルの発行物としての"ECMA-262 Edition 4"は存在しません。

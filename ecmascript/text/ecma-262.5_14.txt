@@ -8,16 +8,11 @@ Syntax
 構文 
 
 
-  Program : 
-    SourceElements[opt] 
+  Program : SourceElements[opt] 
     
-  SourceElements : 
-    SourceElement 
-    SourceElements SourceElement 
+  SourceElements : SourceElement SourceElements SourceElement 
     
-  SourceElement : 
-    Statement 
-    FunctionDeclaration 
+  SourceElement : Statement FunctionDeclaration 
 
 
 Semantics 
@@ -30,14 +25,25 @@ The production Program : SourceElements[opt] is evaluated as follows:
 生成規則 Program : SourceElements[opt] は次のように評価されます。
 
 
-1. The code of this Program is strict mode code if the Directive Prologue (14.1) of its SourceElements contains a Use Strict Directive or if any of the conditions of 10.1.1 apply. If the code of this Program is strict mode code, SourceElements is evaluated in the following steps as strict mode code. Otherwise SourceElements is evaluated in the following steps as non-strict mode code. 
+1. The code of this Program is strict mode code if the Directive Prologue (14.1)
+   of its SourceElements contains a Use Strict Directive or if any of the
+   conditions of 10.1.1 apply. If the code of this Program is strict mode code,
+   SourceElements is evaluated in the following steps as strict mode code.
+   Otherwise SourceElements is evaluated in the following steps as non-strict
+   mode code. 
 2. If SourceElements is not present, return (normal, empty, empty). 
-3. Let progCxt be a new execution context for global code as described in 10.4.1. 
+3. Let progCxt be a new execution context for global code as described in
+   10.4.1. 
 4. Let result be the result of evaluating SourceElements. 
 5. Exit the execution context progCxt. 
 6. Return result. 
 
-1. Use Strict 指示子がSourceElementのDirective Prologue(14.1)に含まれているか、10.1.1の条件に当てはまれば、このProgramのコードはstrictモードのコードです。もし、このProgramのコードがstrictモードのコードであれば、SourceElementsはstrictモードのコードとして以下のステップで評価されます。そうでなければSourceElementsは以下のステップでstrictモードではないコードとして評価されます。
+1. Use Strict 指示子がSourceElementのDirective Prologue(14.1)に含まれているか、
+   10.1.1の条件に当てはまれば、このProgramのコードはstrictモードのコードです。も
+   し、このProgramのコードがstrictモードのコードであれば、SourceElementsはstrict
+   モードのコードとして以下のステップで評価されます。そうでなければ
+   SourceElementsは以下のステップでstrictモードではないコードとして評価されま
+   す。
 2. SourceElementsが存在しなければ、(normal, empty, empty)を返します。
 3. progCxtを10.4.1で述べられたグローバルコードの新しい実行コンテキストとします。
 4. resultをSourceElementsを評価した結果とします。
@@ -45,26 +51,33 @@ The production Program : SourceElements[opt] is evaluated as follows:
 6. resultを返します。
 
 
-NOTE The processes for initiating the evaluation of a Program and for dealing with the result of such an evaluation are defined by an ECMAScript implementation and not by this specification. 
+NOTE The processes for initiating the evaluation of a Program and for dealing
+with the result of such an evaluation are defined by an ECMAScript
+implementation and not by this specification. 
 
-注意：Programの評価の初期化およびその評価の結果を扱う手順は、ECMAScriptの実装によって定義されているのであり、この仕様によってではありません。
+注意：Programの評価の初期化およびその評価の結果を扱う手順は、ECMAScriptの実装に
+よって定義されているのであり、この仕様によってではありません。
 
 
-The production SourceElements : SourceElements SourceElement is evaluated as follows: 
+The production SourceElements : SourceElements SourceElement is evaluated as
+follows: 
 
-生成規則 SourceElements : SourceElements SourceElement は以下のように評価されます。
+生成規則 SourceElements : SourceElements SourceElement は以下のように評価されま
+す。
 
 
 1. Let headResult be the result of evaluating SourceElements. 
 2. If headResult is an abrupt completion, return headResult 
 3. Let tailResult be result of evaluating SourceElement. 
-4. If tailResult.value is empty, let V = headResult.value, otherwise let V = tailResult.value. 
+4. If tailResult.value is empty, let V = headResult.value, otherwise let V =
+   tailResult.value. 
 5. Return (tailResult.type, V, tailResult.target) 
 
 1. headResultをSourceElementsを評価した結果とします。
 2. もしheadResultが途中で完了したのであれば、headResultを返します。
 3. tailResultをSourceElementを評価した結果とします。
-4. もしtrailResult.valueが空であれば、VをheadResult.valueとし、そうでなければVをtrailResult.valueとします。
+4. もしtrailResult.valueが空であれば、VをheadResult.valueとし、そうでなければVを
+   trailResult.valueとします。
 5. (trailResult.type, V, trailResult.target)を返します。
 
 
@@ -93,21 +106,46 @@ The production SourceElement : FunctionDeclaration is evaluated as follows:
 * 14.1 Directive Prologue と Use Strict指示子
 
 
-A Directive Prologue is the longest sequence of ExpressionStatement productions occurring as the initial SourceElement productions of a Program or FunctionBody and where each ExpressionStatement in the sequence consists entirely of a StringLiteral token followed a semicolon. The semicolon may appear explicitly or may be inserted by automatic semicolon insertion. A Directive Prologue may be an empty sequence. 
+A Directive Prologue is the longest sequence of ExpressionStatement productions
+occurring as the initial SourceElement productions of a Program or FunctionBody
+and where each ExpressionStatement in the sequence consists entirely of a
+StringLiteral token followed a semicolon. The semicolon may appear explicitly or
+may be inserted by automatic semicolon insertion. A Directive Prologue may be an
+empty sequence. 
 
 Directive Prologueは(途中)
 
 
-A Use Strict Directive is an ExpressionStatement in a Directive Prologue whose StringLiteral is either the exact character sequences "use strict" or 'use strict'. A Use Strict Directive may not contain an EscapeSequence or LineContinuation. 
+A Use Strict Directive is an ExpressionStatement in a Directive Prologue whose
+StringLiteral is either the exact character sequences "use strict" or 'use
+strict'. A Use Strict Directive may not contain an EscapeSequence or
+LineContinuation. 
 
-Use Strice指示子は、StringLiteralの厳密な文字の並びが"use strict"もしくは'use strict'のどちらかであるDirective PrologueにおけるExpressionStatementです。Use Strict指示子はEscapeSequenceやLineContinuationを含んではいけません。
+Use Strice指示子は、StringLiteralの厳密な文字の並びが"use strict"もしくは'use
+strict'のどちらかであるDirective PrologueにおけるExpressionStatementです。Use
+Strict指示子はEscapeSequenceやLineContinuationを含んではいけません。
 
 
-A Directive Prologue may contain more than one Use Strict Directive. However, an implementation may issue a warning if this occurs. 
+A Directive Prologue may contain more than one Use Strict Directive. However, an
+implementation may issue a warning if this occurs. 
 
-Directive Prologueは二つ以上のUse Strict指示子を含むことができます。ただし、その場合に実装によっては警告を出力するかもしれません。
+Directive Prologueは二つ以上のUse Strict指示子を含むことができます。ただし、その
+場合に実装によっては警告を出力するかもしれません。
 
 
-NOTE The ExpressionStatement productions of a Directive Prologue are evaluated normally during evaluation of the containing SourceElements production. Implementations may define implementation specific meanings for ExpressionStatement productions which are not a Use Strict Directive and which occur in a Directive Prologue. If an appropriate notification mechanism exists, an implementation should issue a warning if it encounters in a Directive Prologue an ExpressionStatement that is not a Use Strict Directive or which does not have a meaning defined by the implementation. 
+NOTE The ExpressionStatement productions of a Directive Prologue are evaluated
+normally during evaluation of the containing SourceElements production.
+Implementations may define implementation specific meanings for
+ExpressionStatement productions which are not a Use Strict Directive and which
+occur in a Directive Prologue. If an appropriate notification mechanism exists,
+an implementation should issue a warning if it encounters in a Directive
+Prologue an ExpressionStatement that is not a Use Strict Directive or which does
+not have a meaning defined by the implementation. 
 
-注意：Directive Prologueの生成規則ExpressionStatementは、含まれているSourceElements生成規則の評価の間に、普通は評価されます。Directive Prologueに現れるUse Strict指示子以外のExpressionStatement生成規則に、実装に依存した意味合いを定義しているかもしれません。もし適切な通知機構が存在するのであれば、Use Strict指示子ではないExpressionStatementか、実装によって定義された意味を持たないExpressionStatementが、Directive Prologueに現れたことを警告として出力するよう実装すべきです。
+注意：Directive Prologueの生成規則ExpressionStatementは、含まれている
+SourceElements生成規則の評価の間に、普通は評価されます。Directive Prologueに現れ
+るUse Strict指示子以外のExpressionStatement生成規則に、実装に依存した意味合いを
+定義しているかもしれません。もし適切な通知機構が存在するのであれば、Use Strict指
+示子ではないExpressionStatementか、実装によって定義された意味を持たない
+ExpressionStatementが、Directive Prologueに現れたことを警告として出力するよう実
+装すべきです。

@@ -8,28 +8,71 @@ This section contains a non-normative overview of the ECMAScript language.
 この節にはECMAScript言語の非規定的な概要が含まれています。
 
 
-ECMAScript is an object-oriented programming language for performing computations and manipulating computational objects within a host environment. ECMAScript as defined here is not intended to be computationally self-sufficient; indeed, there are no provisions in this specification for input of external data or output of computed results. Instead, it is expected that the computational environment of an ECMAScript program will provide not only the objects and other facilities described in this specification but also certain environment-specific host objects, whose description and behaviour are beyond the scope of this specification except to indicate that they may provide certain properties that can be accessed and certain functions that can be called from an ECMAScript program.
+ECMAScript is an object-oriented programming language for performing
+computations and manipulating computational objects within a host environment.
+ECMAScript as defined here is not intended to be computationally
+self-sufficient; indeed, there are no provisions in this specification for input
+of external data or output of computed results. Instead, it is expected that the
+computational environment of an ECMAScript program will provide not only the
+objects and other facilities described in this specification but also certain
+environment-specific host objects, whose description and behaviour are beyond
+the scope of this specification except to indicate that they may provide certain
+properties that can be accessed and certain functions that can be called from an
+ECMAScript program.
 
-ECMAScriptはそのホスト環境において計算したりオブジェクトを操作したりするためのオブジェクト指向なプログラミング言語です。ここで定義されているECMAScriptはここで自己完結するものではありません。実際にこの仕様において外部データの入力や計算結果の出力に関する規定はありません。その代わりにECMAScriptのプログラムの実行環境は、この仕様において述べられているオブジェクトやその他の機能だけではなく、固有の環境に依存したオブジェクトを提供することが想定されています。そのオブジェクトの説明や挙動については、ECMAScriptのプログラムからアクセス可能な固有プロパティや呼び出せる固有の関数をその実行環境が提供する、ということを除いてこの仕様の範囲外です。
+ECMAScriptはそのホスト環境において計算したりオブジェクトを操作したりするためのオ
+ブジェクト指向なプログラミング言語です。ここで定義されているECMAScriptはここで自
+己完結するものではありません。実際にこの仕様において外部データの入力や計算結果の
+出力に関する規定はありません。その代わりにECMAScriptのプログラムの実行環境は、こ
+の仕様において述べられているオブジェクトやその他の機能だけではなく、固有の環境に
+依存したオブジェクトを提供することが想定されています。そのオブジェクトの説明や挙
+動については、ECMAScriptのプログラムからアクセス可能な固有プロパティや呼び出せる
+固有の関数をその実行環境が提供する、ということを除いてこの仕様の範囲外です。
 
 
-A scripting language is a programming language that is used to manipulate, customise, and automate the facilities of an existing system. In such systems, useful functionality is already available through a user interface, and the scripting language is a mechanism for exposing that functionality to program control. In this way, the existing system is said to provide a host environment of objects and facilities, which completes the capabilities of the scripting language. A scripting language is intended for use by both professional and nonprofessional programmers.
+A scripting language is a programming language that is used to manipulate,
+customise, and automate the facilities of an existing system. In such systems,
+useful functionality is already available through a user interface, and the
+scripting language is a mechanism for exposing that functionality to program
+control. In this way, the existing system is said to provide a host environment
+of objects and facilities, which completes the capabilities of the scripting
+language. A scripting language is intended for use by both professional and
+nonprofessional programmers.
 
-スクリプト言語は、既存システムの機能の操作・カスタマイズ・自動化を行うために使われるプログラミング言語です。そのような既存のシステムでは、役に立つ機能はユーザーインターフェイスを介して既に提供されているので、スクリプト言語はそういった機能をプログラムで制御し公開するための仕組みとなります。この方法では、既存のシステムはスクリプト言語が必要とする要件を満たしているオブジェクトや機能のホスト環境と言えます。スクリプト言語はプロのプログラマとそうでないプログラマの両方が使用するためのものなのです。
+スクリプト言語は、既存システムの機能の操作・カスタマイズ・自動化を行うために使わ
+れるプログラミング言語です。そのような既存のシステムでは、役に立つ機能はユーザー
+インターフェイスを介して既に提供されているので、スクリプト言語はそういった機能を
+プログラムで制御し公開するための仕組みとなります。この方法では、既存のシステムは
+スクリプト言語が必要とする要件を満たしているオブジェクトや機能のホスト環境と言え
+ます。スクリプト言語はプロのプログラマとそうでないプログラマの両方が使用するため
+のものなのです。
 
 
-ECMAScript was originally designed to be a Web scripting language, providing a mechanism to enliven Web pages in browsers and to perform server computation as part of a Web-based client-server architecture. ECMAScript can provide core scripting capabilities for a variety of host environments, and therefore the core scripting language is specified in this document apart from any particular host environment.
+ECMAScript was originally designed to be a Web scripting language, providing a
+mechanism to enliven Web pages in browsers and to perform server computation as
+part of a Web-based client-server architecture. ECMAScript can provide core
+scripting capabilities for a variety of host environments, and therefore the
+core scripting language is specified in this document apart from any particular
+host environment.
 
-元々、ECMAScriptは、Webベースのクライアントサーバアーキテクチャの一部として、ブラウザにおけるWebページを活性化したりサーバでの計算処理を行う仕組みを提供するためのWeb用のスクリプト言語として設計されました。ECMAScriptは様々な種類のホスト環境のためのコアなスクリプト機能を提供しています。そのため特定のホスト環境によらないコアなスクリプト言語がこの文書では定められています。
+元々、ECMAScriptは、Webベースのクライアントサーバアーキテクチャの一部として、ブ
+ラウザにおけるWebページを活性化したりサーバでの計算処理を行う仕組みを提供するた
+めのWeb用のスクリプト言語として設計されました。ECMAScriptは様々な種類のホスト環
+境のためのコアなスクリプト機能を提供しています。そのため特定のホスト環境によらな
+いコアなスクリプト言語がこの文書では定められています。
 
 
-Some of the facilities of ECMAScript are similar to those used in other programming languages; in particular Java., Self, and Scheme as described in:
+Some of the facilities of ECMAScript are similar to those used in other
+programming languages; in particular Java., Self, and Scheme as described in:
 
-ECMAScriptのいくつかの機能は他のプログラミング言語で使われているものとよく似ています。特に以下で述べられているJava、Self、Schemeに似ています。
+ECMAScriptのいくつかの機能は他のプログラミング言語で使われているものとよく似てい
+ます。特に以下で述べられているJava、Self、Schemeに似ています。
 
 
-- Gosling, James, Bill Joy and Guy Steele. The Java. Language Specification. Addison Wesley Publishing Co.,1996.
-- Ungar, David, and Smith, Randall B. Self: The Power of Simplicity. OOPSLA '87 Conference Proceedings, pp.227.241, Orlando, FL, October 1987.
+- Gosling, James, Bill Joy and Guy Steele. The Java. Language Specification.
+  Addison Wesley Publishing Co.,1996.
+- Ungar, David, and Smith, Randall B. Self: The Power of Simplicity. OOPSLA '87
+  Conference Proceedings, pp.227.241, Orlando, FL, October 1987.
 - IEEE Standard for the Scheme Programming Language. IEEE Std 1178-1990.
 
 
@@ -38,19 +81,45 @@ ECMAScriptのいくつかの機能は他のプログラミング言語で使わ�
 * 4.1 Webスクリプト
 
 
-A web browser provides an ECMAScript host environment for client-side computation including, for instance, objects that represent windows, menus, pop-ups, dialog boxes, text areas, anchors, frames, history, cookies, and input/output. Further, the host environment provides a means to attach scripting code to events such as change of focus, page and image loading, unloading, error and abort, selection, form submission, and mouse actions. Scripting code appears within the HTML and the displayed page is a combination of user interface elements and fixed and computed text and images. The scripting code is reactive to user interaction and there is no need for a main program.
+A web browser provides an ECMAScript host environment for client-side
+computation including, for instance, objects that represent windows, menus,
+pop-ups, dialog boxes, text areas, anchors, frames, history, cookies, and
+input/output. Further, the host environment provides a means to attach scripting
+code to events such as change of focus, page and image loading, unloading, error
+and abort, selection, form submission, and mouse actions. Scripting code appears
+within the HTML and the displayed page is a combination of user interface
+elements and fixed and computed text and images. The scripting code is reactive
+to user interaction and there is no need for a main program.
 
-Webブラウザはクライアントでの計算のためのホスト環境、例えば、ウィンドウ、メニュー、ポップアップメニュー、ダイアログボックス、テキストエリア、アンカー、フレーム、履歴、Cookie、入出力を表すオブジェクトが含まれているホスト環境を提供します。更に、ホスト環境はスクリプトのコードを、例えばフォーカスの変更、ページやイメージのロード、アップロード、エラー、停止、セレクション、フォームの投稿、マウスの操作などといったイベントに結びつけます。スクリプトのコードはHTMLの間に現れ、表示されたページは、ユーザインターフェースの要素や静的もしくは動的に生成されたテキストや画像を組み合わせたものになります。ユーザの応答に対してスクリプトのコードが反応するので、メインのプログラムがそれらの応答を処理する必要はありません。
+Webブラウザはクライアントでの計算のためのホスト環境、例えば、ウィンドウ、メ
+ニュー、ポップアップメニュー、ダイアログボックス、テキストエリア、アンカー、フ
+レーム、履歴、Cookie、入出力を表すオブジェクトが含まれているホスト環境を提供しま
+す。更に、ホスト環境はスクリプトのコードを、例えばフォーカスの変更、ページやイ
+メージのロード、アップロード、エラー、停止、セレクション、フォームの投稿、マウス
+の操作などといったイベントに結びつけます。スクリプトのコードはHTMLの間に現れ、表
+示されたページは、ユーザインターフェースの要素や静的もしくは動的に生成されたテキ
+ストや画像を組み合わせたものになります。ユーザの応答に対してスクリプトのコードが
+反応するので、メインのプログラムがそれらの応答を処理する必要はありません。
 
 
-A web server provides a different host environment for server-side computation including objects representing requests, clients, and files; and mechanisms to lock and share data. By using browser-side and server-side scripting together, it is possible to distribute computation between the client and server while providing a customised user interface for a Web-based application.
+A web server provides a different host environment for server-side computation
+including objects representing requests, clients, and files; and mechanisms to
+lock and share data. By using browser-side and server-side scripting together,
+it is possible to distribute computation between the client and server while
+providing a customised user interface for a Web-based application.
 
-一方で、Webサーバはサーバでの計算のための別のホスト環境、例えば、リクエスト、クライアント、ファイル、共有データのロックをする仕組みを表現するオブジェクトを含むホスト環境を提供します。Webを基盤とするアプリケーションにとってはユーザインターフェースを提供する際に、ブラウザ側とサーバ側のスクリプトを一緒に使うことで、クライアントとサーバ間での分散処理が可能になります。
+一方で、Webサーバはサーバでの計算のための別のホスト環境、例えば、リクエスト、ク
+ライアント、ファイル、共有データのロックをする仕組みを表現するオブジェクトを含む
+ホスト環境を提供します。Webを基盤とするアプリケーションにとってはユーザインター
+フェースを提供する際に、ブラウザ側とサーバ側のスクリプトを一緒に使うことで、クラ
+イアントとサーバ間での分散処理が可能になります。
 
 
-Each Web browser and server that supports ECMAScript supplies its own host environment, completing the ECMAScript execution environment.
+Each Web browser and server that supports ECMAScript supplies its own host
+environment, completing the ECMAScript execution environment.
 
-ECMAScriptをサポートするWebブラウザやサーバは、ECMAScriptの実行環境を満たす個々のホスト環境を提供しています。
+ECMAScriptをサポートするWebブラウザやサーバは、ECMAScriptの実行環境を満たす個々
+のホスト環境を提供しています。
 
 
 * 4.2 Language Overview
@@ -58,25 +127,51 @@ ECMAScriptをサポートするWebブラウザやサーバは、ECMAScriptの実
 * 4.2 言語概要
 
 
-The following is an informal overview of ECMAScript-not all parts of the language are described. This overview is not part of the standard proper.
+The following is an informal overview of ECMAScript-not all parts of the
+language are described. This overview is not part of the standard proper.
 
-以降は、ECMAScriptの非形式的な概要であり、これが言語のすべてを述べている訳ではありません。また、この概要が適切な標準仕様の一部という訳でもありません。
+以降は、ECMAScriptの非形式的な概要であり、これが言語のすべてを述べている訳ではあ
+りません。また、この概要が適切な標準仕様の一部という訳でもありません。
 
 
-ECMAScript is object-based: basic language and host facilities are provided by objects, and an ECMAScript program is a cluster of communicating objects. An ECMAScript object is a collection of properties each with zero or more attributes that determine how each property can be used.for example, when the Writable attribute for a property is set to false, any attempt by executed ECMAScript code to change the value of the property fails. Properties are containers that hold other objects, primitive values, or functions. A primitive value is a member of one of the following built-in types: Undefined, Null, Boolean, Number, and String; an object is a member of the remaining built-in type Object; and a function is a callable object. A function that is associated with an object via a property is a method.
+ECMAScript is object-based: basic language and host facilities are provided by
+objects, and an ECMAScript program is a cluster of communicating objects. An
+ECMAScript object is a collection of properties each with zero or more
+attributes that determine how each property can be used.for example, when the
+Writable attribute for a property is set to false, any attempt by executed
+ECMAScript code to change the value of the property fails. Properties are
+containers that hold other objects, primitive values, or functions. A primitive
+value is a member of one of the following built-in types: Undefined, Null,
+Boolean, Number, and String; an object is a member of the remaining built-in
+type Object; and a function is a callable object. A function that is associated
+with an object via a property is a method.
 
-ECMAScriptはオブジェクトを基盤としています。例えば、基本的な言語自体やホスト環境の機能はオブジェクトによって提供されており、ECMAScriptのプログラムの実行はオブジェクト同士のやりとりによって構成されています。ECMAScriptのオブジェクトは、個々のプロパティがどのように使われるかを定めた0個以上の属性を伴ったプロパティの集合です。例えば、プロパティに関する書き込み属性がfalseに設定されている場合には、プロパティの値を変更しようと試みるいかなるECMAScriptのコードの実行もうまくいきません。また、プロパティは他のオブジェクト、プリミティブ値、関数を含むコンテナでもあります。プリミティブ値は以下の組み込み型のいずれかになります。
+ECMAScriptはオブジェクトを基盤としています。例えば、基本的な言語自体やホスト環境
+の機能はオブジェクトによって提供されており、ECMAScriptのプログラムの実行はオブ
+ジェクト同士のやりとりによって構成されています。ECMAScriptのオブジェクトは、個々
+のプロパティがどのように使われるかを定めた0個以上の属性を伴ったプロパティの集合
+です。例えば、プロパティに関する書き込み属性がfalseに設定されている場合には、プ
+ロパティの値を変更しようと試みるいかなるECMAScriptのコードの実行もうまくいきませ
+ん。また、プロパティは他のオブジェクト、プリミティブ値、関数を含むコンテナでもあ
+ります。プリミティブ値は以下の組み込み型のいずれかになります。
 - Undefined
 - Null
 - Boolean
 - Number
-- String
-オブジェクトはその他の組み込み型のオブジェクトのいずれかになります。そして関数は呼び出し可能なオブジェクトです。プロパティを通してあるオブジェクトに関連付けられた関数はメソッドとなります。
+- Stringオブジェクトはその他の組み込み型のオブジェクトのいずれかになります。そし
+  て関数は呼び出し可能なオブジェクトです。プロパティを通してあるオブジェクトに関
+  連付けられた関数はメソッドとなります。
 
 
-ECMAScript defines a collection of built-in objects that round out the definition of ECMAScript entities. These built-in objects include the global object, the Object object, the Function object, the Array object, the String object, the Boolean object, the Number object, the Math object, the Date object, the RegExp object, the JSON object, and the Error objects Error, EvalError, RangeError, ReferenceError, SyntaxError, TypeError and URIError.
+ECMAScript defines a collection of built-in objects that round out the
+definition of ECMAScript entities. These built-in objects include the global
+object, the Object object, the Function object, the Array object, the String
+object, the Boolean object, the Number object, the Math object, the Date object,
+the RegExp object, the JSON object, and the Error objects Error, EvalError,
+RangeError, ReferenceError, SyntaxError, TypeError and URIError.
 
-ECMAScriptではECMAScriptのエンティティの定義をまとめた組み込みオブジェクトの集合を定義しています。これらの組み込みオブジェクトには以下が含まれます。
+ECMAScriptではECMAScriptのエンティティの定義をまとめた組み込みオブジェクトの集合
+を定義しています。これらの組み込みオブジェクトには以下が含まれます。
 - Globalオブジェクト
 - Objectオブジェクト
 - Functionオブジェクト
@@ -98,7 +193,11 @@ ECMAScriptではECMAScriptのエンティティの定義をまとめた組み込
   - URIError
 
 
-ECMAScript also defines a set of built-in operators. ECMAScript operators include various unary operations, multiplicative operators, additive operators, bitwise shift operators, relational operators, equality operators, binary bitwise operators, binary logical operators, assignment operators, and the comma operator.
+ECMAScript also defines a set of built-in operators. ECMAScript operators
+include various unary operations, multiplicative operators, additive operators,
+bitwise shift operators, relational operators, equality operators, binary
+bitwise operators, binary logical operators, assignment operators, and the comma
+operator.
 
 また、ECMAScriptは組み込み演算子の集合を定義しています。
 - 単項演算子
@@ -113,9 +212,17 @@ ECMAScript also defines a set of built-in operators. ECMAScript operators includ
 - カンマ演算子
 
 
-ECMAScript syntax intentionally resembles Java syntax. ECMAScript syntax is relaxed to enable it to serve as an easy-to-use scripting language. For example, a variable is not required to have its type declared nor are types associated with properties, and defined functions are not required to have their declarations appear textually before calls to them.
+ECMAScript syntax intentionally resembles Java syntax. ECMAScript syntax is
+relaxed to enable it to serve as an easy-to-use scripting language. For example,
+a variable is not required to have its type declared nor are types associated
+with properties, and defined functions are not required to have their
+declarations appear textually before calls to them.
 
-ECMAScriptのシンタックスは意図的にJavaのシンタックスに似ています。ECMAScriptのシンタックスはスクリプト言語を使いやすくするために緩くされています。例えば、変数は型が宣言されていることを要求されませんし、プロパティに関連付けられた型が宣言されていることも要求されませんし、定義された関数はそれらが呼び出される前にテキスト上でその宣言が現れていることも要求されません。
+ECMAScriptのシンタックスは意図的にJavaのシンタックスに似ています。ECMAScriptのシ
+ンタックスはスクリプト言語を使いやすくするために緩くされています。例えば、変数は
+型が宣言されていることを要求されませんし、プロパティに関連付けられた型が宣言され
+ていることも要求されませんし、定義された関数はそれらが呼び出される前にテキスト上
+でその宣言が現れていることも要求されません。
 
 
 * 4.2.1 Objects
@@ -123,22 +230,61 @@ ECMAScriptのシンタックスは意図的にJavaのシンタックスに似て
 * 4.2.1 オブジェクト
 
 
-ECMAScript does not use classes such as those in C++, Smalltalk, or Java. Instead objects may be created in various ways including via a literal notation or via constructors which create objects and then execute code that initialises all or part of them by assigning initial values to their properties. Each constructor is a function that has a property named “prototype” that is used to implement prototype-based inheritance and shared properties. Objects are created by using constructors in new expressions; for example, new Date(2009,11) creates a new Date object. Invoking a constructor without using new has consequences that depend on the constructor. For example, Date() produces a string representation of the current date and time rather than an object.
+ECMAScript does not use classes such as those in C++, Smalltalk, or Java.
+Instead objects may be created in various ways including via a literal notation
+or via constructors which create objects and then execute code that initialises
+all or part of them by assigning initial values to their properties. Each
+constructor is a function that has a property named “prototype” that is used to
+implement prototype-based inheritance and shared properties. Objects are created
+by using constructors in new expressions; for example, new Date(2009,11) creates
+a new Date object. Invoking a constructor without using new has consequences
+that depend on the constructor. For example, Date() produces a string
+representation of the current date and time rather than an object.
 
-ECMAScriptはC++、Smalltalk、Javaのようなクラスを使っていません。代わりにオブジェクトが様々な方法で作られます。例えばリテラル記法によって作られたり、オブジェクトを作成しそれからプロパティに初期値を代入してオブジェクトの全体もしくは部分を初期化するような実行コードを伴うコンストラクタによって作られます。コンストラクタはプロトタイプに基づく継承とプロパティの共有を行うために用いられるprototypeと名付けられたプロパティを持つ関数です。オブジェクトはnew式においてコンストラクタを使うことで作成されます。例えばnew Date(2009,11)は新しいDateオブジェクトが作成されます。newを用いずにコンストラクタを呼び出した結果がどのようになるかは、個々のコンストラクタに依存します。例えばDate()という呼びだしはオブジェクトではなく現在日時を表す文字列を返します。
+ECMAScriptはC++、Smalltalk、Javaのようなクラスを使っていません。代わりにオブジェ
+クトが様々な方法で作られます。例えばリテラル記法によって作られたり、オブジェクト
+を作成しそれからプロパティに初期値を代入してオブジェクトの全体もしくは部分を初期
+化するような実行コードを伴うコンストラクタによって作られます。コンストラクタはプ
+ロトタイプに基づく継承とプロパティの共有を行うために用いられるprototypeと名付け
+られたプロパティを持つ関数です。オブジェクトはnew式においてコンストラクタを使う
+ことで作成されます。例えばnew Date(2009,11)は新しいDateオブジェクトが作成されま
+す。newを用いずにコンストラクタを呼び出した結果がどのようになるかは、個々のコン
+ストラクタに依存します。例えばDate()という呼びだしはオブジェクトではなく現在日時
+を表す文字列を返します。
 
 
-Every object created by a constructor has an implicit reference (called the object’s prototype) to the value of its constructor’s “prototype” property. Furthermore, a prototype may have a non-null implicit reference to its prototype, and so on; this is called the prototype chain. When a reference is made to a property in an object, that reference is to the property of that name in the first object in the prototype chain that contains a property of that name. In other words, first the object mentioned directly is examined for such a property; if that object contains the named property, that is the property to which the reference refers; if that object does not contain the named property, the prototype for that object is examined next; and so on.
+Every object created by a constructor has an implicit reference (called the
+object’s prototype) to the value of its constructor’s “prototype” property.
+Furthermore, a prototype may have a non-null implicit reference to its
+prototype, and so on; this is called the prototype chain. When a reference is
+made to a property in an object, that reference is to the property of that name
+in the first object in the prototype chain that contains a property of that
+name. In other words, first the object mentioned directly is examined for such a
+property; if that object contains the named property, that is the property to
+which the reference refers; if that object does not contain the named property,
+the prototype for that object is examined next; and so on.
 
-コンストラクタによって作成されたすべてのオブジェクトはコンストラクタのプロトタイププロパティの値への暗黙の参照(オブジェクトのプロトタイプと呼ばれる暗黙の参照)を持ちます。更にプロトタイプ自体がそのプロトタイプに対してはNullではない暗黙の参照を持つ場合があります。そのためこのことはプロトタイプチェーンと呼ばれます。オブジェクトのプロパティへの参照が作られると、その参照はその名前のプロパティを含むプロパティチェーンにおいてその名前のプロパティを持つ最初のオブジェクトのプロパティへの参照となります。言い換えると最初にオブジェクト自身がそのプロパティを持っていることが試されます。
-もしオブジェクトがその名前のプロパティを持っていれば、それが参照すべきプロパティです。
-もしオブジェクトがその名前のプロパティを持っていなければ、次にオブジェクトのプロトタイプがそのプロパティを持っているかどうかが試されます。
-そしてこれが繰り返されます。
+コンストラクタによって作成されたすべてのオブジェクトはコンストラクタのプロトタイ
+ププロパティの値への暗黙の参照(オブジェクトのプロトタイプと呼ばれる暗黙の参照)を
+持ちます。更にプロトタイプ自体がそのプロトタイプに対してはNullではない暗黙の参照
+を持つ場合があります。そのためこのことはプロトタイプチェーンと呼ばれます。オブ
+ジェクトのプロパティへの参照が作られると、その参照はその名前のプロパティを含むプ
+ロパティチェーンにおいてその名前のプロパティを持つ最初のオブジェクトのプロパティ
+への参照となります。言い換えると最初にオブジェクト自身がそのプロパティを持ってい
+ることが試されます。もしオブジェクトがその名前のプロパティを持っていれば、それが
+参照すべきプロパティです。もしオブジェクトがその名前のプロパティを持っていなけれ
+ば、次にオブジェクトのプロトタイプがそのプロパティを持っているかどうかが試されま
+す。そしてこれが繰り返されます。
 
 
-In a class-based object-oriented language, in general, state is carried by instances, methods are carried by classes, and inheritance is only of structure and behaviour. In ECMAScript, the state and methods are carried by objects, and structure, behaviour, and state are all inherited.
+In a class-based object-oriented language, in general, state is carried by
+instances, methods are carried by classes, and inheritance is only of structure
+and behaviour. In ECMAScript, the state and methods are carried by objects, and
+structure, behaviour, and state are all inherited.
 
-クラスベースのオブジェクト指向言語では一般的に状態はインスタンスが持ち、メソッドはクラスが持ち、継承は構造と挙動だけに限定されていました。一方ECMAScriptでは、状態とメソッドはオブジェクトが持ち、構造・挙動・状態のすべてが継承されます。
+クラスベースのオブジェクト指向言語では一般的に状態はインスタンスが持ち、メソッド
+はクラスが持ち、継承は構造と挙動だけに限定されていました。一方ECMAScriptでは、状
+態とメソッドはオブジェクトが持ち、構造・挙動・状態のすべてが継承されます。
 
 
 Figure 1 - Object/Prototype Relationships
@@ -162,28 +308,51 @@ Figure 1 - Object/Prototype Relationships
     +-->          |   | +-----+       |       |       |
     |             |   |       |       |       |       |
   +-+-----------+ | +-+---+ +-+---+ +-+---+ +-+---+ +-+---+
-  | CF          | | | cf1 + | cf2 | | cf3 | | cf4 | | cf5 |
-  |  prototype ===+ |  q1 | |  q1 | |  q1 | |  q1 | |  q1 |
-  |  P1         |   |  q2 | |  q2 | |  q2 | |  q2 | |  q2 |
-  |  P2         |   |     | |     | |     | |     | |     |
+  | CF          | | | cf1 + | cf2 | | cf3 | | cf4 | | cf5 | |  prototype ===+ |
+  q1 | |  q1 | |  q1 | |  q1 | |  q1 | |  P1         |   |  q2 | |  q2 | |  q2 |
+  |  q2 | |  q2 | |  P2         |   |     | |     | |     | |     | |     |
   +-------------+   +-----+ +-----+ +-----+ +-----+ +-----+
-  ===> 明示的なプロトタイプのプロパティ
-  ---> 暗黙的なプロトタイプのリンク
+  ===> 明示的なプロトタイプのプロパティ---> 暗黙的なプロトタイプのリンク
 
 
-All objects that do not directly contain a particular property that their prototype contains share that property and its value. Figure 1 illustrates this:
+All objects that do not directly contain a particular property that their
+prototype contains share that property and its value. Figure 1 illustrates this:
 
-そのオブジェクトのプロトタイプが持つ特定のプロパティを直接持っていないすべてのオブジェクトは、そのプロパティと値を共有します。図1はこのことを図示しています。
-
-
-CF is a constructor (and also an object). Five objects have been created by using new expressions: cf1, cf2, cf3, cf4, and cf5. Each of these objects contains properties named q1 and q2. The dashed lines represent the implicit prototype relationship; so, for example, cf3’s prototype is CFp. The constructor, CF, has two properties itself, named P1 and P2, which are not visible to CFp, cf1, cf2, cf3, cf4, or cf5. The property named CFP1 in CFp is shared by cf1, cf2, cf3, cf4, and cf5 (but not by CF), as are any properties found in CFp’s implicit prototype chain that are not named q1, q2, or CFP1. Notice that there is no implicit prototype link between CF and CFp.
-
-CFはコンストラクタです(同時にオブジェクトでもあります)。new式によって5個のオブジェクトが作られます(cf1, cf2, cf3, cf4, cf5)。これらのいずれのオブジェクトもq1とq2という名前のプロパティを持っています。実線の矢印は暗黙のプロトタイプの関係性を表しています。例えばcf3のプロトタイプはCFpです。コンストラクタCFは自分自身がP1とP2という二つのプロパティを持っていますが、それらはCFp, cf1, cf2, cf3, cf4, cf5からは見えません。CFpの中のCFP1はq1, q2, CFP1という名前ではないCFpの暗黙のプロトタイプチェーンにおける何らかのプロパティであり、cf1, cf2, cf3, cf4, cf5で共有されます。CFとCFpの間に暗黙のプロトタイプのリンクがないことに注目しましょう。
+そのオブジェクトのプロトタイプが持つ特定のプロパティを直接持っていないすべてのオ
+ブジェクトは、そのプロパティと値を共有します。図1はこのことを図示しています。
 
 
-Unlike class-based object languages, properties can be added to objects dynamically by assigning values to them. That is, constructors are not required to name or assign values to all or any of the constructed object’s properties. In the above diagram, one could add a new shared property for cf1, cf2, cf3, cf4, and cf5 by assigning a new value to the property in CFp.
+CF is a constructor (and also an object). Five objects have been created by
+using new expressions: cf1, cf2, cf3, cf4, and cf5. Each of these objects
+contains properties named q1 and q2. The dashed lines represent the implicit
+prototype relationship; so, for example, cf3’s prototype is CFp. The
+constructor, CF, has two properties itself, named P1 and P2, which are not
+visible to CFp, cf1, cf2, cf3, cf4, or cf5. The property named CFP1 in CFp is
+shared by cf1, cf2, cf3, cf4, and cf5 (but not by CF), as are any properties
+found in CFp’s implicit prototype chain that are not named q1, q2, or CFP1.
+Notice that there is no implicit prototype link between CF and CFp.
 
-クラスベースのオブジェクト指向言語とは違ってプロパティに値を代入することで動的にオブジェクトにプロパティを追加できます。つまり、コンストラトされたオブジェクトのプロパティのすべてもしくは一部に対して、必ずしも名前を付けたり値を代入したりする必要はありません。上の図では、CFpのプロパティに対して新しい値を代入することで、cf1, cf2, cf3, cf4, cf5に対して共有の新しいプロパティを追加することができます。
+CFはコンストラクタです(同時にオブジェクトでもあります)。new式によって5個のオブ
+ジェクトが作られます(cf1, cf2, cf3, cf4, cf5)。これらのいずれのオブジェクトもq1
+とq2という名前のプロパティを持っています。実線の矢印は暗黙のプロトタイプの関係性
+を表しています。例えばcf3のプロトタイプはCFpです。コンストラクタCFは自分自身がP1
+とP2という二つのプロパティを持っていますが、それらはCFp, cf1, cf2, cf3, cf4, cf5
+からは見えません。CFpの中のCFP1はq1, q2, CFP1という名前ではないCFpの暗黙のプロト
+タイプチェーンにおける何らかのプロパティであり、cf1, cf2, cf3, cf4, cf5で共有さ
+れます。CFとCFpの間に暗黙のプロトタイプのリンクがないことに注目しましょう。
+
+
+Unlike class-based object languages, properties can be added to objects
+dynamically by assigning values to them. That is, constructors are not required
+to name or assign values to all or any of the constructed object’s properties.
+In the above diagram, one could add a new shared property for cf1, cf2, cf3,
+cf4, and cf5 by assigning a new value to the property in CFp.
+
+クラスベースのオブジェクト指向言語とは違ってプロパティに値を代入することで動的に
+オブジェクトにプロパティを追加できます。つまり、コンストラトされたオブジェクトの
+プロパティのすべてもしくは一部に対して、必ずしも名前を付けたり値を代入したりする
+必要はありません。上の図では、CFpのプロパティに対して新しい値を代入することで、
+cf1, cf2, cf3, cf4, cf5に対して共有の新しいプロパティを追加することができます。
 
 
 * 4.2.2 The Strict Variant of ECMAScript
@@ -191,20 +360,61 @@ Unlike class-based object languages, properties can be added to objects dynamica
 * 4.2.2 厳格なECMAScript
 
 
-The ECMAScript Language recognizes the possibility that some users of the language may wish to restrict their usage of some features available in the language. They might do so in the interests of security, to avoid what they consider to be error-prone features, to get enhanced error checking, or for other reasons of their choosing. In support of this possibility, ECMAScript defines a strict variant of the language. The strict variant of the language excludes some specific syntactic and semantic features of the regular ECMAScript language and modifies the detailed semantics of some features. The strict variant also specifies additional error conditions that must be reported by throwing error exceptions in situations that are not specified as errors by the non-strict form of the language.
+The ECMAScript Language recognizes the possibility that some users of the
+language may wish to restrict their usage of some features available in the
+language. They might do so in the interests of security, to avoid what they
+consider to be error-prone features, to get enhanced error checking, or for
+other reasons of their choosing. In support of this possibility, ECMAScript
+defines a strict variant of the language. The strict variant of the language
+excludes some specific syntactic and semantic features of the regular ECMAScript
+language and modifies the detailed semantics of some features. The strict
+variant also specifies additional error conditions that must be reported by
+throwing error exceptions in situations that are not specified as errors by the
+non-strict form of the language.
 
-ECMAScriptは言語において使用できるいくつかの機能の使い方を制限したいと考えているユーザがいる可能性があることを認識しています。セキュリティの観点から、エラーが発生しやすいと彼らが考えている機能を避けるためであったり、エラーチェックを強化したりするためであったり、彼ら自身の他の理由のために、そう考えているのでしょう。この可能性をサポートするためにECMAScriptでは言語の厳格な派生を定義しています。この厳格な派生では、標準のECMAScriptのシンタックスやセマンティクスのいくつかを取り除き、いくつかの機能の詳細なセマンティクスを修正しています。この厳格な派生では標準の場合では厳密にはエラーとして指定されていない状況であっても、エラーの例外をスローして報告されなければならない追加のエラー条件を指定します。
+ECMAScriptは言語において使用できるいくつかの機能の使い方を制限したいと考えている
+ユーザがいる可能性があることを認識しています。セキュリティの観点から、エラーが発
+生しやすいと彼らが考えている機能を避けるためであったり、エラーチェックを強化した
+りするためであったり、彼ら自身の他の理由のために、そう考えているのでしょう。この
+可能性をサポートするためにECMAScriptでは言語の厳格な派生を定義しています。この厳
+格な派生では、標準のECMAScriptのシンタックスやセマンティクスのいくつかを取り除
+き、いくつかの機能の詳細なセマンティクスを修正しています。この厳格な派生では標準
+の場合では厳密にはエラーとして指定されていない状況であっても、エラーの例外をス
+ローして報告されなければならない追加のエラー条件を指定します。
 
 
-The strict variant of ECMAScript is commonly referred to as the strict mode of the language. Strict mode selection and use of the strict mode syntax and semantics of ECMAScript is explicitly made at the level of individual ECMAScript code units. Because strict mode is selected at the level of a syntactic code unit, strict mode only imposes restrictions that have local effect within such a code unit. Strict mode does not restrict or modify any aspect of the ECMAScript semantics that must operate consistently across multiple code units. A complete ECMAScript program may be composed for both strict mode and non-strict mode ECMAScript code units. In this case, strict mode only applies when actually executing code that is defined within a strict mode code unit.
+The strict variant of ECMAScript is commonly referred to as the strict mode of
+the language. Strict mode selection and use of the strict mode syntax and
+semantics of ECMAScript is explicitly made at the level of individual ECMAScript
+code units. Because strict mode is selected at the level of a syntactic code
+unit, strict mode only imposes restrictions that have local effect within such a
+code unit. Strict mode does not restrict or modify any aspect of the ECMAScript
+semantics that must operate consistently across multiple code units. A complete
+ECMAScript program may be composed for both strict mode and non-strict mode
+ECMAScript code units. In this case, strict mode only applies when actually
+executing code that is defined within a strict mode code unit.
 
-このECMAScriptの厳格な派生はstrictモードと一般的に呼ばれています。ECMAScriptでstrictモードを選択すること、そして、strictモードのシンタックスとセマンティクスを使うことは、ECMAScriptの個々のコード単位で明示的に行われます。strictモードはシンタックス上コード単位で行われるため、strictモードではコード単位の局所的な影響範囲にだけ制限が課せられます。strictモードは複数のコード単位に渡るようなECMAScriptのセマンティクスの面からの制限を課したり修正したりすることはありません。ひとつのECMAScriptプログラムがstrictモードと標準モードのコード単位から構成される場合もあります。このような場合にはコード単位でstrictモードと定義されたコードの実行時だけstrictモードが適用されます。
+このECMAScriptの厳格な派生はstrictモードと一般的に呼ばれています。ECMAScriptで
+strictモードを選択すること、そして、strictモードのシンタックスとセマンティクスを
+使うことは、ECMAScriptの個々のコード単位で明示的に行われます。strictモードはシン
+タックス上コード単位で行われるため、strictモードではコード単位の局所的な影響範囲
+にだけ制限が課せられます。strictモードは複数のコード単位に渡るようなECMAScriptの
+セマンティクスの面からの制限を課したり修正したりすることはありません。ひとつの
+ECMAScriptプログラムがstrictモードと標準モードのコード単位から構成される場合もあ
+ります。このような場合にはコード単位でstrictモードと定義されたコードの実行時だけ
+strictモードが適用されます。
 
 
-In order to conform to this specification, an ECMAScript implementation must implement both the full unrestricted ECMAScript language and the strict mode variant of the ECMAScript language as defined by this specification.
-In addition, an implementation must support the combination of unrestricted and strict mode code units into a single composite program.
+In order to conform to this specification, an ECMAScript implementation must
+implement both the full unrestricted ECMAScript language and the strict mode
+variant of the ECMAScript language as defined by this specification. In
+addition, an implementation must support the combination of unrestricted and
+strict mode code units into a single composite program.
 
-この仕様に従うためにECMAScriptの実装では、完全に制限のない標準モードのECMAScriptとこの仕様で定義されているstrictモードのECMAScriptを実装する必要があります。更に制限のない標準モードのコード単位とstrictモードのコード単位をひとつのプログラムに組み合わせられるようにサポートしなければなりません。
+この仕様に従うためにECMAScriptの実装では、完全に制限のない標準モードのECMAScript
+とこの仕様で定義されているstrictモードのECMAScriptを実装する必要があります。更に
+制限のない標準モードのコード単位とstrictモードのコード単位をひとつのプログラムに
+組み合わせられるようにサポートしなければなりません。
 
 
 * 4.3 Definitions
@@ -232,14 +442,18 @@ set of data values as defined in Clause 8 of this specification.
 * 4.3.2 プリミティブ値
 
 
-member of one of the types Undefined, Null, Boolean, Number, or String as defined in Clause 8.
+member of one of the types Undefined, Null, Boolean, Number, or String as
+defined in Clause 8.
 
-8節で定義している、Undefined, Null, Boolean, Number, Stringのどれかの型のメンバです。
+8節で定義している、Undefined, Null, Boolean, Number, Stringのどれかの型のメンバ
+です。
 
 
-NOTE A primitive value is a datum that is represented directly at the lowest level of the language implementation.
+NOTE A primitive value is a datum that is represented directly at the lowest
+level of the language implementation.
 
-注意：プリミティブ値は言語の実装においてもっとも低レベルにおいて直接的に表現されるデータです。
+注意：プリミティブ値は言語の実装においてもっとも低レベルにおいて直接的に表現され
+るデータです。
 
 
 * 4.3.3 object
@@ -252,9 +466,11 @@ member of the type Object.
 Object型のメンバです。
 
 
-NOTE An object is a collection of properties and has a single prototype object. The prototype may be the null value.
+NOTE An object is a collection of properties and has a single prototype object.
+The prototype may be the null value.
 
-注意：あるオブジェクトはプロパティの集合であり、ひとつのプロトタイプオブジェクトを持ちます。プロトタイプはnull値の場合があります。
+注意：あるオブジェクトはプロパティの集合であり、ひとつのプロトタイプオブジェクト
+を持ちます。プロトタイプはnull値の場合があります。
 
 
 * 4.3.4 constructor
@@ -267,9 +483,11 @@ Function object that creates and initialises objects.
 オブジェクトを作成し初期化するFunctionオブジェクトです。
 
 
-NOTE The value of a constructor’s “prototype” property is a prototype object that is used to implement inheritance and shared properties.
+NOTE The value of a constructor’s “prototype” property is a prototype object
+that is used to implement inheritance and shared properties.
 
-注意：コンストラクタのプロトタイププロパティの値は継承を実装しプロパティを共有するために用いられます。
+注意：コンストラクタのプロトタイププロパティの値は継承を実装しプロパティを共有す
+るために用いられます。
 
 
 * 4.3.5 prototype
@@ -282,9 +500,19 @@ object that provides shared properties for other objects.
 他のオブジェクトとプロパティを共有するためのオブジェクトです。
 
 
-NOTE When a constructor creates an object, that object implicitly references the constructor’s “prototype” property for the purpose of resolving property references. The constructor’s “prototype” property can be referenced by the program expression constructor.prototype, and properties added to an object’s prototype are shared, through inheritance, by all objects sharing the prototype. Alternatively, a new object may be created with an explicitly specified prototype by using the Object.create built-in function.
+NOTE When a constructor creates an object, that object implicitly references the
+constructor’s “prototype” property for the purpose of resolving property
+references. The constructor’s “prototype” property can be referenced by the
+program expression constructor.prototype, and properties added to an object’s
+prototype are shared, through inheritance, by all objects sharing the prototype.
+Alternatively, a new object may be created with an explicitly specified
+prototype by using the Object.create built-in function.
 
-注意：コンストラクタがオブジェクトを作る際に、プロパティの参照を解決するために、オブジェクトはコンストラクタのプロトタイププロパティを暗黙的に参照します。コンストラクタのプロトタイププロパティは、プログラムのconstructor.prototypeという式で参照されますし、オブジェクトのプロトタイプに追加されたプロパティは、そのプロトタイプを共有するすべてのオブジェクトの継承によって共有されます。
+注意：コンストラクタがオブジェクトを作る際に、プロパティの参照を解決するために、
+オブジェクトはコンストラクタのプロトタイププロパティを暗黙的に参照します。コンス
+トラクタのプロトタイププロパティは、プログラムのconstructor.prototypeという式で
+参照されますし、オブジェクトのプロトタイプに追加されたプロパティは、そのプロトタ
+イプを共有するすべてのオブジェクトの継承によって共有されます。
 
 
 * 4.3.6 native object
@@ -292,14 +520,20 @@ NOTE When a constructor creates an object, that object implicitly references the
 * 4.3.6 ネイティブオブジェクト
 
 
-object in an ECMAScript implementation whose semantics are fully defined by this specification rather than by the host environment.
+object in an ECMAScript implementation whose semantics are fully defined by this
+specification rather than by the host environment.
 
-ホスト環境ではなくこの仕様において意味的に完全に定義されるECMAScriptの実装上のオブジェクトです。
+ホスト環境ではなくこの仕様において意味的に完全に定義されるECMAScriptの実装上のオ
+ブジェクトです。
 
 
-NOTE Standard native objects are defined in this specification. Some native objects are built-in; others may be constructed during the course of execution of an ECMAScript program.
+NOTE Standard native objects are defined in this specification. Some native
+objects are built-in; others may be constructed during the course of execution
+of an ECMAScript program.
 
-注意：標準のネイティブオブジェクトは、この仕様において定義されています。いくつかのネイティブオブジェクトは組み込みであり、その他はECMAScriptのプログラムの実行時に作られます。
+注意：標準のネイティブオブジェクトは、この仕様において定義されています。いくつか
+のネイティブオブジェクトは組み込みであり、その他はECMAScriptのプログラムの実行時
+に作られます。
 
 
 * 4.3.7 built-in object
@@ -307,14 +541,23 @@ NOTE Standard native objects are defined in this specification. Some native obje
 * 4.3.7 組み込みオブジェクト
 
 
-object supplied by an ECMAScript implementation, independent of the host environment, that is present at the start of the execution of an ECMAScript program.
+object supplied by an ECMAScript implementation, independent of the host
+environment, that is present at the start of the execution of an ECMAScript
+program.
 
-ホスト環境に依存しないECMAScriptの実装によって提供されるオブジェクトであり、ECMAScriptのプログラムの実行開始時点から存在します。
+ホスト環境に依存しないECMAScriptの実装によって提供されるオブジェクトであり、
+ECMAScriptのプログラムの実行開始時点から存在します。
 
 
-NOTE Standard built-in objects are defined in this specification, and an ECMAScript implementation may specify and define others. Every built-in object is a native object. A built-in constructor is a built-in object that is also a constructor.
+NOTE Standard built-in objects are defined in this specification, and an
+ECMAScript implementation may specify and define others. Every built-in object
+is a native object. A built-in constructor is a built-in object that is also a
+constructor.
 
-注意：標準組み込みオブジェクトはこの仕様で定義されています。そして、特定のECMAScriptの実装ではそれ以外のものを明示し定義しているかもしれません。すべての組み込みオブジェクトはネイティブオブジェクトです。組み込みコンストラクタは、コンストラクタである組み込みオブジェクトです。
+注意：標準組み込みオブジェクトはこの仕様で定義されています。そして、特定の
+ECMAScriptの実装ではそれ以外のものを明示し定義しているかもしれません。すべての組
+み込みオブジェクトはネイティブオブジェクトです。組み込みコンストラクタは、コンス
+トラクタである組み込みオブジェクトです。
 
 
 * 4.3.8 host object
@@ -322,14 +565,17 @@ NOTE Standard built-in objects are defined in this specification, and an ECMAScr
 * 4.3.8 ホストオブジェクト
 
 
-object supplied by the host environment to complete the execution environment of ECMAScript.
+object supplied by the host environment to complete the execution environment of
+ECMAScript.
 
-ECMAScriptの実行環境を補完するためにホスト環境によって提供されるオブジェクトです。
+ECMAScriptの実行環境を補完するためにホスト環境によって提供されるオブジェクトで
+す。
 
 
 NOTE Any object that is not native is a host object.
 
-注意：ネイティブオブジェクトではないすべてのオブジェクトはホストオブジェクトです。
+注意：ネイティブオブジェクトではないすべてのオブジェクトはホストオブジェクトで
+す。
 
 
 * 4.3.9 undefined value
@@ -402,14 +648,21 @@ type consisting of the primitive values true and false.
 * 4.3.15 Booleanオブジェクト
 
 
-member of the Object type that is an instance of the standard built-in Boolean constructor.
+member of the Object type that is an instance of the standard built-in Boolean
+constructor.
 
-標準組み込みのBooleanコンストラクタのインスタンスであるオブジェクトのメンバです。
+標準組み込みのBooleanコンストラクタのインスタンスであるオブジェクトのメンバで
+す。
 
 
-NOTE A Boolean object is created by using the Boolean constructor in a new expression, supplying a Boolean value as an argument. The resulting object has an internal property whose value is the Boolean value. A Boolean object can be coerced to a Boolean value.
+NOTE A Boolean object is created by using the Boolean constructor in a new
+expression, supplying a Boolean value as an argument. The resulting object has
+an internal property whose value is the Boolean value. A Boolean object can be
+coerced to a Boolean value.
 
-注意：Booleanオブジェクトは、引数としてBoolean値が与えられたnew式でBooleanコンストラクタを実行した場合に作られます。結果のオブジェクトは、Boolean値を持つ内部プロパティを持ちます。Booleanオブジェクトは強制的にBoolean値に変換されます。
+注意：Booleanオブジェクトは、引数としてBoolean値が与えられたnew式でBooleanコンス
+トラクタを実行した場合に作られます。結果のオブジェクトは、Boolean値を持つ内部プ
+ロパティを持ちます。Booleanオブジェクトは強制的にBoolean値に変換されます。
 
 
 * 4.3.16 String value
@@ -417,14 +670,20 @@ NOTE A Boolean object is created by using the Boolean constructor in a new expre
 * 4.3.16 文字列値
 
 
-primitive value that is a finite ordered sequence of zero or more 16-bit unsigned integer.
+primitive value that is a finite ordered sequence of zero or more 16-bit
+unsigned integer.
 
 順序が決まっている0もしくは16ビットの符号無し整数の並びのプリミティブ値です。
 
 
-NOTE A String value is a member of the String type. Each integer value in the sequence usually represents a single 16-bit unit of UTF-16 text. However, ECMAScript does not place any restrictions or requirements on the values except that they must be 16-bit unsigned integers.
+NOTE A String value is a member of the String type. Each integer value in the
+sequence usually represents a single 16-bit unit of UTF-16 text. However,
+ECMAScript does not place any restrictions or requirements on the values except
+that they must be 16-bit unsigned integers.
 
-注意：文字列値はString型のメンバです。並びの整数値は、UTF-16の中のひとつの16ビットの値を表します。ただし、ECMAScriptは16ビットの符合なし整数でなければならないこと以外は値に対していかなる制約も要求もしていません。
+注意：文字列値はString型のメンバです。並びの整数値は、UTF-16の中のひとつの16ビッ
+トの値を表します。ただし、ECMAScriptは16ビットの符合なし整数でなければならないこ
+と以外は値に対していかなる制約も要求もしていません。
 
 
 * 4.3.17 String type
@@ -442,14 +701,23 @@ set of all possible String values.
 * 4.3.18 Stringオブジェクト
 
 
-member of the Object type that is an instance of the standard built-in String constructor.
+member of the Object type that is an instance of the standard built-in String
+constructor.
 
-標準組み込みのStringコンストラクタのインスタンスであるオブジェクト型のメンバです。
+標準組み込みのStringコンストラクタのインスタンスであるオブジェクト型のメンバで
+す。
 
 
-NOTE A String object is created by using the String constructor in a new expression, supplying a String value as an argument. The resulting object has an internal property whose value is the String value. A String object can be coerced to a String value by calling the String constructor as a function (15.5.1).
+NOTE A String object is created by using the String constructor in a new
+expression, supplying a String value as an argument. The resulting object has an
+internal property whose value is the String value. A String object can be
+coerced to a String value by calling the String constructor as a function
+(15.5.1).
 
-注意：Stringオブジェクトは、文字列値を引数として与えて、new式でStringコンストラクタを呼び出すことで作成されます。結果のオブジェクトは、文字列値を値に持つ内部的なプロパティを持ちます。Stringコンストラクタを関数として呼び出すことで、Stringオブジェクトを文字列値に強制変換することができます(15.5.1)。
+注意：Stringオブジェクトは、文字列値を引数として与えて、new式でStringコンストラ
+クタを呼び出すことで作成されます。結果のオブジェクトは、文字列値を値に持つ内部的
+なプロパティを持ちます。Stringコンストラクタを関数として呼び出すことで、Stringオ
+ブジェクトを文字列値に強制変換することができます(15.5.1)。
 
 
 * 4.3.19 Number value
@@ -457,12 +725,14 @@ NOTE A String object is created by using the String constructor in a new express
 * 4.3.19 数値
 
 
-primitive value corresponding to a double-precision 64-bit binary format IEEE 754 value.
+primitive value corresponding to a double-precision 64-bit binary format IEEE
+754 value.
 
 倍精度64ビットバイナリ形式IEEE 754に相当するプリミティブ値です。
 
 
-NOTE A Number value is a member of the Number type and is a direct representation of a number.
+NOTE A Number value is a member of the Number type and is a direct
+representation of a number.
 
 注意：数値はNumber型のメンバであり、数そのものの表現です。
 
@@ -472,9 +742,11 @@ NOTE A Number value is a member of the Number type and is a direct representatio
 * 4.3.20 Number型
 
 
-set of all possible Number values including the special “Not-a-Number” (NaN) values, positive infinity, and negative infinity.
+set of all possible Number values including the special “Not-a-Number” (NaN)
+values, positive infinity, and negative infinity.
 
-数値が取りうる値の集合です。数値には特別な、NaN、正の無限大、負の無限大が含まれます。
+数値が取りうる値の集合です。数値には特別な、NaN、正の無限大、負の無限大が含まれ
+ます。
 
 
 * 4.3.21 Number object
@@ -482,14 +754,22 @@ set of all possible Number values including the special “Not-a-Number” (NaN)
 * 4.3.21 Numberオブジェクト
 
 
-member of the Object type that is an instance of the standard built-in Number constructor.
+member of the Object type that is an instance of the standard built-in Number
+constructor.
 
 標準組み込みのNumberコンストラクタのインスタンスであるオブジェクトのメンバです。
 
 
-NOTE A Number object is created by using the Number constructor in a new expression, supplying a Number value as an argument. The resulting object has an internal property whose value is the Number value. A Number object can be coerced to a Number value by calling the Number constructor as a function (15.7.1).
+NOTE A Number object is created by using the Number constructor in a new
+expression, supplying a Number value as an argument. The resulting object has an
+internal property whose value is the Number value. A Number object can be
+coerced to a Number value by calling the Number constructor as a function
+(15.7.1).
 
-注意：Numberオブジェクトは、数値を引数として与えて、new式でNumberコンストラクタを呼び出すことで作成されます。結果のオブジェクトは、値が数値である内部的なプロパティを持ちます。Numberコンストラクタを関数として呼び出すことで、Numberオブジェクトを数値に強制変換することができます(15.7.1)。
+注意：Numberオブジェクトは、数値を引数として与えて、new式でNumberコンストラクタ
+を呼び出すことで作成されます。結果のオブジェクトは、値が数値である内部的なプロパ
+ティを持ちます。Numberコンストラクタを関数として呼び出すことで、Numberオブジェク
+トを数値に強制変換することができます(15.7.1)。
 
 
 * 4.3.22 Infinity
@@ -517,14 +797,20 @@ IEEE 754の"Not-a-Number"値である数値です。
 * 4.3.24 関数
 
 
-member of the Object type that is an instance of the standard built-in Function constructor and that may be invoked as a subroutine.
+member of the Object type that is an instance of the standard built-in Function
+constructor and that may be invoked as a subroutine.
 
-標準組み込みのFunctionコンストラクタのインスタンスであり、サブルーチンとして呼び出されるオブジェクトの型のメンバです。
+標準組み込みのFunctionコンストラクタのインスタンスであり、サブルーチンとして呼び
+出されるオブジェクトの型のメンバです。
 
 
-NOTE In addition to its named properties, a function contains executable code and state that determine how it behaves when invoked. A function’s code may or may not be written in ECMAScript.
+NOTE In addition to its named properties, a function contains executable code
+and state that determine how it behaves when invoked. A function’s code may or
+may not be written in ECMAScript.
 
-注意：名前付きのプロパティに加えて、関数には実行可能なコードと呼び出された時にどのように振る舞うかを決定する状態が含まれています。関数のコードはECMAScriptで書かれているかもしれませんし、そうでないかもしれません。
+注意：名前付きのプロパティに加えて、関数には実行可能なコードと呼び出された時にど
+のように振る舞うかを決定する状態が含まれています。関数のコードはECMAScriptで書か
+れているかもしれませんし、そうでないかもしれません。
 
 
 * 4.3.25 built-in function
@@ -537,9 +823,12 @@ built-in object that is a function.
 関数である組み込みオブジェクトです。
 
 
-NOTE Examples of built-in functions include parseInt and Math.exp. An implementation may provide implementation-dependent built-in functions that are not described in this specification.
+NOTE Examples of built-in functions include parseInt and Math.exp. An
+implementation may provide implementation-dependent built-in functions that are
+not described in this specification.
 
-注意：組み込み関数の例としてparseIntとMath.expが含まれます。実装によってはこの仕様では触れない実装に依存した組み込み関数が提供される場合があります。
+注意：組み込み関数の例としてparseIntとMath.expが含まれます。実装によってはこの仕
+様では触れない実装に依存した組み込み関数が提供される場合があります。
 
 
 * 4.3.26 property
@@ -552,9 +841,12 @@ association between a name and a value that is a part of an object.
 オブジェクトの一部を構成する名前と値の間の関連です。
 
 
-NOTE Depending upon the form of the property the value may be represented either directly as a data value (a primitive value, an object, or a function object) or indirectly by a pair of accessor functions.
+NOTE Depending upon the form of the property the value may be represented either
+directly as a data value (a primitive value, an object, or a function object) or
+indirectly by a pair of accessor functions.
 
-注意：プロパティの形式によっては、値はデータの値(プリミティブ値、オブジェクト、関数)として直接的に、もしくは、アクセサ関数の対によって関節的に表現されます。
+注意：プロパティの形式によっては、値はデータの値(プリミティブ値、オブジェクト、
+関数)として直接的に、もしくは、アクセサ関数の対によって関節的に表現されます。
 
 
 * 4.3.27 method
@@ -567,9 +859,11 @@ function that is the value of a property.
 プロパティの値である関数です。
 
 
-NOTE When a function is called as a method of an object, the object is passed to the function as its this value.
+NOTE When a function is called as a method of an object, the object is passed to
+the function as its this value.
 
-注意：関数がオブジェクトのメソッドとして呼ばれると、オブジェクトがthis値として関数に渡されます。
+注意：関数がオブジェクトのメソッドとして呼ばれると、オブジェクトがthis値として関
+数に渡されます。
 
 
 * 4.3.28 built-in method
@@ -582,9 +876,12 @@ method that is a built-in function.
 組み込み関数であるメソッドです。
 
 
-NOTE Standard built-in methods are defined in this specification, and an ECMAScript implementation may specify and provide other additional built-in methods.
+NOTE Standard built-in methods are defined in this specification, and an
+ECMAScript implementation may specify and provide other additional built-in
+methods.
 
-注意：標準組み込みメソッドはこの仕様で定義されています。ECMAScriptの実装によっては、追加の組み込みメソッドを明示し提供することもあります。
+注意：標準組み込みメソッドはこの仕様で定義されています。ECMAScriptの実装によって
+は、追加の組み込みメソッドを明示し提供することもあります。
 
 
 * 4.3.29 attribute
@@ -612,6 +909,8 @@ property that is directly contained by its object.
 * 4.3.31 継承したプロパティ
 
 
-property of an object that is not an own property but is a property (either own or inherited) of the object's prototype.
+property of an object that is not an own property but is a property (either own
+or inherited) of the object's prototype.
 
-オブジェクトにとっては固有プロパティではないが、オブジェクトのプロトタイプでは固有プロパティもしくは継承したプロパティであるプロパティです。
+オブジェクトにとっては固有プロパティではないが、オブジェクトのプロトタイプでは固
+有プロパティもしくは継承したプロパティであるプロパティです。

@@ -13,159 +13,106 @@
 * A.1 字句文法
 
 
-  SourceCharacter :: ( 6 )
-    any Unicode code unit 
+  SourceCharacter :: ( 6 ) any Unicode code unit 
 
-  SourceCharacter :: ( 6 )
-    すべてのUnicodeコード単位
+  SourceCharacter :: ( 6 )すべてのUnicodeコード単位
 
 
-  InputElementDiv :: ( 7 )
-    WhiteSpace 
-    LineTerminator 
-    Comment 
-    Token 
-    DivPunctuator
+  InputElementDiv :: ( 7 ) WhiteSpace LineTerminator Comment Token DivPunctuator
 
-  InputElementRegExp :: ( 7 )
-    WhiteSpace 
-    LineTerminator 
-    Comment 
-    Token 
+  InputElementRegExp :: ( 7 ) WhiteSpace LineTerminator Comment Token
     RegularExpressionLiteral 
 
-  WhiteSpace :: ( 7.2 )
-    <TAB> 
-    <VT> 
-    <FF> 
-    <SP> 
-    <NBSP> 
-    <BOM> 
-    <USP> 
+  WhiteSpace :: ( 7.2 ) <TAB> <VT> <FF> <SP> <NBSP> <BOM> <USP> 
 
-  LineTerminator :: ( 7.3 )
-    <LF> 
-    <CR> 
-    <LS> 
-    <PS> 
+  LineTerminator :: ( 7.3 ) <LF> <CR> <LS> <PS> 
 
-  LineTerminatorSequence :: ( 7.3 )
-    <LF> 
-    <CR> [lookahead not_a_member_of <LF> ] 
-    <LS> 
-    <PS> 
-    <CR> <LF>
+  LineTerminatorSequence :: ( 7.3 ) <LF> <CR> [lookahead not_a_member_of <LF> ]
+    <LS> <PS> <CR> <LF>
 
-  Comment :: ( 7.4 )
-    MultiLineComment 
-    SingleLineComment 
+  Comment :: ( 7.4 ) MultiLineComment SingleLineComment 
 
-  MultiLineComment :: ( 7.4 )
-    /* MultiLineCommentChars[opt] */ 
+  MultiLineComment :: ( 7.4 ) /* MultiLineCommentChars[opt] */ 
 
-  MultiLineCommentChars :: ( 7.4 )
-    MultiLineNotAsteriskChar MultiLineCommentCharsopt
+  MultiLineCommentChars :: ( 7.4 ) MultiLineNotAsteriskChar
+    MultiLineCommentCharsopt
     * PostAsteriskCommentChars[opt] 
 
-  PostAsteriskCommentChars :: ( 7.4 )
-    MultiLineNotForwardSlashOrAsteriskChar MultiLineCommentCharsopt
+  PostAsteriskCommentChars :: ( 7.4 ) MultiLineNotForwardSlashOrAsteriskChar
+    MultiLineCommentCharsopt
     * PostAsteriskCommentChars[opt] 
 
-  MultiLineNotAsteriskChar :: ( 7.4 )
-    SourceCharacter but not asterisk * 
+  MultiLineNotAsteriskChar :: ( 7.4 ) SourceCharacter but not asterisk * 
 
-  MultiLineNotForwardSlashOrAsteriskChar :: ( 7.4 )
-    SourceCharacter but not forward-slash / or asterisk * 
+  MultiLineNotForwardSlashOrAsteriskChar :: ( 7.4 ) SourceCharacter but not
+    forward-slash / or asterisk * 
 
-  SingleLineComment :: ( 7.4 )
-    // SingleLineCommentChars[opt] 
+  SingleLineComment :: ( 7.4 ) // SingleLineCommentChars[opt] 
 
-  SingleLineCommentChars :: ( 7.4 )
-    SingleLineCommentChar SingleLineCommentChars[opt] 
+  SingleLineCommentChars :: ( 7.4 ) SingleLineCommentChar
+    SingleLineCommentChars[opt] 
 
-  SingleLineCommentChar :: ( 7.4 )
-    SourceCharacter but not LineTerminator 
+  SingleLineCommentChar :: ( 7.4 ) SourceCharacter but not LineTerminator 
 
-  Token :: ( 7.5 )
-    IdentifierName 
-    Punctuator 
-    NumericLiteral 
-    StringLiteral 
+  Token :: ( 7.5 ) IdentifierName Punctuator NumericLiteral StringLiteral 
 
-  Identifier :: ( 7.6 )
-    IdentifierName but not ReservedWord 
+  Identifier :: ( 7.6 ) IdentifierName but not ReservedWord 
 
-  IdentifierName :: ( 7.6 )
-    IdentifierStart 
-    IdentifierName IdentifierPart 
+  IdentifierName :: ( 7.6 ) IdentifierStart IdentifierName IdentifierPart 
 
-  IdentifierStart :: ( 7.6 )
-    UnicodeLetter 
+  IdentifierStart :: ( 7.6 ) UnicodeLetter 
     $ 
     _ 
     \ UnicodeEscapeSequence 
 
-  IdentifierPart :: ( 7.6 )
-    IdentifierStart 
-    UnicodeCombiningMark 
-    UnicodeDigit 
-    UnicodeConnectorPunctuation 
-    <ZWNJ> 
-    <ZWJ> 
+  IdentifierPart :: ( 7.6 ) IdentifierStart UnicodeCombiningMark UnicodeDigit
+    UnicodeConnectorPunctuation <ZWNJ> <ZWJ> 
 
 
-  UnicodeLetter ( 7.6 )
-    any character in the Unicode categories “Uppercase letter (Lu)”, “Lowercase letter (Ll)”, “Titlecase letter (Lt)”, “Modifier letter (Lm)”, “Other letter (Lo)”, or “Letter number (Nl)”. 
+  UnicodeLetter ( 7.6 ) any character in the Unicode categories “Uppercase
+    letter (Lu)”, “Lowercase letter (Ll)”, “Titlecase letter (Lt)”, “Modifier
+    letter (Lm)”, “Other letter (Lo)”, or “Letter number (Nl)”. 
 
-  UnicodeLetter ( 7.6 )
-    Unicodeカテゴリ"Uppercase letter (Lu)", "Lowercase letter (Ll)", "Titlecase letter (Lt)", "Modifier letter (Lm)", "Other letter (Lo)", "Letter number (Nl)"の文字
-
-
-  UnicodeCombiningMark ( 7.6 )
-    any character in the Unicode categories “Non-spacing mark (Mn)” or “Combining spacing mark (Mc)” 
-
-  UnicodeCombiningMark ( 7.6 )
-    Unicodeカテゴリ"Non-spacing mark (Mn)", "Combining spacing mark (Mc)"の文字
+  UnicodeLetter ( 7.6 ) Unicodeカテゴリ"Uppercase letter (Lu)", "Lowercase
+    letter (Ll)", "Titlecase letter (Lt)", "Modifier letter (Lm)", "Other letter
+    (Lo)", "Letter number (Nl)"の文字
 
 
-  UnicodeDigit ( 7.6 )
-    any character in the Unicode category “Decimal number (Nd)” 
+  UnicodeCombiningMark ( 7.6 ) any character in the Unicode categories
+    “Non-spacing mark (Mn)” or “Combining spacing mark (Mc)” 
 
-  UnicodeDigit ( 7.6 )
-    Unicodeカテゴリ"Decimal number (Nd)"の文字
-
-
-  UnicodeConnectorPunctuation ( 7.6 )
-    any character in the Unicode category “Connector punctuation (Pc)” 
-
-  UnicodeConnectorPunctuation ( 7.6 )
-    Unicodeカテゴリ"Connector punctuation (Pc)"の文字
+  UnicodeCombiningMark ( 7.6 ) Unicodeカテゴリ"Non-spacing mark (Mn)",
+    "Combining spacing mark (Mc)"の文字
 
 
-  ReservedWord :: ( 7.6.1 )
-    Keyword 
-    FutureReservedWord 
-    NullLiteral 
+  UnicodeDigit ( 7.6 ) any character in the Unicode category “Decimal number
+    (Nd)” 
+
+  UnicodeDigit ( 7.6 ) Unicodeカテゴリ"Decimal number (Nd)"の文字
+
+
+  UnicodeConnectorPunctuation ( 7.6 ) any character in the Unicode category
+    “Connector punctuation (Pc)” 
+
+  UnicodeConnectorPunctuation ( 7.6 ) Unicodeカテゴリ"Connector punctuation
+    (Pc)"の文字
+
+
+  ReservedWord :: ( 7.6.1 ) Keyword FutureReservedWord NullLiteral
     BooleanLiteral 
 
-  Keyword :: one of ( 7.6.1.1 )
-    break       do          instanceof  typeof
-    case        else        new         var
-    catch       finally     return      void 
-    continue    for         switch      while 
-    debugger    function    this        with 
-    default     if          throw 
-    delete      in          try 
+  Keyword :: one of ( 7.6.1.1 ) break       do          instanceof  typeof case
+    else        new         var catch       finally     return      void
+    continue    for         switch      while debugger    function    this
+    with default     if          throw delete      in          try 
 
-  FutureReservedWord :: one of ( 7.6.1.2 )
-    class       enum        extends     super 
-    const       export      import 
+  FutureReservedWord :: one of ( 7.6.1.2 ) class       enum        extends
+    super const       export      import 
 
     or in strict mode code one of 
 
-    implements  let         private     public
-    interface   package     protected   static 
-    yield 
+    implements  let         private     public interface   package     protected
+    static yield 
 
   Punctuator :: one of ( 7.7 )
     {       }       (       )       [       ] 
@@ -180,145 +127,98 @@
   DivPunctuator :: one of ( 7.7 )
     /       /= 
 
-  Literal :: ( 7.8 )
-    NullLiteral 
-    BooleanLiteral 
-    NumericLiteral 
-    StringLiteral 
+  Literal :: ( 7.8 ) NullLiteral BooleanLiteral NumericLiteral StringLiteral 
 
-  NullLiteral :: ( 7.8.1 )
-    null 
+  NullLiteral :: ( 7.8.1 ) null 
 
-  BooleanLiteral :: ( 7.8.2 )
-    true
-    false
+  BooleanLiteral :: ( 7.8.2 ) true false
 
-  NumericLiteral :: ( 7.8.3 )
-    DecimalLiteral 
-    HexIntegerLiteral 
+  NumericLiteral :: ( 7.8.3 ) DecimalLiteral HexIntegerLiteral 
 
-  DecimalLiteral :: ( 7.8.3 )
-    DecimalIntegerLiteral . DecimalDigits[opt] ExponentPart[opt] 
-    . DecimalDigits ExponentPart[opt] 
-    DecimalIntegerLiteral ExponentPart[opt] 
+  DecimalLiteral :: ( 7.8.3 ) DecimalIntegerLiteral . DecimalDigits[opt]
+    ExponentPart[opt] . DecimalDigits ExponentPart[opt] DecimalIntegerLiteral
+    ExponentPart[opt] 
 
-  DecimalIntegerLiteral :: ( 7.8.3 )
-    0
-    NonZeroDigit DecimalDigits[opt]
+  DecimalIntegerLiteral :: ( 7.8.3 ) 0 NonZeroDigit DecimalDigits[opt]
 
-  DecimalDigits :: ( 7.8.3 )
-    DecimalDigit 
-    DecimalDigits DecimalDigit 
+  DecimalDigits :: ( 7.8.3 ) DecimalDigit DecimalDigits DecimalDigit 
 
-  DecimalDigit :: one of ( 7.8.3 )
-    0 1 2 3 4 5 6 7 8 9 
+  DecimalDigit :: one of ( 7.8.3 ) 0 1 2 3 4 5 6 7 8 9 
 
-  ExponentIndicator :: one of ( 7.8.3 )
-    e E
+  ExponentIndicator :: one of ( 7.8.3 ) e E
 
-  SignedInteger :: ( 7.8.3 )
-    DecimalDigits 
+  SignedInteger :: ( 7.8.3 ) DecimalDigits 
     + DecimalDigits
     - DecimalDigits
 
-  HexIntegerLiteral :: ( 7.8.3 )
-    0x HexDigit 
-    0X HexDigit 
-    HexIntegerLiteral HexDigit 
+  HexIntegerLiteral :: ( 7.8.3 ) 0x HexDigit 0X HexDigit HexIntegerLiteral
+    HexDigit 
 
-  HexDigit :: one of ( 7.8.3 )
-    0 1 2 3 4 5 6 7 8 9 a b c d e f A B C D E F 
+  HexDigit :: one of ( 7.8.3 ) 0 1 2 3 4 5 6 7 8 9 a b c d e f A B C D E F 
 
-  StringLiteral :: ( 7.8.4 )
-    " DoubleStringCharacters[opt] " 
-    ' SingleStringCharacters[opt] ' 
+  StringLiteral :: ( 7.8.4 ) " DoubleStringCharacters[opt] " '
+    SingleStringCharacters[opt] ' 
 
-  DoubleStringCharacters :: ( 7.8.4 )
-    DoubleStringCharacter DoubleStringCharacters[opt] 
+  DoubleStringCharacters :: ( 7.8.4 ) DoubleStringCharacter
+    DoubleStringCharacters[opt] 
 
-  SingleStringCharacters :: ( 7.8.4 )
-    SingleStringCharacter SingleStringCharacters[opt] 
+  SingleStringCharacters :: ( 7.8.4 ) SingleStringCharacter
+    SingleStringCharacters[opt] 
 
-  DoubleStringCharacter :: ( 7.8.4 )
-    SourceCharacter but not double-quote " or backslash \or LineTerminator 
-    \ EscapeSequence 
-    LineContinuation 
+  DoubleStringCharacter :: ( 7.8.4 ) SourceCharacter but not double-quote " or
+    backslash \or LineTerminator \ EscapeSequence LineContinuation 
 
-  SingleStringCharacter :: ( 7.8.4 )
-    SourceCharacter but not single-quote ' or backslash \or LineTerminator 
-    \ EscapeSequence 
-    LineContinuation 
+  SingleStringCharacter :: ( 7.8.4 ) SourceCharacter but not single-quote ' or
+    backslash \or LineTerminator \ EscapeSequence LineContinuation 
 
-  LineContinuation :: ( 7.8.4 )
-    \ LineTerminatorSequence 
+  LineContinuation :: ( 7.8.4 ) \ LineTerminatorSequence 
 
-  EscapeSequence :: ( 7.8.4 )
-    CharacterEscapeSequence0 [lookahead not_a_member_of DecimalDigit] 
-    HexEscapeSequence 
-    UnicodeEscapeSequence 
+  EscapeSequence :: ( 7.8.4 ) CharacterEscapeSequence0 [lookahead
+    not_a_member_of DecimalDigit] HexEscapeSequence UnicodeEscapeSequence 
 
-  CharacterEscapeSequence :: ( 7.8.4 )
-    SingleEscapeCharacter 
-    NonEscapeCharacter 
+  CharacterEscapeSequence :: ( 7.8.4 ) SingleEscapeCharacter NonEscapeCharacter 
 
-  SingleEscapeCharacter :: one of ( 7.8.4 )
-    ' " \ b f n r t v 
+  SingleEscapeCharacter :: one of ( 7.8.4 ) ' " \ b f n r t v 
 
-  NonEscapeCharacter :: ( 7.8.4 )
-    SourceCharacter but not EscapeCharacter or LineTerminator 
+  NonEscapeCharacter :: ( 7.8.4 ) SourceCharacter but not EscapeCharacter or
+    LineTerminator 
 
-  EscapeCharacter :: ( 7.8.4 )
-    SingleEscapeCharacter 
-    DecimalDigit 
-    x 
-    u 
+  EscapeCharacter :: ( 7.8.4 ) SingleEscapeCharacter DecimalDigit x u 
 
-  HexEscapeSequence :: ( 7.8.4 )
-    x HexDigit HexDigit 
+  HexEscapeSequence :: ( 7.8.4 ) x HexDigit HexDigit 
 
-  UnicodeEscapeSequence :: ( 7.8.4 )
-    u HexDigit HexDigit HexDigit HexDigit 
+  UnicodeEscapeSequence :: ( 7.8.4 ) u HexDigit HexDigit HexDigit HexDigit 
 
-  RegularExpressionLiteral :: ( ( 7.8.5 )
-    / RegularExpressionBody /RegularExpressionFlags 
+  RegularExpressionLiteral :: ( ( 7.8.5 ) / RegularExpressionBody
+    /RegularExpressionFlags 
 
-  RegularExpressionBody :: ( 7.8.5 )
-    RegularExpressionFirstChar RegularExpressionChars 
+  RegularExpressionBody :: ( 7.8.5 ) RegularExpressionFirstChar
+    RegularExpressionChars 
 
-  RegularExpressionChars :: ( 7.8.5 )
-    [empty] 
-    RegularExpressionChars RegularExpressionChar 
+  RegularExpressionChars :: ( 7.8.5 ) [empty] RegularExpressionChars
+    RegularExpressionChar 
 
-  RegularExpressionFirstChar :: ( 7.8.5 )
-    RegularExpressionNonTerminator but not *or \or / or [
-    RegularExpressionBackslashSequence
-    RegularExpressionClass 
+  RegularExpressionFirstChar :: ( 7.8.5 ) RegularExpressionNonTerminator but not
+    *or \or / or [RegularExpressionBackslashSequence RegularExpressionClass 
 
-  RegularExpressionChar :: ( 7.8.5 )
-    RegularExpressionNonTerminator but not \ or / or [
-    RegularExpressionBackslashSequence
-    RegularExpressionClass 
+  RegularExpressionChar :: ( 7.8.5 ) RegularExpressionNonTerminator but not \ or
+    / or [RegularExpressionBackslashSequence RegularExpressionClass 
 
-  RegularExpressionBackslashSequence :: ( 7.8.5 )
-    \ NonTerminator 
+  RegularExpressionBackslashSequence :: ( 7.8.5 ) \ NonTerminator 
 
-  RegularExpressionNonTerminator :: ( 7.8.5 )
-    SourceCharacter but not LineTerminator 
+  RegularExpressionNonTerminator :: ( 7.8.5 ) SourceCharacter but not
+    LineTerminator 
 
-  RegularExpressionClass :: ( 7.8.5 )
-    [ RegularExpressionClassChars ] 
+  RegularExpressionClass :: ( 7.8.5 ) [ RegularExpressionClassChars ] 
 
-  RegularExpressionClassChars :: ( 7.8.5 )
-    [empty] 
-    RegularExpressionClassChars RegularExpressionClassChar 
+  RegularExpressionClassChars :: ( 7.8.5 ) [empty] RegularExpressionClassChars
+    RegularExpressionClassChar 
 
-  RegularExpressionClassChar :: ( 7.8.5 )
-    RegularExpressionNonTerminator but not ]or \ 
-    RegularExpressionBackslashSequence
+  RegularExpressionClassChar :: ( 7.8.5 ) RegularExpressionNonTerminator but not
+    ]or \ RegularExpressionBackslashSequence
 
-  RegularExpressionFlags :: ( 7.8.5 )
-    [empty] 
-    RegularExpressionFlags IdentifierPart 
+  RegularExpressionFlags :: ( 7.8.5 ) [empty] RegularExpressionFlags
+    IdentifierPart 
 
 
 * A.2 Number Conversions 
@@ -326,56 +226,39 @@
 * A.2 数字変換
 
 
-  StringNumericLiteral ::: ( 9.3.1 )
-    StrWhiteSpace[opt] 
-    StrWhiteSpace[opt] StrNumericLiteral StrWhiteSpace[opt] 
+  StringNumericLiteral ::: ( 9.3.1 ) StrWhiteSpace[opt] StrWhiteSpace[opt]
+    StrNumericLiteral StrWhiteSpace[opt] 
 
-  StrWhiteSpace ::: ( 9.3.1 )
-    StrWhiteSpaceChar StrWhiteSpace[opt] 
+  StrWhiteSpace ::: ( 9.3.1 ) StrWhiteSpaceChar StrWhiteSpace[opt] 
 
-  StrWhiteSpaceChar ::: ( 9.3.1 )
-    WhiteSpace 
-    LineTerminator 
+  StrWhiteSpaceChar ::: ( 9.3.1 ) WhiteSpace LineTerminator 
 
-  StrNumericLiteral ::: ( 9.3.1 )
-    StrDecimalLiteral 
-    HexIntegerLiteral 
+  StrNumericLiteral ::: ( 9.3.1 ) StrDecimalLiteral HexIntegerLiteral 
 
-  StrDecimalLiteral ::: ( 9.3.1 )
-    StrUnsignedDecimalLiteral 
+  StrDecimalLiteral ::: ( 9.3.1 ) StrUnsignedDecimalLiteral 
     + StrUnsignedDecimalLiteral 
     - StrUnsignedDecimalLiteral 
 
-  StrUnsignedDecimalLiteral ::: ( 9.3.1 )
-    InfinityDecimalDigits . DecimalDigits[opt] ExponentPart[opt] 
-    . DecimalDigits ExponentPart[opt] 
+  StrUnsignedDecimalLiteral ::: ( 9.3.1 ) InfinityDecimalDigits .
+    DecimalDigits[opt] ExponentPart[opt] . DecimalDigits ExponentPart[opt]
     DecimalDigits ExponentPart[opt] 
 
-  DecimalDigits ::: ( 9.3.1 )
-    DecimalDigit 
-    DecimalDigits DecimalDigit 
+  DecimalDigits ::: ( 9.3.1 ) DecimalDigit DecimalDigits DecimalDigit 
 
-  DecimalDigit ::: one of ( 9.3.1 )
-    0 1 2 3 4 5 6 7 8 9 
+  DecimalDigit ::: one of ( 9.3.1 ) 0 1 2 3 4 5 6 7 8 9 
 
-  ExponentPart ::: ( 9.3.1 )
-    ExponentIndicator SignedInteger 
+  ExponentPart ::: ( 9.3.1 ) ExponentIndicator SignedInteger 
 
-  ExponentIndicator ::: one of ( 9.3.1 )
-    e E 
+  ExponentIndicator ::: one of ( 9.3.1 ) e E 
 
-  SignedInteger ::: ( 9.3.1 )
-    DecimalDigits 
+  SignedInteger ::: ( 9.3.1 ) DecimalDigits 
     + DecimalDigits 
     - DecimalDigits 
 
-  HexIntegerLiteral ::: ( 9.3.1 )
-    0x HexDigit 
-    0X HexDigit 
-    HexIntegerLiteral HexDigit 
+  HexIntegerLiteral ::: ( 9.3.1 ) 0x HexDigit 0X HexDigit HexIntegerLiteral
+    HexDigit 
 
-  HexDigit ::: one of ( 9.3.1 )
-    0 1 2 3 4 5 6 7 8 9 a b c d e f A B C D E F 
+  HexDigit ::: one of ( 9.3.1 ) 0 1 2 3 4 5 6 7 8 9 a b c d e f A B C D E F 
 
 
 * A.3 Expressions 
@@ -383,22 +266,14 @@
 * A.3 式
 
 
-  PrimaryExpression : ( 11.1 )
-    this 
-    Identifier 
-    Literal 
-    ArrayLiteral 
-    ObjectLiteral
-    ( Expression ) 
+  PrimaryExpression : ( 11.1 ) this Identifier Literal ArrayLiteral
+    ObjectLiteral ( Expression ) 
 
-  ArrayLiteral : ( 11.1.4 )
-    [ Elision[opt] ]
-    [ ElementList ]
-    [ ElementList , Elision[opt] ] 
+  ArrayLiteral : ( 11.1.4 ) [ Elision[opt] ] [ ElementList ] [ ElementList ,
+    Elision[opt] ] 
 
-  ElementList : ( 11.1.4 )
+  ElementList : ( 11.1.4 ) Elision[opt] AssignmentExpression ElementList ,
     Elision[opt] AssignmentExpression 
-    ElementList , Elision[opt] AssignmentExpression 
 
   Elision : ( 11.1.4 )
     , 
@@ -406,185 +281,128 @@
 
   ObjectLiteral : ( 11.1.5 )
     { }
-    { PropertyNameAndValueList }
-    { PropertyNameAndValueList , } 
+    { PropertyNameAndValueList } { PropertyNameAndValueList , } 
 
-  PropertyNameAndValueList : ( 11.1.5 )
-    PropertyAssignment 
+  PropertyNameAndValueList : ( 11.1.5 ) PropertyAssignment
     PropertyNameAndValueList , PropertyAssignment 
 
-  PropertyAssignment : ( 11.1.5 )
-    PropertyName : AssignmentExpression 
-    get PropertyName() { FunctionBody }
-    set PropertyName( PropertySetParameterList ) { FunctionBody } 
+  PropertyAssignment : ( 11.1.5 ) PropertyName : AssignmentExpression get
+    PropertyName() { FunctionBody } set PropertyName( PropertySetParameterList )
+    { FunctionBody } 
 
-  PropertyName : ( 11.1.5 )
-    IdentifierName 
-    StringLiteral 
-    NumericLiteral 
+  PropertyName : ( 11.1.5 ) IdentifierName StringLiteral NumericLiteral 
 
-  PropertySetParameterList : ( 11.1.5 )
-    Identifier 
+  PropertySetParameterList : ( 11.1.5 ) Identifier 
 
-  MemberExpression : ( 11.2 )
-    PrimaryExpression 
-    FunctionExpression 
-    MemberExpression [ Expression ]
-    MemberExpression . IdentifierName 
-    new MemberExpression Arguments 
-
-  NewExpression : ( 11.2 )
-    MemberExpression 
-    new NewExpression 
-
-  CallExpression : ( 11.2 )
+  MemberExpression : ( 11.2 ) PrimaryExpression FunctionExpression
+    MemberExpression [ Expression ] MemberExpression . IdentifierName new
     MemberExpression Arguments 
-    CallExpression Arguments 
-    CallExpression [ Expression ]
-    CallExpression . IdentifierName 
+
+  NewExpression : ( 11.2 ) MemberExpression new NewExpression 
+
+  CallExpression : ( 11.2 ) MemberExpression Arguments CallExpression Arguments
+    CallExpression [ Expression ] CallExpression . IdentifierName 
 
   Arguments : ( 11.2 )
     () 
     ( ArgumentList ) 
 
-  ArgumentList : ( 11.2 )
+  ArgumentList : ( 11.2 ) AssignmentExpression ArgumentList ,
     AssignmentExpression 
-    ArgumentList , AssignmentExpression 
 
-  LeftHandSideExpression : ( 11.2 )
-    NewExpression 
-    CallExpression 
+  LeftHandSideExpression : ( 11.2 ) NewExpression CallExpression 
 
-  PostfixExpression : ( 11.3 )
-    LeftHandSideExpression 
-    LeftHandSideExpression [no LineTerminator here] ++ 
-    LeftHandSideExpression [no LineTerminator here] --
+  PostfixExpression : ( 11.3 ) LeftHandSideExpression LeftHandSideExpression [no
+    LineTerminator here] ++ LeftHandSideExpression [no LineTerminator here] --
 
-  UnaryExpression : ( 11.4 )
-    PostfixExpressiondelete UnaryExpression 
-    void UnaryExpression 
-    typeof UnaryExpression 
-    ++ UnaryExpression 
-    -- UnaryExpression 
+  UnaryExpression : ( 11.4 ) PostfixExpressiondelete UnaryExpression void
+    UnaryExpression typeof UnaryExpression ++ UnaryExpression -- UnaryExpression
+    
     + UnaryExpression 
-    - UnaryExpression 
-    ~ UnaryExpression 
-    ! UnaryExpression 
+    - UnaryExpression ~ UnaryExpression ! UnaryExpression 
 
-  MultiplicativeExpression : ( 11.5 )
-    UnaryExpression 
-    MultiplicativeExpression * UnaryExpression 
-    MultiplicativeExpression / UnaryExpression 
+  MultiplicativeExpression : ( 11.5 ) UnaryExpression MultiplicativeExpression *
+    UnaryExpression MultiplicativeExpression / UnaryExpression
     MultiplicativeExpression % UnaryExpression 
 
-  AdditiveExpression : ( 11.6 )
-    MultiplicativeExpression 
-    AdditiveExpression + MultiplicativeExpression 
-    AdditiveExpression - MultiplicativeExpression 
+  AdditiveExpression : ( 11.6 ) MultiplicativeExpression AdditiveExpression +
+    MultiplicativeExpression AdditiveExpression - MultiplicativeExpression 
 
-  ShiftExpression : ( 11.7 )
+  ShiftExpression : ( 11.7 ) AdditiveExpression ShiftExpression <<
+    AdditiveExpression ShiftExpression >> AdditiveExpression ShiftExpression >>>
     AdditiveExpression 
-    ShiftExpression << AdditiveExpression 
-    ShiftExpression >> AdditiveExpression 
-    ShiftExpression >>> AdditiveExpression 
 
-  RelationalExpression : ( 11.8 )
+  RelationalExpression : ( 11.8 ) ShiftExpression RelationalExpression <
+    ShiftExpression RelationalExpression > ShiftExpression RelationalExpression
+    <= ShiftExpression RelationalExpression >= ShiftExpression
+    RelationalExpression instanceof ShiftExpression RelationalExpression in
     ShiftExpression 
-    RelationalExpression < ShiftExpression 
-    RelationalExpression > ShiftExpression 
-    RelationalExpression <= ShiftExpression 
-    RelationalExpression >= ShiftExpression 
-    RelationalExpression instanceof ShiftExpression 
-    RelationalExpression in ShiftExpression 
 
-  RelationalExpressionNoIn : ( 11.8 )
-    ShiftExpression 
-    RelationalExpressionNoIn < ShiftExpression 
-    RelationalExpressionNoIn > ShiftExpression 
-    RelationalExpressionNoIn <= ShiftExpression 
-    RelationalExpressionNoIn >= ShiftExpression 
-    RelationalExpressionNoIn instanceof ShiftExpression 
+  RelationalExpressionNoIn : ( 11.8 ) ShiftExpression RelationalExpressionNoIn <
+    ShiftExpression RelationalExpressionNoIn > ShiftExpression
+    RelationalExpressionNoIn <= ShiftExpression RelationalExpressionNoIn >=
+    ShiftExpression RelationalExpressionNoIn instanceof ShiftExpression 
 
-  EqualityExpression : ( 11.9 )
+  EqualityExpression : ( 11.9 ) RelationalExpression EqualityExpression ==
+    RelationalExpression EqualityExpression != RelationalExpression
+    EqualityExpression === RelationalExpression EqualityExpression !==
     RelationalExpression 
-    EqualityExpression == RelationalExpression 
-    EqualityExpression != RelationalExpression 
-    EqualityExpression === RelationalExpression 
-    EqualityExpression !== RelationalExpression 
 
-  EqualityExpressionNoIn : ( 11.9 )
-    RelationalExpressionNoIn 
-    EqualityExpressionNoIn == RelationalExpressionNoIn 
-    EqualityExpressionNoIn != RelationalExpressionNoIn 
-    EqualityExpressionNoIn === RelationalExpressionNoIn 
+  EqualityExpressionNoIn : ( 11.9 ) RelationalExpressionNoIn
+    EqualityExpressionNoIn == RelationalExpressionNoIn EqualityExpressionNoIn !=
+    RelationalExpressionNoIn EqualityExpressionNoIn === RelationalExpressionNoIn
     EqualityExpressionNoIn !== RelationalExpressionNoIn 
 
-  BitwiseANDExpression : ( 11.10 )
+  BitwiseANDExpression : ( 11.10 ) EqualityExpression BitwiseANDExpression &
     EqualityExpression 
-    BitwiseANDExpression & EqualityExpression 
 
-  BitwiseANDExpressionNoIn : ( 11.10 )
-    EqualityExpressionNoIn 
+  BitwiseANDExpressionNoIn : ( 11.10 ) EqualityExpressionNoIn
     BitwiseANDExpressionNoIn & EqualityExpressionNoIn 
 
-  BitwiseXORExpression : ( 11.10 )
+  BitwiseXORExpression : ( 11.10 ) BitwiseANDExpression BitwiseXORExpression ^
     BitwiseANDExpression 
-    BitwiseXORExpression ^ BitwiseANDExpression 
 
-  BitwiseXORExpressionNoIn : ( 11.10 )
-    BitwiseANDExpressionNoIn 
+  BitwiseXORExpressionNoIn : ( 11.10 ) BitwiseANDExpressionNoIn
     BitwiseXORExpressionNoIn ^ BitwiseANDExpressionNoIn 
 
-  BitwiseORExpression : ( 11.10 )
+  BitwiseORExpression : ( 11.10 ) BitwiseXORExpression BitwiseORExpression |
     BitwiseXORExpression 
-    BitwiseORExpression | BitwiseXORExpression 
 
-  BitwiseORExpressionNoIn : ( 11.10 )
-    BitwiseXORExpressionNoIn 
+  BitwiseORExpressionNoIn : ( 11.10 ) BitwiseXORExpressionNoIn
     BitwiseORExpressionNoIn | BitwiseXORExpressionNoIn 
 
-  LogicalANDExpression : ( 11.11 )
+  LogicalANDExpression : ( 11.11 ) BitwiseORExpression LogicalANDExpression &&
     BitwiseORExpression 
-    LogicalANDExpression && BitwiseORExpression 
 
-  LogicalANDExpressionNoIn : ( 11.11 )
-    BitwiseORExpressionNoIn 
+  LogicalANDExpressionNoIn : ( 11.11 ) BitwiseORExpressionNoIn
     LogicalANDExpressionNoIn && BitwiseORExpressionNoIn 
 
-  LogicalORExpression : ( 11.11 )
+  LogicalORExpression : ( 11.11 ) LogicalANDExpression LogicalORExpression ||
     LogicalANDExpression 
-    LogicalORExpression || LogicalANDExpression 
 
-  LogicalORExpressionNoIn : ( 11.11 )
-    LogicalANDExpressionNoIn 
+  LogicalORExpressionNoIn : ( 11.11 ) LogicalANDExpressionNoIn
     LogicalORExpressionNoIn || LogicalANDExpressionNoIn 
 
-  ConditionalExpression : ( 11.12 )
-    LogicalORExpression 
-    LogicalORExpression ? AssignmentExpression : AssignmentExpression 
+  ConditionalExpression : ( 11.12 ) LogicalORExpression LogicalORExpression ?
+    AssignmentExpression : AssignmentExpression 
 
-  ConditionalExpressionNoIn : ( 11.12 )
-    LogicalORExpressionNoIn 
-    LogicalORExpressionNoIn ? AssignmentExpressionNoIn : AssignmentExpressionNoIn 
+  ConditionalExpressionNoIn : ( 11.12 ) LogicalORExpressionNoIn
+    LogicalORExpressionNoIn ? AssignmentExpressionNoIn :
+    AssignmentExpressionNoIn 
 
-  AssignmentExpression : ( 11.13 )
-    ConditionalExpression 
-    LeftHandSideExpression AssignmentOperator AssignmentExpression 
+  AssignmentExpression : ( 11.13 ) ConditionalExpression LeftHandSideExpression
+    AssignmentOperator AssignmentExpression 
 
-  AssignmentExpressionNoIn : ( 11.13 )
-    ConditionalExpressionNoIn 
+  AssignmentExpressionNoIn : ( 11.13 ) ConditionalExpressionNoIn
     LeftHandSideExpression AssignmentOperator AssignmentExpressionNoIn 
 
   AssignmentOperator : one of ( 11.13 )
     = *= /= %= += -= <<= >>= >>>= &= ^= |= 
 
-  Expression : ( 11.14 )
-    AssignmentExpression 
-    Expression , AssignmentExpression 
+  Expression : ( 11.14 ) AssignmentExpression Expression , AssignmentExpression 
 
-  ExpressionNoIn : ( 11.14 )
+  ExpressionNoIn : ( 11.14 ) AssignmentExpressionNoIn ExpressionNoIn ,
     AssignmentExpressionNoIn 
-    ExpressionNoIn , AssignmentExpressionNoIn 
 
 
 * A.4 Statements 
@@ -592,119 +410,79 @@
 * A.4 文
 
 
-  Statement : ( 12 )
-    Block 
-    VariableStatement 
-    EmptyStatement 
-    ExpressionStatement 
-    IfStatement 
-    IterationStatement 
-    ContinueStatement 
-    BreakStatement 
-    ReturnStatement 
-    WithStatement 
-    LabelledStatement 
-    SwitchStatement 
-    ThrowStatement 
-    TryStatement 
-    DebuggerStatement 
+  Statement : ( 12 ) Block VariableStatement EmptyStatement ExpressionStatement
+    IfStatement IterationStatement ContinueStatement BreakStatement
+    ReturnStatement WithStatement LabelledStatement SwitchStatement
+    ThrowStatement TryStatement DebuggerStatement 
 
-  Block : ( 12.1 )
-    { StatementList[opt] } 
+  Block : ( 12.1 ) { StatementList[opt] } 
 
-  StatementList : ( 12.1 )
-    Statement 
-    StatementList Statement 
+  StatementList : ( 12.1 ) Statement StatementList Statement 
 
-  VariableStatement : ( 12.2 )
-    var VariableDeclarationList ; 
+  VariableStatement : ( 12.2 ) var VariableDeclarationList ; 
 
-  VariableDeclarationList : ( 12.2 )
-    VariableDeclaration 
-    VariableDeclarationList , VariableDeclaration 
+  VariableDeclarationList : ( 12.2 ) VariableDeclaration VariableDeclarationList
+    , VariableDeclaration 
 
-  VariableDeclarationListNoIn : ( 12.2 )
-    VariableDeclarationNoIn 
+  VariableDeclarationListNoIn : ( 12.2 ) VariableDeclarationNoIn
     VariableDeclarationListNoIn , VariableDeclarationNoIn 
 
-  VariableDeclaration : ( 12.2 )
-    Identifier Initialiser[opt] 
+  VariableDeclaration : ( 12.2 ) Identifier Initialiser[opt] 
 
-  VariableDeclarationNoIn : ( 12.2 )
-    Identifier InitialiserNoIn[opt] 
+  VariableDeclarationNoIn : ( 12.2 ) Identifier InitialiserNoIn[opt] 
 
-  Initialiser : ( 12.2 )
-    = AssignmentExpression 
+  Initialiser : ( 12.2 ) = AssignmentExpression 
 
-  InitialiserNoIn : ( 12.2 )
-    = AssignmentExpressionNoIn 
+  InitialiserNoIn : ( 12.2 ) = AssignmentExpressionNoIn 
 
   EmptyStatement : ( 12.3 )
     ; 
 
-  ExpressionStatement : ( 12.4 )
-    [lookahead not_a_member_of {{, function}] Expression ; 
+  ExpressionStatement : ( 12.4 ) [lookahead not_a_member_of {{, function}]
+    Expression ; 
 
-  IfStatement : ( 12.5 )
-    if( Expression ) Statement else Statement 
-    if( Expression ) Statement 
+  IfStatement : ( 12.5 ) if( Expression ) Statement else Statement if(
+    Expression ) Statement 
 
-  IterationStatement : ( 12.6 )
-    do Statement while( Expression );
-    while( Expression ) Statement 
-    for(ExpressionNoInopt; Expression[opt] ; Expression[opt] ) Statement 
-    for(var VariableDeclarationListNoIn; Expression[opt] ; Expression[opt] ) Statement 
-    for( LeftHandSideExpression in Expression ) Statement 
-    for(var VariableDeclarationNoIn in Expression ) Statement 
+  IterationStatement : ( 12.6 ) do Statement while( Expression ); while(
+    Expression ) Statement for(ExpressionNoInopt; Expression[opt] ;
+    Expression[opt] ) Statement for(var VariableDeclarationListNoIn;
+    Expression[opt] ; Expression[opt] ) Statement for( LeftHandSideExpression in
+    Expression ) Statement for(var VariableDeclarationNoIn in Expression )
+    Statement 
 
-  ContinueStatement : ( 12.7 )
-    continue[no LineTerminator here] Identifier[opt] ; 
+  ContinueStatement : ( 12.7 ) continue[no LineTerminator here] Identifier[opt]
+    ; 
 
-  BreakStatement : ( 12.8 )
-    break [no LineTerminator here] Identifier[opt] ; 
+  BreakStatement : ( 12.8 ) break [no LineTerminator here] Identifier[opt] ; 
 
-  ReturnStatement : ( 12.9 )
-    return [no LineTerminator here] Expression[opt] ; 
+  ReturnStatement : ( 12.9 ) return [no LineTerminator here] Expression[opt] ; 
 
-  WithStatement : ( 12.10 )
-    with( Expression ) Statement 
+  WithStatement : ( 12.10 ) with( Expression ) Statement 
 
-  SwitchStatement : ( 12.11 )
-    switch( Expression ) CaseBlock 
+  SwitchStatement : ( 12.11 ) switch( Expression ) CaseBlock 
 
-  CaseBlock : ( 12.11 )
-    { CaseClauses[opt] }
-    { CaseClauses[opt] DefaultClause CaseClauses[opt] } 
+  CaseBlock : ( 12.11 ) { CaseClauses[opt] } { CaseClauses[opt] DefaultClause
+    CaseClauses[opt] } 
 
-  CaseClauses : ( 12.11 )
-    CaseClause 
-    CaseClauses CaseClause 
+  CaseClauses : ( 12.11 ) CaseClause CaseClauses CaseClause 
 
-  CaseClause : ( 12.11 )
-    case Expression : StatementList[opt] 
+  CaseClause : ( 12.11 ) case Expression : StatementList[opt] 
 
-  DefaultClause : ( 12.11 )
-    default: StatementList[opt] 
+  DefaultClause : ( 12.11 ) default: StatementList[opt] 
 
-  LabelledStatement : ( 12.12 )
-    Identifier : Statement 
+  LabelledStatement : ( 12.12 ) Identifier : Statement 
 
-  ThrowStatement : ( 12.13 )
-    throw [no LineTerminator here] Expression ; 
+  ThrowStatement : ( 12.13 ) throw [no LineTerminator here] Expression ; 
 
-  TryStatement : ( 12.14 )
-    try Block Catch 
-    try Block Finally 
-    try Block Catch Finally 
+  TryStatement : ( 12.14 ) try Block Catch try Block Finally try Block Catch
+    Finally 
 
-  Catch : ( 12.14 )
-    catch( Identifier )Block 
+  Catch : ( 12.14 ) catch( Identifier )Block 
 
-  Finally : ( 12.14 )
-    finallyBlock 
+  Finally : ( 12.14 ) finallyBlock 
 
-  DebuggerStatement : ( 12.15 )
-    debugger; 
+  DebuggerStatement : ( 12.15 ) debugger; 
 
 
 * A.5 Functions and Programs 
@@ -712,29 +490,21 @@
 * A.5 関数とプログラム
 
 
-  FunctionDeclaration : ( 13 )
-    function Identifier ( FormalParameterList[opt] ){ FunctionBody } 
+  FunctionDeclaration : ( 13 ) function Identifier ( FormalParameterList[opt]
+    ){ FunctionBody } 
 
-  FunctionExpression : ( 13 )
-    function Identifier[opt] ( FormalParameterList[opt] ){ FunctionBody } 
+  FunctionExpression : ( 13 ) function Identifier[opt] (
+    FormalParameterList[opt] ){ FunctionBody } 
 
-  FormalParameterList : ( 13 )
-    Identifier 
-    FormalParameterList , Identifier 
+  FormalParameterList : ( 13 ) Identifier FormalParameterList , Identifier 
 
-  FunctionBody : ( 13 )
-    SourceElements[opt] 
+  FunctionBody : ( 13 ) SourceElements[opt] 
 
-  Program : ( 14 )
-    SourceElements[opt] 
+  Program : ( 14 ) SourceElements[opt] 
 
-  SourceElements : ( 14 )
-    SourceElement 
-    SourceElements SourceElement 
+  SourceElements : ( 14 ) SourceElement SourceElements SourceElement 
 
-  SourceElement : ( 14 )
-    Statement 
-    FunctionDeclaration 
+  SourceElement : ( 14 ) Statement FunctionDeclaration 
 
 
 * A.6 Universal Resource Identifier Character Classes 
@@ -742,36 +512,23 @@
 * A.6 URI文字クラス
 
 
-  uri ::: ( 15.1.3 )
-    uriCharacters[opt] 
+  uri ::: ( 15.1.3 ) uriCharacters[opt] 
 
-  uriCharacters ::: ( 15.1.3 )
-    uriCharacter uriCharacters[opt] 
+  uriCharacters ::: ( 15.1.3 ) uriCharacter uriCharacters[opt] 
 
-  uriCharacter ::: ( 15.1.3 )
-    uriReserved 
-    uriUnescaped 
-    uriEscaped 
+  uriCharacter ::: ( 15.1.3 ) uriReserved uriUnescaped uriEscaped 
 
   uriReserved ::: one of ( 15.1.3 )
     ; / ? : @ & = + $ , 
 
-  uriUnescaped ::: ( 15.1.3 )
-    uriAlpha 
-    DecimalDigit 
-    uriMark 
+  uriUnescaped ::: ( 15.1.3 ) uriAlpha DecimalDigit uriMark 
 
-  uriEscaped ::: ( 15.1.3 )
-    % HexDigit HexDigit 
+  uriEscaped ::: ( 15.1.3 ) % HexDigit HexDigit 
 
-  uriAlpha ::: one of ( 15.1.3 )
-    a b c d e f g h i j k l m
-    n o p q r s t u v w x y z
-    A B C D E F G H I J K L M
-    N O P Q R S T U V W X Y Z 
+  uriAlpha ::: one of ( 15.1.3 ) a b c d e f g h i j k l m n o p q r s t u v w x
+    y z A B C D E F G H I J K L M N O P Q R S T U V W X Y Z 
 
-  uriMark ::: one of ( 15.1.3 )
-    -_ . ! ~ * ‘ ( ) 
+  uriMark ::: one of ( 15.1.3 ) -_ . ! ~ * ‘ ( ) 
 
 
 * A.7 Regular Expressions 
@@ -779,115 +536,71 @@
 * A.7 正規表現
 
 
-  Pattern :: ( 15.10.1 )
-    Disjunction 
+  Pattern :: ( 15.10.1 ) Disjunction 
 
-  Disjunction :: ( 15.10.1 )
-    Alternative 
-    Alternative | Disjunction 
+  Disjunction :: ( 15.10.1 ) Alternative Alternative | Disjunction 
 
-  Alternative :: ( 15.10.1 )
-    [empty] 
-    Alternative Term 
+  Alternative :: ( 15.10.1 ) [empty] Alternative Term 
 
-  Term :: ( 15.10.1 )
-    Assertion 
-    Atom 
-    Atom Quantifier 
+  Term :: ( 15.10.1 ) Assertion Atom Atom Quantifier 
 
   Assertion :: ( 15.10.1 )
     ^ 
     $ 
-    \ b 
-    \ B 
-    (? = Disjunction )
-    (?! Disjunction ) 
+    \ b \ B (? = Disjunction ) (?! Disjunction ) 
 
-  Quantifier :: ( 15.10.1 )
-    QuantifierPrefix 
-    QuantifierPrefix ? 
+  Quantifier :: ( 15.10.1 ) QuantifierPrefix QuantifierPrefix ? 
 
   QuantifierPrefix :: ( 15.10.1 )
     * 
     + 
     ? 
-    { DecimalDigits }
-    { DecimalDigits ,} 
-    { DecimalDigits , DecimalDigits } 
+    { DecimalDigits } { DecimalDigits ,} { DecimalDigits , DecimalDigits } 
 
-  Atom :: ( 15.10.1 )
-    PatternCharacter 
+  Atom :: ( 15.10.1 ) PatternCharacter 
     . 
-    \ AtomEscape 
-    CharacterClass 
-    ( Disjunction )
-    (?: Disjunction ) 
+    \ AtomEscape CharacterClass ( Disjunction ) (?: Disjunction ) 
 
   PatternCharacter :: SourceCharacter but not any of: ( 15.10.1 )
     ^ $ \ . * + ? ( ) [ ] { } | 
 
-  AtomEscape :: ( 15.10.1 )
-    DecimalEscape 
-    CharacterEscape 
-    CharacterClassEscape 
+  AtomEscape :: ( 15.10.1 ) DecimalEscape CharacterEscape CharacterClassEscape 
 
-  CharacterEscape :: ( 15.10.1 )
-    ControlEscape 
-    c ControlLetter 
-    HexEscapeSequence 
-    UnicodeEscapeSequence 
-    IdentityEscape 
+  CharacterEscape :: ( 15.10.1 ) ControlEscape c ControlLetter HexEscapeSequence
+    UnicodeEscapeSequence IdentityEscape 
 
-  ControlEscape :: one of ( 15.10.1 )
-    f n r t v 
+  ControlEscape :: one of ( 15.10.1 ) f n r t v 
 
-  ControlLetter :: one of ( 15.10.1 )
-    a b c d e f g h i j k l m
-    n o p q r s t u v w x y z
-    A B C D E F G H I J K L M
-    N O P Q R S T U V W X Y Z 
+  ControlLetter :: one of ( 15.10.1 ) a b c d e f g h i j k l m n o p q r s t u
+    v w x y z A B C D E F G H I J K L M N O P Q R S T U V W X Y Z 
 
-  IdentityEscape :: ( 15.10.1 )
-    SourceCharacter but not IdentifierPart 
-    <ZWJ> 
+  IdentityEscape :: ( 15.10.1 ) SourceCharacter but not IdentifierPart <ZWJ>
     <ZWNJ> 
 
-  DecimalEscape :: ( 15.10.1 )
-    DecimalIntegerLiteral [lookahead not_a_member_of DecimalDigit] 
+  DecimalEscape :: ( 15.10.1 ) DecimalIntegerLiteral [lookahead not_a_member_of
+    DecimalDigit] 
 
-  CharacterClassEscape :: one of ( 15.10.1 )
-    d D s S w W 
+  CharacterClassEscape :: one of ( 15.10.1 ) d D s S w W 
 
-  CharacterClass :: ( 15.10.1 )
-    [ [lookahead not_a_member_of {^}] ClassRanges ]
+  CharacterClass :: ( 15.10.1 ) [ [lookahead not_a_member_of {^}] ClassRanges ]
     [ ^ ClassRanges ] 
 
-  ClassRanges :: ( 15.10.1 )
-    [empty] 
-    NonemptyClassRanges 
+  ClassRanges :: ( 15.10.1 ) [empty] NonemptyClassRanges 
 
-  NonemptyClassRanges :: ( 15.10.1 )
-    ClassAtom 
-    ClassAtom NonemptyClassRangesNoDash 
-    ClassAtom . ClassAtom ClassRanges 
+  NonemptyClassRanges :: ( 15.10.1 ) ClassAtom ClassAtom
+    NonemptyClassRangesNoDash ClassAtom . ClassAtom ClassRanges 
 
-  NonemptyClassRangesNoDash :: ( 15.10.1 )
-    ClassAtom 
-    ClassAtomNoDash NonemptyClassRangesNoDash 
-    ClassAtomNoDash . ClassAtom ClassRanges 
+  NonemptyClassRangesNoDash :: ( 15.10.1 ) ClassAtom ClassAtomNoDash
+    NonemptyClassRangesNoDash ClassAtomNoDash . ClassAtom ClassRanges 
 
   ClassAtom :: ( 15.10.1 )
     -
     ClassAtomNoDash 
 
-  ClassAtomNoDash :: ( 15.10.1 )
-    SourceCharacter but not one of \ or ] or \ 
+  ClassAtomNoDash :: ( 15.10.1 ) SourceCharacter but not one of \ or ] or \
     ClassEscape 
 
-  ClassEscape :: ( 15.10.1 )
-    DecimalEscape
-    b 
-    CharacterEscape 
+  ClassEscape :: ( 15.10.1 ) DecimalEscape b CharacterEscape
     CharacterClassEscape 
 
 
@@ -899,40 +612,28 @@
 * A.8.1 JSON字句文法
 
 
-  JSONWhiteSpace :: ( 15.12.1.1 )
-    <TAB> 
-    <CR> 
-    <LF> 
-    <SP> 
+  JSONWhiteSpace :: ( 15.12.1.1 ) <TAB> <CR> <LF> <SP> 
 
-  JSONString :: ( 15.12.1.1 )
-    " JSONStringCharacters[opt] " 
+  JSONString :: ( 15.12.1.1 ) " JSONStringCharacters[opt] " 
 
-  JSONStringCharacters :: ( 15.12.1.1 )
-    JSONStringCharacter JSONStringCharacters[opt] 
+  JSONStringCharacters :: ( 15.12.1.1 ) JSONStringCharacter
+    JSONStringCharacters[opt] 
 
-  JSONStringCharacter :: ( 15.12.1.1 )
-    JSONSourceCharacter but not double-quote "or backslash \ or U+0000 thru U+001F 
-    \ JSONEscapeSequence 
+  JSONStringCharacter :: ( 15.12.1.1 ) JSONSourceCharacter but not double-quote
+    "or backslash \ or U+0000 thru U+001F \ JSONEscapeSequence 
 
-  JSONEscapeSequence :: ( 15.12.1.1 )
-    JSONEscapeCharacter 
-    UnicodeEscapeSequence 
+  JSONEscapeSequence :: ( 15.12.1.1 ) JSONEscapeCharacter UnicodeEscapeSequence 
 
-  JSONEscapeCharacter :: one of ( 15.12.1.1 )
-    " / \ b f n r t 
+  JSONEscapeCharacter :: one of ( 15.12.1.1 ) " / \ b f n r t 
 
-  JSONNumber :: ( 15.12.1.1 )
-    -[opt] DecimalIntegerLiteral JSONFraction[opt] ExponentPart[opt] 
+  JSONNumber :: ( 15.12.1.1 ) -[opt] DecimalIntegerLiteral JSONFraction[opt]
+    ExponentPart[opt] 
 
-  JSONFraction :: ( 15.12.1.1 )
-    . DecimalDigits 
+  JSONFraction :: ( 15.12.1.1 ) . DecimalDigits 
 
-  JSONNullLiteral :: ( 15.12.1.1 )
-    NullLiteral 
+  JSONNullLiteral :: ( 15.12.1.1 ) NullLiteral 
 
-  JSONBooleanLiteral :: ( 15.12.1.1 )
-    BooleanLiteral 
+  JSONBooleanLiteral :: ( 15.12.1.1 ) BooleanLiteral 
 
 
 * A.8.2 JSON Syntactic Grammar 
@@ -940,33 +641,22 @@
 * A.8.2 JSON構文文法
 
 
-  JSONText : ( 15.12.1.2 )
-    JSONValue 
+  JSONText : ( 15.12.1.2 ) JSONValue 
 
-  JSONValue : ( 15.12.1.2 )
-    JSONNullLiteral 
-    JSONBooleanLiteral 
-    JSONObject 
-    JSONArray 
-    JSONString 
-    JSONNumber 
+  JSONValue : ( 15.12.1.2 ) JSONNullLiteral JSONBooleanLiteral JSONObject
+    JSONArray JSONString JSONNumber 
 
   JSONObject : ( 15.12.1.2 )
     { }
     { JSONMemberList } 
 
-  JSONMember : ( 15.12.1.2 )
-    JSONString : JSONValue 
+  JSONMember : ( 15.12.1.2 ) JSONString : JSONValue 
 
-  JSONMemberList : ( 15.12.1.2 )
-    JSONMember 
-    JSONMemberList ,JSONMember 
+  JSONMemberList : ( 15.12.1.2 ) JSONMember JSONMemberList ,JSONMember 
 
   JSONArray : ( 15.12.1.2 )
     [ ]
     [ JSONElementList ] 
 
-  JSONElementList : ( 15.12.1.2 )
-    JSONValue 
-    JSONElementList , JSONValue 
+  JSONElementList : ( 15.12.1.2 ) JSONValue JSONElementList , JSONValue 
 

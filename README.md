@@ -10,7 +10,7 @@ tsofthome.appspot.comのアーカイブ(2021/04サイト閉鎖)
 
 ### ドキュメント
 
-- [ecmascript262.5日本語訳](./ecmascript)
+- [ecmascript262.5日本語訳](./ecmascript) (未完)
 
 #### 書籍
 

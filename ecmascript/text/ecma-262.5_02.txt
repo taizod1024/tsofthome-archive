@@ -3,21 +3,47 @@
 * 2 適合条件
 
 
-A conforming implementation of ECMAScript must provide and support all the types, values, objects, properties, functions, and program syntax and semantics described in this specification.
+A conforming implementation of ECMAScript must provide and support all the
+types, values, objects, properties, functions, and program syntax and semantics
+described in this specification.
 
-ECMAScriptに適合する実装はこの仕様で述べられているすべての型、値、オブジェクト、プロパティ、関数、プログラム記法、意味をサポートしなければなりません。
-
-
-A conforming implementation of this International standard shall interpret characters in conformance with the Unicode Standard, Version 3.0 or later and ISO/IEC 10646-1 with either UCS-2 or UTF-16 as the adopted encoding form, implementation level 3. If the adopted ISO/IEC 10646-1 subset is not otherwise specified, it is presumed to be the BMP subset, collection 300. If the adopted encoding form is not otherwise specified, it presumed to be the UTF-16 encoding form.
-
-ECMAScriptに適合する実装は、Unicode Standard, Version 3.0以降の文字と符号化方法にUCS-2もしくはUTF-16を採用した実装レベル3のISO/IEC 10646-1に準拠した文字を解釈できます。もし採用したISO/IEC 10646-1のサブセットにおいて他に何も指定していなければ、BMP文字のサブセットのcollection 300であると推測されます。もし符号化方法が他に何も指定されていなければUTF-16であると推測されます。
+ECMAScriptに適合する実装はこの仕様で述べられているすべての型、値、オブジェクト、
+プロパティ、関数、プログラム記法、意味をサポートしなければなりません。
 
 
-A conforming implementation of ECMAScript is permitted to provide additional types, values, objects, properties, and functions beyond those described in this specification. In particular, a conforming implementation of ECMAScript is permitted to provide properties not described in this specification, and values for those properties, for objects that are described in this specification.
+A conforming implementation of this International standard shall interpret
+characters in conformance with the Unicode Standard, Version 3.0 or later and
+ISO/IEC 10646-1 with either UCS-2 or UTF-16 as the adopted encoding form,
+implementation level 3. If the adopted ISO/IEC 10646-1 subset is not otherwise
+specified, it is presumed to be the BMP subset, collection 300. If the adopted
+encoding form is not otherwise specified, it presumed to be the UTF-16 encoding
+form.
 
-ECMAScriptに適合する実装では、この仕様で述べられているもの以外の追加の型、値、オブジェクト、プロパティ、関数を提供することが認められています。特に、この仕様に述べられているオブジェクトの場合には、この仕様で述べられていないプロパティや値を提供することが認められています。
+ECMAScriptに適合する実装は、Unicode Standard, Version 3.0以降の文字と符号化方法
+にUCS-2もしくはUTF-16を採用した実装レベル3のISO/IEC 10646-1に準拠した文字を解釈
+できます。もし採用したISO/IEC 10646-1のサブセットにおいて他に何も指定していなけ
+れば、BMP文字のサブセットのcollection 300であると推測されます。もし符号化方法が
+他に何も指定されていなければUTF-16であると推測されます。
 
 
-A conforming implementation of ECMAScript is permitted to support program and regular expression syntax not described in this specification. In particular, a conforming implementation of ECMAScript is permitted to support program syntax that makes use of the “future reserved words” listed in 7.6.1.2 of this specification.
+A conforming implementation of ECMAScript is permitted to provide additional
+types, values, objects, properties, and functions beyond those described in this
+specification. In particular, a conforming implementation of ECMAScript is
+permitted to provide properties not described in this specification, and values
+for those properties, for objects that are described in this specification.
 
-ECMAScriptに適合する実装では、この仕様で述べられていないプログラムや正規表現の記法をサポートすることが認められています。特に、この仕様の7.6.1.2でリスト化されている"将来の予約語"を使ったプログラム記法をサポートすることが認められています。
+ECMAScriptに適合する実装では、この仕様で述べられているもの以外の追加の型、値、オ
+ブジェクト、プロパティ、関数を提供することが認められています。特に、この仕様に述
+べられているオブジェクトの場合には、この仕様で述べられていないプロパティや値を提
+供することが認められています。
+
+
+A conforming implementation of ECMAScript is permitted to support program and
+regular expression syntax not described in this specification. In particular, a
+conforming implementation of ECMAScript is permitted to support program syntax
+that makes use of the “future reserved words” listed in 7.6.1.2 of this
+specification.
+
+ECMAScriptに適合する実装では、この仕様で述べられていないプログラムや正規表現の記
+法をサポートすることが認められています。特に、この仕様の7.6.1.2でリスト化されて
+いる"将来の予約語"を使ったプログラム記法をサポートすることが認められています。

@@ -13,19 +13,50 @@ There are three types of ECMAScript executable code:
 ECMAScriptの実行可能なコードには3つの型があります。
 
 
-Global code is source text that is treated as an ECMAScript Program. The global code of a particular Program does not include any source text that is parsed as part of a FunctionBody. 
+Global code is source text that is treated as an ECMAScript Program. The global
+code of a particular Program does not include any source text that is parsed as
+part of a FunctionBody. 
 
-globalコードはECMAScriptのProgramとして扱われるソーステキストです。特定のプログラムのglobalコードは、FunctionBodyの一部として読み込まれたソーステキストを含みません。
+globalコードはECMAScriptのProgramとして扱われるソーステキストです。特定のプログ
+ラムのglobalコードは、FunctionBodyの一部として読み込まれたソーステキストを含みま
+せん。
 
 
-Eval code is the source text supplied to the built-in eval function. More precisely, if the parameter to the built-in eval function is a String, it is treated as an ECMAScript Program. The eval code for a particular invocation of eval is the global code portion of that Program. 
+Eval code is the source text supplied to the built-in eval function. More
+precisely, if the parameter to the built-in eval function is a String, it is
+treated as an ECMAScript Program. The eval code for a particular invocation of
+eval is the global code portion of that Program. 
 
-evalコードは組み込みのeval関数に指定されたソーステキストです。より正確に言えば、組み込みのeval関数に渡されたパラメタが文字列であれば、その文字列はECMAScriptのProgramとして扱われます。evalを使って呼び出されたevalコードはProgramのglobalコードの一部になります。
+evalコードは組み込みのeval関数に指定されたソーステキストです。より正確に言えば、
+組み込みのeval関数に渡されたパラメタが文字列であれば、その文字列はECMAScriptの
+Programとして扱われます。evalを使って呼び出されたevalコードはProgramのglobalコー
+ドの一部になります。
 
 
-Function code is source text that is parsed as part of a FunctionBody. The function code of a particular FunctionBody does not include any source text that is parsed as part of a nested FunctionBody. Function code also denotes the source text supplied when using the built-in Function object as a constructor. More precisely, the last parameter provided to the Function constructor is converted to a String and treated as the FunctionBody. If more than one parameter is provided to the Function constructor, all parameters except the last one are converted to Strings and concatenated together, separated by commas. The resulting String is interpreted as the FormalParameterList for the FunctionBody defined by the last parameter. The function code for a particular instantiation of a Function does not include any source text that is parsed as part of a nested FunctionBody. 
+Function code is source text that is parsed as part of a FunctionBody. The
+function code of a particular FunctionBody does not include any source text that
+is parsed as part of a nested FunctionBody. Function code also denotes the
+source text supplied when using the built-in Function object as a constructor.
+More precisely, the last parameter provided to the Function constructor is
+converted to a String and treated as the FunctionBody. If more than one
+parameter is provided to the Function constructor, all parameters except the
+last one are converted to Strings and concatenated together, separated by
+commas. The resulting String is interpreted as the FormalParameterList for the
+FunctionBody defined by the last parameter. The function code for a particular
+instantiation of a Function does not include any source text that is parsed as
+part of a nested FunctionBody. 
 
-functionコードはFunctionBodyの一部として読み込まれたソーステキストです。FunctionBodyのfunctionコードは入れ子となったFunctionBodyの一部として読み込まれたソーステキストを含みません。また、functionコードはコンストラクタである組み込みのFunctionオブジェクトを使った場合のソーステキストを表します。より正確に言えば、Functionコンストラクタに指定された最後のパラメタが文字列に変換されFunctionBodyとして扱われます。Functionコンストラクタに複数のパラメタが指定された場合には、最後のパラメタを除くすべてのパラメタが文字列に変換されてからカンマ区切りで結合されます。結果の文字列は最後のパラメタで定義されたFunctionBodyのFormalParameterListとして解釈されます。functionコードはFunctionのインスタンス化において、入れ子になったFunctionBodyの一部として読み込まれたどのようなソーステキストも含むことはありません。
+functionコードはFunctionBodyの一部として読み込まれたソーステキストです。
+FunctionBodyのfunctionコードは入れ子となったFunctionBodyの一部として読み込まれた
+ソーステキストを含みません。また、functionコードはコンストラクタである組み込みの
+Functionオブジェクトを使った場合のソーステキストを表します。より正確に言えば、
+Functionコンストラクタに指定された最後のパラメタが文字列に変換されFunctionBodyと
+して扱われます。Functionコンストラクタに複数のパラメタが指定された場合には、最後
+のパラメタを除くすべてのパラメタが文字列に変換されてからカンマ区切りで結合されま
+す。結果の文字列は最後のパラメタで定義されたFunctionBodyのFormalParameterListと
+して解釈されます。functionコードはFunctionのインスタンス化において、入れ子になっ
+たFunctionBodyの一部として読み込まれたどのようなソーステキストも含むことはありま
+せん。
 
 
 * 10.1.1 Strict Mode Code 
@@ -33,23 +64,48 @@ functionコードはFunctionBodyの一部として読み込まれたソーステ
 * 10.1.1 strictモードコード
 
 
-An ECMAScript Program syntactic unit may be processed using either unrestricted or strict mode syntax and semantics. When processed using strict mode the three types of ECMAScript code are referred to as strict global code, strict eval code, and strict function code. Code is interpreted as strict mode code in the following situations: 
+An ECMAScript Program syntactic unit may be processed using either unrestricted
+or strict mode syntax and semantics. When processed using strict mode the three
+types of ECMAScript code are referred to as strict global code, strict eval
+code, and strict function code. Code is interpreted as strict mode code in the
+following situations: 
 
-ECMAScriptのProgramの構文単位は制限されていないモードもしくはstrictモードの構文と意味で処理されることになります。strictモードを使って処理される場合には、3つのコードの型はstrict global コード、strict evalコード、strict functionコードとして参照されます。コードは以下の状況でstrictモードとして解釈されます。
+ECMAScriptのProgramの構文単位は制限されていないモードもしくはstrictモードの構文
+と意味で処理されることになります。strictモードを使って処理される場合には、3つの
+コードの型はstrict global コード、strict evalコード、strict functionコードとして
+参照されます。コードは以下の状況でstrictモードとして解釈されます。
 
 
-- Global code is strict global code if it begins with a Directive Prologue that contains a Use Strict Directive (see 14.1). 
-- Eval code is strict eval code if it begins with a Directive Prologue that contains a Use Strict Directive or if the call to eval is a direct call (see 15.1.2.1.1) to the eval function that is contained in strict mode code. 
-- Function code that is part of a FunctionDeclaration, FunctionExpression, or accessor PropertyAssignment is strict function code if its FunctionDeclaration, FunctionExpression, or PropertyAssignment is contained in strict mode code or if the function code begins with a Directive Prologue that contains a Use Strict Directive. 
-- Function code that is supplied as the last argument to the built-in Function constructor is strict function code if the last argument is a String that when processed as a FunctionBody begins with a Directive Prologue that contains a Use Strict Directive.
+- Global code is strict global code if it begins with a Directive Prologue that
+  contains a Use Strict Directive (see 14.1). 
+- Eval code is strict eval code if it begins with a Directive Prologue that
+  contains a Use Strict Directive or if the call to eval is a direct call (see
+  15.1.2.1.1) to the eval function that is contained in strict mode code. 
+- Function code that is part of a FunctionDeclaration, FunctionExpression, or
+  accessor PropertyAssignment is strict function code if its
+  FunctionDeclaration, FunctionExpression, or PropertyAssignment is contained in
+  strict mode code or if the function code begins with a Directive Prologue that
+  contains a Use Strict Directive. 
+- Function code that is supplied as the last argument to the built-in Function
+  constructor is strict function code if the last argument is a String that when
+  processed as a FunctionBody begins with a Directive Prologue that contains a
+  Use Strict Directive.
 
-- globalコードはUse Strict Directive(14.1)を含んだDirective Prologueで始まっている場合にstrict globalコードとなります。
-- evalコードはUse Strict Directを含んだDirective Prologueで始まっている場合、もしくはevalの呼び出しがstrictモードコードに含まれているeval関数へのをdirect call(15.1.2.1.1)の場合にstrict evalコードとなります。
-- FunctionDeclaration, FunctionExpression, PropertyAssignmentアクセサの一部であるfunctionコードは以下の場合にstrict functionコードとなります。
-  - FunctionDeclaration, FunctionExpression, PropertyAssignmentがstrictモードコードに含まれる場合
-  - functionコードがUse Strict Directiveを含むDirective Prologueで始まっている場合
-- 組み込みのFunctionコンストラクタへの最後の引数として渡されたfunctionコードは以下の場合にstrict functionコードとなります。
-  - 最後の引数がUse Strict Directiveを含むDirective Prologueで始まっているFunctionBodyとして処理されるような文字列の場合
+- globalコードはUse Strict Directive(14.1)を含んだDirective Prologueで始まってい
+  る場合にstrict globalコードとなります。
+- evalコードはUse Strict Directを含んだDirective Prologueで始まっている場合、も
+  しくはevalの呼び出しがstrictモードコードに含まれているeval関数へのをdirect
+  call(15.1.2.1.1)の場合にstrict evalコードとなります。
+- FunctionDeclaration, FunctionExpression, PropertyAssignmentアクセサの一部であ
+  るfunctionコードは以下の場合にstrict functionコードとなります。
+  - FunctionDeclaration, FunctionExpression, PropertyAssignmentがstrictモード
+    コードに含まれる場合
+  - functionコードがUse Strict Directiveを含むDirective Prologueで始まっている場
+    合
+- 組み込みのFunctionコンストラクタへの最後の引数として渡されたfunctionコードは以
+  下の場合にstrict functionコードとなります。
+  - 最後の引数がUse Strict Directiveを含むDirective Prologueで始まっている
+    FunctionBodyとして処理されるような文字列の場合
 
 
 * 10.2 Lexical Environments 
@@ -57,24 +113,58 @@ ECMAScriptのProgramの構文単位は制限されていないモードもしく
 * 10.2 レキシカル環境
 
 
-A Lexical Environment is a specification type used to define the association of Identifiers to specific variables and functions based upon the lexical nesting structure of ECMAScript code. A Lexical Environment consists of an Environment Record and a possibly null reference to an outer Lexical Environment. Usually a Lexical Environment is associated with some specific syntactic structure of ECMAScript code such as a FunctionDeclaration, a WithStatement, or a Catch clause of a TryStatement and a new Lexical Environment is created each time such code is evaluated. 
+A Lexical Environment is a specification type used to define the association of
+Identifiers to specific variables and functions based upon the lexical nesting
+structure of ECMAScript code. A Lexical Environment consists of an Environment
+Record and a possibly null reference to an outer Lexical Environment. Usually a
+Lexical Environment is associated with some specific syntactic structure of
+ECMAScript code such as a FunctionDeclaration, a WithStatement, or a Catch
+clause of a TryStatement and a new Lexical Environment is created each time such
+code is evaluated. 
 
-レキシカル環境はECMAScriptコードのレキシカルな入れ子構造上の識別子から変数と関数への関連を定義するために用いられる仕様の型です。レキシカル環境は環境レコードとnullである可能性のある外側のレキシカル環境への参照から構成されます。普通、レキシカル環境は、FunctionDeclaration, WithStatement, TryStatementのCatch節といったECMAScriptコードの構文の構造に関連付けられており、新しいレキシカル環境はそういったコードが評価される度に作成されます。
+レキシカル環境はECMAScriptコードのレキシカルな入れ子構造上の識別子から変数と関数
+への関連を定義するために用いられる仕様の型です。レキシカル環境は環境レコードと
+nullである可能性のある外側のレキシカル環境への参照から構成されます。普通、レキシ
+カル環境は、FunctionDeclaration, WithStatement, TryStatementのCatch節といった
+ECMAScriptコードの構文の構造に関連付けられており、新しいレキシカル環境はそういっ
+たコードが評価される度に作成されます。
 
 
-An Environment Record records the identifier bindings that are created within the scope of its associated Lexical Environment. 
+An Environment Record records the identifier bindings that are created within
+the scope of its associated Lexical Environment. 
 
-環境レコードは、レキシカル環境に関連付けられた識別子のスコープの範囲における識別子のバインディングを記録します。
-
-
-The outer environment reference is used to model the logical nesting of Lexical Environment values. The outer reference of a (inner) Lexical Environment is a reference to the Lexical Environment that logically surrounds the inner Lexical Environment. An outer Lexical Environment may, of course, have its own outer Lexical Environment. A Lexical Environment may serve as the outer environment for multiple inner Lexical Environments. For example, if a FunctionDeclaration contains two nested FunctionDeclarations then the Lexical Environments of each of the nested functions will have as their outer Lexical Environment the Lexical Environment of the current execution of the surrounding function. 
-
-外側の環境への参照はレキシカル環境値の論理的な入れ子をモデル化するために使われます。レキシカル環境の外側への参照は内側のレキシカル環境を取り巻くレキシカル環境への参照となります。もちろん外側のレキシカル環境には更にそれぞれの外側のレキシカル環境があります。レキシカル環境は内側の複数のレキシカル環境の外側の環境として機能する場合があります。 例えばFunctionDeclarationに2つの入れ子になったFunctionDeclarationsが含まれている場合、入れ子になった関数のそれぞれのレキシカル環境には外側のレキシカル環境として、関数を取り巻く実行中のレキシカル環境があります。
+環境レコードは、レキシカル環境に関連付けられた識別子のスコープの範囲における識別
+子のバインディングを記録します。
 
 
-Lexical Environments and Environment Record values are purely specification mechanisms and need not correspond to any specific artefact of an ECMAScript implementation. It is impossible for an ECMAScript program to directly access or manipulate such values. 
+The outer environment reference is used to model the logical nesting of Lexical
+Environment values. The outer reference of a (inner) Lexical Environment is a
+reference to the Lexical Environment that logically surrounds the inner Lexical
+Environment. An outer Lexical Environment may, of course, have its own outer
+Lexical Environment. A Lexical Environment may serve as the outer environment
+for multiple inner Lexical Environments. For example, if a FunctionDeclaration
+contains two nested FunctionDeclarations then the Lexical Environments of each
+of the nested functions will have as their outer Lexical Environment the Lexical
+Environment of the current execution of the surrounding function. 
 
-レキシカル環境と環境レコード値は純粋に仕様のメカニズムであり、ECMAScriptの実装の特定のモノに対応する必要はありません。ECMAScriptのプログラムがこれらの値を直接参照したり操作したりすることはできません。
+外側の環境への参照はレキシカル環境値の論理的な入れ子をモデル化するために使われま
+す。レキシカル環境の外側への参照は内側のレキシカル環境を取り巻くレキシカル環境へ
+の参照となります。もちろん外側のレキシカル環境には更にそれぞれの外側のレキシカル
+環境があります。レキシカル環境は内側の複数のレキシカル環境の外側の環境として機能
+する場合があります。 例えばFunctionDeclarationに2つの入れ子になった
+FunctionDeclarationsが含まれている場合、入れ子になった関数のそれぞれのレキシカル
+環境には外側のレキシカル環境として、関数を取り巻く実行中のレキシカル環境がありま
+す。
+
+
+Lexical Environments and Environment Record values are purely specification
+mechanisms and need not correspond to any specific artefact of an ECMAScript
+implementation. It is impossible for an ECMAScript program to directly access or
+manipulate such values. 
+
+レキシカル環境と環境レコード値は純粋に仕様のメカニズムであり、ECMAScriptの実装の
+特定のモノに対応する必要はありません。ECMAScriptのプログラムがこれらの値を直接参
+照したり操作したりすることはできません。
 
 
 * 10.2.1 Environment Records 
@@ -82,62 +172,100 @@ Lexical Environments and Environment Record values are purely specification mech
 * 10.2.1 環境レコード
 
 
-There are two kinds of Environment Record values used in this specification: declarative environment records and object environment records. Declarative environment records are used to define the effect of ECMAScript language syntactic elements such as FunctionDeclarations, VariableDeclarations, and Catch clauses that directly associate identifier bindings with ECMAScript language values. Object environment records are used to define the effect of ECMAScript elements such as Program and WithStatement that associate identifier bindings with the properties of some object. 
+There are two kinds of Environment Record values used in this specification:
+declarative environment records and object environment records. Declarative
+environment records are used to define the effect of ECMAScript language
+syntactic elements such as FunctionDeclarations, VariableDeclarations, and Catch
+clauses that directly associate identifier bindings with ECMAScript language
+values. Object environment records are used to define the effect of ECMAScript
+elements such as Program and WithStatement that associate identifier bindings
+with the properties of some object. 
 
-この仕様で用いられる環境レコード値には二つの種類があります。宣言型環境レコードとオブジェクト環境レコードの二つです。宣言型環境レコードはECMASCriptの言語の値を識別子のバインディングに関連付けるFunctionDeclaration、VariableDeclaration、Catch節といったECMAScriptの要素の影響を定義するために用いられます。オブジェクト環境レコードはオブジェクトのプロパティを識別子のバインディングに関連付けるProgram、WithStatementといったECMAScriptの要素の影響を定義するために用いられます。
+この仕様で用いられる環境レコード値には二つの種類があります。宣言型環境レコードと
+オブジェクト環境レコードの二つです。宣言型環境レコードはECMASCriptの言語の値を識
+別子のバインディングに関連付けるFunctionDeclaration、VariableDeclaration、Catch
+節といったECMAScriptの要素の影響を定義するために用いられます。オブジェクト環境レ
+コードはオブジェクトのプロパティを識別子のバインディングに関連付けるProgram、
+WithStatementといったECMAScriptの要素の影響を定義するために用いられます。
 
 
-For specification purposes Environment Record values can be thought of as existing in a simple object-oriented hierarchy where Environment Record is an abstract class with two concrete subclasses, declarative environment record and object environment record. The abstract class includes the abstract specification methods defined in Table 17. These abstract methods have distinct concrete algorithms for each of the concrete subclasses. 
+For specification purposes Environment Record values can be thought of as
+existing in a simple object-oriented hierarchy where Environment Record is an
+abstract class with two concrete subclasses, declarative environment record and
+object environment record. The abstract class includes the abstract
+specification methods defined in Table 17. These abstract methods have distinct
+concrete algorithms for each of the concrete subclasses. 
 
-仕様として環境レコード値には、宣言型環境レコードとオブジェクト環境レコードの二つの具象化されたサブクラスを持つ抽象クラスからなる、単純なオブジェクト指向的な階層構造が存在すると考えられます。抽象クラスは表17で定義される仕様上の抽象メソッドを含みます。これらの抽象メソッドは個々の具象化されたサブクラスで別々の具象化されたアルゴリズムを持ちます。
+仕様として環境レコード値には、宣言型環境レコードとオブジェクト環境レコードの二つ
+の具象化されたサブクラスを持つ抽象クラスからなる、単純なオブジェクト指向的な階層
+構造が存在すると考えられます。抽象クラスは表17で定義される仕様上の抽象メソッドを
+含みます。これらの抽象メソッドは個々の具象化されたサブクラスで別々の具象化された
+アルゴリズムを持ちます。
 
 
 Table 17 - Abstract Methods of Environment Records 
 --------------------------------------------------------------------------------
-Method
-Purpose 
+Method Purpose 
 --------------------------------------------------------------------------------
-HasBinding(N)
-Determine if an environment record has a binding for an identifier. Return true if it does and false if it does not. The String value N is the text of the identifier. 
+HasBinding(N) Determine if an environment record has a binding for an
+identifier. Return true if it does and false if it does not. The String value N
+is the text of the identifier. 
 --------------------------------------------------------------------------------
-CreateMutableBinding(N, D)
-Create a new mutable binding in an environment record. The String value N is the text of the bound name. If the optional Boolean argument D is true the binding is may be subsequently deleted. 
+CreateMutableBinding(N, D) Create a new mutable binding in an environment
+record. The String value N is the text of the bound name. If the optional
+Boolean argument D is true the binding is may be subsequently deleted. 
 --------------------------------------------------------------------------------
-SetMutableBinding(N, V, S) 
-Set the value of an already existing mutable binding in an environment record. The String value N is the text of the bound name. V is the value for the binding and may be a value of any ECMAScript language type. S is a Boolean flag. If S is true and the binding cannot be set throw a TypeError exception. S is used to identify strict mode references. 
+SetMutableBinding(N, V, S) Set the value of an already existing mutable binding
+in an environment record. The String value N is the text of the bound name. V is
+the value for the binding and may be a value of any ECMAScript language type. S
+is a Boolean flag. If S is true and the binding cannot be set throw a TypeError
+exception. S is used to identify strict mode references. 
 --------------------------------------------------------------------------------
-GetBindingValue(N, S)
-Returns the value of an already existing binding from an environment record. The String value N is the text of the bound name. S is used to identify strict mode references. If S is true and the binding does not exist or is uninitialized throw a ReferenceError exception. 
+GetBindingValue(N, S) Returns the value of an already existing binding from an
+environment record. The String value N is the text of the bound name. S is used
+to identify strict mode references. If S is true and the binding does not exist
+or is uninitialized throw a ReferenceError exception. 
 --------------------------------------------------------------------------------
-DeleteBinding(N)
-Delete a binding from an environment record. The String value N is the text of the bound name If a binding for N exists, remove the binding and return true. If the binding exists but cannot be removed return false. If the binding does not exist return true. 
+DeleteBinding(N) Delete a binding from an environment record. The String value N
+is the text of the bound name If a binding for N exists, remove the binding and
+return true. If the binding exists but cannot be removed return false. If the
+binding does not exist return true. 
 --------------------------------------------------------------------------------
-ImplicitThisValue()
-Returns the value to use as the this value on calls to function objects that are obtained as binding values from this environment record. 
+ImplicitThisValue() Returns the value to use as the this value on calls to
+function objects that are obtained as binding values from this environment
+record. 
 --------------------------------------------------------------------------------
 
 表17 - 環境レコードの抽象メソッド
 --------------------------------------------------------------------------------
-メソッド
-目的
+メソッド目的
 --------------------------------------------------------------------------------
-HasBinding(N)
-環境レコードが識別子へのバインディングを持つかを判定します。もしそうであればtrueを返し、そうでなければfalseを返します。文字列値Nは識別子のテキストです。
+HasBinding(N)環境レコードが識別子へのバインディングを持つかを判定します。もしそ
+うであればtrueを返し、そうでなければfalseを返します。文字列値Nは識別子のテキスト
+です。
 --------------------------------------------------------------------------------
-CreateMutableBinding(N, D)
-環境レコードに新しい可変のバインディングを作ります。文字列値Nはバインドされた名前のテキストです。オプションのBooleanな引数Dがtrueの場合バインディングは###subsequently###に削除されます。
+CreateMutableBinding(N, D)環境レコードに新しい可変のバインディングを作ります。文
+字列値Nはバインドされた名前のテキストです。オプションのBooleanな引数Dがtrueの場
+合バインディングは###subsequently###に削除されます。
 --------------------------------------------------------------------------------
-SetMutableBinding(N, V, S) 
-環境レコードに既に存在する可変のバインディングに値を設定します。文字列値Nはバインドされた名前のテキストです。Vはバインディングの値であり何らかのECMAScript言語の型の値です。SはBooleanなフラグです。もしSがtrueでバインディングが設定されていなければTypeError例外をスローします。Sはstrictモードの参照を識別するのに用いられます。
+SetMutableBinding(N, V, S)環境レコードに既に存在する可変のバインディングに値を設
+定します。文字列値Nはバインドされた名前のテキストです。Vはバインディングの値であ
+り何らかのECMAScript言語の型の値です。SはBooleanなフラグです。もしSがtrueでバイ
+ンディングが設定されていなければTypeError例外をスローします。Sはstrictモードの参
+照を識別するのに用いられます。
 --------------------------------------------------------------------------------
-GetBindingValue(N, S)
-環境レコードに既に存在するバインディング済の値を返します。文字列値Nはバインドされた名前のテキストです。Sはstrictモードの参照を識別するのに用いられます。もしSがtrueでバインディングが存在しないか初期化されていなければReferenceError例外をスローします。
+GetBindingValue(N, S)環境レコードに既に存在するバインディング済の値を返します。
+文字列値Nはバインドされた名前のテキストです。Sはstrictモードの参照を識別するのに
+用いられます。もしSがtrueでバインディングが存在しないか初期化されていなければ
+ReferenceError例外をスローします。
 --------------------------------------------------------------------------------
-DeleteBinding(N)
-環境レコードからバインディングを削除します。文字列値Nはバインドされた名前のテキストです。もしNへのバインディングが存在する場合はバインディングを削除しtrueを返します。もしバインディングが存在するが削除できなかった場合はfalseを返します。もしバインディングが存在しなければtrueを返します。
+DeleteBinding(N)環境レコードからバインディングを削除します。文字列値Nはバインド
+された名前のテキストです。もしNへのバインディングが存在する場合はバインディング
+を削除しtrueを返します。もしバインディングが存在するが削除できなかった場合は
+falseを返します。もしバインディングが存在しなければtrueを返します。
 --------------------------------------------------------------------------------
-ImplicitThisValue()
-この環境レコードにおいてバインディングの値として取得される関数オブジェクトへの呼び出しの際にthisの値として使われる値を返します。
+ImplicitThisValue()この環境レコードにおいてバインディングの値として取得される関
+数オブジェクトへの呼び出しの際にthisの値として使われる値を返します。
 --------------------------------------------------------------------------------
 
 
@@ -146,55 +274,80 @@ ImplicitThisValue()
 * 10.2.1.1 宣言型環境レコード
 
 
-Each declarative environment record is associated with an ECMAScript program scope containing variable and/or function declarations. A declarative environment record binds the set of identifiers defined by the declarations contained within its scope. 
+Each declarative environment record is associated with an ECMAScript program
+scope containing variable and/or function declarations. A declarative
+environment record binds the set of identifiers defined by the declarations
+contained within its scope. 
 
-いずれの宣言型環境レコードも、変数と関数のどちらかもしくは両方の宣言を含むECMAScriptのプログラムのスコープに関連付けられています。宣言型環境レコードはそのスコープに含まれる宣言によって定義された識別子の集合に紐付けられます。
+いずれの宣言型環境レコードも、変数と関数のどちらかもしくは両方の宣言を含む
+ECMAScriptのプログラムのスコープに関連付けられています。宣言型環境レコードはその
+スコープに含まれる宣言によって定義された識別子の集合に紐付けられます。
 
 
-In addition to the mutable bindings supported by all Environment Records, declarative environment records also provide for immutable bindings. An immutable binding is one where the association between an identifier and a value may not be modified once it has been established. Creation and initialization of immutable binding are distinct steps so it is possible for such bindings to exist in either an initialized or uninitialized state. Declarative environment records support the methods listed in Table 18 in addition to the Environment Record abstract specification methods: 
+In addition to the mutable bindings supported by all Environment Records,
+declarative environment records also provide for immutable bindings. An
+immutable binding is one where the association between an identifier and a value
+may not be modified once it has been established. Creation and initialization of
+immutable binding are distinct steps so it is possible for such bindings to
+exist in either an initialized or uninitialized state. Declarative environment
+records support the methods listed in Table 18 in addition to the Environment
+Record abstract specification methods: 
 
-環境レコードによってサポートされている可変のバインディング以外に宣言型環境レコードは変更不可のバインディングを提供します。変更不可のバインディングは識別子と値の関連が成立すると二度と変更できないものです。変更不可のバインディングの生成と初期化は個別のステップであるため、初期化済もしくは未初期化である状態のどちらであっても###。宣言型環境レコードは抽象的な仕様上のメソッド加えて表18にリストアップされたメソッドをサポートします。
+環境レコードによってサポートされている可変のバインディング以外に宣言型環境レコー
+ドは変更不可のバインディングを提供します。変更不可のバインディングは識別子と値の
+関連が成立すると二度と変更できないものです。変更不可のバインディングの生成と初期
+化は個別のステップであるため、初期化済もしくは未初期化である状態のどちらであって
+も###。宣言型環境レコードは抽象的な仕様上のメソッド加えて表18にリストアップされ
+たメソッドをサポートします。
 
 
 Table 18 - Additional Methods of Declarative Environment Records 
 --------------------------------------------------------------------------------
-Method
-Purpose 
+Method Purpose 
 --------------------------------------------------------------------------------
-CreateImmutableBinding(N)
-Create a new but uninitialized immutable binding in an environment record. The String value N is the text of the bound name. 
+CreateImmutableBinding(N) Create a new but uninitialized immutable binding in an
+environment record. The String value N is the text of the bound name. 
 --------------------------------------------------------------------------------
-InitializeImmutableBinding(N, V)
-Set the value of an already existing but uninitialized immutable binding in an environment record. The String value N is the text of the bound name. V is the value for the binding and is a value of any ECMAScript language type. 
+InitializeImmutableBinding(N, V) Set the value of an already existing but
+uninitialized immutable binding in an environment record. The String value N is
+the text of the bound name. V is the value for the binding and is a value of any
+ECMAScript language type. 
 --------------------------------------------------------------------------------
 
 表18 - 宣言型環境レコードに追加のメソッド
 --------------------------------------------------------------------------------
-メソッド
-目的
+メソッド目的
 --------------------------------------------------------------------------------
-CreateImmutableBinding(N)
-環境レコードに新規かつ未初期化の変更不可のバインディングを生成します。文字列値Nはバインドされた名前のテキストです。
+CreateImmutableBinding(N)環境レコードに新規かつ未初期化の変更不可のバインディン
+グを生成します。文字列値Nはバインドされた名前のテキストです。
 --------------------------------------------------------------------------------
-InitializeImmutableBinding(N, V)
-環境レコードに既存かつ未初期化の変更不可のバインディングに値を設定します。文字列値Nはバインドされた名前のテキストです。Vはバインディングの値であり何らかのECMAScript言語の型の値です。
+InitializeImmutableBinding(N, V)環境レコードに既存かつ未初期化の変更不可のバイン
+ディングに値を設定します。文字列値Nはバインドされた名前のテキストです。Vはバイン
+ディングの値であり何らかのECMAScript言語の型の値です。
 --------------------------------------------------------------------------------
 
 
-The behaviour of the concrete specification methods for Declarative Environment Records are defined by the following algorithms. 
+The behaviour of the concrete specification methods for Declarative Environment
+Records are defined by the following algorithms. 
 
-宣言型環境レコードの具象化された仕様のメソッドの振る舞いは以下のアルゴリズムで定義されています。
+宣言型環境レコードの具象化された仕様のメソッドの振る舞いは以下のアルゴリズムで定
+義されています。
 
 
 * 10.2.1.1.1 HasBinding(N) 
 
 
-The concrete environment record method HasBinding for declarative environment records simply determines if the argument identifier is one of the identifiers bound by the record: 
+The concrete environment record method HasBinding for declarative environment
+records simply determines if the argument identifier is one of the identifiers
+bound by the record: 
 
-宣言型環境レコード用の具象化された環境レコードのメソッドHasBindingは、単純に引数の識別子が環境レコードによってバインドされている識別子の一つかどうかを判定します。
+宣言型環境レコード用の具象化された環境レコードのメソッドHasBindingは、単純に引数
+の識別子が環境レコードによってバインドされている識別子の一つかどうかを判定しま
+す。
 
 
-1. Let envRec be the declarative environment record for which the method was invoked. 
+1. Let envRec be the declarative environment record for which the method was
+   invoked. 
 2. If envRec has a binding for the name that is the value of N, return true. 
 3. If it does not have such a binding, return false 
 
@@ -206,70 +359,112 @@ The concrete environment record method HasBinding for declarative environment re
 * 10.2.1.1.2 CreateMutableBinding (N, D)
 
 
-The concrete Environment Record method CreateMutableBinding for declarative environment records creates a new mutable binding for the name N that is initialized to the value undefined. A binding must not already exist in this Environment Record for N. If Boolean argument D is provided and has the value true the new binding is marked as being subject to deletion. 
+The concrete Environment Record method CreateMutableBinding for declarative
+environment records creates a new mutable binding for the name N that is
+initialized to the value undefined. A binding must not already exist in this
+Environment Record for N. If Boolean argument D is provided and has the value
+true the new binding is marked as being subject to deletion. 
 
-具象化された環境レコードの宣言型環境レコード用のメソッドCreateMutableBindingは、Nという名前で値がundefinedに初期化された新しい可変のバインディングを生成します。Nにとってこの環境レコードにはバインディングは存在してはなりません。もしBooleanな引数Dが与えられその値がtrueの場合には、新しいバインディングは削除用としてマークされます。
+具象化された環境レコードの宣言型環境レコード用のメソッドCreateMutableBindingは、
+Nという名前で値がundefinedに初期化された新しい可変のバインディングを生成します。
+Nにとってこの環境レコードにはバインディングは存在してはなりません。もしBooleanな
+引数Dが与えられその値がtrueの場合には、新しいバインディングは削除用としてマーク
+されます。
 
 
-1. Let envRec be the declarative environment record for which the method was invoked. 
+1. Let envRec be the declarative environment record for which the method was
+   invoked. 
 2. Assert: envRec does not already have a binding for N. 
-3. Create a mutable binding in envRec for N and set its bound value to undefined. If D is true record that the newly created binding may be deleted by a subsequent DeleteBinding call. 
+3. Create a mutable binding in envRec for N and set its bound value to
+   undefined. If D is true record that the newly created binding may be deleted
+   by a subsequent DeleteBinding call. 
 
 1. envRecをメソッドが呼び出された箇所の宣言型環境レコードとします。
 2. ASSERT: まだenvRecはNへのバインディングを持っていない。
-3. envRecにおけるNへの可変のバインディングを生成し、バインドされた値をundefinedに設定します。もしDがtrueの場合、新しく生成されたバインディングはサブシーケンスのDeleteBindingの呼び出しによって削除されます。
+3. envRecにおけるNへの可変のバインディングを生成し、バインドされた値をundefined
+   に設定します。もしDがtrueの場合、新しく生成されたバインディングはサブシーケン
+   スのDeleteBindingの呼び出しによって削除されます。
 
 
 * 10.2.1.1.3 SetMutableBinding (N, V, S) 
 
 
-The concrete Environment Record method SetMutableBinding for declarative environment records attempts to change the bound value of the current binding of the identifier whose name is the value of the argument N to the value of argument V. A binding for N must already exist. If the binding is an immutable binding, a TypeError is always thrown. The S argument is ignored because strict mode does not change the meaning of setting bindings in declarative environment records. 
+The concrete Environment Record method SetMutableBinding for declarative
+environment records attempts to change the bound value of the current binding of
+the identifier whose name is the value of the argument N to the value of
+argument V. A binding for N must already exist. If the binding is an immutable
+binding, a TypeError is always thrown. The S argument is ignored because strict
+mode does not change the meaning of setting bindings in declarative environment
+records. 
 
-宣言型環境レコード用の具象化された環境レコードのメソッドSetMutableBindingは引数Nの値の名前を持つ識別子の現行のバインディングにバインドされた値を引数Vの値に変更します。Nのバインディングは既に存在しなければなりません。バインディングが変更不可であれば必ずTypeErrorがスローされます。strictモードによって宣言型環境レコードにおけるバインディングの設定の意味を変えることがないため、引数Sは無視されます。
+宣言型環境レコード用の具象化された環境レコードのメソッドSetMutableBindingは引数N
+の値の名前を持つ識別子の現行のバインディングにバインドされた値を引数Vの値に変更
+します。Nのバインディングは既に存在しなければなりません。バインディングが変更不
+可であれば必ずTypeErrorがスローされます。strictモードによって宣言型環境レコード
+におけるバインディングの設定の意味を変えることがないため、引数Sは無視されます。
 
 
-1. Let envRec be the declarative environment record for which the method was invoked. 
+1. Let envRec be the declarative environment record for which the method was
+   invoked. 
 2. Assert: envRec must have a binding for N. 
-3. If the binding for N in envRec is a mutable binding, change its bound value to V. 
-4. Else this must be an attempt to change the value of an immutable binding so throw a TypeError exception. 
+3. If the binding for N in envRec is a mutable binding, change its bound value
+   to V. 
+4. Else this must be an attempt to change the value of an immutable binding so
+   throw a TypeError exception. 
 
 1. envRecをメソッドが呼び出された箇所の宣言型環境レコードとします。
 2. ASSERT: envRecはNのバインディングを持っていなければいけない。
-3. もしenvRecにおけるNのバインディングが可変であれば、そのバインドされた値をVに変更します。
-4. そうでなければ、可変不可のバインディングに対する値の変更の試みであるためTypeError例外をスローします。
+3. もしenvRecにおけるNのバインディングが可変であれば、そのバインドされた値をVに
+   変更します。
+4. そうでなければ、可変不可のバインディングに対する値の変更の試みであるため
+   TypeError例外をスローします。
 
 
 * 10.2.1.1.4 GetBindingValue(N, S) 
 
 
-The concrete Environment Record method GetBindingValue for declarative environment records simply returns the value of its bound identifier whose name is the value of the argument N. The binding must already exist. If S is true and the binding is an uninitialized immutable binding throw a ReferenceError exception. 
+The concrete Environment Record method GetBindingValue for declarative
+environment records simply returns the value of its bound identifier whose name
+is the value of the argument N. The binding must already exist. If S is true and
+the binding is an uninitialized immutable binding throw a ReferenceError
+exception. 
 
-宣言型環境レコード用の具象化された環境レコードのメソッドGetBindingValueは、単純に引数Nの値の名前を持つ識別子にバインドされた値を返します。バインディングは必ず存在します。もしSがtrueでありバインディングが未初期化の可変不可のバインディングであればReferenceError例外をスローします。
+宣言型環境レコード用の具象化された環境レコードのメソッドGetBindingValueは、単純
+に引数Nの値の名前を持つ識別子にバインドされた値を返します。バインディングは必ず
+存在します。もしSがtrueでありバインディングが未初期化の可変不可のバインディング
+であればReferenceError例外をスローします。
 
 
-1. Let envRec be the declarative environment record for which the method was invoked. 
+1. Let envRec be the declarative environment record for which the method was
+   invoked. 
 2. Assert: envRec has a binding for N. 
-3. If the binding for N in envRec is an uninitialized immutable binding, then 
-  a. If S is false, return the value undefined, otherwise throw a ReferenceError exception. 
+3. If the binding for N in envRec is an uninitialized immutable binding, then a.
+   If S is false, return the value undefined, otherwise throw a ReferenceError
+   exception. 
 4. Else, return the value currently bound to N in envRec. 
 
 1. envRecをメソッドが呼び出された箇所の宣言型環境レコードとします。
 2. ASSERT: envRecはNのバインディングを持っている。
 3. もしenvRecにおけるNのバインディングが未初期化の変更不可のバインディングの場合
-  a. Sがfalseであればundefined値を返します。そうでなければReferenceError例外を返します。
+   a. Sがfalseであればundefined値を返します。そうでなければReferenceError例外を
+   返します。
 
 
 * 10.2.1.1.5 DeleteBinding (N) 
 
 
-The concrete Environment Record method DeleteBinding for declarative environment records can only delete bindings that have been explicitly designated as being subject to deletion. 
+The concrete Environment Record method DeleteBinding for declarative environment
+records can only delete bindings that have been explicitly designated as being
+subject to deletion. 
 
-宣言型環境レコード用の具象化された環境レコードのメソッドDeleteBindingは、
-指定されたバインディングだけを削除します。
+宣言型環境レコード用の具象化された環境レコードのメソッドDeleteBindingは、指定さ
+れたバインディングだけを削除します。
 
 
-1. Let envRec be the declarative environment record for which the method was invoked. 
-2. If envRec does not have a binding for the name that is the value of N, return true. 
+1. Let envRec be the declarative environment record for which the method was
+   invoked. 
+2. If envRec does not have a binding for the name that is the value of N, return
+   true. 
 3. If the binding for N in envRec is cannot be deleted, return false. 
 4. Remove the binding for N from envRec. 
 5. Return true. 
@@ -284,7 +479,8 @@ The concrete Environment Record method DeleteBinding for declarative environment
 * 10.2.1.1.6 ImplicitThisValue() 
 
 
-Declarative Environment Records always return undefined as their ImplicitThisValue. 
+Declarative Environment Records always return undefined as their
+ImplicitThisValue. 
 
 宣言型環境レコードはImplicitThisValueに関してundefinedを返します。
 
@@ -297,14 +493,21 @@ Declarative Environment Records always return undefined as their ImplicitThisVal
 * 10.2.1.1.7 CreateImmutableBinding (N) 
 
 
-The concrete Environment Record method CreateImmutableBinding for declarative environment records creates a new immutable binding for the name N that is initialized to the value undefined. A binding must not already exist in this environment record for N. 
+The concrete Environment Record method CreateImmutableBinding for declarative
+environment records creates a new immutable binding for the name N that is
+initialized to the value undefined. A binding must not already exist in this
+environment record for N. 
 
-宣言型環境レコード用の具象化された環境レコードのメソッドCreateImmutableBindingは、値がundefinedに初期化されたNという名前の新しい可変不可のバインディングを生成します。バインディングはNという名前でこの環境レコードに存在してはいけません。
+宣言型環境レコード用の具象化された環境レコードのメソッドCreateImmutableBinding
+は、値がundefinedに初期化されたNという名前の新しい可変不可のバインディングを生成
+します。バインディングはNという名前でこの環境レコードに存在してはいけません。
 
 
-1. Let envRec be the declarative environment record for which the method was invoked. 
+1. Let envRec be the declarative environment record for which the method was
+   invoked. 
 2. Assert: envRec does not already have a binding for N. 
-3. Create an immutable binding in envRec for N and record that it is uninitialized. 
+3. Create an immutable binding in envRec for N and record that it is
+   uninitialized. 
 
 1. envRecをメソッドが呼び出された箇所の宣言型環境レコードとします。
 2. ASSERT: envRecはNへのバインディングをまだ持っていない。
@@ -314,18 +517,26 @@ The concrete Environment Record method CreateImmutableBinding for declarative en
 * 10.2.1.1.8 InitializeImmutableBinding (N, V) 
 
 
-The concrete Environment Record method InitializeImmutableBinding for declarative environment records is used to set the bound value of the current binding of the identifier whose name is the value of the argument N to the value of argument V. An uninitialized immutable binding for N must already exist. 
+The concrete Environment Record method InitializeImmutableBinding for
+declarative environment records is used to set the bound value of the current
+binding of the identifier whose name is the value of the argument N to the value
+of argument V. An uninitialized immutable binding for N must already exist. 
 
-宣言型環境レコード用の具象化された環境レコードのメソッドInitializeImmutableBindingは、引数Nの値の名前を持つ識別子の現在のバインディングの値を引数Vの値へ設定するために使われます。Nの未初期化の変更不可なバインディングが既に存在しなければいけません。
+宣言型環境レコード用の具象化された環境レコードのメソッド
+InitializeImmutableBindingは、引数Nの値の名前を持つ識別子の現在のバインディング
+の値を引数Vの値へ設定するために使われます。Nの未初期化の変更不可なバインディング
+が既に存在しなければいけません。
 
 
-1. Let envRec be the declarative environment record for which the method was invoked. 
+1. Let envRec be the declarative environment record for which the method was
+   invoked. 
 2. Assert: envRec must have an uninitialized immutable binding for N. 
 3. Set the bound value for N in envRec to V. 
 4. Record that the immutable binding for N in envRec has been initialized. 
 
 1. envRecをメソッドが呼び出された箇所の宣言型環境レコードとします。
-2. ASSERT: envRecはNへの未初期化の変更不可なバインディングを持っていなければいけない。
+2. ASSERT: envRecはNへの未初期化の変更不可なバインディングを持っていなければいけ
+   ない。
 3. envRecにおけるNにバインドされた値をVに設定します。
 4. envRecのNの変更不可なバインディングを初期化済みと記録します。
 
@@ -335,46 +546,83 @@ The concrete Environment Record method InitializeImmutableBinding for declarativ
 * 10.2.1.2 オブジェクト環境レコード
 
 
-Each object environment record is associated with an object called its binding object. An object environment record binds the set of identifier names that directly correspond to the property names of its binding object. Property names that are not an IdentifierName are not included in the set of bound identifiers. Both own and inherited properties are included in the set regardless of the setting of their [[Enumerable]] attribute. Because properties can be dynamically added and deleted from objects, the set of identifiers bound by an object environment record may potentially change as a side-effect of any operation that adds or deletes properties. Any bindings that are created as a result of such a side-effect are considered to be a mutable binding even if the Writable attribute of the corresponding property has the value false. Immutable bindings do not exist for object environment records. 
+Each object environment record is associated with an object called its binding
+object. An object environment record binds the set of identifier names that
+directly correspond to the property names of its binding object. Property names
+that are not an IdentifierName are not included in the set of bound identifiers.
+Both own and inherited properties are included in the set regardless of the
+setting of their [[Enumerable]] attribute. Because properties can be dynamically
+added and deleted from objects, the set of identifiers bound by an object
+environment record may potentially change as a side-effect of any operation that
+adds or deletes properties. Any bindings that are created as a result of such a
+side-effect are considered to be a mutable binding even if the Writable
+attribute of the corresponding property has the value false. Immutable bindings
+do not exist for object environment records. 
 
 
-Object environment records can be configured to provide their binding object as an implicit this value for use in function calls. This capability is used to specify the behaviour of With Statement (12.10) induced bindings. The capability is controlled by a provideThis Boolean value that is associated with each object environment record. By default, the value of provideThis is false for any object environment record. 
+Object environment records can be configured to provide their binding object as
+an implicit this value for use in function calls. This capability is used to
+specify the behaviour of With Statement (12.10) induced bindings. The capability
+is controlled by a provideThis Boolean value that is associated with each object
+environment record. By default, the value of provideThis is false for any object
+environment record. 
 
 
-The behaviour of the concrete specification methods for Object Environment Records is defined by the following algorithms. 
+The behaviour of the concrete specification methods for Object Environment
+Records is defined by the following algorithms. 
 
 
 * 10.2.1.2.1 HasBinding(N) 
 
 
-The concrete Environment Record method HasBinding for object environment records determines if its associated binding object has a property whose name is the value of the argument N: 
+The concrete Environment Record method HasBinding for object environment records
+determines if its associated binding object has a property whose name is the
+value of the argument N: 
 
 
-1. Let envRec be the object environment record for which the method was invoked. 
+1. Let envRec be the object environment record for which the method was invoked.
+   
 2. Let bindings be the binding object for envRec. 
-3. Return the result of calling the [[HasProperty]] internal method of bindings, passing N as the property name. 
+3. Return the result of calling the [[HasProperty]] internal method of bindings,
+   passing N as the property name. 
 
 
 * 10.2.1.2.2 CreateMutableBinding (N, D) 
 
 
-The concrete Environment Record method CreateMutableBinding for object environment records creates in an environment record’s associated binding object a property whose name is the String value and initializes it to the value undefined. A property named N must not already exist in the binding object. If Boolean argument D is provided and has the value true the new property’s [[Configurable]] attribute is set to true, otherwise it is set to false. 
+The concrete Environment Record method CreateMutableBinding for object
+environment records creates in an environment record’s associated binding object
+a property whose name is the String value and initializes it to the value
+undefined. A property named N must not already exist in the binding object. If
+Boolean argument D is provided and has the value true the new property’s
+[[Configurable]] attribute is set to true, otherwise it is set to false. 
 
 
-1. Let envRec be the object environment record for which the method was invoked. 
+1. Let envRec be the object environment record for which the method was invoked.
+   
 2. Let bindings be the binding object for envRec. 
-3. Assert: The result of calling the [[HasProperty]] internal method of bindings, passing N as the property name, is false. 
-4. If D is true then let configValue be true otherwise let configValue be false. 
-5. Call the [[DefineOwnProperty]] internal method of bindings, passing N, Property Descriptor {[[Value]]:undefined, [[Writable]]: true, [[Enumerable]]: true , [[Configurable]]: configValue}, and false as arguments. 
+3. Assert: The result of calling the [[HasProperty]] internal method of
+   bindings, passing N as the property name, is false. 
+4. If D is true then let configValue be true otherwise let configValue be false.
+   
+5. Call the [[DefineOwnProperty]] internal method of bindings, passing N,
+   Property Descriptor {[[Value]]:undefined, [[Writable]]: true, [[Enumerable]]:
+   true , [[Configurable]]: configValue}, and false as arguments. 
 
 
 * 10.2.1.2.3 SetMutableBinding (N, V, S) 
 
 
-The concrete Environment Record method SetMutableBinding for object environment records attempts to set the value of the environment record’s associated binding object’s property whose name is the value of the argument N to the value of argument V. A property named N should already exist but if it does not or is not currently writable, error handling is determined by the value of the Boolean argument S. 
+The concrete Environment Record method SetMutableBinding for object environment
+records attempts to set the value of the environment record’s associated binding
+object’s property whose name is the value of the argument N to the value of
+argument V. A property named N should already exist but if it does not or is not
+currently writable, error handling is determined by the value of the Boolean
+argument S. 
 
 
-1. Let envRec be the object environment record for which the method was invoked. 
+1. Let envRec be the object environment record for which the method was invoked.
+   
 2. Let bindings be the binding object for envRec. 
 3. Call the [[Put]] internal method of bindings with arguments N, V, and S. 
 
@@ -382,61 +630,78 @@ The concrete Environment Record method SetMutableBinding for object environment 
 * 10.2.1.2.4 GetBindingValue(N, S) 
 
 
-The concrete Environment Record method GetBindingValue for object environment records returns the value of its associated binding object’s property whose name is the String value of the argument identifier N. The property should already exist but if it does not the result depends upon the value of the S argument: 
+The concrete Environment Record method GetBindingValue for object environment
+records returns the value of its associated binding object’s property whose name
+is the String value of the argument identifier N. The property should already
+exist but if it does not the result depends upon the value of the S argument: 
 
 
-1. Let envRec be the object environment record for which the method was invoked. 
+1. Let envRec be the object environment record for which the method was invoked.
+   
 2. Let bindings be the binding object for envRec. 
-3. Let value be the result of calling the [[HasProperty]] internal method of bindings, passing N as the property name. 
-4. If value is false, then 
-  a. If S is false, return the value undefined, otherwise throw a ReferenceError exception. 
-5. Return the result of calling the [[Get]] internal method of bindings, passing N for the argument. 
+3. Let value be the result of calling the [[HasProperty]] internal method of
+   bindings, passing N as the property name. 
+4. If value is false, then a. If S is false, return the value undefined,
+   otherwise throw a ReferenceError exception. 
+5. Return the result of calling the [[Get]] internal method of bindings, passing
+   N for the argument. 
 
 
 * 10.2.1.2.5 DeleteBinding (N) 
 
 
-The concrete Environment Record method DeleteBinding for object environment records can only delete 
-bindings that correspond to properties of the environment object whose [[Configurable]] attribute have the 
-value true. 
+The concrete Environment Record method DeleteBinding for object environment
+records can only delete bindings that correspond to properties of the
+environment object whose [[Configurable]] attribute have the value true. 
 
 
-1. Let envRec be the object environment record for which the method was invoked. 
+1. Let envRec be the object environment record for which the method was invoked.
+   
 2. Let bindings be the binding object for envRec. 
-3. Return the result of calling the [[Delete]] internal method of bindings, passing N and false as arguments. 
+3. Return the result of calling the [[Delete]] internal method of bindings,
+   passing N and false as arguments. 
 
 
 * 10.2.1.2.6 ImplicitThisValue() 
 
 
-Object Environment Records return undefined as their ImplicitThisValue unless their provideThis flag is true. 
+Object Environment Records return undefined as their ImplicitThisValue unless
+their provideThis flag is true. 
 
-1. Let envRec be the object environment record for which the method was invoked. 
-2. If the provideThis flag of envRec is true, return the binding object for envRec. 
+1. Let envRec be the object environment record for which the method was invoked.
+   
+2. If the provideThis flag of envRec is true, return the binding object for
+   envRec. 
 3. Otherwise, return undefined. 
 
 
-* 10.2.2 Lexical Environment Operations 
-The following abstract operations are used in this specification to operate upon lexical environments: 
+* 10.2.2 Lexical Environment Operations The following abstract operations are
+  used in this specification to operate upon lexical environments: 
 
 
 * 10.2.2.1 GetIdentifierReference (lex, name, strict) 
 
-The abstract operation GetIdentifierReference is called with a Lexical Environment lex, an identifier String name, and a Boolean flag strict. The value of lex may be null. When called, the following steps are performed: 
+The abstract operation GetIdentifierReference is called with a Lexical
+Environment lex, an identifier String name, and a Boolean flag strict. The value
+of lex may be null. When called, the following steps are performed: 
 
-1. If lex is the value null, then 
-  a. Return a value of type Reference whose base value is undefined, whose referenced name is name, and whose strict mode flag is strict. 
+1. If lex is the value null, then a. Return a value of type Reference whose base
+   value is undefined, whose referenced name is name, and whose strict mode flag
+   is strict. 
 2. Let envRec be lex’s environment record. 
-3. Let exists be the result of calling the HasBinding(N) concrete method of envRec passing name as the argument N. 
-4. If exists is true, then 
-  a. Return a value of type Reference whose base value is envRec, whose referenced name is name, and whose strict mode flag is strict. 
-5. Else 
-  a. Let outer be the value of lex’s outer environment reference. 
-  b. Return the result of calling GetIdentifierReference passing outer, name, and strict as arguments. 
+3. Let exists be the result of calling the HasBinding(N) concrete method of
+   envRec passing name as the argument N. 
+4. If exists is true, then a. Return a value of type Reference whose base value
+   is envRec, whose referenced name is name, and whose strict mode flag is
+   strict. 
+5. Else a. Let outer be the value of lex’s outer environment reference. b.
+   Return the result of calling GetIdentifierReference passing outer, name, and
+   strict as arguments. 
 
 * 10.2.2.2 NewDeclarativeEnvironment (E) 
 
-When the abstract operation NewDeclarativeEnvironment is called with either a Lexical Environment or null as argument E the following steps are performed: 
+When the abstract operation NewDeclarativeEnvironment is called with either a
+Lexical Environment or null as argument E the following steps are performed: 
 
 1. Let env be a new Lexical Environment. 
 2. Let envRec be a new declarative environment record containing no bindings. 
@@ -446,478 +711,439 @@ When the abstract operation NewDeclarativeEnvironment is called with either a Le
 
 * 10.2.2.3 NewObjectEnvironment (O, E) 
 
-When the abstract operation NewObjectEnvironmentis called with an Object O and a Lexical Environment E (or null) as arguments, the following steps are performed: 
+When the abstract operation NewObjectEnvironmentis called with an Object O and a
+Lexical Environment E (or null) as arguments, the following steps are performed:
+
 
 1. Let env be a new Lexical Environment. 
-2. Let envRec be a new object environment record containing O as the binding object. 
+2. Let envRec be a new object environment record containing O as the binding
+   object. 
 3. Set env’s environment record to be envRec. 
 4. Set the outer lexical environment reference of env to E. 
 5. Return env. 
 
 * 10.2.3 The Global Environment 
 
-The global environment is a unique Lexical Environment which is created before any ECMAScript code is 
-executed. The global environment’s Environment Record is an object environment record whose binding 
-object is the global object (15.1). The global environment’s outer environment reference is null. 
+The global environment is a unique Lexical Environment which is created before
+any ECMAScript code is executed. The global environment’s Environment Record is
+an object environment record whose binding object is the global object (15.1).
+The global environment’s outer environment reference is null. 
 
-As ECMAScript code is executed, additional properties may be added to the global object and the initial 
-properties may be modified. 
+As ECMAScript code is executed, additional properties may be added to the global
+object and the initial properties may be modified. 
 
-10.3 Execution Contexts 
-When control is transferred to ECMAScript executable code, control is entering an execution context. Active 
-execution contexts logically form a stack. The top execution context on this logical stack is the running 
-execution context. A new execution context is created whenever control is transferred from the executable 
-code associated with the currently running execution context to executable code that is not associated with 
+10.3 Execution Contexts When control is transferred to ECMAScript executable
+code, control is entering an execution context. Active execution contexts
+logically form a stack. The top execution context on this logical stack is the
+running execution context. A new execution context is created whenever control
+is transferred from the executable code associated with the currently running
+execution context to executable code that is not associated with 
 
 
 
-that execution context. The newly created execution context is pushed onto the stack and becomes the 
-running execution context. 
+that execution context. The newly created execution context is pushed onto the
+stack and becomes the running execution context. 
 
-An execution context contains whatever state is necessary to track the execution progress of its associated 
-code. In addition, each execution context has the state components listed in Table 19. 
+An execution context contains whatever state is necessary to track the execution
+progress of its associated code. In addition, each execution context has the
+state components listed in Table 19. 
 
 Table 19 .Execution Context State Components 
 
-Component Purpose 
-LexicalEnvironment Identifies the Lexical Environment used to resolve identifier references 
-made by code within this execution context. 
-VariableEnvironment Identifies the Lexical Environment whose environment record holds 
-bindings created by VariableStatements and FunctionDeclarations within 
-this execution context. 
-ThisBinding The value associated with the this keyword within ECMAScript code 
-associated with this execution context. 
+Component Purpose LexicalEnvironment Identifies the Lexical Environment used to
+resolve identifier references made by code within this execution context.
+VariableEnvironment Identifies the Lexical Environment whose environment record
+holds bindings created by VariableStatements and FunctionDeclarations within
+this execution context. ThisBinding The value associated with the this keyword
+within ECMAScript code associated with this execution context. 
 
-The LexicalEnvironment and VariableEnvironment components of an execution context are always Lexical 
-Environments. When an execution context is created its LexicalEnvironment and VariableEnvironment 
-components initially have the same value. The value of the VariableEnvironment component never changes 
-while the value of the LexicalEnvironment component may change during execution of code within an 
-execution context. 
+The LexicalEnvironment and VariableEnvironment components of an execution
+context are always Lexical Environments. When an execution context is created
+its LexicalEnvironment and VariableEnvironment components initially have the
+same value. The value of the VariableEnvironment component never changes while
+the value of the LexicalEnvironment component may change during execution of
+code within an execution context. 
 
-In most situations only the running execution context (the top of the execution context stack) is directly 
-manipulated by algorithms within this specification. Hence when the terms “LexicalEnvironment”, 
-“VariableEnvironment” and “ThisBinding” are used without qualification they are in reference to those 
+In most situations only the running execution context (the top of the execution
+context stack) is directly manipulated by algorithms within this specification.
+Hence when the terms “LexicalEnvironment”,“VariableEnvironment” and
+“ThisBinding” are used without qualification they are in reference to those
 components of the running execution context. 
 
-An execution context is purely a specification mechanism and need not correspond to any particular artefact 
-of an ECMAScript implementation. It is impossible for an ECMAScript program to access an execution 
-context. 
+An execution context is purely a specification mechanism and need not correspond
+to any particular artefact of an ECMAScript implementation. It is impossible for
+an ECMAScript program to access an execution context. 
 
-10.3.1 Identifier Resolution 
-Identifier resolution is the process of determining the binding of an Identifier using the LexicalEnvironment of 
-the running execution context. During execution of ECMAScript code, the syntactic production 
+10.3.1 Identifier Resolution Identifier resolution is the process of determining
+the binding of an Identifier using the LexicalEnvironment of the running
+execution context. During execution of ECMAScript code, the syntactic production
 PrimaryExpression : Identifier is evaluated using the following algorithm: 
 
-1. 
+1.
 Let env be the running execution context’s LexicalEnvironment. 
-2. 
-If the syntactic production that is being evaluated is contained in a strict mode code, then let strict be true, 
-else let strict be false. 
-3. 
-Return the result of calling GetIdentifierReference function passing env, Identifier, and strict as arguments. 
-The result of evaluating an identifier is always a value of type Reference with its referenced name component 
-equal to the Identifier String. 
+2.
+If the syntactic production that is being evaluated is contained in a strict
+mode code, then let strict be true, else let strict be false. 
+3.
+Return the result of calling GetIdentifierReference function passing env,
+Identifier, and strict as arguments. The result of evaluating an identifier is
+always a value of type Reference with its referenced name component equal to the
+Identifier String. 
 
-10.4 Establishing an Execution Context 
-Evaluation of global code or code using the eval function (15.1.2.1) establishes and enters a new execution 
-context. Every invocation of an ECMAScript code function (13.2.1) also establishes and enters a new 
-execution context, even if a function is calling itself recursively. Every return exits an execution context. A 
-thrown exception may also exit one or more execution contexts. 
+10.4 Establishing an Execution Context Evaluation of global code or code using
+the eval function (15.1.2.1) establishes and enters a new execution context.
+Every invocation of an ECMAScript code function (13.2.1) also establishes and
+enters a new execution context, even if a function is calling itself
+recursively. Every return exits an execution context. A thrown exception may
+also exit one or more execution contexts. 
 
-When control enters an execution context, the execution context’s ThisBinding is set, its VariableEnvironment 
-and initial LexicalEnvironment are defined, and declaration binding instantiation (10.5) is performed. The exact 
-manner in which these actions occur depend on the type of code being entered. 
+When control enters an execution context, the execution context’s ThisBinding is
+set, its VariableEnvironment and initial LexicalEnvironment are defined, and
+declaration binding instantiation (10.5) is performed. The exact manner in which
+these actions occur depend on the type of code being entered. 
 
 
 
-10.4.1 Entering Global Code 
-The following steps are performed when control enters the execution context for global code: 
+10.4.1 Entering Global Code The following steps are performed when control
+enters the execution context for global code: 
 
-1. 
-Initialize the execution context using the global code as described in 10.4.1.1. 
-2. 
-Perform Declaration Binding Instantiation as described in 10.5 using the global code. 
-10.4.1.1 Initial Global Execution Context 
-The following steps are performed to initialize a global execution context for ECMAScript code C: 
+1.
+Initialize the execution context using the global code as described in 10.4.1.1.
 
-1. 
+2.
+Perform Declaration Binding Instantiation as described in 10.5 using the global
+code. 10.4.1.1 Initial Global Execution Context The following steps are
+performed to initialize a global execution context for ECMAScript code C: 
+
+1.
 Set the VariableEnvironment to the Global Environment. 
-2. 
+2.
 Set the LexicalEnvironment to the Global Environment. 
-3. 
-Set the ThisBinding to the global object. 
-10.4.2 Entering Eval Code 
-The following steps are performed when control enters the execution context for eval code: 
+3.
+Set the ThisBinding to the global object. 10.4.2 Entering Eval Code The
+following steps are performed when control enters the execution context for eval
+code: 
 
-1. 
-If there is no calling context or if the eval code is not being evaluated by a direct call (15.1.2.1.1) to the eval 
-function then, 
-a. 
-Initialize the execution context as if it was a global execution context using the eval code as C as 
+1.
+If there is no calling context or if the eval code is not being evaluated by a
+direct call (15.1.2.1.1) to the eval function then, a. Initialize the execution
+context as if it was a global execution context using the eval code as C as
 described in 10.4.1.1. 
-2. 
-Else, 
-a. 
-Set the ThisBinding to the same value as the ThisBinding of the calling execution context. 
-b. 
-Set the LexicalEnvironment to the same value as the LexicalEnvironment of the calling execution 
-context. 
-c. 
-Set the VariableEnvironment to the same value as the VariableEnvironment of the calling execution 
-context. 
-3. 
-If the eval code is strict code, then 
-a. 
-Let strictVarEnv be the result of calling NewDeclarativeEnvironment passing the 
-LexicalEnvironment as the argument. 
-b. 
-Set the LexicalEnvironment to strictVarEnv. 
-c. 
-Set the VariableEnvironment to strictVarEnv. 
-4. 
-Perform Declaration Binding Instantiation as described in 10.5 using the eval code. 
-10.4.2.1 Strict Mode Restrictions 
-The eval code cannot instantiate variable or function bindings in the variable environment of the calling 
-context that invoked the eval if either the code of the calling context or the eval code is strict code. Instead 
-such bindings are instantiated in a new VariableEnvironment that is only accessible to the eval code. 
+2.
+Else, a. Set the ThisBinding to the same value as the ThisBinding of the calling
+execution context. b. Set the LexicalEnvironment to the same value as the
+LexicalEnvironment of the calling execution context. c. Set the
+VariableEnvironment to the same value as the VariableEnvironment of the calling
+execution context. 
+3.
+If the eval code is strict code, then a. Let strictVarEnv be the result of
+calling NewDeclarativeEnvironment passing the LexicalEnvironment as the
+argument. b. Set the LexicalEnvironment to strictVarEnv. c. Set the
+VariableEnvironment to strictVarEnv. 
+4.
+Perform Declaration Binding Instantiation as described in 10.5 using the eval
+code. 10.4.2.1 Strict Mode Restrictions The eval code cannot instantiate
+variable or function bindings in the variable environment of the calling context
+that invoked the eval if either the code of the calling context or the eval code
+is strict code. Instead such bindings are instantiated in a new
+VariableEnvironment that is only accessible to the eval code. 
 
-10.4.3 Entering Function Code 
-The following steps are performed when control enters the execution context for function code contained in 
-function object F, a caller provided thisArg, and a caller provided argumentsList: 
+10.4.3 Entering Function Code The following steps are performed when control
+enters the execution context for function code contained in function object F, a
+caller provided thisArg, and a caller provided argumentsList: 
 
-1. 
+1.
 If the function code is strict code, set the ThisBinding to thisArg. 
-2. 
+2.
 Else if thisArg is null or undefined, set the ThisBinding to the global object. 
-3. 
+3.
 Else if Type(thisArg) is not Object, set the ThisBinding to ToObject(thisArg). 
-4. 
+4.
 Else set the ThisBinding to thisArg. 
-5. 
-Let localEnv be the result of calling NewDeclarativeEnvironment passing the value of the [[Scope]] internal 
-property of F as the argument. 
-6. 
+5.
+Let localEnv be the result of calling NewDeclarativeEnvironment passing the
+value of the [[Scope]] internal property of F as the argument. 
+6.
 Set the LexicalEnvironment to localEnv. 
-7. 
+7.
 Set the VariableEnvironment to localEnv. 
-8. 
+8.
 Let code be the value of F’s [[Code]] internal property. 
-9. 
-Perform Declaration Binding Instantiation using the function code code and argumentList as described in 
-10.5. 
+9.
+Perform Declaration Binding Instantiation using the function code code and
+argumentList as described in 10.5. 
 
 
-10.5 Declaration Binding Instantiation 
-Every execution context has an associated VariableEnvironment. Variables and functions declared in 
-ECMAScript code evaluated in an execution context are added as bindings in that VariableEnvironment’s 
-Environment Record. For function code, parameters are also added as bindings to that Environment Record. 
+10.5 Declaration Binding Instantiation Every execution context has an associated
+VariableEnvironment. Variables and functions declared in ECMAScript code
+evaluated in an execution context are added as bindings in that
+VariableEnvironment’s Environment Record. For function code, parameters are also
+added as bindings to that Environment Record. 
 
-Which Environment Record is used to bind a declaration and its kind depends upon the type of ECMAScript 
-code executed by the execution context, but the remainder of the behaviour is generic. On entering an 
-execution context, bindings are created in the VariableEnvironment as follows using the caller provided code 
+Which Environment Record is used to bind a declaration and its kind depends upon
+the type of ECMAScript code executed by the execution context, but the remainder
+of the behaviour is generic. On entering an execution context, bindings are
+created in the VariableEnvironment as follows using the caller provided code
 and, if it is function code, argument List args: 
 
-1. 
-Let env be the environment record component of the running execution context’s VariableEnvironment. 
-2. 
-If code is eval code, then let configurableBindings be true else let configurableBindings be false. 
-3. 
+1.
+Let env be the environment record component of the running execution context’s
+VariableEnvironment. 
+2.
+If code is eval code, then let configurableBindings be true else let
+configurableBindings be false. 
+3.
 If code is strict mode code, then let strict be true else let strict be false. 
-4. 
-If code is function code, then 
-a. 
-Let func be the function whose [[Call]] internal method initiated execution of code. Let names be 
-the value of func’s [[FormalParameters]] internal property. 
-b. 
-Let argCount be the number of elements in args. 
-c. 
-Let n be the number 0. 
-d. 
-For each String argName in names, in list order do 
-i. 
-Let n be the current value of n plus 1. 
-ii. 
-If n is greater than argCount, let v be undefined otherwise let v be the value of the n’th 
-element of args. 
-iii. 
-Let argAlreadyDeclared be the result of calling env’s HasBinding concrete method passing 
-argName as the argument. 
-iv. 
-If argAlreadyDeclared is false, call env’s CreateMutableBinding concrete method passing 
-argName as the argument. 
-v. 
-Call env’s SetMutableBinding concrete method passing argName, v, and strict as the 
+4.
+If code is function code, then a. Let func be the function whose [[Call]]
+internal method initiated execution of code. Let names be the value of func’s
+[[FormalParameters]] internal property. b. Let argCount be the number of
+elements in args. c. Let n be the number 0. d. For each String argName in names,
+in list order do i. Let n be the current value of n plus 1. ii. If n is greater
+than argCount, let v be undefined otherwise let v be the value of the n’th
+element of args. iii. Let argAlreadyDeclared be the result of calling env’s
+HasBinding concrete method passing argName as the argument. iv. If
+argAlreadyDeclared is false, call env’s CreateMutableBinding concrete method
+passing argName as the argument. v. Call env’s SetMutableBinding concrete method
+passing argName, v, and strict as the arguments. 
+5.
+For each FunctionDeclaration f in code, in source text order do a. Let fn be the
+Identifier in FunctionDeclaration f. b. Let fo be the result of instantiating
+FunctionDeclaration f as described in Clause 13. c. Let funcAlreadyDeclared be
+the result of calling env’s HasBinding concrete method passing fn as the
+argument. d. If funcAlreadyDeclared is false, call env’s CreateMutableBinding
+concrete method passing fn and configurableBindings as the arguments. e. Call
+env’s SetMutableBinding concrete method passing fn, fo, and strict as the
 arguments. 
-5. 
-For each FunctionDeclaration f in code, in source text order do 
-a. 
-Let fn be the Identifier in FunctionDeclaration f. 
-b. 
-Let fo be the result of instantiating FunctionDeclaration f as described in Clause 13. 
-c. 
-Let funcAlreadyDeclared be the result of calling env’s HasBinding concrete method passing fn as 
-the argument. 
-d. 
-If funcAlreadyDeclared is false, call env’s CreateMutableBinding concrete method passing fn and 
-configurableBindings as the arguments. 
-e. 
-Call env’s SetMutableBinding concrete method passing fn, fo, and strict as the arguments. 
-6. 
-Let argumentsAlreadyDeclared be the result of calling env’s HasBinding concrete method passing 
-"arguments" as the argument 
-7. 
-If code is function code and argumentsAlreadyDeclared is false, then 
-a. 
-Let argsObj be the result of calling the abstract operation CreateArgumentsObject (10.6) passing 
-func, names, args, env and strict as arguments. 
-b. 
-If strict is true, then 
-i. 
-Call env’s CreateImmutableBinding concrete method passing the String "arguments" as 
-the argument. 
-ii. 
-Call env’s InitializeImmutableBinding concrete method passing "arguments" and 
-argsObj as arguments. 
-c. 
-Else, 
-i. 
-Call env’s CreateMutableBinding concrete method passing the String "arguments" as the 
-argument. 
-ii. 
-Call env’s SetMutableBinding concrete method passing "arguments", argsObj, and false 
-as arguments. 
-8. 
-For each VariableDeclaration and VariableDeclarationNoIn d in code, in source text order do 
-a. 
-Let dn be the Identifier in d. 
-b. 
-Let varAlreadyDeclared be the result of calling env’s HasBinding concrete method passing dn as the 
-argument. 
-c. 
-If varAlreadyDeclared is false, then 
-i. 
-Call env’s CreateMutableBinding concrete method passing dn and configurableBindings as 
-the arguments. 
+6.
+Let argumentsAlreadyDeclared be the result of calling env’s HasBinding concrete
+method passing "arguments" as the argument 
+7.
+If code is function code and argumentsAlreadyDeclared is false, then a. Let
+argsObj be the result of calling the abstract operation CreateArgumentsObject
+(10.6) passing func, names, args, env and strict as arguments. b. If strict is
+true, then i. Call env’s CreateImmutableBinding concrete method passing the
+String "arguments" as the argument. ii. Call env’s InitializeImmutableBinding
+concrete method passing "arguments" and argsObj as arguments. c. Else, i. Call
+env’s CreateMutableBinding concrete method passing the String "arguments" as the
+argument. ii. Call env’s SetMutableBinding concrete method passing "arguments",
+argsObj, and false as arguments. 
+8.
+For each VariableDeclaration and VariableDeclarationNoIn d in code, in source
+text order do a. Let dn be the Identifier in d. b. Let varAlreadyDeclared be the
+result of calling env’s HasBinding concrete method passing dn as the argument.
+c. If varAlreadyDeclared is false, then i. Call env’s CreateMutableBinding
+concrete method passing dn and configurableBindings as the arguments. 
 
 
-ii. 
-Call env’s SetMutableBinding concrete method passing dn, undefined, and strict as the 
-arguments. 
-10.6 Arguments Object 
-When control enters an execution context for function code, an arguments object is created unless (as 
-specified in 10.5) the identifier arguments occurs as an Identifier in the function’s FormalParameterList or 
-occurs as the Identifier of a VariableDeclaration or FunctionDeclaration contained in the function code. 
+ii. Call env’s SetMutableBinding concrete method passing dn, undefined, and
+strict as the arguments. 10.6 Arguments Object When control enters an execution
+context for function code, an arguments object is created unless (as specified
+in 10.5) the identifier arguments occurs as an Identifier in the function’s
+FormalParameterList or occurs as the Identifier of a VariableDeclaration or
+FunctionDeclaration contained in the function code. 
 
-The arguments object is created by calling the abstract operation CreateArgumentsObject with arguments func 
-the function object whose code is to be evaluated, names a List containing the function’s formal parameter 
-names, args the actual arguments passed to the [[Call]] internal method, env the variable environment for the 
-function code, and strict a Boolean that indicates whether or not the function code is strict code. When 
-CreateArgumentsObject is called the following steps are performed: 
+The arguments object is created by calling the abstract operation
+CreateArgumentsObject with arguments func the function object whose code is to
+be evaluated, names a List containing the function’s formal parameter names,
+args the actual arguments passed to the [[Call]] internal method, env the
+variable environment for the function code, and strict a Boolean that indicates
+whether or not the function code is strict code. When CreateArgumentsObject is
+called the following steps are performed: 
 
-1. 
+1.
 Let len be the number of elements in args. 
-2. 
+2.
 Let obj be the result of creating a new ECMAScript object. 
-3. 
+3.
 Set all the internal methods of obj as specified in 8.12. 
-4. 
+4.
 Set the [[Class]] internal property of obj to "Arguments". 
-5. 
+5.
 Let Object be the standard built-in Object constructor (15.2.2). 
-6. 
-Set the [[Prototype]] internal property of obj to the standard built-in Object prototype object (15.2.4). 
-7. 
-Call the [[DefineOwnProperty]] internal method on obj passing "length", the Property Descriptor 
-{[[Value]]: len, [[Writable]]: true, [[Enumerable]]: false, [[Configurable]]: true}, and false as arguments. 
-8. 
-Let map be the result of creating a new object as if by the expression new Object() where Object is 
-the standard built-in constructor with that name 
-9. 
+6.
+Set the [[Prototype]] internal property of obj to the standard built-in Object
+prototype object (15.2.4). 
+7.
+Call the [[DefineOwnProperty]] internal method on obj passing "length", the
+Property Descriptor {[[Value]]: len, [[Writable]]: true, [[Enumerable]]: false,
+[[Configurable]]: true}, and false as arguments. 
+8.
+Let map be the result of creating a new object as if by the expression new
+Object() where Object is the standard built-in constructor with that name 
+9.
 Let mappedNames be an empty List. 
-10. 
+10.
 Let indx = len - 1. 
-11. 
-Repeat while indx >= 0, 
-a. 
-Let val be the element of args at 0-origined list position indx. 
-b. 
-Call the [[DefineOwnProperty]] internal method on obj passing ToString(indx), the property 
-descriptor {[[Value]]: val, [[Writable]]: true, [[Enumerable]]: true, [[Configurable]]: true}, and 
-false as arguments. 
-c. 
-If indx is less than the number of elements in names, then 
-i. Let name be the element of names at 0-origined list position indx. 
-ii. 
-If strict is false and name is not an element of mappedNames, then 
-1. 
+11.
+Repeat while indx >= 0, a. Let val be the element of args at 0-origined list
+position indx. b. Call the [[DefineOwnProperty]] internal method on obj passing
+ToString(indx), the property descriptor {[[Value]]: val, [[Writable]]: true,
+[[Enumerable]]: true, [[Configurable]]: true}, and false as arguments. c. If
+indx is less than the number of elements in names, then i. Let name be the
+element of names at 0-origined list position indx. ii. If strict is false and
+name is not an element of mappedNames, then 
+1.
 Add name as an element of the list mappedNames. 
-2. 
-Let g be the result of calling the MakeArgGetter abstract operation with arguments 
-name and env. 
-3. 
-Let p be the result of calling the MakeArgSetter abstract operation with arguments 
-name and env. 
-4. 
-Call the [[DefineOwnProperty]] internal method of map passing ToString(indx), the 
-Property Descriptor {[[Set]]: p, [[Get]]: g, [[Configurable]]: true}, and false as 
-arguments. 
-d. 
-Let indx = indx - 1 
-12. 
-If mappedNames is not empty, then 
-a. 
-Set the [[ParameterMap]] internal property of obj to map. 
-b. 
-Set the [[Get]], [[GetOwnProperty]], [[DefineOwnProperty]], and [[Delete]] internal methods of obj 
-to the definitions provided below. 
-13. 
-If strict is false, then 
-a. 
-Call the [[DefineOwnProperty]] internal method on obj passing "callee", the property descriptor 
-{[[Value]]: func, [[Writable]]: true, [[Enumerable]]: false, [[Configurable]]: true}, and false as 
-arguments. 
-14. 
-Else, strict is true so 
-a. 
-Let thrower be the [[ThrowTypeError]] function Object (13.2.3). 
-b. 
-Call the [[DefineOwnProperty]] internal method of obj with arguments "caller", 
-PropertyDescriptor {[[Get]]: thrower, [[Set]]: thrower, [[Enumerable]]: false, [[Configurable]]: 
-false}, and false. 
+2.
+Let g be the result of calling the MakeArgGetter abstract operation with
+arguments name and env. 
+3.
+Let p be the result of calling the MakeArgSetter abstract operation with
+arguments name and env. 
+4.
+Call the [[DefineOwnProperty]] internal method of map passing ToString(indx),
+the Property Descriptor {[[Set]]: p, [[Get]]: g, [[Configurable]]: true}, and
+false as arguments. d. Let indx = indx - 1 
+12.
+If mappedNames is not empty, then a. Set the [[ParameterMap]] internal property
+of obj to map. b. Set the [[Get]], [[GetOwnProperty]], [[DefineOwnProperty]],
+and [[Delete]] internal methods of obj to the definitions provided below. 
+13.
+If strict is false, then a. Call the [[DefineOwnProperty]] internal method on
+obj passing "callee", the property descriptor {[[Value]]: func, [[Writable]]:
+true, [[Enumerable]]: false, [[Configurable]]: true}, and false as arguments. 
+14.
+Else, strict is true so a. Let thrower be the [[ThrowTypeError]] function Object
+(13.2.3). b. Call the [[DefineOwnProperty]] internal method of obj with
+arguments "caller", PropertyDescriptor {[[Get]]: thrower, [[Set]]: thrower,
+[[Enumerable]]: false, [[Configurable]]: false}, and false. 
 
 
-c. 
-Call the [[DefineOwnProperty]] internal method of obj with arguments "callee", 
-PropertyDescriptor {[[Get]]: thrower, [[Set]]: thrower, [[Enumerable]]: false, [[Configurable]]: 
-false}, and false. 
-15. 
-Return obj 
-The abstract operation MakeArgGetter called with String name and environment record env creates a function 
-object that when executed returns the value bound for name in env. It performs the following steps: 
+c. Call the [[DefineOwnProperty]] internal method of obj with arguments
+"callee", PropertyDescriptor {[[Get]]: thrower, [[Set]]: thrower,
+[[Enumerable]]: false, [[Configurable]]: false}, and false. 
+15.
+Return obj The abstract operation MakeArgGetter called with String name and
+environment record env creates a function object that when executed returns the
+value bound for name in env. It performs the following steps: 
 
-1. 
+1.
 Let body be the result of concatenating the Strings "return ", name, and ";" 
-2. 
-Return the result of creating a function object as described in 13.2 using no FormalParameterList, body for 
-FunctionBody, env as Scope, and true for Strict. 
-The abstract operation MakeArgSetter called with String name and environment record env creates a function 
-object that when executed sets the value bound for name in env. It performs the following steps: 
+2.
+Return the result of creating a function object as described in 13.2 using no
+FormalParameterList, body for FunctionBody, env as Scope, and true for Strict.
+The abstract operation MakeArgSetter called with String name and environment
+record env creates a function object that when executed sets the value bound for
+name in env. It performs the following steps: 
 
-1. 
+1.
 Let param be the String name concatenated with the String "_arg" 
-2. 
-Let body be the String "<name> = <param>;" with <name> replaced by the value of name and <param> 
-replaced by the value of param. 
-3. 
-Return the result of creating a function object as described in 13.2 using a List containing the single String 
-param as FormalParameterList, body for FunctionBody, env as Scope, and true for Strict. 
-The [[Get]] internal method of an arguments object for a non-strict mode function with formal parameters when 
+2.
+Let body be the String "<name> = <param>;" with <name> replaced by the value of
+name and <param> replaced by the value of param. 
+3.
+Return the result of creating a function object as described in 13.2 using a
+List containing the single String param as FormalParameterList, body for
+FunctionBody, env as Scope, and true for Strict. The [[Get]] internal method of
+an arguments object for a non-strict mode function with formal parameters when
 called with a property name P performs the following steps: 
 
-1. 
-Let map be the value of the [[ParameterMap]] internal property of the arguments object. 
-2. 
-Let isMapped be the result of calling the [[GetOwnProperty]] internal method of map passing P as the 
-argument. 
-3. 
-If the value of isMapped is undefined, then 
-a. 
-Let v be the result of calling the default [[Get]] internal method (8.12.3) on the arguments object 
-passing P as the argument. 
-b. 
-If P is "caller" and v is a strict mode Function object, throw a TypeError exception. 
-c. 
-Return v. 
-4. 
-Else, map contains a formal parameter mapping for P so, 
-a. Return the result of calling the [[Get]] internal method of map passing P as the argument. 
-The [[GetOwnProperty]] internal method of an arguments object for a non-strict mode function with formal 
-parameters when called with a property name P performs the following steps: 
+1.
+Let map be the value of the [[ParameterMap]] internal property of the arguments
+object. 
+2.
+Let isMapped be the result of calling the [[GetOwnProperty]] internal method of
+map passing P as the argument. 
+3.
+If the value of isMapped is undefined, then a. Let v be the result of calling
+the default [[Get]] internal method (8.12.3) on the arguments object passing P
+as the argument. b. If P is "caller" and v is a strict mode Function object,
+throw a TypeError exception. c. Return v. 
+4.
+Else, map contains a formal parameter mapping for P so, a. Return the result of
+calling the [[Get]] internal method of map passing P as the argument. The
+[[GetOwnProperty]] internal method of an arguments object for a non-strict mode
+function with formal parameters when called with a property name P performs the
+following steps: 
 
-1. 
-Let desc be the result of calling the default [[GetOwnProperty]] internal method (8.12.1) on the arguments 
-object passing P as the argument. 
-2. 
+1.
+Let desc be the result of calling the default [[GetOwnProperty]] internal method
+(8.12.1) on the arguments object passing P as the argument. 
+2.
 If desc is undefined then return desc. 
-3. 
-Let map be the value of the [[ParameterMap]] internal property of the arguments object. 
-4. 
-Let isMapped be the result of calling the [[GetOwnProperty]] internal method of map passing P as the 
-argument. 
-5. 
-If the value of isMapped is not undefined, then 
-a. 
-Set desc.[[Value]] to the result of calling the [[Get]] internal method of map passing P as the 
-argument. 
-6. 
-Return desc. 
-The [[DefineOwnProperty]] internal method of an arguments object for a non-strict mode function with formal 
-parameters when called with a property name P, Property Descriptor Desc, and Boolean flag Throw performs 
-the following steps: 
+3.
+Let map be the value of the [[ParameterMap]] internal property of the arguments
+object. 
+4.
+Let isMapped be the result of calling the [[GetOwnProperty]] internal method of
+map passing P as the argument. 
+5.
+If the value of isMapped is not undefined, then a. Set desc.[[Value]] to the
+result of calling the [[Get]] internal method of map passing P as the argument. 
+6.
+Return desc. The [[DefineOwnProperty]] internal method of an arguments object
+for a non-strict mode function with formal parameters when called with a
+property name P, Property Descriptor Desc, and Boolean flag Throw performs the
+following steps: 
 
-1. 
-Let map be the value of the [[ParameterMap]] internal property of the arguments object. 
-2. 
-Let isMapped be the result of calling the [[GetOwnProperty]] internal method of map passing P as the 
-argument. 
-3. 
-Let allowed be the result of calling the default [[DefineOwnProperty]] internal method (8.12.9) on the 
-arguments object passing P, Desc, and false as the arguments. 
-4. 
-If allowed is false, then 
-a. 
-If Throw is true then throw a TypeError exception, otherwise return false. 
-5. 
-If the value of isMapped is not undefined, then 
-
-
-a. 
-If IsAccessorDescriptor(Desc) is true, then 
-i. Call the [[Delete]] internal method of map passing P, and false as the arguments. 
-b. 
-Else 
-i. If Desc.[[Value]] is present, then 
-1. 
-Call the [[Put]] internal method of map passing P, Desc.[[Value]], and Throw as the 
+1.
+Let map be the value of the [[ParameterMap]] internal property of the arguments
+object. 
+2.
+Let isMapped be the result of calling the [[GetOwnProperty]] internal method of
+map passing P as the argument. 
+3.
+Let allowed be the result of calling the default [[DefineOwnProperty]] internal
+method (8.12.9) on the arguments object passing P, Desc, and false as the
 arguments. 
-ii. If Desc.[[Writable]] is present and its value is false, then 
-1. 
+4.
+If allowed is false, then a. If Throw is true then throw a TypeError exception,
+otherwise return false. 
+5.
+If the value of isMapped is not undefined, then 
+
+
+a. If IsAccessorDescriptor(Desc) is true, then i. Call the [[Delete]] internal
+method of map passing P, and false as the arguments. b. Else i. If
+Desc.[[Value]] is present, then 
+1.
+Call the [[Put]] internal method of map passing P, Desc.[[Value]], and Throw as
+the arguments. ii. If Desc.[[Writable]] is present and its value is false, then 
+1.
 Call the [[Delete]] internal method of map passing P and false as arguments. 
-6. 
-Return true. 
-The [[Delete]] internal method of an arguments object for a non-strict mode function with formal parameters 
-when called with a property name P and Boolean flag Throw performs the following steps: 
+6.
+Return true. The [[Delete]] internal method of an arguments object for a
+non-strict mode function with formal parameters when called with a property name
+P and Boolean flag Throw performs the following steps: 
 
-1. 
-Let map be the value of the [[ParameterMap]] internal property of the arguments object. 
-2. 
-Let isMapped be the result of calling the [[GetOwnProperty]] internal method of map passing P as the 
-argument. 
-3. 
-Let result be the result of calling the default [[Delete]] internal method (8.12.7) on the arguments object 
-passing P and Throw as the arguments. 
-4. 
-If result is true and the value of isMapped is not undefined, then 
-a. 
-Call the [[Delete]] internal method of map passing P, and false as the arguments. 
-5. 
-Return result. 
-NOTE 1 For non-strict mode functions the array index (defined in 15.4) named data properties of an arguments object 
-whose numeric name values are less than the number of formal parameters of the corresponding function object initially 
-share their values with the corresponding argument bindings in the function’s execution context. This means that changing 
-the property changes the corresponding value of the argument binding and vice-versa. This correspondence is broken if 
-such a property is deleted and then redefined or if the property is changed into an accessor property. For strict mode 
-functions, the values of the arguments object‘s properties are simply a copy of the arguments passed to the function and 
-there is no dynamic linkage between the property values and the formal parameter values. 
+1.
+Let map be the value of the [[ParameterMap]] internal property of the arguments
+object. 
+2.
+Let isMapped be the result of calling the [[GetOwnProperty]] internal method of
+map passing P as the argument. 
+3.
+Let result be the result of calling the default [[Delete]] internal method
+(8.12.7) on the arguments object passing P and Throw as the arguments. 
+4.
+If result is true and the value of isMapped is not undefined, then a. Call the
+[[Delete]] internal method of map passing P, and false as the arguments. 
+5.
+Return result. NOTE 1 For non-strict mode functions the array index (defined in
+15.4) named data properties of an arguments object whose numeric name values are
+less than the number of formal parameters of the corresponding function object
+initially share their values with the corresponding argument bindings in the
+function’s execution context. This means that changing the property changes the
+corresponding value of the argument binding and vice-versa. This correspondence
+is broken if such a property is deleted and then redefined or if the property is
+changed into an accessor property. For strict mode functions, the values of the
+arguments object‘s properties are simply a copy of the arguments passed to the
+function and there is no dynamic linkage between the property values and the
+formal parameter values. 
 
-NOTE 2 The ParameterMap object and its property values are used as a device for specifying the arguments object 
-correspondence to argument bindings. The ParameterMap object and the objects that are the values of its properties are 
-not directly accessible from ECMAScript code. An ECMAScript implementation does not need to actually create or use 
-such objects to implement the specified semantics. 
+NOTE 2 The ParameterMap object and its property values are used as a device for
+specifying the arguments object correspondence to argument bindings. The
+ParameterMap object and the objects that are the values of its properties are
+not directly accessible from ECMAScript code. An ECMAScript implementation does
+not need to actually create or use such objects to implement the specified
+semantics. 
 
-NOTE 3 Arguments objects for strict mode functions define non-configurable accessor properties named "caller" and 
-"callee" which throw a TypeError exception on access. The "callee" property has a more specific meaning for non-
-strict mode functions and a "caller" property has historically been provided as an implementation-defined extension by 
-some ECMAScript implementations. The strict mode definition of these properties exists to ensure that neither of them is 
-defined in any other manner by conforming ECMAScript implementations. 
+NOTE 3 Arguments objects for strict mode functions define non-configurable
+accessor properties named "caller" and "callee" which throw a TypeError
+exception on access. The "callee" property has a more specific meaning for non-
+strict mode functions and a "caller" property has historically been provided as
+an implementation-defined extension by some ECMAScript implementations. The
+strict mode definition of these properties exists to ensure that neither of them
+is defined in any other manner by conforming ECMAScript implementations. 
 
