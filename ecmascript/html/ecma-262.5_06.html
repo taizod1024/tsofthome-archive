@@ -1,0 +1,62 @@
+<!doctype html public "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html lang="ja-JP">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta http-equiv="Content-Style-Type" content="text/css">
+    <meta http-equiv="Content-Script-Type" content="text/javascript">
+    <base href="http://tsofthome.appspot.com/">
+    <link rel="stylesheet" href="style/base.css" type="text/css">
+    <link rel="shortcut icon" href="image/favicon.ico">
+    <title>ecma-262.5_06</title>
+  </head>
+  <body>
+    <div class="s0">
+      <h1>ecma-262.5_06</h1>
+    </div>
+    <hr>
+    <div class="s0">
+      <a href="/">インデックス</a> ≫
+      <a href="ecmascript.html">ECMA-262第5版 日本語訳</a> ≫
+      ecma-262.5_06
+    </div>
+    <hr>
+    <pre>
+* 6 Source Text
+
+* 6 ソーステキスト
+
+
+ECMAScript source text is represented as a sequence of characters in the Unicode character encoding, version 3.0 or later. The text is expected to have been normalised to Unicode Normalised Form C (canonical composition), as described in Unicode Technical Report #15. Conforming ECMAScript implementations are not required to perform any normalisation of text, or behave as though they were performing normalisation of text, themselves. ECMAScript source text is assumed to be a sequence of 16-bit code units for the purposes of this specification. Such a source text may include sequences of 16-bit code units that are not valid UTF-16 character encodings. If an actual source text is encoded in a form other than 16-bit code units it must be processed as if it was first convert to UTF-16.
+
+ECMAScriptのソーステキストは、Unicode character encoding, version3以降の文字の並びとして表現されます。テキストはUnicode Technical Report #15で述べられているようにUnicode正規化形式C(cannonical composition)に正規化されていることが想定されています。ECMAScriptに適合する実装では、テキストのいかなる正規化も要求していないし、そのテキストの正規化をしたかのように振る舞うことも要求していません。ECMAScriptのソーステキストは仕様のこの目的のため16ビットのコード単位の並びであることが前提となっています。そういったソーステキストはUTF-16の文字エンコーディングとしては不適切な文字エンコーディングの16ビットのコード単位が含まれるかもしれません。もし実際のソーステキストが16ビットのコード単位以外の形式にエンコードされていても、UTF-16に変換されたものとして処理されなければなりません。
+
+
+  SourceCharacter ::
+    any Unicode code unit
+
+
+Throughout the rest of this document, the phrase “code unit” and the word “character” will be used to refer to a 16-bit unsigned value used to represent a single 16-bit unit of text. The phrase “Unicode character” will be used to refer to the abstract linguistic or typographical unit represented by a single Unicode scalar value (which may be longer than 16 bits and thus may be represented by more than one code unit). The phrase “code point” refers to such a Unicode scalar value. “Unicode character” only refers to entities represented by single Unicode scalar values: the components of a combining character sequence are still individual “Unicode characters,” even though a user might think of the whole sequence as a single character.
+
+この文書の以降の節では、"コード単位"という語句と"文字"という単語は、テキストのひとつの16ビット単位を表現する、16ビットの符合なし整数を言及するために用いられます。"Unicode文字"という語句は、単一のUnicodeのスカラー値(それは16ビットよりも長いかもしれませんし、ひとつ以上のコード単位によって表現されるかもしれません)によって表現される言語上や編集上の抽象的な単位として参照されるでしょう。"コードポイント"という語句は、そういったUnicodeのスカラー値を参照します。"Unicode文字"は単一のUnicodeのスカラー値によって表現されるエンティティを参照するためだけに使われます。文字の並びの組み合わせたものは、ユーザがそれらを単一の文字と考えるかどうかに関わらず、それらはあくまで個々に独立した"Unicode文字"なのです。
+
+
+In string literals, regular expression literals, and identifiers, any character (code unit) may also be expressed as a Unicode escape sequence consisting of six characters, namely \u plus four hexadecimal digits. Within a comment, such an escape sequence is effectively ignored as part of the comment. Within a string literal or regular expression literal, the Unicode escape sequence contributes one character to the value of the literal. Within an identifier, the escape sequence contributes one character to the identifier.
+
+文字列リテラル、正規表現リテラル、識別子において、文字(コード単位)は6文字のUnicodeのエスケープシーケンス、つまり\uと4桁の16進整数、として表現されるかもしれません。コメントの中では、そういったエスケープシーケンスはコメントの一部として無視されます。文字列リテラルや正規表現リテラルのなあ↑では、Unicodeエスケープシーケンスは、リテラルの値の一文字になります。識別子の中では、エスケープシーケンスは識別子の一文字になります。
+
+
+NOTE Although this document sometimes refers to a “transformation” between a “character” within a “string” and the 16-bit unsigned integer that is the code unit of that character, there is actually no transformation because a “character” within a “string” is actually represented using that 16-bit unsigned value.
+
+注意：この文書ではときどき、"文字列"の中の"文字"と、文字のコード単位である16ビット符号なし整数無し整数との変換について述べますが、"文字列"の中の"文字"は、16ビット符号無し整数を使って実際に表現されているために、実際には何の変換も行われていません。
+
+
+ECMAScript differs from the Java programming language in the behaviour of Unicode escape sequences. In a Java program, if the Unicode escape sequence \u000A, for example, occurs within a single-line comment, it is interpreted as a line terminator (Unicode character 000A is line feed) and therefore the next character is not part of the comment. Similarly, if the Unicode escape sequence \u000A occurs within a string literal in a Java program, it is likewise interpreted as a line terminator, which is not allowed within a string literal-one must write \n instead of \u000A to cause a line feed to be part of the string value of a string literal. In an ECMAScript program, a Unicode escape sequence occurring within a comment is never interpreted and therefore cannot contribute to termination of the comment. Similarly, a Unicode escape sequence occurring within a string literal in an ECMAScript program always contributes a character to the String value of the literal and is never interpreted as a line terminator or as a quote mark that might terminate the string literal.
+
+ECMAScriptはUnicodeエスケープシーケンスの振る舞いに関しては、Javaプログラミング言語とは異なっています。Javaプログラムにおいて、もしUnicodeエスケープシーケンス、例えば\u000A、が行コメントに現れた場合には、それは改行文字(Unicode文字000Aは改行)として解釈され、そのため次の文字はコメントの一部にはなりません。同じように、Javaプログラムにおいて、もしUnicodeエスケープシーケンス\u000Aが文字列リテラルに現れた場合には、それは改行文字のように解釈されますが、改行文字は文字列リテラルの中に現れることは許されていません。文字列リテラルの文字列値の一部に改行文字をするためには、\u000Aの代わりに\nと書かなければいけません。ECMAScriptプログラムでは、コメントの中のUnicodeエスケープシーケンスの出現は解釈されず、それ故コメントを中断させるようなことはできません。同じように、ECMAScriptプログラムでの文字列リテラルの中のUnicodeエスケープシーケンスはいつもリテラルの文字列値になります。また、改行文字としても解釈されませんし、文字列リテラルを中断させるような引用符としても解釈されません。
+    </pre>
+    <hr>
+    <div class="s0">
+      Copyright 2013 YAMAMOTO TAIZO All Rights Reserved.
+    </div>
+  </body>
+</html>

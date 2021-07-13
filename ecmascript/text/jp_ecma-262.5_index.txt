@@ -1,0 +1,299 @@
+ECMA-262
+
+第5版/2009年12月
+
+ECMAScript言語仕様
+
+
+内容
+
+
+導入
+
+1 範囲
+
+2 適合条件
+
+3 引用
+
+4.概要
+4.1 Webスクリプト
+4.2 言語概要
+4.2.1 オブジェクト
+4.2.2 厳格なECMAScript
+4.3 定義
+
+5 表記方法
+5.1 構文文法と字句文法
+5.1.1 文脈自由文法
+5.1.2 字句と正規表現の文法
+5.1.3 数値文字列の文法
+5.1.4 構文文法
+5.1.5 JSON文法
+5.1.6 文法の表記法
+5.2 アルゴリズム
+
+6 ソーステキスト
+
+7 字句
+7.1 Unicodeフォーマット制御文字
+7.2 空白文字
+7.3 改行文字
+7.4 コメント
+7.5 トークン
+7.6 識別名と識別子
+7.6.1 予約語
+7.6.1.1 キーワード
+7.6.1.2 将来の予約語
+7.7 区切り文字
+7.8 リテラル
+7.8.1 Nullリテラル
+7.8.2 Booleanリテラル
+7.8.3 数値リテラル
+7.8.4 文字列リテラル
+7.8.5 正規表現リテラル
+7.9 セミコロンの自動挿入
+7.9.1 セミコロンの自動挿入のルール
+7.9.2 セミコロンの自動挿入の例
+
+8 型
+8.1 Undefined型
+8.2 Null型
+8.3 Boolean型
+8.4 String型
+8.5 Number型
+8.6 オブジェクト型
+8.6.1 プロパティの属性
+8.6.2 オブジェクトの内部プロパティとメソッド
+8.7 参照型
+8.7.1 GetValue ( V )
+8.7.2 PutValue ( V, W )
+8.8 リスト型
+8.9 補完型
+8.10 プロパティ記述子型とプロパティ識別子型
+8.10.1 IsAccessorDescriptor ( Desc )
+8.10.2 IsDataDescriptor ( Desc )
+8.10.3 IsGenericDescriptor ( Desc )
+8.10.4 FromPropertyDescriptor ( Desc )
+8.10.5 ToPropertyDescriptor ( Obj )
+8.11  レキシカル環境と環境レコード型
+8.12 オブジェクトの内部メソッドのアルゴリズム
+8.12.1 [[GetOwnProperty]] ( P )
+8.12.2 [[GetProperty]] ( P )
+8.12.3 [[Get]] ( P )
+8.12.4 [[CanPut]] ( P )
+8.12.5 [[Put]] ( P, V, Throw )
+8.12.6 [[HasProperty]] ( P )
+8.12.7 [[Delete]] ( P, Throw )
+8.12.8 [[DefaultValue]] ( hint )
+8.12.9 [[DefineOwnProperty]] ( P, Desc, Throw )
+
+9 Type Conversion and Testing
+9.1 ToPrimitive
+9.2 ToBoolean
+9.3 ToNumber
+9.3.1 ToNumber Applied to the String Type
+9.4 ToInteger
+9.5 ToInt32: (Signed 32 Bit Integer)
+9.6 ToUint32: (Unsigned 32 Bit Integer)
+9.7 ToUint16: (Unsigned 16 Bit Integer)
+9.8 ToString
+9.8.1 ToString Applied to the Number Type
+9.9 ToObject
+9.10 CheckObjectCoercible
+9.11 IsCallable
+9.12 The SameValue Algorithm
+
+10 Executable Code and Execution Contexts
+10.1 Types of Executable Code
+10.1.1 Strict Mode Code
+10.2 Lexical Environments
+10.2.1 Environment Records
+10.2.2 Lexical Environment Operations
+10.2.3 The Global Environment
+10.3 Execution Contexts
+10.3.1 Identifier Resolution
+10.4 Establishing an Execution Context
+10.4.1 Entering Global Code
+10.4.2 Entering Eval Code
+10.4.3 Entering Function Code
+10.5 Declaration Binding Instantiation
+10.6 Arguments Object
+
+11 Expressions
+11.1 Primary Expressions
+11.1.1 The this Keyword
+11.1.2 Identifier Reference
+11.1.3 Literal Reference
+11.1.4 Array Initialiser
+11.1.5 Object Initialiser
+11.1.6 The Grouping Operator
+11.2 Left-Hand-Side Expressions
+11.2.1 Property Accessors
+11.2.2 The new Operator
+11.2.3 Function Calls
+11.2.4 Argument Lists
+11.2.5 Function Expressions
+11.3 Postfix Expressions
+11.3.1 Postfix Increment Operator
+11.3.2 Postfix Decrement Operator
+11.4 Unary Operators
+11.4.1 The delete Operator
+11.4.2 The void Operator
+11.4.3 The typeof Operator
+11.4.4 Prefix Increment Operator
+11.4.5 Prefix Decrement Operator
+11.4.6 Unary + Operator
+11.4.7 Unary - Operator
+11.4.8 Bitwise NOT Operator ( ~ )
+11.4.9 Logical NOT Operator ( ! )
+11.5 Multiplicative Operators
+11.5.1 Applying the * Operator
+11.5.2 Applying the / Operator
+11.5.3 Applying the % Operator
+11.6 Additive Operators
+11.6.1 The Addition operator ( + )
+11.6.2 The Subtraction Operator ( - )
+11.6.3 Applying the Additive Operators to Numbers
+11.7 Bitwise Shift Operators
+11.7.1 The Left Shift Operator ( << )
+11.7.2 The Signed Right Shift Operator ( >> )
+11.7.3 The Unsigned Right Shift Operator ( >>> )
+11.8 Relational Operators
+11.8.1 The Less-than Operator ( < )
+11.8.2 The Greater-than Operator ( > )
+11.8.3 The Less-than-or-equal Operator ( <= )
+11.8.4 The Greater-than-or-equal Operator ( >= )
+11.8.5 The Abstract Relational Comparison Algorithm
+11.8.6 The instanceof operator
+11.8.7 The in operator
+11.9 Equality Operators
+11.9.1 The Equals Operator ( == )
+11.9.2 The Does-not-equals Operator ( != )
+11.9.3 The Abstract Equality Comparison Algorithm
+11.9.4 The Strict Equals Operator ( === )
+11.9.5 The Strict Does-not-equal Operator ( !== )
+11.9.6 The Strict Equality Comparison Algorithm
+11.10 Binary Bitwise Operators
+11.11 Binary Logical Operators
+11.12 Conditional Operator ( ?:)
+11.13 Assignment Operators
+11.13.1 Simple Assignment ( = )
+11.13.2 Compound Assignment ( op= )
+11.14 Comma Operator ( ,)
+
+12 Statements
+12.1 Block
+12.2 Variable Statement
+12.2.1 Strict Mode Restrictions
+12.3 Empty Statement
+12.4 Expression Statement
+12.5 The if Statement
+12.6 Iteration Statements
+12.6.1 The do-while Statement
+12.6.2 The while Statement
+12.6.3 The for Statement
+12.6.4 The for-in Statement
+12.7 The continue Statement
+12.8 The break Statement
+12.9 The return Statement
+12.10 The with Statement
+12.10.1 Strict Mode Restrictions
+12.11 The switch Statement
+12.12 Labelled Statements
+12.13 The throw Statement
+12.14 The try Statement
+12.14.1 Strict Mode Restrictions
+12.15 The debugger statement
+
+13 Function Definition
+13.1 Strict Mode Restrictions
+13.2 Creating Function Objects
+13.2.1 [[Call]]
+13.2.2 [[Construct]]
+13.2.3 The [[ThrowTypeError]] Function Object
+
+14 Program
+14.1 Directive Prologues and the Use Strict Directive
+
+15 Standard Built-in ECMAScript Objects
+15.1 The Global Object
+15.1.1 Value Properties of the Global Object
+15.1.2 Function Properties of the Global Object
+15.1.3 URI Handling Function Properties
+15.1.4 Constructor Properties of the Global Object
+15.1.5 Other Properties of the Global Object
+15.2 Object Objects
+15.2.1 The Object Constructor Called as a Function
+15.2.2 The Object Constructor
+15.2.3 Properties of the Object Constructor
+15.2.4 Properties of the Object Prototype Object
+15.2.5 Properties of Object Instances
+15.3 Function Objects
+15.3.1 The Function Constructor Called as a Function
+15.3.2 The Function Constructor
+15.3.3 Properties of the Function Constructor
+15.3.4 Properties of the Function Prototype Object
+15.3.5 Properties of Function Instances
+15.4 Array Objects
+15.4.1 The Array Constructor Called as a Function
+15.4.2 The Array Constructor
+15.4.3 Properties of the Array Constructor
+15.4.4 Properties of the Array Prototype Object
+15.4.5 Properties of Array Instances
+15.5 String Objects
+15.5.1 The String Constructor Called as a Function
+15.5.2 The String Constructor
+15.5.3 Properties of the String Constructor
+15.5.4 Properties of the String Prototype Object
+15.5.5 Properties of String Instances
+15.6 Boolean Objects
+15.6.1 The Boolean Constructor Called as a Function
+15.6.2 The Boolean Constructor
+15.6.3 Properties of the Boolean Constructor
+15.6.4 Properties of the Boolean Prototype Object
+15.6.5 Properties of Boolean Instances
+15.7 Number Objects
+15.7.1 The Number Constructor Called as a Function
+15.7.2 The Number Constructor
+15.7.3 Properties of the Number Constructor
+15.7.4 Properties of the Number Prototype Object
+15.7.5 Properties of Number Instances
+15.8 The Math Object
+15.8.1 Value Properties of the Math Object
+15.8.2 Function Properties of the Math Object
+15.9 Date Objects
+15.9.1 Overview of Date Objects and Definitions of Abstract Operators
+15.9.2 The Date Constructor Called as a Function
+15.9.3 The Date Constructor
+15.9.4 Properties of the Date Constructor
+15.9.5 Properties of the Date Prototype Object
+15.9.6 Properties of Date Instances
+15.10 RegExp (Regular Expression) Objects
+15.10.1 Patterns
+15.10.2 Pattern Semantics
+15.10.3 The RegExp Constructor Called as a Function
+15.10.4 The RegExp Constructor
+15.10.5 Properties of the RegExp Constructor
+15.10.6 Properties of the RegExp Prototype Object
+15.10.7Properties of RegExp Instances
+15.11 Error Objects
+15.11.1 The Error Constructor Called as a Function
+15.11.2 The Error Constructor
+15.11.3 Properties of the Error Constructor
+15.11.4 Properties of the Error Prototype Object
+15.11.5 Properties of Error Instances
+15.11.6 Native Error Types Used in This Standard
+15.11.7 NativeError Object Structure
+15.12 The JSON Object
+15.12.1 The JSON Grammar
+15.12.2 parse ( text [ , reviver ] )
+15.12.3 stringify ( value [ , replacer [ , space ] ] )
+
+16 エラー
+
+補足 A (参考情報) 構文の要約
+補足 B (参考情報) 互換性
+補足 C (参考情報) ECMAScriptのstrictモード
+補足 D (参考情報) 第3版との互換性に影響を与える第5版における修正と明示
+補足 E (参考情報) 第3版に対し非互換となる第5版における追加と変更

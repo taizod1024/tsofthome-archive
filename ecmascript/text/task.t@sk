@@ -1,0 +1,127 @@
+
+:ALL
+
+    %task_depend_on% :TEXT :HTML
+    %task_exit%
+
+
+:REBUILD
+
+    %task_depend_on% :CLEAN :ALL
+    %task_exit%
+
+
+:/TEST
+
+    %task_exit%
+
+
+:TEXT
+
+    %task_depend_on% :ENTEXT :JPTEXT
+    %task_exit%
+
+
+:HTML
+
+    %task_depend_on% :ENHTML :JPHTML
+    %task_exit%
+
+
+:ENV
+
+    set SRCENTEXT=ecma-262.5_*.txt
+    set DSTENHTML=ecma-262.5_*.html
+    set DSTJPTEXT=jp_ecma-262.5_*.txt
+    set DSTJPHTML=jp_ecma-262.5_*.html
+    set DEPLOYHTMLDIR="C:\Documents and Settings\Administrator\My Documents\dropbox\public\work.project.gae\tsofthome.appspot.com\htdocs\ecmascript\"
+    set DEPLOYTEXTDIR="C:\Documents and Settings\Administrator\My Documents\dropbox\public\work.project.gae\tsofthome.appspot.com\htdocs\ecmascript\text\"
+    %task_exit%
+
+
+:CLEAN
+
+    %task_depend_on% :ENV
+
+    echo clean : %DSTENHTML%
+    del /F /Q %DSTENHTML% 1>NUL 2>NUL
+
+    echo clean : %DSTJPTEXT%
+    del /F /Q %DSTJPTEXT% 1>NUL 2>NUL
+
+    echo clean : %DSTJPHTML%
+    del /F /Q %DSTJPHTML% 1>NUL 2>NUL
+
+    %task_exit%
+
+
+:ENTEXT
+
+    %task_exit%
+
+
+:JPTEXT
+
+    %task_depend_on% :ENV
+
+    for %%I in (%SRCENTEXT%) do (
+
+      test jp_%%I -nt %%I
+      if ERRORLEVEL 1 (
+        echo jptext : %%I =^> jp_%%I
+        if "%__/TEST__%" equ "" (
+          perl t_text.pl < %%I > jp_%%I
+        )
+      )
+
+    )
+    %task_exit%
+
+
+:ENHTML
+
+    %task_depend_on% :ENV :TEXT
+
+    for %%I in (%SRCENTEXT%) do (
+
+      test %%~nI.html -nt %%I
+      if ERRORLEVEL 1 (
+        echo enhtml : %%I =^> %%~nI.html
+        if "%__/TEST__%" equ "" (
+          perl t_html.pl %%~nI < %%I > %%~nI.html
+        )
+      )
+
+    )
+    %task_exit%
+
+
+:JPHTML
+
+    %task_depend_on% :ENV :JPTEXT
+
+    for %%I in (%SRCENTEXT%) do (
+
+      test jp_%%~nI.html -nt jp_%%I
+      if ERRORLEVEL 1 (
+        echo jphtml : jp_%%I =^> jp_%%~nI.html
+        if "%__/TEST__%" equ "" (
+          perl t_html.pl %%~nI < jp_%%I > jp_%%~nI.html
+        )
+      )
+
+    )
+    %task_exit%
+
+
+:DEPLOY
+
+    %task_depend_on% :HTML
+
+    xcopy /D /Y %DSTENHTML% %DEPLOYHTMLDIR%
+    xcopy /D /Y %DSTJPHTML% %DEPLOYHTMLDIR%
+    xcopy /D /Y %SRCENTEXT% %DEPLOYTEXTDIR%
+    xcopy /D /Y %DSTJPTEXT% %DEPLOYTEXTDIR%
+
+    %task_exit%
+

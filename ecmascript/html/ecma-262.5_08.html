@@ -1,0 +1,1550 @@
+<!doctype html public "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html lang="ja-JP">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta http-equiv="Content-Style-Type" content="text/css">
+    <meta http-equiv="Content-Script-Type" content="text/javascript">
+    <base href="http://tsofthome.appspot.com/">
+    <link rel="stylesheet" href="style/base.css" type="text/css">
+    <link rel="shortcut icon" href="image/favicon.ico">
+    <title>ecma-262.5_08</title>
+  </head>
+  <body>
+    <div class="s0">
+      <h1>ecma-262.5_08</h1>
+    </div>
+    <hr>
+    <div class="s0">
+      <a href="/">インデックス</a> ≫
+      <a href="ecmascript.html">ECMA-262第5版 日本語訳</a> ≫
+      ecma-262.5_08
+    </div>
+    <hr>
+    <pre>
+* 8 Types 
+
+* 8 型
+
+
+Algorithms within this specification manipulate values each of which has an associated type. The possible value types are exactly those defined in this clause. Types are further subclassified into ECMAScript language types and specification types.
+
+この仕様のアルゴリズムでは型に関連付られた値を操作します。取り得る値の型は、この節で厳密に定義されています。型はさらにECMAScript言語の型と仕様の型へとサブクラス化されています。
+
+
+An ECMAScript language type corresponds to values that are directly manipulated by an ECMAScript programmer using the ECMAScript language. The ECMAScript language types are Undefined, Null, Boolean, String, Number, and Object.
+
+ECMAScript言語の型は、ECMAScript言語を使うECMAScriptのプログラマによって直接的に操作される値に相当します。ECMAScript言語の型はUndefined, Null, Boolean, String, Number, Objectです。
+
+
+A specification type corresponds to meta-values that are used within algorithms to describe the semantics of ECMAScript language constructs and ECMAScript language types. The specification types are Reference, List, Completion, Property Descriptor, Property Identifier, Lexical Environment, and Environment Record. Specification type values are specification artefacts that do not necessarily correspond to any specific entity within an ECMAScript implementation. Specification type values may be used to describe intermediate results of ECMAScript expression evaluation but such values cannot be stored as properties of objects or values of ECMAScript language variables.
+
+仕様の型は、ECMAScript言語の構造とECMAScript言語の型のセマンティクスで述べられるアルゴリズムで使われるメタな値に相当します。この仕様の型は、参照、リスト、補完、プロパティ記述子、プロパティ識別子、レキシカル環境、環境レコードです。仕様の型の値は仕様が産み出したものであり、必ずしもECMAScriptの実装における任意の特定のエンティティに対応しているとは限りません。仕様の型の値は、ECMAScriptの式の評価の中間結果を記述するために使用されますが、ECMAScript言語の変数のオブジェクトや値のプロパティとして保存することはできません。
+
+
+Within this specification, the notation “Type(x)” is used as shorthand for “the type of x” where “type” refers to the ECMAScript language and specification types defined in this clause.
+
+この仕様において"Type(x)"という表記は、この節で定義されるECMAScript言語の型と仕様の型を参照するときの"xの型"という表記の短縮形です。
+
+
+* 8.1 The Undefined Type 
+
+* 8.1 Undefined型
+
+
+The Undefined type has exactly one value, called undefined. Any variable that has not been assigned a value has the value undefined.
+
+Undefined型は厳密にたったひとつの値を持ちます。undefinedと呼ばれる値です。値が代入されていない変数の値はundefinedです。
+
+
+* 8.2 The Null Type 
+
+* 8.2 Null型
+
+
+The Null type has exactly one value, called null.
+
+Null型は厳密にひとつの値を持ちます。nullと呼ばれる値です。
+
+
+* 8.3 The Boolean Type
+
+* 8.3 Boolean型
+
+
+The Boolean type represents a logical entity having two values, called true and false. 
+
+Boolean型は二つの値を持つ論理的なエンティティです。trueとfalseと呼ばれる二つの値です。
+
+
+* 8.4 The String Type
+
+* 8.4 String型
+
+
+The String type is the set of all finite ordered sequences of zero or more 16-bit unsigned integer values (“elements”). The String type is generally used to represent textual data in a running ECMAScript program, in which case each element in the String is treated as a code unit value (see Clause 6). Each element is regarded as occupying a position within the sequence. These positions are indexed with nonnegative integers. The first element (if any) is at position 0, the next element (if any) at position 1, and so on. The length of a String is the number of elements (i.e., 16-bit values) within it. The empty String has length zero and therefore contains no elements.
+
+String型は16ビットの符号無し整数値("要素")のゼロ個以上の順序が決定された並びの集合です。String型は一般的に実行中のECMAScriptプログラムでテキストデータを表現するために使われます。その場合には、文字列の中のどの要素もコード単位の値(6.)として扱われます。どの要素も並びの中である位置を占有している見なされます。これらの位置は非負の整数でインデックスされています。(もし最初の要素があれば)最初の要素は位置0です。(次の要素があれば)次の要素は位置1です。以下同じです。文字列の長さは要素の個数です(例えば、16ビットの値です)。空の文字列は長さ0であり、そのためひとつも要素を含みません。
+
+
+When a String contains actual textual data, each element is considered to be a single UTF-16 code unit. Whether or not this is the actual storage format of a String, the characters within a String are numbered by their initial code unit element position as though they were represented using UTF-16. All operations on Strings (except as otherwise stated) treat them as sequences of undifferentiated 16-bit unsigned integers; they do not ensure the resulting String is in normalised form, nor do they ensure language-sensitive results. 
+
+文字列が実テキストデータが含むときは、どの要素も単一のUTF-16コード単位であると見なされます。文字列の実ストレージの形式にどうであるかに関わらず、文字列の中の文字は、UTF-16を使って表現されたかのように、コード単位の要素の初期の位置によって番号付けられます。(後で述べる場合を除きますが)文字列のすべての操作は、文字列を分離されていない16ビット符号無し整数の並びとして操作します。このことは、結果の文字列が正規化されていることを保証しませんし、言語に依存した結果を保証しません。
+
+
+NOTE The rationale behind this design was to keep the implementation of Strings as simple and high-performing as possible. The intent is that textual data coming into the execution environment from outside (e.g., user input, text read from a file or received over the network, etc.) be converted to Unicode Normalised Form C before the running program sees it. Usually this would occur at the same time incoming text is converted from its original character encoding to Unicode (and would impose no additional overhead). Since it is recommended that ECMAScript source code be in Normalised Form C, string literals are guaranteed to be normalised (if source text is guaranteed to be normalised), as long as they do not contain any Unicode escape sequences. 
+
+注意：このデザインの背景は、文字列処理の実装を可能な限りシンプルでパフォーマンスを高く保つためです。外部(例えば、ユーザの入力、ファイルからの読み込み、ネットワーク越しの受信、...)から実行環境に入ってくるテキストデータは、実行中のプログラムが参照する前にUnicode Normalised Form Cの形式に変換されるべきということを意図しています。これはテキストを受信すると同時に(追加のオーバーヘッドを課すことなしに)元々の文字エンコーディングからUnicodeへの変換されるのが普通です。ECMAScriptのソースコードはNormalized Form Cであることを勧めているため、Unicodeエスケープシーケンスがそれらに含まれていない場合には、(もしソーステキストが正規化されていることが保証されているならば)文字列リテラルもまた正規化されていることが保証されます。
+【訳注】Unicode Normalized Form C：文字が合成済みとなっている形式。例えば a + umlaut → ä
+
+
+* 8.5 The Number Type
+
+* 8.5 Number型
+
+
+The Number type has exactly 18437736874454810627 (that is, 2^64-2^53+3) values, representing the double-precision 64-bit format IEEE 754 values as specified in the IEEE Standard for Binary Floating-Point Arithmetic, except that the 9007199254740990 (that is, 2^53-2) distinct “Not-a-Number” values of the IEEE Standard are represented in ECMAScript as a single special NaN value. (Note that the NaN value is produced by the program expression NaN.) In some implementations, external code might be able to detect a difference between various Not-a-Number values, but such behaviour is implementation-dependent; to ECMAScript code, all NaN values are indistinguishable from each other.
+
+Number型は厳密に18437736874454810627(=2^64-2^53+3)個の値を取ります。二進浮動小数点演算用としてIEEE標準において規定されている倍精度64ビットIEEE754形式の値で表現できる値です。IEEE標準の"Not-a-Number"を表す個々の9007199254740990(=2^53-2)個の値は、ECMAScriptの中においてNaN値という特別なひとつの値として表現されておりこれを除きます(NaN値はプログラムの式NaNによって生成されることに注意しましょう)。実装によっては、外部コードが様々なNot-a-Number値を区別して検知するかもしれませんが、そういった振る舞いは実装依存であり、ECMAScriptコードにとってはすべてのNaN値は個々に区別できません。
+【訳注】IEE754-2008 64ビットバイナリ形式
+------- ----------- ------  ------  ------  --------------------------------
+種類                符号    指数部  仮数部  値の個数                 
+                    1bit    11bit   52bit                 
+------- ----------  ------  ------  ------  --------------------------------
+NaN     －          任意    2047    0以外   2^1x1       x(2^52-1)=2^53-2   
+無限大  －          任意    2047    0       2^1x1       x1       =2        
+有限数  ゼロ        任意    0       0       2^1x1       x1       =2     
+        正規化数    任意    1-2046  任意    2^1x(2^11-2)x2^52    =2^64-2^54
+        非正規化数  任意    0       0以外   2^1x(2^52-1)         =2^53-2   
+------- ----------  ------  ------  ------  --------------------------------
+IEE754-2008 64ビットバイナリでは合計=2^64個
+ECMAScriptのNumber型はNaNが2^53-2 → 1に減っているのでその分個数が異なる。
+
+
+There are two other special values, called positive Infinity and negative Infinity. For brevity, these values are also referred to for expository purposes by the symbols +∞ and -∞, respectively. (Note that these two infinite Number values are produced by the program expressions +Infinity (or simply Infinity) and - Infinity.)
+
+二つの特別な値があります。無限大と負の無限大と呼ばれる値です。簡単に言えば、これらの値はそれぞれ+∞と-∞というシンボルを説明する目的で参照されます。(これらの二つの無限の数値はプログラムの式+Infinity(もしくは単にInfinity)と-Infinityによって作られていることに注意しましょう。)
+
+
+The other 18437736874454810624 (that is, 2^64-2^53) values are called the finite numbers. Half of these are positive numbers and half are negative numbers; for every finite positive Number value there is a corresponding negative value having the same magnitude.
+
+その他の18437736874454810624(=2^64-2^53)個の値は有限数と呼ばれます。これらの半分は正の数値で、半分は負の数値です。すべての有限の正の数値と同じ大きさの対応する負の数値があります。
+
+
+Note that there is both a positive zero and a negative zero. For brevity, these values are also referred to for expository purposes by the symbols +0 and -0, respectively. (Note that these two different zero Number values are produced by the program expressions +0 (or simply 0) and -0.)
+
+正のゼロと負のゼロがあることに気をつけましょう。簡単に言えば、これらの値はそれぞれ+0と-0という二つのシンボルを説明する目的で参照されます。(二つの異なるゼロという数値はプログラムの式+0(もしくは単に0)と-0によって作られていることに注意しましょう。)
+
+
+The 18437736874454810622 (that is, 2^64-2^53-2) finite nonzero values are of two kinds:
+
+18437736874454810622(=2^64-2^53-2)個のゼロではない有限数には二つの種類があります。
+
+
+18428729675200069632 (that is, 2^64-2^54) of them are normalised, having the form 
+
+それらの18428729675200069632(=2^64-2^54)個は正規化されており、以下の形式を取ります。
+
+
+s * m * 2^e 
+
+
+where s is +1 or -1, m is a positive integer less than 2^53 but not less than 2^52, and e is an integer ranging from -1074 to 971, inclusive. 
+
+ここでsは+1もしくは-1、mは2^53より小さく2^52より小さくはない値、eは-1074から971までの値です。
+
+
+The remaining 9007199254740990 (that is, 2^53-2) values are denormalised, having the form 
+
+残りの9007199254740990(=2^53-2)個は正規化されておらず、以下の形式を取ります。
+
+
+s * m * 2^e
+
+
+where s is +1 or -1, m is a positive integer less than 2^52, and e is -1074. 
+
+ここでsは+1もしくは-1、mは2^52より小さい値、eは-1074です。
+
+
+Note that all the positive and negative integers whose magnitude is no greater than 2^53 are representable in the Number type (indeed, the integer 0 has two representations, +0 and -0). 
+
+絶対値が2^53より大きくはないすべての正の整数と負の整数はNumber型で表現されます。(実際に整数0は二つの表現、+0と-0で表現されます。)
+
+
+A finite number has an odd significand if it is nonzero and the integer m used to express it (in one of the two forms shown above) is odd. Otherwise, it has an even significand. 
+
+有限数は、それがゼロではなく(上記の二つの形式のいずれかを)表現するのに使用している整数mが奇数であれば奇数サインを持っており、そうでなければ偶数サインを持っています。
+
+
+In this specification, the phrase “the Number value for x” where x represents an exact nonzero real mathematical quantity (which might even be an irrational number such as π) means a Number value chosen in the following manner. Consider the set of all finite values of the Number type, with -0 removed and with two additional values added to it that are not representable in the Number type, namely 2^1024 (which is +1 * 2^53 * 2^971) and -2^1024 (which is -1 * 2^53 * 2^971). Choose the member of this set that is closest in value to x. If two values of the set are equally close, then the one with an even significand is chosen; for this purpose, the two extra values 2^1024 and -2^1024 are considered to have even significands. Finally, if 2^1024 was chosen, replace it with +∞; if -2^1024 was chosen, replace it with -∞; if +0 was chosen, replace it with -0 if and only if x is less than zero; any other chosen value is used unchanged. The result is the Number value for x. (This procedure corresponds exactly to the behaviour of the IEEE 754 “round to nearest” mode.)
+
+この仕様では xがゼロではない実在の数学的な量(πのように無理数かもしれません)を表現する場合に、"xの数値"という語句は以下のやり方に従って選ばれた数値を意味します。- Number型のすべての有限数の集合を考えます。
+- 集合から-0を除きます
+- 集合にNumber型で表現できないことを意味する二つの値2^1024(= +1 * 2^53 * 2^971)と-2^1024(= -1 * 2^53 * 2^971)を追加します。
+- 集合からxに最も近い要素を選びます。もし二つの値がxと全く同じだけ近かったら、偶数サインを持っている側が選ばれます。この目的のために二つの追加の値2^1024と-2^1024は偶数サインを持っていると見なします。
+- 最終的に...
+  - +2^1024が選ばれたならば、それを+∞に置き換えます。
+  - -2^1024が選ばれたならば、それを-∞に置き換えます。
+  - もし+0が選ばれたならば、ｘが0より小さいときだけ-0に置き換えます。
+  - その他の値は変更しないまま使われます。
+この結果がxの数値になります。(この手続きはIEEE754の最近接丸め(偶数)モードの振る舞いに厳密に相当します。)
+
+
+Some ECMAScript operators deal only with integers in the range -2^31 through 2^31-1, inclusive, or in the range 0 through 2^32-1, inclusive. These operators accept any value of the Number type but first convert each such value to one of 2^32 integer values. See the descriptions of the ToInt32 and ToUint32 operators in 9.5 and 9.6, respectively.
+
+いくつかのECMAScriptにおける操作では、-2^31から2^31-1までの整数の範囲、もしくは、0から2^32-1までの整数の範囲だけを扱います。これらの操作はNumber型のいかなる値も受け付けますが、最初にそれぞれの値を2^32個の整数値のいずれかに変換してから行います。それぞれ9.5および9.6のToInt32およびToUint32演算の記述を見てください。
+
+
+* 8.6 The Object Type
+
+* 8.6 オブジェクト型
+
+
+An Object is a collection of properties. Each property is either a named data property, a named accessor property, or an internal property: 
+
+オブジェクトはプロパティのコレクションです。プロパティは、名前付きのデータプロパティか、名前付きのアクセサプロパティか、内部プロパティのいずれかです。
+
+
+- A named data property associates a name with an ECMAScript language value and a set of Boolean attributes. 
+- A named accessor property associates a name with one or two accessor functions, and a set of Boolean attributes. The accessor functions are used to store or retrieve an ECMAScript language value that is associated with the property. 
+- An internal property has no name and is not directly accessible via ECMAScript language operators. Internal properties exist purely for specification purposes. 
+
+- 名前付きのデータプロパティは、名前とECMAScript言語の値およびBoolean型の属性の集合を関連付けています。
+- 名前付きのアクセサプロパティは、名前とひとつもしくは二つのアクセサ関数およびBoolean型の属性の集合を関連付けています。アクセサ関数はプロパティに関連付けられたECMAScript言語の値の格納もしくは取得するために使われます。
+- 内部プロパティは名前を持ちません、ECMAScript言語の操作からは直接はアクセスすることはできません。内部プロパティは純粋に仕様上の目的のために存在します。
+
+
+There are two kinds of access for named (non-internal) properties: get and put, corresponding to retrieval and assignment, respectively. 
+
+名前付きの(非内部な)プロパティへのアクセス方法には二種類あります。getとputです。これらはそれぞれ取得と代入に相当します。
+
+
+* 8.6.1 Property Attributes 
+
+* 8.6.1 プロパティの属性
+
+
+Attributes are used in this specification to define and explain the state of named properties. A named data property associates a name with the attributes listed in Table 5 
+
+この仕様において属性は名前付きプロパティの状態を定義し説明するために使用されています。名前付きデータプロパティは名前と表5で示されている属性を関連付けます。
+
+
+Table 5 - Attributes of a Named Data Property 
+--------------------------------------------------------------------------------
+Attribute Name
+Value Domain
+Description 
+--------------------------------------------------------------------------------
+[[Value]]
+Any ECMAScript language type
+The value retrieved by reading the property. 
+--------------------------------------------------------------------------------
+[[Writable]]
+Boolean
+If false, attempts by ECMAScript code to change the property's [[Value]] attribute using [[Put]] will not succeed. 
+--------------------------------------------------------------------------------
+[[Enumerable]]
+Boolean
+If true, the property will be enumerated by a for-in enumeration (see 12.6.4). Otherwise, the property is said to be non-enumerable. 
+--------------------------------------------------------------------------------
+[[Configurable]]
+Boolean
+If false, attempts to delete the property, change the property to be an accessor property, or change its attributes (other than [[Value]]) will fail. 
+--------------------------------------------------------------------------------
+
+表5 - 名前付きデータプロパティの属性
+--------------------------------------------------------------------------------
+属性名
+値のドメイン
+内容
+--------------------------------------------------------------------------------
+[[Value]]
+型すべて
+読み込みプロパティによって取得された値です。
+--------------------------------------------------------------------------------
+[[Writable]]
+Boolean
+もしfalseならば[[Put]]によるプロパティの変更コードは失敗します。
+--------------------------------------------------------------------------------
+[[Enumerable]]
+Boolean
+もしtrueならば、for-in列挙(12.6.4)ができ、そうでなれければ列挙できないと言います。
+--------------------------------------------------------------------------------
+[[Configurable]]
+Boolean
+もしfalseならば、プロパティの削除、プロパティのアクセサプロパティへの変更、([[Value]]ではなく)属性の変更は失敗します。
+--------------------------------------------------------------------------------
+
+
+A named accessor property associates a name with the attributes listed in Table 6. 
+
+名前付きアクセサプロパティは表6で示されている属性と関連付けます。
+
+
+Table 6 - Attributes of a Named Accessor Property 
+--------------------------------------------------------------------------------
+Attribute
+Name Value
+Domain Description 
+--------------------------------------------------------------------------------
+[[Get]]
+Object or Undefined
+If the value is an Object it must be a function Object. The function's [[Call]] internal method (8.6.2) is called with an empty arguments list to return the property value each time a get access of the property is performed. 
+--------------------------------------------------------------------------------
+[[Set]]
+Object or Undefined
+If the value is an Object it must be a function Object. The function's [[Call]] internal method (8.6.2) is called with an arguments list containing the assigned value as its sole argument each time a set access of the property is performed. The effect of a property's [[Set]] internal method may, but is not required to, have an effect on the value returned by subsequent calls to the property's [[Get]] internal method.
+--------------------------------------------------------------------------------
+[[Enumerable]]
+Boolean
+If true, the property is to be enumerated by a for-in enumeration (see 12.6.4). Otherwise, the property is said to be non-enumerable. 
+--------------------------------------------------------------------------------
+[[Configurable]]
+Boolean
+If false, attempts to delete the property, change the property to be a data property, or change its attributes will fail. 
+--------------------------------------------------------------------------------
+
+表6 - 名前付きアクセサデータプロパティの属性
+--------------------------------------------------------------------------------
+属性名
+値のドメイン
+内容
+--------------------------------------------------------------------------------
+[[Get]]
+Object or Undefined
+もし値がオブジェクトならば関数オブジェクトです。プロパティのgetアクセスが行われた場合には、関数の[[Call]]内部メソッド(8.6.2)が空の引数リストで呼び出され、プロパティの値を返します。
+--------------------------------------------------------------------------------
+[[Set]]
+Object or Undefined
+もし値がオブジェクトならば関数オブジェクトです。プロパティのSetアクセスが行われた場合には、関数の[[Call]]内部メソッド(8.6.2)が代入する値のひとつの引数リストで呼び出されます。プロパティの[[Set]]内部メソッドの影響は、必須ではありませんが、それに連なるプロパティの[[Get]]内部メソッドによって返される値に影響を与えます。
+--------------------------------------------------------------------------------
+[[Enumerable]]
+Boolean
+もしtrueならばfor-in列挙(12.6.4)ができ、そうでなれければ列挙できないと言います。
+--------------------------------------------------------------------------------
+[[Configurable]]
+Boolean
+もしfalseならばプロパティの削除および変更、属性の変更は失敗します。
+--------------------------------------------------------------------------------
+
+
+If the value of an attribute is not explicitly specified by this specification for a named property, the default value defined in Table 7 is used. 
+
+もし名前付きプロパティに関する仕様において属性の値が明示的に示されていない場合は、表7で定義されている初期値が使われます。
+
+
+Table 7 - Default Attribute Values 
+------------------- ------------------------------------------------------------
+Attribute Name      Default Value 
+------------------- -----------------------------------------------------------
+[[Value]]           undefined 
+[[Get]]             undefined 
+[[Set]]             undefined 
+[[Writable]]        false 
+[[Enumerable]]      false 
+[[Configurable]]    false 
+------------------- -----------------------------------------------------------
+
+表7 - 属性の初期値
+------------------- -----------------------------------------------------------
+属性名              初期値
+------------------- -----------------------------------------------------------
+[[Value]]           undefined 
+[[Get]]             undefined 
+[[Set]]             undefined 
+[[Writable]]        false 
+[[Enumerable]]      false 
+[[Configurable]]    false 
+------------------- -----------------------------------------------------------
+
+
+* 8.6.2 Object Internal Properties and Methods 
+
+* 8.6.2 オブジェクトの内部プロパティとメソッド
+
+
+This specification uses various internal properties to define the semantics of object values. These internal properties are not part of the ECMAScript language. They are defined by this specification purely for expository purposes. An implementation of ECMAScript must behave as if it produced and operated upon internal properties in the manner described here. The names of internal properties are enclosed in double square brackets [[ ]]. When an algorithm uses an internal property of an object and the object does not implement the indicated internal property, a TypeError exception is thrown. 
+
+この仕様ではオブジェクトの値の意味を定義するために様々な内部プロパティを使用します。これらの内部プロパティはECMAScript言語の一部ではありません。それらは説明する目的のためにこの仕様によって定義されています。ECMAScriptの実装はここで述べられている作法に従って内部プロパティを作りだし操作しているかのごとく振る舞わなければいけません。内部プロパティの名前は二重大括弧[[ ]]で括られています。アルゴリズムがオブジェクトの内部プロパティを使用して、オブジェクトがその内部プロパティを実装していない場合には、TypeError例外がスローされます。
+
+
+The Table 8 summarises the internal properties used by this specification that are applicable to all ECMAScript objects. The Table 9 summarises the internal properties used by this specification that are only applicable to some ECMAScript objects. The descriptions in these tables indicates their behaviour for native ECMAScript objects, unless stated otherwise in this document for particular kinds of native ECMAScript objects. Host objects may support these internal properties with any implementation-dependent behaviour as long as it is consistent with the specific host object restrictions stated in this document. 
+
+表8は、この仕様によって使われているすべてのECMAScriptのオブジェクトへ適用可能な内部プロパティのサマリです。テーブル９は、この仕様によって使われているいくつかのECMAScriptオブジェクトへのみ適用可能な内部プロパティのサマリです。これらのテーブルの記述は、改めてこの文書において特定の種類のネイティブなECMAScriptなオブジェクトについて述べていない限りは、そのオブジェクトの振る舞いを示しています。この文書で述べられている特定のホストオブジェクトの制限において一貫性を保っている限りは、いくらかは実装依存の振る舞いをしながらも、ホストオブジェクトはこれらの内部プロパティをサポートします。
+
+
+The “Value Type Domain” columns of the following tables define the types of values associated with internal properties. The type names refer to the types defined in Clause 8 augmented by the following additional names. “any” means the value may be any ECMAScript language type. “primitive” means Undefined, Null, Boolean, String, or Number. “SpecOp” means the internal property is an internal method, an implementation provided procedure defined by an abstract operation specification. “SpecOp” is followed by a list of descriptive parameter names. If a parameter name is the same as a type name then the name describes the type of the parameter. If a “SpecOp” returns a value, its parameter list is followed by the symbol “→” and the type of the returned value. 
+
+以降の表の"値の型のドメイン"列は内部プロパティに関連した値の型を定義しています。型の名前は、以下の追加の名前によって8節の拡張で定義した型を参照します。
+- "any"は、ECMAScript言語の型のどれかであることを意味します。
+- "primitive"は、Undefined, Null, Boolean, String, Numberのどれかであることを意味します。
+- "SpecOp"は、内部プロパティが内部メソッドの抽象操作の仕様で定義された手続きを提供していることを意味します。"SpecOp"には説明的なパラメタの名前のリストが続きます。パラメタ名が型名と同じならば、名前はパラメタの型を述べています。もし"SpecOp"が値を返すのであれば、そのパラメタリストには"→"と返される値の型が続きます。
+
+
+Table 8 - Internal Properties Common to All Objects 
+--------------------------------------------------------------------------------
+Internal Property
+Value Type Domain
+Description 
+--------------------------------------------------------------------------------
+[[Prototype]]
+Object or Null
+The prototype of this object. 
+--------------------------------------------------------------------------------
+[[Class]]
+String
+A String value indicating a specification defined classification of objects. 
+--------------------------------------------------------------------------------
+[[Extensible]]
+Boolean
+If true, own properties may be added to the object. 
+--------------------------------------------------------------------------------
+[[Get]]
+SpecOp(propertyName) → any
+Returns the value of the named property. 
+--------------------------------------------------------------------------------
+[[GetOwnProperty]]
+SpecOp (propertyName) → Undefined or Property Descriptor
+Returns the Property Descriptor of the named own property of this object, or undefined if absent. 
+--------------------------------------------------------------------------------
+[[GetProperty]]
+SpecOp(propertyName) → Undefined or Property Descriptor
+Returns the fully populated Property Descriptor of the named property of this object, or undefined if absent. 
+--------------------------------------------------------------------------------
+[[Put]]
+SpecOp(propertyName, any, Boolean)
+Sets the specified named property to the value of the second parameter. The flag controls failure handling. 
+--------------------------------------------------------------------------------
+[[CanPut]]
+SpecOp(propertyName) → Boolean
+Returns a Boolean value indicating whether a [[Put]] operation with PropertyName can be performed. 
+--------------------------------------------------------------------------------
+[[HasProperty]]
+SpecOp(propertyName) → Boolean
+Returns a Boolean value indicating whether the object already has a property with the given name. 
+--------------------------------------------------------------------------------
+[[Delete]]
+SpecOp(propertyName, Boolean) → Boolean
+Removes the specified named own property from the object. The flag controls failure handling. 
+--------------------------------------------------------------------------------
+[[DefaultValue]]
+SpecOp(Hint) → primitive
+Hint is a String. Returns a default value for the object. 
+--------------------------------------------------------------------------------
+[[DefineOwnProperty]]
+SpecOp (propertyName, PropertyDescriptor, Boolean) → Boolean
+Creates or alters the named own property to have the state described by a Property Descriptor. The flag controls failure handling. 
+--------------------------------------------------------------------------------
+
+表8 - すべてのオブジェクトに共通の内部プロパティ
+--------------------------------------------------------------------------------
+内部プロパティ
+値の型のドメイン
+内容
+--------------------------------------------------------------------------------
+[[Prototype]]
+Object or Null
+オブジェクトのプロトタイプです。
+--------------------------------------------------------------------------------
+[[Class]]
+String
+オブジェクトのクラス定義を示す文字列です。
+--------------------------------------------------------------------------------
+[[Extensible]]
+Boolean
+もしtrueならば、固有プロパティがオブジェクトに追加されているかもしれません。
+--------------------------------------------------------------------------------
+[[Get]]
+SpecOp(propertyName) → any
+名前付きプロパティの値を返します。
+--------------------------------------------------------------------------------
+[[GetOwnProperty]]
+SpecOp (propertyName) → Undefined or Property Descriptor
+このオブジェクトの名前付き固有プロパティのプロパティ記述子を返します。オブジェクト固有のものがなければundefinedを返します。
+--------------------------------------------------------------------------------
+[[GetProperty]]
+SpecOp(propertyName) → Undefined or Property Descriptor
+このオブジェクトの完全実装された名前付きプロパティのプロパティ記述子を返します。プロパティがなければundefinedを返します。
+--------------------------------------------------------------------------------
+[[Put]]
+SpecOp(propertyName, any, Boolean)
+指定された名前付きプロパティを第二引数の値に設定します。フラグで設定失敗時の処理を制御します。
+--------------------------------------------------------------------------------
+[[CanPut]]
+SpecOp(propertyName) → Boolean
+PropertyNameで[[Put]]の操作が実施できるかどうかを示すBoolean値を返します。
+--------------------------------------------------------------------------------
+[[HasProperty]]
+SpecOp(propertyName) → Boolean
+与えられた名前のプロパティをオブジェクトが既に持っているかどうかを示すBoolean値を返します。
+--------------------------------------------------------------------------------
+[[Delete]]
+SpecOp(propertyName, Boolean) → Boolean
+オブジェクトから与えられた名前の固有プロパティを削除します。フラグで削除失敗時の処理を制御します。
+--------------------------------------------------------------------------------
+[[DefaultValue]]
+SpecOp(Hint) → primitive
+ヒントは文字列です。オブジェクトの初期値を返します。
+--------------------------------------------------------------------------------
+[[DefineOwnProperty]]
+SpecOp (propertyName, PropertyDescriptor, Boolean) → Boolean
+プロパティ記述子によって述べられた状態を名前付きの固有プロパティが持つように作成もしくは変更します。フラグで作成変更失敗時の処理を制御します。
+--------------------------------------------------------------------------------
+
+
+Every object (including host objects) must implement all of the internal properties listed in Table 8. However, the [[DefaultValue]] internal method may, for some objects, simply throw a TypeError exception. 
+
+(ホストオブジェクトを含む)すべてのオブジェクトは表8で示された内部プロパティのすべてを実装しなければいけません。ただし、いくつかのオブジェクトにとっては、[[DefaultValue]]内部メソッドは単にTypeErrorをスローするだけでしょう。
+
+
+All objects have an internal property called [[Prototype]]. The value of this property is either null or an object and is used for implementing inheritance. Whether or not a native object can have a host object as its [[Prototype]] depends on the implementation. Every [[Prototype]] chain must have finite length (that is, starting from any object, recursively accessing the [[Prototype]] internal property must eventually lead to a null value). Named data properties of the [[Prototype]] object are inherited (are visible as properties of the child object) for the purposes of get access, but not for put access. Named accessor properties are inherited for both get access and put access. 
+
+すべてのオブジェクトは[[Prototype]]と呼ばれる内部プロパティを持っています。このプロパティの値はnullもしくはあるオブジェクトであり、継承を実装するために使用されます。ネイティブオブジェクトがホストオブジェクトを[[Prototype]]として持てるかどうかは実装に掛かっています。すべての[[Prototype]]チェーンは有限の長さです(つまり、あるオブジェクトから始まる[[Prototype]]内部プロパティの再帰的な参照は、最終的にはnull値へと通じなければいけません)。[[Prototype]]オブジェクトの名前付けされたデータプロパティは、参照のために継承される(子供のオブジェクトのプロパティとして見える)のであり、更新のためではありません。名前付きアクセサプロパティは参照と更新の両方のために継承されます。
+
+
+Every ECMAScript object has a Boolean-valued [[Extensible]] internal property that controls whether or not named properties may be added to the object. If the value of the [[Extensible]] internal property is false then additional named properties may not be added to the object. In addition, if [[Extensible]] is false the value of the [[Class]] and [[Prototype]] internal properties of the object may not be modified. Once the value of an [[Extensible]] internal property has been set to false it may not be subsequently changed to true. 
+
+すべてのECMAScriptオブジェクトも、オブジェクトに名前付きプロパティを追加できるかどうかを制御するBoolean値の[[Extensible]]内部プロパティを持っています。もし[[Extensible]]内部プロパティの値がfalseの場合、オブジェクトには追加の名前付きプロパティを追加することはできません。更に、もし[[Extensible]]がfalseならば、オブジェクトの[[Class]]および[[Prototype]]内部プロパティは変更できません。一旦、[[Extensible]]内部プロパティの値をfalseに設定したら、後でtrueに変更することはできません。
+
+
+NOTE This specification defines no ECMAScript language operators or built-in functions that permit a program to modify an object's [[Class]] or [[Prototype]] internal properties or to change the value of [[Extensible]] from false to true. 
+
+注意：この仕様は、オブジェクトの[[Class]]および[[Prototype]]内部プロパティを変更したり、[[Extensible]]の値をfalseからtrueへ変更するようにプログラムすることができるECMAScriptの演算子や組み込み関数が存在しないことを定義しています。
+
+
+Implementation specific extensions that modify [[Class]], [[Prototype]] or [[Extensible]] must not violate the invariants defined in the preceding paragraph. 
+
+[[Class]]、[[Prototype]]、[[Extensible]]を変更するような実装に依存した拡張は、前の段落で定義された不変性に違反してはいけません。
+
+
+The value of the [[Class]] internal property is defined by this specification for every kind of built-in object. The value of the [[Class]] internal property of a host object may be any String value except one of "Arguments", "Array", "Boolean", "Date", "Error", "Function", "JSON", "Math", "Number", "Object", "RegExp", and "String". The value of a [[Class]] internal property is used internally to distinguish different kinds of objects. Note that this specification does not provide any means for a program to access that value except through Object.prototype.toString (see 15.2.4.2). 
+
+すべての組み込みオブジェクトの[[Class]]内部プロパティの値は、この仕様で定義されています。ホストオブジェクトの[[Class]]内部プロパティの値は、以下のもの以外の何らかの文字列です。
+- "Arguments"
+- "Array"
+- "Boolean"
+- "Date"
+- "Error"
+- "Function"
+- "JSON"
+- "Math"
+- "Number"
+- "Object"
+- "RegExp"
+- "String"
+[[Class]]内部プロパティの値は、内部的にオブジェクトの種類を区別するために使用されます。この仕様は、Obuject.prototype.toString(15.2.4.2)を除いて、この値にアクセスするプログラムにとっては何の意味も持たない点に注意してください。
+
+
+Unless otherwise specified, the common internal methods of native ECMAScript objects behave as described in 8.12. Array objects have a slightly different implementation of the [[DefineOwnProperty]] internal method (see 15.4.5.1) and String objects have a slightly different implementation of the [[GetOwnProperty]] internal method (see 15.5.5.2). Arguments objects (10.6) have different implementations of [[Get]], [[GetOwnProperty]], [[DefineOwnProperty]], and [[Delete]]. Function objects (15.3) have a different implementation of [[Get]]. 
+
+他に示されない限り、ネイティブなECMAScriptのオブジェクトの共通の内部メソッドは、8.12で述べられているように振る舞います。Arrayオブジェクトは[[DefineOwnProperty]]内部メソッド(15.4.5.1)とは少し異なる実装ですし、Stringオブジェクトは[[GetOwnProperty]]内部メソッド(15.5.5.2)とは少し異なります。Argumentsオブジェクト(10.6)は[[Get]]、[[GetOwnProperty]]、[[DefineOwnProperty]]、[[Delete]]とは異なります。Functionオブジェクト(15.3)も[[Get]]とは異なります。
+
+
+Host objects may implement these internal methods in any manner unless specified otherwise; for example, one possibility is that [[Get]] and [[Put]] for a particular host object indeed fetch and store property values but [[HasProperty]] always generates false. However, if any specified manipulation of a host object's internal properties is not supported by an implementation, that manipulation must throw a TypeError exception when attempted. 
+
+他に示されていなければ、ホストオブジェクトはこれらの内部メソッドをどんな方法でも実装するでしょう。例えば、ひとつの可能性として、あるホストオブジェクトについて[[Get]]と[[Put]]は実際にプロパティをfetchしstoreしますが、[[HasProperty]]についてはいつもfalseを返すかもしれません。しかし、もしホストオブジェクトの内部プロパティで示された操作が実装でサポートされていなければ、その操作が試みられた時はTypeErrorをスローしなければなりません。
+
+
+The [[GetOwnProperty]] internal method of a host object must conform to the following invariants for each property of the host object: 
+
+ホストオブジェクトの[[GetOwnProperty]]内部メソッドは、ホストオブジェクトのどのプロパティについても以下の不変性を満たさなければなりません。
+
+
+- If a property is described as a data property and it may return different values over time, then either or both of the [[Writable]] and [[Configurable] attributes must be true even if no mechanism to change the value is exposed via the other internal methods. 
+- If a property is described as a data property and its [[Writable]] and [[Configurable]] are both false, then the SameValue (according to 9.12) must be returned for the [[Value]] attribute of the property on all calls to [[GetOwnProperty]]. 
+- If the attributes other than [[Writable]] may change over time or if the property might disappear, then the [[Configurable]] attribute must be true. 
+- If the [[Writable]] attribute may change from false to true, then the [[Configurable]] attribute must be true. 
+- If the value of the host object's [[Extensible]] internal property is has been observed by ECMAScript code to be false, then if a call to [[GetOwnProperty]] describes a property as non-existent all subsequent calls must also describe that property as non-existent. 
+
+- もしプロパティがデータプロパティであり、時に応じて異なる値を返すのであれば、値を変更する仕組みが他の内部メソッドを通して用意されていない限り[[Writable]]と[[Configurable]]属性のどちらか、または、両方はtrueでなければなりません。
+- もしプロパティかデータプロパティであり、[[Writable]]と[[Configurable]]が両方ともfalseならば、[[GetOwnProperty]]のすべての呼び出しにおいてプロパティの[[Value]]属性としてSameValue(9.12)が返されなければなりません。
+- もし[[Writable]]以外の属性が時とともに変化したり、プロパティが無くなったりするのであれば、[[Configurable]]属性はtrueでなければなりません。
+- もし[[Writable]]属性がfalseからtrueに変化するのであれば、[[Configurable]]はtrueでなければなりません。
+- もしホストオブジェクトの[[Extensible]]内部プロパティの値がECMAScriptのコードによってfalseになることがあり、[[GetOwnProperty]]の呼び出し結果でプロパティが存在しないとされたならば、以降の呼び出しでもプロパティが存在しないとされなければなりません。
+
+
+The [[DefineOwnProperty]] internal method of a host object must not permit the addition of a new property to a host object if the [[Extensible]] internal property of that host object has been observed by ECMAScript code to be false. 
+
+ホストオブジェクトの[[DefineOwnProperty]]内部メソッドは、ホストオブジェクトの[[Extensible]]内部プロパティがECMAScriptのコードによってfalseになることがあれば、ホストオブジェクトに新しいプロパティの追加を許してはいけません。
+
+
+If the [[Extensible]] internal property of that host object has been observed by ECMAScript code to be false then it must not subsequently become true. 
+
+もしホストオブジェクトのコードに[[Extensible]]内部プロパティがECMAScriptのコードによってfalseになることがあれば、それ以降trueになることはできません。
+
+
+Table 9 - Internal Properties Only Defined for Some Objects 
+--------------------------------------------------------------------------------
+Internal Property
+Value Type Domain
+Description 
+--------------------------------------------------------------------------------
+[[PrimitiveValue]]
+primitive
+Internal state information associated with this object. Of the standard built-in ECMAScript objects, only Boolean, Date, Number, and String objects implement [[PrimitiveValue]]. 
+--------------------------------------------------------------------------------
+[[Construct]]
+SpecOp(a List of any) → Object 
+Creates an object. Invoked via the new operator. The arguments to the SpecOp are the arguments passed to the new operator. Objects that implement this internal method are called constructors. 
+--------------------------------------------------------------------------------
+[[Call]]
+SpecOp(any, a List of any) → any or Reference 
+Executes code associated with the object. Invoked via a function call expression. The arguments to the SpecOp are a this object and a list containing the arguments passed to the function call expression. Objects that implement this internal method are callable. Only callable objects that are host objects may return Reference values. 
+--------------------------------------------------------------------------------
+[[HasInstance]]
+SpecOp(any) → Boolean 
+Returns a Boolean value indicating whether the argument is likely an Object that was constructed by this object. Of the standard built-in ECMAScript objects, only Function objects implement [[HasInstance]]. 
+--------------------------------------------------------------------------------
+[[Scope]]
+Lexical Environment
+A lexical environment that defines the environment in which a Function object is executed. Of the standard built-in ECMAScript objects, only Function objects implement 
+--------------------------------------------------------------------------------
+[[Scope]].[[FormalParameters]]
+List of Strings
+A possibly empty List containing the identifier Strings of a Function's FormalParameterList. Of the standard built-in ECMAScript objects, only Function objects implement 
+--------------------------------------------------------------------------------
+[[FormalParameterList]]. [[Code]]
+ECMAScript code
+The ECMAScript code of a function. Of the standard built-in ECMAScript objects, only Function objects implement 
+--------------------------------------------------------------------------------
+[[Code]].[[TargetFunction]]
+Object
+The target function of a function object created using the standard built-in Function.prototype.bind method. Only ECMAScript objects created using Function.prototype.bind have a [[TargetFunction]] internal property. 
+--------------------------------------------------------------------------------
+[[BoundThis]]
+any 
+The pre-bound this value of a function Object created using the standard built-in Function.prototype.bind method. Only ECMAScript objects created using Function.prototype.bind have a [[BoundThis]] internal property. 
+--------------------------------------------------------------------------------
+[[BoundArguments]]
+List of any 
+The pre-bound argument values of a function Object created using the standard built-in Function.prototype.bind method. Only ECMAScript objects created using Function.prototype.bind have a [[BoundArguments]] internal property. 
+--------------------------------------------------------------------------------
+[[Match]]
+SpecOp(String, index) → MatchResult 
+Tests for a regular expression match and returns a MatchResult value (see 15.10.2.1). Of the standard built-in ECMAScript objects, only RegExp objects implement 
+--------------------------------------------------------------------------------
+[[Match]].[[ParameterMap]]
+Object
+Provides a mapping between the properties of an arguments object (see 10.6) and the formal parameters of the associated function. Only ECMAScript objects that are arguments objects have a [[ParameterMap]] internal property. 
+--------------------------------------------------------------------------------
+
+表9 - 特定のオブジェクトでだけ定義されている内部プロパティ
+--------------------------------------------------------------------------------
+内部プロパティ
+値の型のドメイン
+内容
+--------------------------------------------------------------------------------
+[[PrimitiveValue]]
+primitive
+オブジェクトに関連した内部状態の情報です。標準の組み込みECMAScriptのオブジェクトのBoolean, Date, Number, Stringオブジェクトが[[PrimitiveValue]]を実装しています。
+--------------------------------------------------------------------------------
+[[Construct]]
+SpecOp(a List of any) → Object 
+オブジェクトを作成します。new演算子を通して呼び出されます。SpecOp引数にはnew演算子へ渡される引数です。この内部メソッドを実装するオブジェクトはコンストラクタと呼ばれます。
+--------------------------------------------------------------------------------
+[[Call]]
+SpecOp(any, a List of any) → any or Reference 
+オブジェクトに関連した実行コードです。call式を通して呼び出されます。SpecOp引数はこのオブジェクトと関数呼び出しの式へ渡される引数が含まれたリストです。この内部メソッドを実装したオブジェクトは呼び出し可能と呼ばれます。ホストオブジェクトである呼び出し可能なオブジェクトは参照値を返します。
+--------------------------------------------------------------------------------
+[[HasInstance]]
+SpecOp(any) → Boolean 
+引数がこのオブジェクトによって作成されたオブジェクトであるかどうかを示すBoolean値を返します。標準の組み込みECMAScriptオブジェクトのFunctionオブジェクトだけが[[HasInstance]]を実装しています。
+--------------------------------------------------------------------------------
+[[Scope]]
+Lexical Environment
+Functionオブジェクトが実行される環境を定義するレキシカル環境です。標準の組み込みECMAScriptオブジェクトのFunctionオブジェクトだけが[[Scope]]を実装しています。
+--------------------------------------------------------------------------------
+[[FormalParameters]]
+List of Strings
+関数のFormalParameterListの識別子の文字列を含む空であることも可能なリストです。標準の組み込みECMAScriptオブジェクトのFunctionオブジェクトだけが[[FormalParameterList]]を実装しています。
+--------------------------------------------------------------------------------
+[[Code]]
+ECMAScript code
+関数のECMAScriptコードです。標準の組み込みECMAScriptオブジェクトのFunctionオブジェクトだけが[[Code]]を実装しています。
+--------------------------------------------------------------------------------
+[[TargetFunction]]
+Object
+標準の組み込みのFunction.prototype.bindメソッドを使って作られた関数オブジェクトの対象の関数です。Function.prototype.bindを使って作られたECMAScriptオブジェクトだけが[[TargetFunction]]内部プロパティを持っています。
+--------------------------------------------------------------------------------
+[[BoundThis]]
+any 
+標準の組み込みのFunction.prototype.bindメソッドを使って作られた関数オブジェクトの前に設定されていた値です。
+--------------------------------------------------------------------------------
+[[BoundArguments]]
+List of any 
+標準の組み込みのFunction.prototype.bindメソッドを使って作られた関数オブジェクトの前に設定されていた引数の値です。Function.prototype.bindを使って作られたECMAScriptオブジェクトだけが[[BoundArguments]]内部プロパティを持っています。
+--------------------------------------------------------------------------------
+[[Match]]
+SpecOp(String, index) → MatchResult 
+正規表現のマッチをテストし、MatchResultの値(15.10.2.1)を返します。標準の組み込みのECMAScriptオブジェクトのRegExpオブジェクトだけが[[Match]]を実装しています。
+--------------------------------------------------------------------------------
+[[ParameterMap]]
+Object
+引数オブジェクト(10.6)のプロパティと関連付けられた関数の仮引数とのマッピングです。引数オブジェクトであるECMAScriptオブジェクトだけが[[ParameterMap]]内部プロパティを持ちます。
+--------------------------------------------------------------------------------
+
+
+* 8.7 The Reference Specification Type 
+
+* 8.7 参照型
+
+
+The Reference type is used to explain the behaviour of such operators as delete, typeof, and the assignment operators. For example, the left-hand operand of an assignment is expected to produce a reference. The behaviour of assignment could, instead, be explained entirely in terms of a case analysis on the syntactic form of the left-hand operand of an assignment operator, but for one difficulty: function calls are permitted to return references. This possibility is admitted purely for the sake of host objects. No built-in ECMAScript function defined by this specification returns a reference and there is no provision for a user-defined function to return a reference. (Another reason not to use a syntactic case analysis is that it would be lengthy and awkward, affecting many parts of the specification.)
+
+参照型は、delete、typeof、代入演算子といった演算子の振る舞いを説明するために使われます。例えば、代入演算子の左辺のオペランドでは参照を生成することが期待されています。代入の振る舞いは代入演算子の左辺のオペランドの構文形式をケース分析することによって完全に説明することもできますが、ひとつ難しいことがあります。参照を返す関数呼び出しが許されていることです。この可能性は純粋にホスオブジェクトのために認められています。この仕様では参照を返すような組み込みECMAScript関数は定義されていませんし、ユーザ定義関数が必ず参照を返すという決まりはありません(これ以外に構文のケース分析を使わない理由は、仕様の多くの箇所に長ったらしく無様な影響を与えるためです)。
+
+
+A Reference is a resolved name binding. A Reference consists of three components, the base value, the referenced name and the Boolean valued strict reference flag. The base value is either undefined, an Object, a Boolean, a String, a Number, or an environment record (10.2.1). A base value of undefined indicates that the reference could not be resolved to a binding. The referenced name is a String. The following abstract operations are used in this specification to access the components of references: 
+
+参照は名前のバインディングで解決されます。参照は3つのコンポーネント、既定値、被参照名、boolean値であるstrict参照フラグから構成されます。既定値は、undefined、オブジェクト、Boolean、文字列、数値もしくは環境レコードのいずれかです。既定値がundefinedであることは参照がバインディングで解決されないことを示しています。参照名は文字列です。以下の抽象操作はこの仕様において参照のコンポーネントにアクセスするために使われます。
+
+
+- GetBase(V). Returns the base value component of the reference V. 
+- GetReferencedName(V). Returns the referenced name component of the reference V. 
+- IsStrictReference(V). Returns the strict reference component of the reference V. 
+- HasPrimitiveBase(V). Returns true if the base value is a Boolean, String, or Number. 
+- IsPropertyReference(V). Returns true if either the base value is an object or HasPrimitiveBase(V) is true; otherwise returns false. 
+- IsUnresolvableReference(V). Returns true if the base value is undefined and false otherwise. 
+
+- GetBase(V) 参照Vの規定値コンポーネントを返します。
+- GetReferencedName(V) 参照Vの参照名コンポーネントを返します。
+- IsStrictReference(V) 参照Vのstrict参照コンポーネントを返します。
+- HasPrimitiveBase(V) 規定値がBoolean, String, Numberならばtrueを返します。
+- IsPropertyReference(V) 規定値がオブジェクトもしくはHasPrimitiveBase(V)がtrueならtrueを返します。それ以外はfalseを返します。
+- IsUnresolvableReference(V) 規定値がundefinedならばtrueを返します。それ以外はfalseを返します。
+【訳注】抽象操作とコンポーネント
+--------------------------- -------------------------
+抽象操作                    コンポーネント
+--------------------------- -------------------------
+GetBase(V)                  the base value
+GetReferencedName(V)        the referenced name
+IsStrictReference(V)        the strict reference flag
+--------------------------- -------------------------
+【訳注】抽象操作と規定値
+--------------------------- ---------------------------------------
+抽象操作                    規定値
+                            ----------- ------- ------- -----------
+                            undefined   object  boolean environment
+                                                string
+                                                number
+--------------------------- ----------- ------- ------- ------------
+IsUnresolvableReference(V)  true        false  false    false
+IsPropertyReference(V)      false       true   true     false
+HasPrimitiveBase(V)         false       false  true     false
+--------------------------- ----------- ------- ------- ------------
+
+
+The following abstract operations are used in this specification to operate on references: 
+
+この仕様において、以下の抽象操作は参照を操作するために使われます。
+
+
+* 8.7.1 GetValue ( V )
+
+
+1. If Type(V) is not Reference, return V. 
+2. Let base be the result of calling GetBase(V). 
+3. If IsUnresolvableReference(V), throw a ReferenceError exception. 
+4. If IsPropertyReference(V), then 
+  a. If HasPrimitiveBase(V) is false, then let get be the [[Get]] internal method of base, otherwise let get be the special [[Get]] internal method defined below. 
+  b. Return the result of calling the get internal method using base as its this value, and passing GetReferencedName(V) for the argument. 
+5. Else, base must be an environment record. 
+  a. Return the result of calling the GetBindingValue (see 10.2.1) concrete method of base passing GetReferencedName(V) and IsStrictReference(V) as arguments. 
+
+1. Type(V)が参照でなければ、Vそのものを返します。
+2. GetBase(V)の呼び出し結果をbaseとします。
+3. もしIsUnresolvableReference(V)ならば、ReferenceErrorをスローします。
+4. もしIsPropertyReference(V)ならば...
+  a. もしHasPrimitiveBase(V)がfalseならば、getをbaseの[[Get]]内部メソッドにします。そうでなければ、getは以下で定義する特別な[[Get]]内部メソッドにします。
+  b. this値としてbaseを使いget内部メソッドを呼び出した結果を返します。引数としてGetReferencedName(V)を渡します。
+5. そうでなければ、baseは環境レコードである筈です。
+  a. 引数としてGetReferencedName(V)とIsStrictReference(V)を与えたbaseのGetBindingValue(10.2.1)の具象メソッドの呼び出しの結果を返します。
+
+
+The following [[Get]] internal method is used by GetValue when V is a property reference with a primitive base value. It is called using base as its this value and with property P as its argument. The following steps are taken: 
+
+以下の[[Get]]内部メソッドは、Vがプリミティブ値であるプロパティへの参照である場合にGetValueによって使われます。this値としてbaseを使い、プロパティPを引数として呼び出されます。以下のステップで行われます。
+
+
+1. Let O be ToObject(base). 
+2. Let desc be the result of calling the [[GetProperty]] internal method of O with property name P. 
+3. If desc is undefined, return undefined. 
+4. If IsDataDescriptor(desc) is true, return desc.[[Value]]. 
+5. Otherwise, IsAccessorDescriptor(desc) must be true so, let getter be desc.[[Get]]. 
+6. If getter is undefined, return undefined. 
+7. Return the result calling the [[Call]] internal method of getter providing base as the this value and providing no arguments. 
+
+1. ToObject(base)の呼び出し結果をOとします。
+2. 名前がPであるプロパティを引数としてOの[[GetProperty]]内部メソッドの呼び出し結果をdescとします。
+3. もしdescがundefinedならば、undefinedを返します。
+4. もしIsDataDescriptor(desc)がtrueならば、desc.[[Value]]を返します。
+5. そうでなければ、IsAccessorDescriptor(desc)はtrudeでなければなりません。desc.[[Get]]をgetterにします。
+6. もしgetterがundefinedならば、undefinedを返します。
+7. this値としてbaseを使い、引数無しでgetterの[[Call]]内部メソッドを呼び出した結果を返します。
+
+
+NOTE The object that may be created in step 1 is not accessible outside of the above method. An implementation might choose to avoid the actual creation of the object. The only situation where such an actual property access that uses this internal method can have visible effect is when it invokes an accessor function. 
+
+注意：ステップ１で作られたオブジェクトは上記のメソッドの外部からはアクセスすることはできません。実装によっては実際のオブジェクトの生成はしないようにしているかもしれません。この内部メソッドを使った実際のプロパティへのアクセスが目に見える影響を与える状況というのは、アクセサ関数を呼び出すときだけです。
+
+
+* 8.7.2 PutValue ( V, W )
+
+
+1. If Type(V) is not Reference, throw a ReferenceError exception. 
+2. Let base be the result of calling GetBase(V). 
+3. If IsUnresolvableReference(V), then 
+  a. If IsStrictReference(V) is true, then 
+    i. Throw ReferenceError exception. 
+  b. Call the [[Put]] internal method of the global object, passing GetReferencedName(V) for the property name, W for the value, and false for the Throw flag. 
+4. Else if IsPropertyReference(V), then 
+  a. If HasPrimitiveBase(V) is false, then let put be the [[Put]] internal method of base, otherwise let put be the special [[Put]] internal method defined below. 
+  b. Call the put internal method using base as its this value, and passing GetReferencedName(V) for the property name, W for the value, and IsStrictReference(V) for the Throw flag. 
+5. Else base must be a reference whose base is an environment record. So, 
+  a. Call the SetMutableBinding (10.2.1) concrete method of base, passing GetReferencedName(V), W, and IsStrictReference(V) as arguments. 
+6. Return.
+
+1. Type(V)が参照でなければ、ReferenceErrorをスローします。
+2. GetBase(V)の呼び出し結果をbaseとします。
+3. もしIsUnresolvableReference(V)ならば...
+  a. もしIsStrictReference(V)がtrueならば...
+    i. ReferenceErrorをスローします。
+  b. そうでなければ、this値としてbase、プロパティ名としてGetReferencedName(V)、値としてW、Throwフラグとしてfalseを使って、Globalオブジェクトの[[Put]]内部メソッドを呼び出します。
+4. そうでなくIsPropertyReference(V)ならば...
+  a. もしHasPrimitiveBase(V)がfalseならば、putをbaseの[[Put]]内部メソッドにします。そうでなければ、putは以下で定義する特別な[[Put]]内部メソッドにします。
+  b. this値としてbase、プロパティ名としてGetReferencedName(V)、値としてW、Throwフラグとしてfalseを使って、put内部メソッドを呼び出します。
+5. そうでなければ、baseが環境レコードである参照である筈です。ならば...
+  a. GetReferencedName(V), W, IsStrictReference(V)を引数として、baseのSetMutableBinding(10.2.1)具象メソッドを呼び出します。
+
+
+The following [[Put]] internal method is used by PutValue when V is a property reference with a primitive base value. It is called using base as its this value and with property P, value W, and Boolean flag Throw as arguments. The following steps are taken: 
+
+以下の[[Put]]内部メソッドはVがプリミティブ型の既定値であるプロパティ参照である場合にPutValueによって使われます。this値としてbase、引数としてプロパティP、値W、BooleanフラグのThrowを使って呼び出されます。以下のステップで行われます。
+
+
+1. Let O be ToObject(base). 
+2. If the result of calling the [[CanPut]] internal method of O with argument P is false, then 
+  a. If Throw is true, then throw a TypeError exception. 
+  b. Else return. 
+3. Let ownDesc be the result of calling the [[GetOwnProperty]] internal method of O with argument P. 
+4. If IsDataDescriptor(ownDesc) is true, then 
+  a. If Throw is true, then throw a TypeError exception. 
+  b. Else Return. 
+5. Let desc be the result of calling the [[GetProperty]] internal method of O with argument P. This may be either an own or inherited accessor property descriptor or an inherited data property descriptor. 
+6. If IsAccessorDescriptor(desc) is true, then 
+  a. Let setter be desc.[[Set]] which cannot be undefined. 
+  b. Call the [[Call]] internal method of setter providing base as the this value and an argument list containing only W. 
+7. Else, this is a request to create an own property on the transient object O 
+  a. If Throw is true, then throw a TypeError exception. 
+8. Return. 
+
+1. ToObject(base)の呼び出し結果をOとします。
+2. もしOの[[CanPut]]内部メソッドを引数Pで呼び出した結果がfalseならば...
+  a. もしThrowがtrueならば、TypeErrorをスローします。
+  b. そうでなければ、そのまま終わります。
+3. Oの[[GetOwnProperty]]内部メソッドを引数Pで呼び出した結果をownDescとします。
+4. もしIsDataDescriptor(ownDesc)がtrueならば...
+  a. もしThrowがtrueならば、TypeErrorをスローします。
+  b. そうでなければ、そのまま終わります。
+5. Oの[[GetProperty]]内部メソッドを引数Pで呼び出した結果をdescとします。これはそれ固有プロパティか、継承されたアクセサプロパティ記述子か、継承されたデータプロパティ記述子のいずれかになります。
+6. もしIsAccessorDescriptor(desc)がtrueならば...
+  a  undefinedではない筈のdesc.[[Set]]をsettterとします。
+  b. this値としてbase、引数リストにはWだけを含むようにして、setterの[[Call]]内部メソッドを呼び出します。
+7. そうでなければ、一時オブジェクトにおける固有プロパティを作成するための要求です。
+  a もしThrowがtrueならば、TypeErrorをスローします。
+8. 終わります。
+
+
+NOTE The object that may be created in step 1 is not accessible outside of the above method. An implementation might choose to avoid the actual creation of that transient object. The only situations where such an actual property assignment that uses this internal method can have visible effect are when it either invokes an accessor function or is in violation of a Throw predicated error check. When Throw is true any property assignment that would create a new property on the transient object throws an error. 
+
+注意：ステップ１で作られたオブジェクトは上記のメソッドの外部からはアクセスすることはできません。実装によっては実際の一時オブジェクトの生成はしないようにしているかもしれません。この内部メソッドを使った実際のプロパティへのアクセスが目に見える影響を与える状況というのは、アクセサ関数を呼び出すときだけ、もしくは、エラーチェックを前提としたThrowの違反があったときだけです。Throwがtrueならば、一時オブジェクトにおける新しいプロパティの作成によるプロパティの代入はエラーをスローします。
+
+
+* 8.8 The List Specification Type 
+
+* 8.8 リスト型
+
+
+The List type is used to explain the evaluation of argument lists (see 11.2.4) in new expressions, in function calls, and in other algorithms where a simple list of values is needed. Values of the List type are simply ordered sequences of values. These sequences may be of any length. 
+
+リスト型は、new式、関数呼び出し、値の単純なリストが必要なその他のアルゴリズムでにおいて引数リスト(11.2.4)を評価方法を説明するときに使われます。リスト型の値は、単純に順序付けた値の並びです。これらの並びはどんな長さにもなります。
+
+
+* 8.9 The Completion Specification Type 
+
+* 8.9 補完型
+
+
+The Completion type is used to explain the behaviour of statements (break, continue, return and throw) that perform nonlocal transfers of control. Values of the Completion type are triples of the form (type, value, target), where type is one of normal, break, continue, return, or throw, value is any ECMAScript language value or empty, and target is any ECMAScript identifier or empty. 
+
+補完型は制御の非局所的な転送を行うようなステートメント(break, continue, return, throw)の振る舞いを説明するのに使われます。補完型の値は(型、値、対象)という形式の三項組となります。型はnormal, break, continue, return, throwのいずれかであり、値はECMAScript言語の値もしくは空であり、対象はECMAScriptの識別子もしくは空です。
+
+
+The term “abrupt completion” refers to any completion with a type other than normal. 
+
+"不測の補完"という用語は、normal以外の型による補完を指し示します。
+
+
+* 8.10 The Property Descriptor and Property Identifier Specification Types 
+
+* 8.10 プロパティ記述子型とプロパティ識別子型
+
+
+The Property Descriptor type is used to explain the manipulation and reification of named property attributes. Values of the Property Descriptor type are records composed of named fields where each field's name is an attribute name and its value is a corresponding attribute value as specified in 8.6.1. In addition, any field may be present or absent. 
+
+プロパティ記述子型は、名前付きプロパティの属性の操作と具体化を説明するのに使われます。プロパティ記述子型の値は、8.6.1で示された属性の名前のフィールド名と、属性の値に相当するフィールド値から構成されるレコードです。また、いずれかのフィールドが抜けていることがあります。
+
+
+Property Descriptor values may be further classified as data property descriptors and accessor property descriptors based upon the existence or use of certain fields. A data property descriptor is one that includes any fields named either [[Value]] or [[Writable]]. An accessor property descriptor is one that includes any fields named either [[Get]] or [[Set]]. Any property descriptor may have fields named [[Enumerable]] and [[Configurable]]. A Property Descriptor value may not be both a data property descriptor and an accessor property descriptor; however, it may be neither. A generic property descriptor is a Property Descriptor value that is neither a data property descriptor nor an accessor property descriptor. A fully populated property descriptor is one that is either an accessor property descriptor or a data property descriptor and that has all of the fields that correspond to the property attributes defined in either 8.6.1 Table 5 or Table 6. 
+
+更に、プロパティ記述子型の値は特定のフィールドの有無や使い方によって、データプロパティ記述子とアクセサプロパティ記述子に分類されます。データプロパティ記述子は、[[Value]]もしくは[[Writable]]という名前のフィールドを含むものです。アクセサプロパティ記述子は[[Get]]もしくは[[Set]]という名前のフィールドを持つものです。どのプロパティ記述子も[[Enumerable]]や[[Configurable]]という名前を付けられたフィールドを持ち得ます。プロパティ記述子型の値は、データプロパティ記述子とアクセサプロパティ記述子の両方ではありません。しかしながら、どちらもでもないでしょう。ジェネリックなプロパティ記述子型の値は、データプロパティ記述子でもアクセサプロパティ記述子でもありません。完全実装されたプロパテ記述子はアクセサプロパティ記述子もしくはデータプロパティ記述子であり、8.6.1の表5もしくは表6のどちらかで定義されたプロパティ属性に相当するすべてのフィールドを持っています。
+
+
+For notational convenience within this specification, an object literal-like syntax can be used to define a property descriptor value. For example, Property Descriptor {[[Value]]: 42, [[Writable]]: false, [[Configurable]]: true} defines a data property descriptor. Field name order is not significant. Any fields that are not explicitly listed are considered to be absent. 
+
+この仕様の表記の都合上、プロパティ記述子の値を定義するのにオブジェクトのリテラル表現が用いられています。例えば、プロパティ記述子 {[[Value]]: 42, [[Writable]]: false, [[Configurable]]: true } はデータプロパティ記述子を定義しています。フィールド名の順番は重要ではありません。明示的にリストされていないフィールドはすべて抜けていると見なされます。
+
+
+In specification text and algorithms, dot notation may be used to refer to a specific field of a Property Descriptor. For example, if D is a property descriptor then D.[[Value]] is shorthand for “the field of D named [[Value]]”. 
+
+仕様上のテキストとアルゴリズムにおいて、ドット記法はプロパティ記述子の特定のフィールドを参照するのに用いられます。例えば、Dがプロパティ記述子ならば、D.[[Value]]は"Dの[[Value]]と名前付けられたフィールド"の簡易表記です。
+
+
+The Property Identifier type is used to associate a property name with a Property Descriptor. Values of the Property Identifier type are pairs of the form (name, descriptor), where name is a String and descriptor is a Property Descriptor value. 
+
+プロパティ識別子型はプロパティ記述子にプロパティ名を関連付けるのに用いられます。プロパティ識別子型の値は(名前、記述子)という二項組になります。名前は文字列、記述子はプロパティ記述子型の値です。
+
+
+The following abstract operations are used in this specification to operate upon Property Descriptor values: 
+
+この仕様において、以下の抽象操作はプロパティ記述子型の値を操作するために使われます。
+
+
+* 8.10.1 IsAccessorDescriptor ( Desc )
+
+
+When the abstract operation IsAccessorDescriptor is called with property descriptor Desc, the following steps are taken: 
+
+抽象操作IsAccessorDescriptorがプロパティ記述子Descを伴って呼び出された場合には、以下のステップで行われます。
+
+
+1. If Desc is undefined, then return false. 
+2. If both Desc.[[Get]] and Desc.[[Set]] are absent, then return false. 
+3. Return true. 
+
+1. もしDescがundefinedならば、falseを返します。
+2. もしDesc.[[Get]]もDesc.[[Set]]も存在しなかったら、falseを返します。
+3. trueを返します。
+
+
+* 8.10.2 IsDataDescriptor ( Desc )
+
+
+When the abstract operation IsDataDescriptor is called with property descriptor Desc, the following steps are taken: 
+
+抽象操作IsDataDescriptorがプロパティ記述子Descを伴って呼び出された場合には、以下のステップで行われます。
+
+
+1. If Desc is undefined, then return false. 
+2. If both Desc.[[Value]] and Desc.[[Writable]] are absent, then return false. 
+3. Return true. 
+
+1. もしDescがundefinedならば、falseを返します。
+2. もしDesc.[[Value]]もDesc.[[Writable]]も存在しなかったら、falseを返します。
+3. trueを返します。
+
+
+* 8.10.3 IsGenericDescriptor ( Desc )
+
+
+When the abstract operation IsGenericDescriptor is called with property descriptor Desc, the following steps are taken: 
+
+抽象操作IsGenericDescriptorがプロパティ記述子Descを伴って呼び出された場合には、以下のステップで行われます。
+
+
+1. If Desc is undefined, then return false. 
+2. If IsAccessorDescriptor(Desc) and IsDataDescriptor(Desc) are both false, then return true. 
+3. Return false. 
+
+1. もしDescがundefinedならば、falseを返します。
+2. もしIsAccessorDescriptor(Desc)もIsDataDescriptor(Desc)もfalseならば、trueを返します。
+3. falseを返します。
+
+
+* 8.10.4 FromPropertyDescriptor ( Desc )
+
+
+When the abstract operation FromPropertyDescriptor is called with property descriptor Desc, the following steps are taken: 
+
+抽象操作FromPropertyDescriptorがプロパティ記述子Descを伴って呼び出された場合には、以下のステップで行われます。
+
+
+The following algorithm assumes that Desc is a fully populated Property Descriptor, such as that returned from [[GetOwnProperty]] (see 8.12.1). 
+
+以下のアルゴリズムは、[[GetOwnProperty]](8.12.1)から返された値のように、Descが完全実装されたプロパティ記述子であることを仮定しています。
+
+
+1. If Desc is undefined, then return undefined. 
+2. Let obj be the result of creating a new object as if by the expression new Object() where Object is the standard built-in constructor with that name. 
+3. If IsDataDescriptor(Desc) is true, then 
+  a. Call the [[DefineOwnProperty]] internal method of obj with arguments "value", Property Descriptor {[[Value]]: Desc.[[Value]], [[Writable]]: true, [[Enumerable]]: true, [[Configurable]]: true}, and false. 
+  b. Call the [[DefineOwnProperty]] internal method of obj with arguments "writable", Property Descriptor {[[Value]]: Desc.[[Writable]], [[Writable]]: true, [[Enumerable]]: true, [[Configurable]]: true}, and false. 
+4. Else, IsAccessorDescriptor(Desc) must be true, so 
+  a. Call the [[DefineOwnProperty]] internal method of obj with arguments "get", Property Descriptor {[[Value]]: Desc.[[Get]], [[Writable]]: true, [[Enumerable]]: true, [[Configurable]]: true}, and false. 
+  b. Call the [[DefineOwnProperty]] internal method of obj with arguments "set", Property Descriptor {[[Value]]: Desc.[[Set]], [[Writable]]: true, [[Enumerable]]: true, [[Configurable]]: true}, and false. 
+5. Call the [[DefineOwnProperty]] internal method of obj with arguments "enumerable", Property Descriptor {[[Value]]: Desc.[[Enumerable]], [[Writable]]: true, [[Enumerable]]: true, [[Configurable]]: true}, and false. 
+6. Call the [[DefineOwnProperty]] internal method of obj with arguments "configurable", Property Descriptor {[[Value]]: Desc.[[Configurable]], [[Writable]]: true, [[Enumerable]]: true, [[Configurable]]: true}, and false. 
+7. Return obj. 
+
+1. もしDescがundefinedならば、undefinedを返します。
+2. Objectがその名前を持つ標準の組み込みのコンストラクタであり、new Object()という式に作られたかのようにして、新しいオブジェクトを作った結果をobjとします。
+3. もしIsDataDescriptor(Desc)がtrueならば...
+  a. objの[[DefineOwnProperty]]内部メソッドを、
+    プロパティ名を"value"、
+    プロパティ記述子を
+    {
+      [[Value]]: Desc.[[Value]], 
+      [[Writable]]: true,
+      [[Enumerable]]: true,
+      [[Configurable]]: true
+    }、
+    作成失敗時フラグをfalseで呼び出します。
+  b. objの[[DefineOwnProperty]]内部メソッドを、
+    プロパティ名を"writable"、
+    プロパティ記述子を
+    {
+      [[Value]]: Desc.[[Writable]],
+      [[Writable]]: true,
+      [[Enumerable]]: true,
+      [[Configurable]]: true
+    }、
+    作成失敗時フラグをfalseで呼び出します。
+4.そうでなければ、IsAccessorDescriptor(Desc)はtrueであるので...
+  a. objの[[DefineOwnProperty]]内部メソッドを、
+    プロパティ名を"get"、
+    プロパティ記述子を
+    {
+      [[Value]]: Desc.[[Writable]],
+      [[Writable]]: true,
+      [[Enumerable]]: true,
+      [[Configurable]]: true
+    }、
+    作成失敗時フラグをfalseで呼び出します。
+  b. objの[[DefineOwnProperty]]内部メソッドを、
+    プロパティ名を"set"、
+    プロパティ記述子を
+    {
+      [[Value]]: Desc.[[Set]],
+      [[Writable]]: true,
+      [[Enumerable]]: true,
+      [[Configurable]]: true
+    }、
+    作成失敗時フラグをfalseで呼び出します。
+5. objの[[DefineOwnProperty]]内部メソッドを、
+    プロパティ名を"enumerable"、
+    プロパティ記述子を
+    {
+      [[Value]]: Desc.[[Enumerable]],
+      [[Writable]]: true,
+      [[Enumerable]]: true,
+      [[Configurable]]: true
+    }、
+    作成失敗時フラグをfalseで呼び出します。
+6. objの[[DefineOwnProperty]]内部メソッドを、
+   プロパティ名を"configurable"、
+    プロパティ記述子を
+    {
+      [[Value]]: Desc.[[Enumerable]],
+      [[Writable]]: true,
+      [[Enumerable]]: true,
+      [[Configurable]]: true
+    }、
+    作成失敗時フラグをfalseで呼び出します。
+7. objを返します。
+
+
+* 8.10.5 ToPropertyDescriptor ( Obj )
+
+
+When the abstract operation ToPropertyDescriptor is called with object Desc, the following steps are taken: 
+
+抽象操作ToPropertyDescriptorがオブジェクトDescで呼び出された場合には、以下のステップで行われます。
+
+
+1. If Type(Obj) is not Object throw a TypeError exception. 
+2. Let desc be the result of creating a new Property Descriptor that initially has no fields. 
+3. If the result of calling the [[HasProperty]] internal method of Obj with argument "enumerable" is true, then 
+  a. Let enum be the result of calling the [[Get]] internal method of Obj with "enumerable". 
+  b. Set the [[Enumerable]] field of desc to ToBoolean(enum). 
+4. If the result of calling the [[HasProperty]] internal method of Obj with argument "configurable" is true, then 
+  a. Let conf be the result of calling the [[Get]] internal method of Obj with argument "configurable". 
+  b. Set the [[Configurable]] field of desc to ToBoolean(conf). 
+5. If the result of calling the [[HasProperty]] internal method of Obj with argument "value" is true, then 
+  a. Let value be the result of calling the [[Get]] internal method of Obj with argument “value”. 
+  b. Set the [[Value]] field of desc to value. 
+6. If the result of calling the [[HasProperty]] internal method of Obj with argument "writable" is true, then 
+  a. Let writable be the result of calling the [[Get]] internal method of Obj with argument "writable". 
+  b. Set the [[Writable]] field of desc to ToBoolean(writable). 
+7. If the result of calling the [[HasProperty]] internal method of Obj with argument "get" is true, then 
+  a. Let getter be the result of calling the [[Get]] internal method of Obj with argument "get". 
+  b. If IsCallable(getter) is false and getter is not undefined, then throw a TypeError exception. 
+  c. Set the [[Get]] field of desc to getter. 
+8. If the result of calling the [[HasProperty]] internal method of Obj with argument "set" is true, then 
+  a. Let setter be the result of calling the [[Get]] internal method of Obj with argument "set". 
+  b. If IsCallable(setter) is false and setter is not undefined, then throw a TypeError exception. 
+  c. Set the [[Set]] field of desc to setter. 
+9. If either desc.[[Get]] or desc.[[Set]] are present, then 
+  a. If either desc.[[Value]] or desc.[[Writable]] are present, then throw a TypeError exception. 
+10. Return desc. 
+
+1. もしType(Obj)がObjectでなければ、TypeErrorをスローします。
+2. フィールドを持たない新しいプロパティ記述子を作った結果をdescとします。
+3. もしObjの[[HasProperty]]内部メソッドを引数"enumerable"で呼び出した結果がtrueの場合には...
+  a. Objの[[Get]]内部メソッドを引数"enumerable"で呼び出した結果をenumとします。
+  b. descの[[Enumerable]]フィールドをToBoolean(enum)とします。
+4. もしObjの[[HasProperty]]内部メソッドを引数"configurable"で呼び出した結果がtrueの場合には...
+  a. Objの[[Get]]内部メソッドを引数"configurable"で呼び出した結果をconfとします。
+  b. descの[[Configurable]]フィールドをToBoolean(conf)とします。
+5. もしObjの[[HasProperty]]内部メソッドを引数"value"で呼び出した結果がtrueの場合には...
+  a. Objの[[Get]]内部メソッドを引数"value"で呼び出した結果をvalueとします。
+  b. descの[[Value]]フィールドをvalueとします。
+6. もしObjの[[HasProperty]]内部メソッドを引数"writable"で呼び出した結果がtrueの場合には...
+  a. Objの[[Get]]内部メソッドを引数"writable"で呼び出した結果をwritableとします。
+  b. descの[[Writable]]フィールドをToBoolean(writable)とします。
+7. もしObjの[[HasProperty]]内部メソッドを引数"get"で呼び出した結果がtrueの場合には...
+  a. Objの[[Get]]内部メソッドを引数"get"で呼び出した結果をgetterとします。
+  b. もしIsCallable(getter)がfalseならば、getterはundefinedとし、TypeErrorをスローします。
+  c. descの[[Get]]フィールドをgetterとします。
+8. もしObjの[[HasProperty]]内部メソッドを引数"set"で呼び出した結果がtrueの場合には...
+  a. Objの[[Get]]内部メソッドを引数"set"で呼び出した結果をsetterとします。
+  b. もしIsCallable(setter)がfalseならば、setterはundefinedとし、TypeErrorをスローします。
+  c. descの[[Set]]フィールドをsetterとします。
+9. もしdesc.[[Get]]もしくはdesc.[[Set]]が存在した場合には...
+  a. もしdesc.[[Value]]もしくはdesc.[[Writable]]が存在したら、TypeErrorをスローします。
+10. descを返します。
+
+
+* 8.11 The Lexical Environment and Environment Record Specification Types 
+
+* 8.11 レキシカル環境と環境レコード型
+
+
+The Lexical Environment and Environment Record types are used to explain the behaviour of name resolution in nested functions and blocks. These types and the operations upon them are defined in Clause 10. 
+
+レキシカル環境と環境レコード型は入れ子になった関数とブロックにおける名前解決の振る舞いを説明するのに用いられます。これらの方は10節で定義されています。
+
+
+* 8.12 Algorithms for Object Internal Methods 
+
+* 8.12 オブジェクトの内部メソッドのアルゴリズム
+
+
+In the following algorithm descriptions, assume O is a native ECMAScript object, P is a String, Desc is a Property Description record, and Throw is a Boolean flag. 
+
+以降のアルゴリズムの説明において、OはネイティブなECMAScriptのオブジェクト、Pは文字列、Descはプロパティ記述レコード、ThrowはBoolean型の値とします。
+
+
+* 8.12.1 [[GetOwnProperty]] ( P )
+
+
+When the [[GetOwnProperty]] internal method of O is called with property name P, the following steps are taken: 
+
+Oの[[GetOwnProperty]]内部メソッドがプロパティ名Pで呼び出された場合には、以下のステップで行われます。
+
+
+1. If O doesn't have an own property with name P, return undefined. 
+2. Let D be a newly created Property Descriptor with no fields. 
+3. Let X be O's own property named P. 
+4. If X is a data property, then 
+  a. Set D.[[Value]] to the value of X's [[Value]] attribute. 
+  b. Set D.[[Writable]] to the value of X's [[Writable]] attribute 
+5. Else X is an accessor property, so 
+  a. Set D.[[Get]] to the value of X's [[Get]] attribute. 
+  b. Set D.[[Set]] to the value of X's [[Set]] attribute. 
+6. Set D.[[Enumerable]] to the value of X's [[Enumerable]] attribute. 
+7. Set D.[[Configurable]] to the value of X's [[Configurable]] attribute. 
+8. Return D. 
+
+1. もしOが固有プロパティPを持っていないならば、undefinedが返されます。
+2. フィールドを持たない新しいプロパティ記述子を作りDとします。
+3. OのPという名前の固有プロパティをDとします。
+4. もしXがデータプロパティならば...
+  a. D.[[Value]]をXの[[Value]]属性の値に設定します。
+  b. D.[[Writable]]をXの[[Writable]属性の値に設定します。
+5. そうでなければ、Xはアクセサプロパティなので...
+  a. D.[[Get]]をXの[[Get]]属性の値に設定します。
+  b. D.[[Set]]をXの[[Set]]属性の値に設定します。
+6. D.[[Enumerable]]をXの[[Enumerable]]属性の値に設定します。
+7. D.[[Configurable]]をXの[[Configurable]]属性の値に設定します。
+8. Dを返します。
+
+
+However, if O is a String object it has a more elaborate [[GetOwnProperty]] internal method defined in 15.5.5.2. 
+
+ただし、もしOがStringオブジェクトならば、15.5.5.2で定義されるより複雑な[[GetOwnProperty]]内部メソッドになります。
+
+
+* 8.12.2 [[GetProperty]] ( P )
+
+
+When the [[GetProperty]] internal method of O is called with property name P, the following steps are taken: 
+
+Oの[[GetProperty]]内部メソッドがプロパティ名Pで呼び出された場合には、以下のステップで行われます。
+
+
+1. Let prop be the result of calling the [[GetOwnProperty]] internal method of O with property name P. 
+2. If prop is not undefined, return prop. 
+3. Let proto be the value of the [[Prototype]] internal property of O. 
+4. If proto is null, return undefined. 
+5. Return the result of calling the [[GetProperty]] internal method of proto with argument P. 
+
+1. Oの[[GetOwnProperty]]内部メソッドをプロパティ名Pで呼び出した結果をpropとします。
+2. もしpropがundefined以外ならば、propを返します。
+3. Oの[[Prototype]]内部プロパティの値をprotoとします。
+4. もしprotoがnullならば、undefinedを返します。
+5. protpの[[GetProperty]]内部メソッドを引数Pで呼び出した結果を返します。
+
+
+* 8.12.3 [[Get]] ( P )
+
+
+When the [[Get]] internal method of O is called with property name P, the following steps are taken: 
+
+Oの[[Get]]内部メソッドがプロパティ名Pで呼び出された場合には、以下のステップで行われます。
+
+
+8. Let desc be the result of calling the [[GetProperty]] internal method of O with property name P. 
+9. If desc is undefined, return undefined. 
+10. If IsDataDescriptor(desc) is true, return desc.[[Value]]. 
+11. Otherwise, IsAccessorDescriptor(desc) must be true so, let getter be desc.[[Get]]. 
+12. If getter is undefined, return undefined. 
+13. Return the result calling the [[Call]] internal method of getter providing O as the this value and providing no arguments. 
+
+8. Oの[[GetProperty]]内部メソッドをプロパティ名Pで呼び出した結果をdescとします。
+9 もしdescがundefinedならば、undefinedを返します。
+10. もしIsDataDescriptor(desc)がtrueならば、desc.[[Value]]を返します。
+11. そうでなければ、IsAccessorDescriptor(desc)がtrueの筈なので、getterをdesc.[[Get]]とします。
+12. もしgetterがundefinedならば、undefinedを返します。
+13. this値としてOを使い、引数無しで、getterの[[Call]]内部メソッドを呼び出した結果を返します。
+
+
+* 8.12.4 [[CanPut]] ( P )
+
+
+When the [[CanPut]] internal method of O is called with property name P, the following steps are taken: 
+
+Oの[[CanPut]]内部メソッドがプロパティ名Pで呼び出された場合には、以下のステップで行われます。
+
+
+1. Let desc be the result of calling the [[GetOwnProperty]] internal method of O with argument P. 
+2. If desc is not undefined, then 
+  a. If IsAccessorDescriptor(desc) is true, then 
+    i. If desc.[[Set]] is undefined, then return false. 
+    ii. Else return true. 
+  b. Else, desc must be a DataDescriptor so return the value of desc.[[Writable]]. 
+3. Let proto be the [[Prototype]] internal property of O. 
+4. If proto is null, then return the value of the [[Extensible]] internal property of O. 
+5. Let inherited be the result of calling the [[GetProperty]] internal method of proto with property name P. 
+6. If inherited is undefined, return the value of the [[Extensible]] internal property of O. 
+7. If IsAccessorDescriptor(inherited) is true, then 
+  a. If inherited.[[Set]] is undefined, then return false. 
+  b. Else return true. 
+8. Else, inherited must be a DataDescriptor 
+  a. If the [[Extensible]] internal property of O is false, return false. 
+  b. Else return the value of inherited.[[Writable]]. 
+
+1. Oの[[GetOwnProperty]]内部メソッドを引数Pで呼び出した結果をdescとします。
+2. もしdescがundefined以外ならば...
+  a. もしIsAccessorDescriptor(desc)がtrueならば...
+    i. もしdesc.[[Set]]がundefinedならば、falseを返します。
+    ii. そうでなければ、trueを返します。
+  b. そうでなければ、descはDataDescriptorに違いないので、desc.[[Writable]]の値を返します。
+3. Oの[[Prototype]]内部プロパティの値をprotoとします。
+4. もしprotoがnullならば、Oの[[Extensible]]内部プロパティの値を返します。
+5. protoの[[Extensible]]内部メソッドをプロパティ名Pで呼び出した結果をinheritedとします。
+6. もしinheritanceがundefinedならば、Oの[[Extensible]]内部プロパティの値を返します。
+7. もしIsAccessorDescriptor(inherited)がtrueならば...
+  a. もしinherited.[[Set]]がundefinedならば、falseを返します。
+  b. そうでなければ、trueを返します。
+8. そうでなければ、inheritedはDataDescriptorに違いないので...
+  a. Oの[[Extensible]]内部プロパティがfalseならば、falseを返します。
+  b. そうでなければ、inherited.[[Writable]]の値を返します。
+
+
+Host objects may define additional constraints upon [[Put]] operations. If possible, host objects should not allow [[Put]] operations in situations where this definition of [[CanPut]] returns false. 
+
+ホストオブジェクトは追加の制約を[[Put]]操作に対して定義しているかもしれません。もし可能であれば、ホストオブジェクトは、ここの定義の[[CanPut]]がfalseを返すような状況では、[[Put]]操作を許してはいけません。
+
+
+* 8.12.5 [[Put]] ( P, V, Throw )
+
+
+When the [[Put]] internal method of O is called with property P, value V, and Boolean flag Throw, the following steps are taken: 
+
+Oの[[Put]]内部メソッドがプロパティ名P、値V、BooleanフラグThrowで呼び出された場合には、以下のステップで行われます。
+
+
+1. If the result of calling the [[CanPut]] internal method of O with argument P is false, then 
+  a. If Throw is true, then throw a TypeError exception. 
+  b. Else return. 
+2. Let ownDesc be the result of calling the [[GetOwnProperty]] internal method of O with argument P. 
+3. If IsDataDescriptor(ownDesc) is true, then 
+  a. Let valueDesc be the Property Descriptor {[[Value]]: V}. 
+  b. Call the [[DefineOwnProperty]] internal method of O passing P, valueDesc, and Throw as arguments. 
+  c. Return. 
+4. Let desc be the result of calling the [[GetProperty]] internal method of O with argument P. This may be either an own or inherited accessor property descriptor or an inherited data property descriptor. 
+5. If IsAccessorDescriptor(desc) is true, then 
+  a. Let setter be desc.[[Set]] which cannot be undefined. 
+  b. Call the [[Call]] internal method of setter providing O as the this value and providing V as the sole argument. 
+6. Else, create a named data property named P on object O as follows 
+  a. Let newDesc be the Property Descriptor {[[Value]]: V, [[Writable]]: true, [[Enumerable]]: true, [[Configurable]]: true}. 
+  b. Call the [[DefineOwnProperty]] internal method of O passing P, newDesc, and Throw as arguments. 
+7. Return. 
+
+1. もしOの[[CanPut]]内部メソッドを引数Pで呼び出した結果がfalseの場合には...
+  a. Throwがtrueならば、TypeErrorをスローします。
+  b. そうでなければ、戻ります。
+2. Oの[[GetOwnProperty]]内部メソッドを引数Pで呼び出した結果をownDescとします。
+3. もしIsDataDescriptor(ownDesc)がtrueならば...
+  a. プロパティ記述子
+    {
+      [[Value]]: V
+    }
+    をvalueDescとします。
+  b. Oの[[DefineOwnProperty]]内部メソッドを引数P, valueDesc, Throwで呼び出します。
+4. Oの[[GetProperty]]内部メソッドを引数Pで呼び出した結果をdescとします。descは自分自身のアクセサプロパティ、継承したアクセサプロパティ、継承したデータプロパティ記述子のいずれかになります。
+5. もしIsAccessorDescriptor(desc)がtrueならば...
+  a. undefinedではないに違いないdesc.[[Set]]をsetterとします。
+  b. this値としてOを使い、引数をVひとつだけで、setterの[[Call]]内部メソッドを呼び出します。
+6. そうでなければ、オブジェクトOに名前付きデータプロパティPを以下のとおり作ります。
+  a. プロパティ記述子
+    {
+      [[Value]]: V,
+      [[Writable]]: true,
+      [[Enumerable]]: true,
+      [[Configurable]]: true
+    }
+    をnewDescとします。
+  b. Oの[[DefineOwnProperty]]内部メソッドを引数P, newDesc, Throwで呼び出します。
+7. 戻ります。
+
+
+* 8.12.6 [[HasProperty]] ( P )
+
+
+When the [[HasProperty]] internal method of O is called with property name P, the following steps are taken: 
+
+Oの[[HasProperty]]内部メソッドがプロパティ名Pで呼び出された場合には、以下のステップで行われます。
+
+
+1. Let desc be the result of calling the [[GetProperty]] internal method of O with property name P. 
+2. If desc is undefined, then return false. 
+3. Else return true. 
+
+1. Oの[[GetProperty]]内部メソッドをプロパティ名Pで呼び出した結果をdescとします。
+2. もしdescがundefinedならば、falseを返します。
+3. そうでなければ、trueを返します。
+
+
+* 8.12.7 [[Delete]] ( P, Throw )
+
+
+When the [[Delete]] internal method of O is called with property name P and the Boolean flag Throw, the following steps are taken: 
+
+Oの[[Delete]]内部メソッドがプロパティ名P、BooleanフラグThrowで呼び出された場合には、以下のステップで行われます。
+
+
+1. Let desc be the result of calling the [[GetOwnProperty]] internal method of O with property name P. 
+2. If desc is undefined, then return true. 
+3. If desc.[[Configurable]] is true, then 
+  a. Remove the own property with name P from O. 
+  b. Return true. 
+4. Else if Throw, then throw a TypeError exception. 
+5. Return false. 
+
+1. Oの[[GetOwnProperty]]内部メソッドをプロパティ名Pで呼び出した結果をdescとします。
+2. もしdescがundefinedならば、trueを返します。
+3. もしdesc.[[Configurable]]がtrueならば...
+  a. Oから名前がPである固有プロパティを削除します。
+  b. trueを返します。
+4. そうでない場合にThrowがtrueならば、TypeErrorをスローします。
+5. falseを返します。
+
+
+* 8.12.8 [[DefaultValue]] ( hint )
+
+
+When the [[DefaultValue]] internal method of O is called with hint String, the following steps are taken: 
+
+Oの[[DefaultValue]]内部メソッドが文字列のヒントで呼び出された場合には、以下のステップで行われます。
+
+
+1. Let toString be the result of calling the [[Get]] internal method of object O with argument "toString". 
+2. If IsCallable(toString) is true then, 
+  a. Let str be the result of calling the [[Call]] internal method of toString, with O as the this value and an empty argument list. 
+  b. If str is a primitive value, return str. 
+3. Let valueOf be the result of calling the [[Get]] internal method of object O with argument "valueOf". 
+4. If IsCallable(valueOf) is true then, 
+  a. Let val be the result of calling the [[Call]] internal method of valueOf, with O as the this value and an empty argument list. 
+  b. If val is a primitive value, return val. 
+5. Throw a TypeError exception. 
+
+1. オブジェクトOの[[Call]]内部メソッドを引数"toString"で呼び出した結果をtoStringとします。
+2. もしIsCallable(toString)がtrueならば...
+  a. toStringの[[Call]]内部メソッドを、this値としてOを使い、空の引数リストで呼び出した結果をstrとします。
+  b. もしstrがプリミティブな値であれば、strを返します。
+3. オブジェクトOの[[Get]]内部メソッドを引数"valueOf"で呼び出した結果をvalueOfとします。
+4. もしIsCallable(valueOf)がtrueならｂ...
+  a. valueOfの[[Call]]内部メソッドを、this値としてOを使い、空の引数リストで呼び出した結果をvalとします。
+  b. もしvalがプリミティブな値であれば、valを返します。
+5. TypeErrorをスローします。
+
+
+When the [[DefaultValue]] internal method of O is called with hint Number, the following steps are taken: 
+
+Oの[[DefaultValue]]内部メソッドが数値のヒントで呼び出された場合には、以下のステップで行われます。
+
+
+1. Let valueOf be the result of calling the [[Get]] internal method of object O with argument "valueOf". 
+2. If IsCallable(valueOf) is true then, 
+  a. Let val be the result of calling the [[Call]] internal method of valueOf, with O as the this value and an empty argument list. 
+  b. If val is a primitive value, return val. 
+3. Let toString be the result of calling the [[Get]] internal method of object O with argument "toString". 
+4. If IsCallable(toString) is true then, 
+  a. Let str be the result of calling the [[Call]] internal method of toString, with O as the this value and an empty argument list. 
+  b. If str is a primitive value, return str. 
+5. Throw a TypeError exception. 
+
+1. オブジェクトOの[[Get]]内部メソッドを引数"valueOf"で呼び出した結果をvalueOfとします。
+2. もしIsCallable(valueOf)がtrueならば...
+  a. valueOfの[[Get]]内部メソッドを、this値としてOを使い、空の引数リストで呼び出した結果をvalとします。
+  b. もしvalがプリミティブな値であれば、valを返します。
+3. オブジェクトOの[[Get]]内部メソッドを引数"toString"で呼び出した結果をtoStringとします。
+4. もしIsCallable(toString)がtrueであれば...
+  a. toStringの[[Call]]内部メソッドを、this値としてOを使い、空の引数リストで呼び出した結果をstrとします。
+  b. もしstrがプリミティブな値であれば、strを返します。
+5. TypeErrorをスローします。
+
+
+When the [[DefaultValue]] internal method of O is called with no hint, then it behaves as if the hint were Number, unless O is a Date object (see 15.9.6), in which case it behaves as if the hint were String. 
+
+Oの[[DefaultValue]]内部メソッドがヒント無しに呼び出された場合には、Oが日付オブジェクト(15.9.6)で無い限りは、ヒントが数値であるかのように振る舞います。日付オブジェクトの場合には、ヒントは文字列であるかのように振る舞います。
+
+
+The above specification of [[DefaultValue]] for native objects can return only primitive values. If a host object implements its own [[DefaultValue]] internal method, it must ensure that its [[DefaultValue]] internal method can return only primitive values. 
+
+上記のネイティブオブジェクトの[[DefaultValue]]の仕様は、プリミティブな値だけを返します。もしホストオブジェクトが固有の[[DefaultValue]]内部メソッドを実装する場合には、[[DefaultValue]]内部メソッドがプリミティブな値だけを返すように保証しなければなりません。
+
+
+* 8.12.9 [[DefineOwnProperty]] ( P, Desc, Throw )
+
+
+In the following algorithm, the term “Reject” means “If Throw is true, then throw a TypeError exception, otherwise return false”. The algorithm contains steps that test various fields of the Property Descriptor Desc for specific values. The fields that are tested in this manner need not actually exist in Desc. If a field is absent then its value is considered to be false. 
+
+以下のアルゴリズムでは"Reject"という用語は"Throwフラグがtrueならば、TypeError例外をスローするが、そうでなければfalseを返す"ということを意味します。アルゴリズムはプロパティ記述子Descの様々なフィールドが特定の値であることをテストするステップが含まれています。この作法においてテストされるフィールドはDescに実際に存在する必要はありません。もしフィールドが存在しなければ、その値はfalseであると見なされます。
+
+
+When the [[DefineOwnProperty]] internal method of O is called with property name P, property descriptor Desc, and Boolean flag Throw, the following steps are taken: 
+
+Oの[[DefineOwnProperty]]内部メソッドが、プロパティ名P、プロパティ記述子Desc、Throwフラグで呼び出された場合には、以下のステップで行われます。
+
+
+1. Let current be the result of calling the [[GetOwnProperty]] internal method of O with property name P. 
+2. Let extensible be the value of the [[Extensible]] internal property of O. 
+3. If current is undefined and extensible is false, then Reject. 
+4. If current is undefined and extensible is true, then 
+  a. If IsGenericDescriptor(Desc) or IsDataDescriptor(Desc) is true, then 
+    i. Create an own data property named P of object O whose [[Value]], [[Writable]], [[Enumerable]] and [[Configurable]] attribute values are described by Desc. If the value of an attribute field of Desc is absent, the attribute of the newly created property is set to its default value. 
+  b. Else, Desc must be an accessor Property Descriptor so, 
+    i. Create an own accessor property named P of object O whose [[Get]], [[Set]], [[Enumerable]] and [[Configurable]] attribute values are described by Desc. If the value of an attribute field of Desc is absent, the attribute of the newly created property is set to its default value. 
+  c. Return true. 
+5. Return true, if every field in Desc is absent. 
+6. Return true, if every field in Desc also occurs in current and the value of every field in Desc is the same value as the corresponding field in current when compared using the SameValue algorithm (9.12). 
+7. If the [[Configurable]] field of current is false then 
+  a. Reject, if the [[Configurable]] field of Desc is true. 
+  b. Reject, if the [[Enumerable]] field of Desc is present and the [[Enumerable]] fields of current and Desc are the Boolean negation of each other. 
+8. If IsGenericDescriptor(Desc) is true, then no further validation is required. 
+9. Else, if IsDataDescriptor(current) and IsDataDescriptor(Desc) have different results, then 
+  a. Reject, if the [[Configurable]] field of current is false. 
+  b. If IsDataDescriptor(current) is true, then 
+    i. Convert the property named P of object O from a data property to an accessor property. 
+
+1. Oの[[GetOwnProperty]]内部メソッドをプロパティ名Pで呼び出した結果をcurrentとします。
+2. Oの[[Extensible]]内部プロパティの値をextensibleとします。
+3. もしcurrentがundefinedでextensibleがfalseであれば、Rejectします。
+4. もしcurrentがundefinedでextensibleがtrueであれば...
+  a. もしIsGenericDescriptor(Desc)もしくはIsDataDescriptor(Desc)がtrueであれば...
+    i. [[Value]], [[Writable]], [[Enumerable]], [[Configurable]]属性の値がDescであるオブジェクトOに対して、名前がPである固有データプロパティを作ります。
+  b. そうでなければ、Descはアクセサプロパティ記述子であるので...
+    i. [[Get]], [[Set]], [[Enumerable]], [[Configurable]]属性の値がDescであるオブジェクトOに対して、名前がPである固有アクセサプロパティを作ります。
+  c. trueを返します。
+5. もしDescにひとつもフィールドがなければ、trueを返します。
+6. もしDescのすべてのフィールドがcurrentに存在し、Descのすべてのフィールドの値がSameValueアルゴリズム(9.12)を使った比較方法でcurrentの対応するフィールドと一致すれば、trueを返します。
+7. もしcurrentの[[Configurable]]フィールドがfalseであれば...
+  a. もしDescの[[Configurable]]フィールドがtrueであれば、Rejectします。
+  b. もしDescの[[Enumerable]]フィールドが存在し、currentの[[Enumerable]]フィールドとDescの[[Enumerable]]フィールドが互いに真理値的に反対であれば、Rejectします。
+8. もしIsGenericDescriptor(Desc)がtrueであれば、これ以上の妥当性検証は要求されません。
+9. そうでない場合に、IsDataDescriptor(current)とIsDataDescriptor(Desc)が異なる結果であれば...
+  a. もしcurrentの[[Configurable]]フィールドがfalseであれば、Rejectします。
+  b. もしIsDataDescriptor(current)がtrueであれば...
+    i. オブジェクトOのPという名前のプロパティをデータプロパティからアクセサプロパティへと変換します。
+
+
+Preserve the existing values of the converted property's [[Configurable]] and [[Enumerable]] attributes and set the rest of the property's attributes to their default values. 
+
+変換したプロパティの[[Configurable]]と[[Enumerable]属性の存在する値を保持し、プロパティの残りの属性をそれらの初期値に設定します。
+
+
+  c. Else, 
+    i. Convert the property named P of object O from an accessor property to a data property. 
+
+  c. そうでなければ...
+    i. オブジェクトOのPという名前のプロパティをアクセサプロパティからデータプロパティへと変換します。
+
+
+Preserve the existing values of the converted property's [[Configurable]] and [[Enumerable]] attributes and set the rest of the property's attributes to their default values. 
+
+変換したプロパティの[[Configurable]]と[[Enumerable]]属性の存在する値を保持し、プロパティの残りの属性をそれらの初期値に設定します。
+
+
+10. Else, if IsDataDescriptor(current) and IsDataDescriptor(Desc) are both true, then 
+  a. If the [[Configurable]] field of current is false, then 
+    i. Reject, if the [[Writable]] field of current is false and the [[Writable]] field of Desc is true. 
+    ii. If the [[Writable]] field of current is false, then 
+      1. Reject, if the [[Value]] field of Desc is present and SameValue(Desc.[[Value]], current.[[Value]]) is false. 
+  b. else, the [[Configurable]] field of current is true, so any change is acceptable. 
+11. Else, IsAccessorDescriptor(current) and IsAccessorDescriptor(Desc) are both true so, 
+  a. If the [[Configurable]] field of current is false, then 
+    i. Reject, if the [[Set]] field of Desc is present and SameValue(Desc.[[Set]], current.[[Set]]) is false. 
+    ii. Reject, if the [[Get]] field of Desc is present and SameValue(Desc.[[Get]], current.[[Get]]) is false. 
+12. For each attribute field of Desc that is present, set the correspondingly named attribute of the property named P of object O to the value of the field. 
+13. Return true. 
+
+10. そうでなければ、もしIsDataDescriptor(current)とIsDataDescriptor(Desc)が両方ともtrueであれば...
+  a. もしcurrentの[[Configurable]]フィールドがfalseならば..
+    i. もしcurrentの[[Writable]]フィールドがfalseであり、Descの[[Writable]]フィールドがtrueであれば、Rejectします。
+    ii. もしcurrentの[[Writable]]フィールドががfalseならば...
+      1. もしDescの[[Value]]フィールドが存在し、SameValue(Desc.[[Value]], current.[[Value]])がfalseならば、Rejectします。
+  b. そうでなければ、currentの[[Configurable]]フィールドはtrueであり、どのような変更も受け付けられます。
+11. そうでなければ、IsAccessorDescriptor(current)とIsAccessorDescriptor(Desc)が両方ともtrueならば...
+  a. もしcurrentの[[Configurable]]フィールドがfalseならば..
+    i. もしDescの[[Set]]フィールドが存在し、SameValue(Desc.[[Set]], current.[[Set]])がfalseならば、Rejectします。
+    ii. もしDescの[[Get]]フィールドが存在し、SameValue(Desc.[[Get]], current.[[Get]])がfalseならば、Rejectします。
+12. Descのすべてのフィールドに対して、オブジェクトOのPという名前のプロパティの対応する属性をフィールドの値に設定します。
+
+
+However, if O is an Array object, it has a more elaborate [[DefineOwnProperty]] internal method defined in 15.4.5.1. 
+
+しかしながら、もしOがArrayオブジェクトであれば、15.4.5.1で定義されるより複雑な[[DefineOwnProperty]]内部メソッドを持ちます。
+
+
+NOTE Step 10.b allows any field of Desc to be different from the corresponding field of current if current's [[Configurable]] field is true. This even permits changing the [[Value]] of a property whose [[Writable]] attribute is false. This is allowed because a true [[Configurable]] attribute would permit an equivalent sequence of calls where [[Writable]] is first set to true, a new [[Value]] is set, and then [[Writable]] is set to false. 
+
+注意：10.bの手続きでは、もしcurrentの[[Configurable]]フィールドがtrueの場合に、Descのすべてのフィールドをcurrentの対応するフィールドとは別々にします。これは、[[Writable]]属性がfalseであるプロパティの[[Value]]を変更することを可能にします。これが許されているのは、[[Configurable]]属性がtrueであることは、[[Writable]]が最初にtrueに設定され、新しい[[Value]]が設定され、それから[[Writable]]がfalseに設定されるという呼び出しと同等の流れを許すためです。
+    </pre>
+    <hr>
+    <div class="s0">
+      Copyright 2013 YAMAMOTO TAIZO All Rights Reserved.
+    </div>
+  </body>
+</html>

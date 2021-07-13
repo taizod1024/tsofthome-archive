@@ -1,0 +1,814 @@
+* 12 Statements 
+
+* 12 文
+
+
+Syntax
+
+構文 
+
+Statement : 
+Block 
+VariableStatement 
+EmptyStatement 
+ExpressionStatement 
+IfStatement 
+IterationStatement 
+ContinueStatement 
+BreakStatement 
+ReturnStatement 
+WithStatement 
+LabelledStatement 
+SwitchStatement 
+ThrowStatement 
+TryStatement 
+DebuggerStatement 
+
+Semantics 
+
+意味
+
+A Statement can be part of a LabelledStatement, which itself can be part of a LabelledStatement, and so on. The 
+labels introduced this way are collectively referred to as the “current label set” when describing the semantics 
+of individual statements. A LabelledStatement has no semantic meaning other than the introduction of a label to 
+a label set. The label set of an IterationStatement or a SwitchStatement initially contains the single element 
+empty. The label set of any other statement is initially empty. 
+
+NOTE Several widely used implementations of ECMAScript are known to support the use of FunctionDeclaration as a 
+Statement. However there are significant and irreconcilable variations among the implementations in the semantics applied 
+to such FunctionDeclarations. Because of these irreconcilable difference, the use of a FunctionDeclaration as a Statement 
+results in code that is not reliably portable among implementations. It is recommended that ECMAScript implementations 
+either disallow this usage of FunctionDeclaration or issue a warning when such a usage is encountered. Future editions of 
+ECMAScript may define alternative portable means for declaring functions in a Statement context. 
+
+12.1 Block 
+Syntax
+
+構文 
+
+Block : 
+{ StatementList[opt] } 
+
+StatementList : 
+Statement 
+StatementList Statement 
+
+Semantics 
+
+意味
+
+The production Block : {} is evaluated as follows: 
+
+1. Return (normal, empty, empty). 
+The production Block : {StatementList }is evaluated as follows: 
+
+1. Return the result of evaluating StatementList. 
+The production StatementList : Statement is evaluated as follows: 
+
+
+
+1. 
+Let s be the result of evaluating Statement. 
+2. 
+If an exception was thrown, return (throw, V, empty) where V is the exception. (Execution now proceeds as 
+if no exception were thrown.) 
+3. 
+Return s. 
+The production StatementList : StatementList Statement is evaluated as follows: 
+
+1. 
+Let sl be the result of evaluating StatementList. 
+2. 
+If sl is an abrupt completion, return sl. 
+3. 
+Let s be the result of evaluating Statement. 
+4. 
+If an exception was thrown, return (throw, V, empty) where V is the exception. (Execution now proceeds as 
+if no exception were thrown.) 
+5. 
+If s.value is empty, let V = sl.value, otherwise let V = s.value. 
+6. 
+Return (s.type, V, s.target). 
+12.2 Variable Statement 
+Syntax
+
+構文 
+
+VariableStatement : 
+var VariableDeclarationList ; 
+
+VariableDeclarationList : 
+
+VariableDeclaration 
+
+VariableDeclarationList , VariableDeclaration 
+
+VariableDeclarationListNoIn : 
+
+VariableDeclarationNoIn 
+
+VariableDeclarationListNoIn , VariableDeclarationNoIn 
+
+VariableDeclaration : 
+Identifier Initialiser[opt] 
+
+VariableDeclarationNoIn : 
+Identifier InitialiserNoIn[opt] 
+
+Initialiser : 
+= AssignmentExpression 
+
+InitialiserNoIn : 
+= AssignmentExpressionNoIn 
+
+A variable statement declares variables that are created as defined in 10.5. Variables are initialised to 
+undefined when created. A variable with an Initialiser is assigned the value of its AssignmentExpression when 
+the VariableStatement is executed, not when the variable is created. 
+
+Semantics 
+
+意味
+
+The production VariableStatement : var VariableDeclarationList ; is evaluated as follows: 
+
+1. 
+Evaluate VariableDeclarationList. 
+2. 
+Return (normal, empty, empty). 
+The production VariableDeclarationList :VariableDeclaration is evaluated as follows: 
+
+1. 
+Evaluate VariableDeclaration. 
+The production VariableDeclarationList : VariableDeclarationList , VariableDeclaration is evaluated as follows: 
+
+
+
+1. Evaluate VariableDeclarationList. 
+2. Evaluate VariableDeclaration. 
+The production VariableDeclaration : Identifier is evaluated as follows: 
+
+1. Return a String value containing the same sequence of characters as in the Identifier. 
+The production VariableDeclaration : Identifier Initialiser is evaluated as follows: 
+
+1. Let lhs be the result of evaluating Identifier as described in 11.1.2. 
+2. Let rhs be the result of evaluating Initialiser. 
+3. Let value be GetValue(rhs). 
+4. Call PutValue(lhs, value). 
+5. Return a String value containing the same sequence of characters as in the Identifier. 
+NOTE The String value of a VariableDeclaration is used in the evaluation of for-in statements (12.6.4). 
+
+If a VariableDeclaration is nested within a with statement and the Identifier in the VariableDeclaration is the 
+same as a property name of the binding object of the with statement’s object environment record, then step 4 
+will assign value to the property instead of to the VariableEnvironment binding of the Identifier. 
+
+The production Initialiser : = AssignmentExpression is evaluated as follows: 
+
+1. Return the result of evaluating AssignmentExpression. 
+The VariableDeclarationListNoIn, VariableDeclarationNoIn and InitialiserNoIn productions are evaluated in the 
+same manner as the VariableDeclarationList, VariableDeclaration and Initialiser productions except that the 
+contained VariableDeclarationListNoIn, VariableDeclarationNoIn, InitialiserNoIn and AssignmentExpressionNoIn 
+are evaluated instead of the contained VariableDeclarationList, VariableDeclaration, Initialiser and 
+AssignmentExpression, respectively. 
+
+12.2.1 Strict Mode Restrictions 
+It is a SyntaxError if a VariableDeclaration or VariableDeclarationNoIn occurs within strict code and its Identifier 
+is either "eval" or "arguments". 
+
+12.3 Empty Statement 
+Syntax
+
+構文 
+
+EmptyStatement : 
+; 
+
+Semantics 
+
+意味
+
+The production EmptyStatement : ; is evaluated as follows: 
+
+1. Return (normal, empty, empty). 
+12.4 Expression Statement 
+Syntax
+
+構文 
+
+ExpressionStatement : 
+[lookahead not_a_member_of {{, function}] Expression ; 
+
+NOTE An ExpressionStatement cannot start with an opening curly brace because that might make it ambiguous with a 
+Block. Also, an ExpressionStatement cannot start with the function keyword because that might make it ambiguous with a 
+FunctionDeclaration. 
+
+
+
+Semantics 
+
+意味
+
+The production ExpressionStatement : [lookahead not_a_member_of {{, function}] Expression; is evaluated as follows: 
+
+1. Let exprRef be the result of evaluating Expression. 
+2. Return (normal, GetValue(exprRef), empty). 
+12.5 The if Statement 
+Syntax
+
+構文 
+
+IfStatement : 
+if( Expression ) Statement else Statement 
+if( Expression ) Statement 
+
+Each else for which the choice of associated if is ambiguous shall be associated with the nearest possible 
+if that would otherwise have no corresponding else. 
+
+Semantics 
+
+意味
+
+The production IfStatement : if( Expression ) Statement else Statement is evaluated as follows: 
+
+1. Let exprRef be the result of evaluating Expression. 
+2. If ToBoolean(GetValue(exprRef)) is true, then 
+a. Return the result of evaluating the first Statement. 
+3. Else, 
+a. Return the result of evaluating the second Statement. 
+The production IfStatement : if( Expression ) Statement is evaluated as follows: 
+
+1. Let exprRef be the result of evaluating Expression. 
+2. If ToBoolean(GetValue(exprRef)) is false, return (normal, empty, empty). 
+3. Return the result of evaluating Statement. 
+12.6 Iteration Statements 
+Syntax
+
+構文 
+
+IterationStatement : 
+do Statement while( Expression );
+while( Expression ) Statement 
+for(ExpressionNoInopt; Expression[opt] ; Expression[opt] ) Statement 
+for(var VariableDeclarationListNoIn; Expression[opt] ; Expression[opt] ) Statement 
+for( LeftHandSideExpression in Expression ) Statement 
+for(var VariableDeclarationNoIn in Expression ) Statement 
+
+12.6.1 The do-while Statement 
+The production do Statement while( Expression ); is evaluated as follows: 
+
+1. Let V = empty. 
+2. Let iterating be true. 
+3. Repeat, while iterating is true 
+a. Let stmt be the result of evaluating Statement. 
+b. If stmt.value is not empty, let V = stmt.value. 
+c. If stmt.type is not continue || stmt.target is not in the current label set, then 
+i. If stmt.type is break and stmt.target is in the current label set, return (normal, V, empty). 
+ii. If stmt is an abrupt completion, return stmt. 
+d. Let exprRef be the result of evaluating Expression. 
+
+
+e. If ToBoolean(GetValue(exprRef)) is false, set iterating to false. 
+4. Return (normal, V, empty); 
+12.6.2 The while Statement 
+The production IterationStatement : while( Expression ) Statement is evaluated as follows: 
+
+1. Let V = empty. 
+2. Repeat 
+a. Let exprRef be the result of evaluating Expression. 
+b. If ToBoolean(GetValue(exprRef)) is false, return (normal, V, empty). 
+c. Let stmt be the result of evaluating Statement. 
+d. If stmt.value is not empty, let V = stmt.value. 
+e. If stmt.type is not continue || stmt.target is not in the current label set, then 
+i. If stmt.type is break and stmt.target is in the current label set, then 
+1. Return (normal, V, empty). 
+ii. If stmt is an abrupt completion, return stmt. 
+12.6.3 The for Statement 
+The production 
+
+IterationStatement : for(ExpressionNoIn[opt] ; Expression[opt] ; Expressionopt) Statement 
+
+is evaluated as follows: 
+
+1. If ExpressionNoIn is present, then. 
+a. Let exprRef be the result of evaluating ExpressionNoIn. 
+b. Call GetValue(exprRef). (This value is not used.) 
+2. Let V = empty. 
+3. Repeat 
+a. If the first Expression is present, then 
+i. Let testExprRef be the result of evaluating the first Expression. 
+ii. If GetValue(testExprRef) is false, return (normal, V, empty). 
+b. Let stmt be the result of evaluating Statement. 
+c. If stmt.value is not empty, let V = stmt.value 
+d. If stmt.type is break and stmt.target is in the current label set, return (normal, V, empty). 
+e. If stmt.type is not continue || stmt.target is not in the current label set, then 
+i. If stmt is an abrupt completion, return stmt. 
+f. If the second Expression is present, then 
+i. Let incExprRef be the result of evaluating the second Expression. 
+ii. Call GetValue(incExprRef). (This value is not used.) 
+The production 
+
+IterationStatement : for(var VariableDeclarationListNoIn ; Expression[opt] ; Expression[opt] ) Statement 
+
+is evaluated as follows: 
+
+1. Evaluate VariableDeclarationListNoIn. 
+2. Let V = empty. 
+3. Repeat 
+a. If the first Expression is present, then 
+i. Let testExprRef be the result of evaluating the first Expression. 
+ii. If GetValue(testExprRef) is false, then return (normal, V, empty). 
+b. Let stmt be the result of evaluating Statement. 
+c. If stmt.value is not empty, let V = stmt.value. 
+d. If stmt.type is break and stmt.target is in the current label set, return (normal, V, empty). 
+e. If stmt.type is not continue || stmt.target is not in the current label set, then 
+i. If stmt is an abrupt completion, return stmt. 
+f. If the second Expression is present, then. 
+i. Let incExprRef be the result of evaluating the second Expression. 
+ii. Call GetValue(incExprRef). (This value is not used.) 
+
+
+12.6.4 The for-inStatement 
+The production IterationStatement : for ( LeftHandSideExpression in Expression ) Statement is evaluated as 
+follows: 
+
+1. 
+Let exprRef be the result of evaluating the Expression. 
+2. 
+Let experValue be GetValue(exprRef). 
+3. 
+If experValue is null or undefined, return (normal, empty, empty). 
+4. 
+Let obj be ToObject(experValue). 
+5. 
+Let V = empty. 
+6. 
+Repeat 
+a. 
+Let P be the name of the next property of obj whose [[Enumerable]] attribute is true. If there is no 
+such property, return (normal, V, empty). 
+b. 
+Let lhsRef be the result of evaluating the LeftHandSideExpression ( it may be evaluated repeatedly). 
+c. 
+Call PutValue(lhsRef, P). 
+d. 
+Let stmt be the result of evaluating Statement. 
+e. 
+If stmt.value is not empty, let V = stmt.value. 
+f. 
+If stmt.type is break and stmt.target is in the current label set, return (normal, V, empty). 
+g. 
+If stmt.type is not continue || stmt.target is not in the current label set, then 
+i. If stmt is an abrupt completion, return stmt. 
+The production 
+
+IterationStatement : for(var VariableDeclarationNoIn in Expression )Statement 
+
+is evaluated as follows: 
+
+1. 
+Let varName be the result of evaluating VariableDeclarationNoIn. 
+2. 
+Let exprRef be the result of evaluating the Expression. 
+3. 
+Let experValue be GetValue(exprRef). 
+4. 
+If experValue is null or undefined, return (normal, empty, empty). 
+5. 
+Let obj be ToObject(experValue). 
+6. 
+Let V = empty. 
+7. 
+Repeat 
+a. 
+Let P be the name of the next property of obj whose [[Enumerable]] attribute is true. If there is no 
+such property, return (normal, V, empty). 
+b. 
+Let varRef be the result of evaluating varName as if it were an Identifier Reference (11.1.2); it may 
+be evaluated repeatedly. 
+c. 
+Call PutValue(varRef, P). 
+d. 
+Let stmt be the result of evaluating Statement. 
+e. 
+If stmt.value is not empty, let V = stmt.value. 
+f. 
+If stmt.type is break and stmt.target is in the current label set, return (normal, V, empty). 
+g. 
+If stmt.type is not continue || stmt.target is not in the current label set, then 
+i. If stmt is an abrupt completion, return stmt. 
+The mechanics and order of enumerating the properties (step 6.a in the first algorithm, step 7.a in the second) 
+is not specified. Properties of the object being enumerated may be deleted during enumeration. If a property 
+that has not yet been visited during enumeration is deleted, then it will not be visited. If new properties are 
+added to the object being enumerated during enumeration, the newly added properties are not guaranteed to 
+be visited in the active enumeration. 
+
+Enumerating the properties of an object includes enumerating properties of its prototype, and the prototype of 
+the prototype, and so on, recursively; but a property of a prototype is not enumerated if it is “shadowed” 
+because some previous object in the prototype chain has a property with the same name. 
+
+NOTE See NOTE 11.13.1. 
+
+
+
+12.7 The continue Statement 
+Syntax
+
+構文 
+
+ContinueStatement : 
+continue [no LineTerminator here] Identifier[opt] ; 
+
+Semantics 
+
+意味
+
+A program is considered syntactically incorrect if either of the following is true: 
+
+. 
+The program contains a continue statement without the optional Identifier, which is not 
+nested, directly or indirectly (but not crossing function boundaries), within an 
+IterationStatement. 
+. 
+The program contains a continue statement with the optional Identifier, where Identifier 
+does not appear in the label set of an enclosing (but not crossing function boundaries) 
+IterationStatement. 
+A ContinueStatement without an Identifier is evaluated as follows: 
+
+1. Return (continue, empty, empty). 
+A ContinueStatement with the optional Identifier is evaluated as follows: 
+1. 
+Return (continue, empty, Identifier). 
+12.8 The break Statement 
+Syntax
+
+構文 
+
+BreakStatement : 
+break[no LineTerminator here] Identifier[opt] ; 
+
+Semantics 
+
+意味
+
+A program is considered syntactically incorrect if either of the following is true: 
+
+. 
+The program contains a break statement without the optional Identifier, which is not 
+nested, directly or indirectly (but not crossing function boundaries), within an 
+IterationStatement or a SwitchStatement. 
+. 
+The program contains a break statement with the optional Identifier, where Identifier does 
+not appear in the label set of an enclosing (but not crossing function boundaries) Statement. 
+A BreakStatement without an Identifier is evaluated as follows: 
+
+1. Return (break, empty, empty). 
+A BreakStatement with an Identifier is evaluated as follows: 
+1. 
+Return (break, empty, Identifier). 
+12.9 The return Statement 
+Syntax
+
+構文 
+
+ReturnStatement : 
+return [no LineTerminator here] Expression[opt] ; 
+
+
+
+Semantics 
+
+意味
+
+An ECMAScript program is considered syntactically incorrect if it contains a return statement that is not 
+within a FunctionBody. A return statement causes a function to cease execution and return a value to the 
+caller. If Expression is omitted, the return value is undefined. Otherwise, the return value is the value of 
+Expression. 
+
+The production ReturnStatement : return[no LineTerminator here] Expression[opt] ; is evaluated as: 
+
+1. 
+If the Expression is not present, return (return, undefined, empty). 
+2. 
+Let exprRef be the result of evaluating Expression. 
+3. 
+Return (return, GetValue(exprRef), empty). 
+12.10 The with Statement 
+Syntax
+
+構文 
+
+WithStatement : 
+with( Expression ) Statement 
+
+The with statement adds an object environment record for a computed object to the lexical environment of 
+the current execution context. It then executes a statement using this augmented lexical environment. Finally, 
+it restores the original lexical environment. 
+
+Semantics 
+
+意味
+
+The production WithStatement : with( Expression ) Statement is evaluated as follows: 
+
+1. 
+Let val be the result of evaluating Expression. 
+2. 
+Let obj be ToObject(GetValue(val)). 
+3. 
+Let oldEnv be the running execution context’s LexicalEnvironment. 
+4. 
+Let newEnv be the result of calling NewObjectEnvironment passing obj and oldEnv as the arguments 
+5. 
+Set the provideThis flag of newEnv to true. 
+6. 
+Set the running execution context’s LexicalEnvironment to newEnv. 
+7. 
+Let C be the result of evaluating Statement but if an exception is thrown during the evaluation, let C be 
+(throw, V, empty), where V is the exception. (Execution now proceeds as if no exception were thrown.) 
+8. 
+Set the running execution context’s Lexical Environment to oldEnv. 
+9. 
+Return C. 
+NOTE No matter how control leaves the embedded Statement, whether normally or by some form of abrupt 
+completion or exception, the LexicalEnvironment is always restored to its former state. 
+
+12.10.1 Strict Mode Restrictions 
+Strict mode code may not include a WithStatement. The occurrence of a WithStatement in such a context is 
+treated as a SyntaxError. 
+
+12.11 The switch Statement 
+Syntax
+
+構文 
+
+SwitchStatement : 
+switch( Expression ) CaseBlock 
+
+CaseBlock : 
+
+{ CaseClauses[opt] }
+
+{ CaseClauses[opt] DefaultClause CaseClauses[opt] } 
+
+
+
+CaseClauses : 
+
+CaseClause 
+
+CaseClauses CaseClause 
+
+CaseClause : 
+case Expression : StatementList[opt] 
+
+DefaultClause : 
+default: StatementList[opt] 
+
+Semantics 
+
+意味
+
+
+The production SwitchStatement : switch( Expression ) CaseBlock is evaluated as follows: 
+
+1. Let exprRef be the result of evaluating Expression. 
+2. Let R be the result of evaluating CaseBlock, passing it GetValue(exprRef) as a parameter. 
+3. If R.type is break and R.target is in the current label set, return (normal, R.value, empty). 
+4. Return R. 
+The production CaseBlock : { CaseClauses[opt] } is given an input parameter, input, and is evaluated as follows: 
+
+1. Let V = empty. 
+2. Let A be the list of CaseClause items in source text order. 
+3. Let searching be true. 
+4. Repeat, while searching is true 
+a. Let C be the next CaseClause in A. If there is no such CaseClause, return (normal, V, empty). 
+b. Let clauseSelector be the result of evaluating C. 
+c. If input is equal to clauseSelector as defined by the === operator, then 
+i. Set searching to false. 
+ii. If C has a StatementList, then 
+1. Evaluate C’s StatementList and let R be the result. 
+2. If R is an abrupt completion, then return R. 
+3. Let V = R.value. 
+5. Repeat 
+a. Let C be the next CaseClause in A. If there is no such CaseClause, return (normal, V, empty). 
+b. If C has a StatementList, then 
+i. Evaluate C’s StatementList and let R be the result. 
+ii. If R.value is not empty, then let V = R.value. 
+iii. If R is an abrupt completion, then return (R.type, V, R.target). 
+The production CaseBlock : { CaseClauses[opt] DefaultClause CaseClauses[opt] } is given an input parameter, input, 
+and is evaluated as follows: 
+
+1. Let V = empty. 
+2. Let A be the list of CaseClause items in the first CaseClauses, in source text order. 
+3. Let B be the list of CaseClause items in the second CaseClauses, in source text order. 
+4. Let found be false. 
+5. Repeat letting C be in order each CaseClause in A 
+a. If found is false, then 
+i. Let clauseSelector be the result of evaluating C. 
+ii. If input is equal to clauseSelector as defined by the === operator, then set found to true. 
+b. If found is true, then 
+i. If C has a StatementList, then 
+1. Evaluate C’s StatementList and let R be the result. 
+2. If R.value is not empty, then let V = R.value. 
+3. R is an abrupt completion, then return (R.type, V, R.target). 
+6. Let foundInB be false. 
+7. If found is false, then 
+a. Repeat, while foundInB is false and all elements of B have not been processed 
+
+
+i. Let C be the next CaseClause in B. 
+ii. Let clauseSelector be the result of evaluating C. 
+iii. If input is equal to clauseSelector as defined by the === operator, then 
+1. Set foundInB to true. 
+2. 
+If C has a StatementList, then 
+a Evaluate C’s StatementList and let R be the result. 
+b If R.value is not empty, then let V = R.value. 
+c R is an abrupt completion, then return (R.type, V, R.target). 
+8. If foundInB is false and the DefaultClause has a StatementList, then 
+a. Evaluate the DefaultClause’s StatementList and let R be the result. 
+b. If R.value is not empty, then let V = R.value. 
+c. If R is an abrupt completion, then return (R.type, V, R.target). 
+9. Repeat (Note that if step 7.a.i has been performed this loop does not start at the beginning of B) 
+a. Let C be the next CaseClause in B. If there is no such CaseClause, return (normal, V, empty). 
+b. If C has a StatementList, then 
+i. Evaluate C’s StatementList and let R be the result. 
+ii. If R.value is not empty, then let V = R.value. 
+iii. If R is an abrupt completion, then return (R.type, V, R.target). 
+The production CaseClause : case Expression : StatementList[opt] is evaluated as follows: 
+
+1. Let exprRef be the result of evaluating Expression. 
+2. Return GetValue(exprRef). 
+NOTE Evaluating CaseClause does not execute the associated StatementList. It simply evaluates the Expression and 
+returns the value, which the CaseBlock algorithm uses to determine which StatementList to start executing. 
+
+12.12 Labelled Statements 
+Syntax
+
+構文 
+
+LabelledStatement : 
+Identifier : Statement 
+
+Semantics 
+
+意味
+
+A Statement may be prefixed by a label. Labelled statements are only used in conjunction with labelled break 
+and continue statements. ECMAScript has no goto statement. 
+
+An ECMAScript program is considered syntactically incorrect if it contains a LabelledStatement that is enclosed 
+by a LabelledStatement with the same Identifier as label. This does not apply to labels appearing within the body 
+of a FunctionDeclaration that is nested, directly or indirectly, within a labelled statement. 
+
+The production Identifier : Statement is evaluated by adding Identifier to the label set of Statement and then 
+evaluating Statement. If the LabelledStatement itself has a non-empty label set, these labels are also added to 
+the label set of Statement before evaluating it. If the result of evaluating Statement is (break, V, L) where L is 
+equal to Identifier, the production results in (normal, V, empty). 
+
+Prior to the evaluation of a LabelledStatement, the contained Statement is regarded as possessing an empty 
+label set, unless it is an IterationStatement or a SwitchStatement, in which case it is regarded as possessing a 
+label set consisting of the single element, empty. 
+
+12.13 The throw Statement 
+Syntax
+
+構文 
+
+ThrowStatement : 
+throw[no LineTerminator here] Expression ; 
+
+
+
+Semantics 
+
+意味
+
+The production ThrowStatement : throw[no LineTerminator here] Expression ; is evaluated as: 
+
+1. 
+Let exprRef be the result of evaluating Expression. 
+2. 
+Return (throw, GetValue(exprRef), empty). 
+12.14 The try Statement 
+Syntax
+
+構文 
+
+TryStatement : 
+try Block Catch 
+try Block Finally 
+try Block Catch Finally 
+
+Catch : 
+catch( Identifier ) Block 
+
+Finally : 
+finally Block 
+
+The try statement encloses a block of code in which an exceptional condition can occur, such as a runtime 
+error or a throw statement. The catch clause provides the exception-handling code. When a catch clause 
+catches an exception, its Identifier is bound to that exception. 
+
+Semantics 
+
+意味
+
+The production TryStatement : try Block Catch is evaluated as follows: 
+
+1. 
+Let B be the result of evaluating Block. 
+2. 
+If B.type is not throw, return B. 
+3. 
+Return the result of evaluating Catch with parameter B. 
+The production TryStatement : try Block Finally is evaluated as follows: 
+
+1. 
+Let B be the result of evaluating Block. 
+2. 
+Let F be the result of evaluating Finally. 
+3. 
+If F.type is normal, return B. 
+4. 
+Return F. 
+The production TryStatement : try Block Catch Finally is evaluated as follows: 
+
+1. 
+Let B be the result of evaluating Block. 
+2. 
+If B.type is throw, then 
+a. 
+Let C be the result of evaluating Catch with parameter B. 
+3. 
+Else, B.type is not throw, 
+a. 
+Let C be B. 
+4. 
+Let F be the result of evaluating Finally. 
+5. 
+If F.type is normal, return C. 
+6. 
+Return F. 
+The production Catch : catch( Identifier ) Block is evaluated as follows: 
+
+1. 
+Let C be the parameter that has been passed to this production. 
+2. 
+Let oldEnv be the running execution context’s LexicalEnvironment. 
+3. 
+Let catchEnv be the result of calling NewDeclarativeEnvironment passing oldEnv as the argument. 
+4. 
+Call the CreateMutableBinding concrete method of catchEnv passing the Identifier String value as the 
+argument. 
+
+
+5. 
+Call the SetMutableBinding concrete method of catchEnv passing the Identifier, C, and false as arguments. 
+Note that the last argument is immaterial in this situation. 
+6. 
+Set the running execution context’s LexicalEnvironment to catchEnv. 
+7. 
+Let B be the result of evaluating Block. 
+8. 
+Set the running execution context’s LexicalEnvironment to oldEnv. 
+9. 
+Return B. 
+NOTE No matter how control leaves the Block the LexicalEnvironment is always restored to its former state. 
+
+The production Finally : finally Block is evaluated as follows: 
+
+1. 
+Return the result of evaluating Block. 
+12.14.1 Strict Mode Restrictions 
+It is an SyntaxError if a TryStatement with a Catch occurs within strict code and the Identifier of the Catch 
+production is either "eval" or "arguments". 
+
+12.15 The debugger statement 
+Syntax
+
+構文 
+
+DebuggerStatement : 
+debugger ; 
+
+Semantics 
+
+意味
+
+Evaluating the DebuggerStatement production may allow an implementation to cause a breakpoint when run 
+under a debugger. If a debugger is not present or active this statement has no observable effect. 
+
+The production DebuggerStatement : debugger ; is evaluated as follows: 
+
+1. 
+If an implementation defined debugging facility is available and enabled, then 
+a. 
+Perform an implementation defined debugging action. 
+b. 
+Let result be an implementation defined Completion value. 
+2. 
+Else 
+a. 
+Let result be (normal, empty, empty). 
+3. 
+Return result. 

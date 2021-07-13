@@ -1,0 +1,114 @@
+* Annex C (informative)
+
+* 補足 C (参考情報)
+
+
+* The Strict Mode of ECMAScript
+
+* ECMAScriptのstrictモード
+
+
+The strict mode restriction and exceptions
+
+strictモードの制約と例外について
+
+
+- A conforming implementation, when processing strict mode code, may not extend the syntax of NumericLiteral (7.8.3) to include OctalIntegerLiteral as described in B.1.1.
+
+- 適合実装では、strictモードのコードの処理において、NumericLiteral(7.8.3)の構文を、B.1.1で述べられるOctalIntegerLiteralを含むようには拡張してはいけません。
+
+
+- A conforming implementation, when processing strict mode code (see 10.1.1), may not extend the syntax of EscapeSequence to include OctalEscapeSequence as described in B.1.2.
+
+- 適合実装では、strictモードのコード(10.1.1)の処理において、EscapeSequenceの構文を、B.1.2で述べられるOctalEscapeSequenceを含むようには拡張してはいけません。
+
+
+- Assignment to an undeclared identifier or otherwise unresolvable reference does not create a property in the global object. When a simple assignment occurs within strict mode code, its LeftHandSide must not evaluate to an unresolvable Reference. If it does a ReferenceError exception is thrown (8.7.2). The LeftHandSide also may not be a reference to a data property with the attribute value {[[Writable]]:false}, to an accessor property with the attribute value {[[Set]]:undefined}, nor to a non-existent property of an object whose [[Extensible]] internal property has the value false. In these cases a TypeError exception is thrown (11.13.1).
+
+- 未宣言の識別子やその他の未解決の参照への代入では、Globalオブジェクトにプロパティを作成することはありません。strictモードのコードで単純な代入が生じた場合には、そのLeftHandSideは評価した結果、解決不能なReferenceになってはいけません。もしそうなったら、ReferenceErrorがスローされます(8.7.2)。LeftHandSideは、属性値が{[[Writable]]:false}でないデータプロパティへの参照ではいけません。また、属性値が{[[Set]]:undefined}でないアクセサプロパティへの参照でもいけません。更に、[[Extensible]]内部プロパティがfalseであるオブジェクトの存在しないプロパティへの参照でもいけません。これらの場合にはTypeErrorがスローされます(11.13.1)。
+
+
+- The identifier eval or arguments may not appear as the LeftHandSideExpression of an Assignment operator (11.13) or of a PostfixExpression (11.3) or as the UnaryExpression operated upon by a Prefix Increment (11.4.4) or a Prefix Decrement (11.4.5) operator.
+
+- 識別子evalもしくはargumentsは、Assignment演算子(11.13)もしくはPostfixExpression(11.3)のLeftHandSideExpressionとして現れてはいけません。また、Prefix Increment演算子(11.4.4)もしくはPrefix Decrement演算子(11.4.5)によって演算されたUnaryExpression として現れてはいけません。
+
+
+- Arguments objects for strict mode functions define non-configurable accessor properties named "caller" and "callee" which throw a TypeError exception on access (10.6).
+
+- strictモードの関数のArgumentsオブジェクトは、アクセスするとTypeErrorをスローする"caller"と"callee"という名前の設定不能なアクセサプロパティを定義します(10.6)。
+
+
+- Arguments objects for strict mode functions do not dynamically share their array indexed property values with the corresponding formal parameter bindings of their functions. (10.6).
+
+- strictモードの関数のArgumentsオブジェクトは、それらの関数の形式的なパラメタによってインデクスされたプロパティの値の配列を動的には共有しません。(10.6)
+
+
+- For strict mode functions, if an arguments object is created the binding of the local identifier arguments to the arguments object is immutable and hence may not be the target of an assignment expression. (10.5).
+
+- strictモードの関数において、あるArgumentsオブジェクトが作られたならば、ローカル識別子ArgumentsのArgumentsオブジェクトへのバインディングは不変であり、それゆえ代入式の対象としてはいけない(10.5)。
+
+
+- It is a SyntaxError if strict mode code contains an ObjectLiteral with more than one definition of any data property (11.1.5).
+
+- strictモードのコードにデータプロパティの定義をひとつ以上持っているObjectLiteralが含まれていれば、SyntaxErrorとなります(11.1.5)。
+
+
+- It is a SyntaxError if the Identifier "eval" or the Identifier "arguments" occurs as the Identifier in a PropertySetParameterList of a PropertyAssignment that is contained in strict code or if its FunctionBody is strict code (11.1.5).
+
+- 識別子"eval"もしくは"arguments"が、strictモードのコードに含まれるPropertyAssignmentのPropertySetParameterListにおける識別子として現れた場合、もしくはそのFunctionBodyがstrictモードのコードである場合に、SyntaxErrorとします(11.1.5)。
+
+
+- Strict mode eval code cannot instantiate variables or functions in the variable environment of the caller to eval. Instead, a new variable environment is created and that environment is used for declaration binding instantiation for the eval code (10.4.2).
+
+- strictモードのevalコードは、evalを呼び出す変数環境において変数や関数をインスタンス化することはできません。その代わりに、新しい変数環境が作られ、その環境はevalコードにとって宣言的なバインディングのインスタンス化のために使われます(10.4.2)。
+
+
+- If this is evaluated within strict mode code, then the this value is not coerced to an object. A this value of null or undefined is not converted to the global object and primitive values are not converted to wrapper objects. The this value passed via a function call (including calls made using Function.prototype.apply and Function.prototype.call) do not coerce the passed this value to an object (10.4.3, 11.1.1, 15.3.4.3, 15.3.4.4).
+
+- strictモードのコードにおいてthisが評価される場合には、this値はオブジェクトであることを強制されません。nullやundefinedのthis値がglobalオブジェクトへ変換されることはありませんし、プリミティブ値がラッパーオブジェクトに変換されることもありません。(Function.prototype.applyやFunction.prototype.callを使った行われた呼び出しを含む)関数呼び出しを通して渡されたthis値は、渡されたthis値をオブジェクトへ渡すことは強制されません(10.4.3, 11.1.1., 15.3.4.3, 15.3.4.4)。
+
+
+- When a delete operator occurs within strict mode code, a SyntaxError is thrown if its UnaryExpression is a direct reference to a variable, function argument, or function name(11.4.1).
+
+- strictモードのコードにおいてdelete演算子が現れた場合、UnaryExpressionが、変数への直接の参照、関数引数、関数名ならばSyntaxErrorがスローされます。
+
+
+- When a delete operator occurs within strict mode code, a TypeError is thrown if the property to be deleted has the attribute { [[Configurable]]:false } (11.4.1).
+
+- strictモードのコードにおいてdelete演算子が現れた場合、削除されるプロパティが{ [[Configurable]]:false } という属性をもっているならばTypeErrorをスローします。
+
+
+- It is a SyntaxError if a VariableDeclaration or VariableDeclarationNoIn occurs within strict code and its Identifier is eval or arguments (12.2.1).
+
+- strictモードのコードでVariableDeclarationもしくはVariableDeclarationListNoInが現れ、そのIdentifierがevalもしくはargumentsならばSyntaxErrorとなります(12.2.1)。
+
+
+- Strict mode code may not include a WithStatement. The occurrence of a WithStatement in such a context is an SyntaxError (12.10).
+
+- strictモードのコードはWithStatementを含んではいけません。WithStatementの出現はSyntaxErrorとなります(12.10)。
+
+
+- It is a SyntaxError if a TryStatement with a Catch occurs within strict code and the Identifier of the Catch production is eval or arguments (12.14.1)
+
+- strictモードのコードでCatchを伴うTryStatementが現れ、生成規則CatchのIdentifierがevalもしくはargumentsならばSyntaxErrorとなります(12.14.1)。
+
+
+- It is a SyntaxError if the identifier eval or arguments appears within a FormalParameterList of a strict mode FunctionDeclaration or FunctionExpression (13.1)
+
+- strictモードのコードでFunctionDeclarationやFunctionExpressionのFormalParameterListで、識別子evalもしくはargumentsが現れたらSyntaxErrorとなります(13.1)。
+
+
+- A strict mode function may not have two or more formal parameters that have the same name. An attempt to create such a function using a FunctionDeclaration, FunctionExpression, or Function constructor is a SyntaxError (13.1, 15.3.2).
+
+- strictモードの関数は同じ名前を持つ二つ以上の形式的なパラメタを持つことはできません。FunctionDeclaration, FunctionExpression, Functionコンストラクタを使ってそう言った関数を作ろうとする試みはSyntaxErrorとなります(13.1, 15.3.2)。
+
+
+- An implementation may not associate special meanings within strict mode functions to properties named caller or arguments of function instances. ECMAScript code may not create or modify properties with these names on function objects that correspond to strict mode functions (13.2).
+
+- strictモードの関数において、関数インスタンスのcallerもしくはargumentsと名前付けられたプロパティに対して、特別な意味を関連付けるような実装をしてはいけません。ECMAScriptのコードは、strictモードの関数に対応する関数オブジェクトのこれらの名前のプロパティの作成も修正もしてはいけません(13.2)。
+
+
+- It is a SyntaxError to use within strict mode code the identifiers eval or arguments as the Identifier of a FunctionDeclaration or FunctionExpression or as a formal parameter name (13.1). Attempting to dynamically define such a strict mode function using the Function constructor (15.3.2) will throw a SyntaxError exception.
+
+- strictモードのコードで識別子evalもしくはargumentsを、FunctionDeclarationもしくはFunctionExpressionのIdentifierとして、もしくは形式的なパラメタの名前として使用することはSyntaxErrorとなります(13.1)。Functionコンストラクタ(15.3.2)を使ったstrictモードの関数を動的に定義する試みはSyntaxErrorがスローされます。
+

@@ -1,0 +1,48 @@
+補足 C (参考情報)
+
+
+
+ECMAScriptのstrictモード
+
+
+strictモードの制約と例外について
+
+- 適合実装では、strictモードのコードの処理において、NumericLiteral(7.8.3)の構文を、B.1.1で述べられるOctalIntegerLiteralを含むようには拡張してはいけません。
+
+- 適合実装では、strictモードのコード(10.1.1)の処理において、EscapeSequenceの構文を、B.1.2で述べられるOctalEscapeSequenceを含むようには拡張してはいけません。
+
+- 未宣言の識別子やその他の未解決の参照への代入では、Globalオブジェクトにプロパティを作成することはありません。strictモードのコードで単純な代入が生じた場合には、そのLeftHandSideは評価した結果、解決不能なReferenceになってはいけません。もしそうなったら、ReferenceErrorがスローされます(8.7.2)。LeftHandSideは、属性値が{[[Writable]]:false}でないデータプロパティへの参照ではいけません。また、属性値が{[[Set]]:undefined}でないアクセサプロパティへの参照でもいけません。更に、[[Extensible]]内部プロパティがfalseであるオブジェクトの存在しないプロパティへの参照でもいけません。これらの場合にはTypeErrorがスローされます(11.13.1)。
+
+- 識別子evalもしくはargumentsは、Assignment演算子(11.13)もしくはPostfixExpression(11.3)のLeftHandSideExpressionとして現れてはいけません。また、Prefix Increment演算子(11.4.4)もしくはPrefix Decrement演算子(11.4.5)によって演算されたUnaryExpression として現れてはいけません。
+
+- strictモードの関数のArgumentsオブジェクトは、アクセスするとTypeErrorをスローする"caller"と"callee"という名前の設定不能なアクセサプロパティを定義します(10.6)。
+
+- strictモードの関数のArgumentsオブジェクトは、それらの関数の形式的なパラメタによってインデクスされたプロパティの値の配列を動的には共有しません。(10.6)
+
+- strictモードの関数において、あるArgumentsオブジェクトが作られたならば、ローカル識別子ArgumentsのArgumentsオブジェクトへのバインディングは不変であり、それゆえ代入式の対象としてはいけない(10.5)。
+
+- strictモードのコードにデータプロパティの定義をひとつ以上持っているObjectLiteralが含まれていれば、SyntaxErrorとなります(11.1.5)。
+
+- 識別子"eval"もしくは"arguments"が、strictモードのコードに含まれるPropertyAssignmentのPropertySetParameterListにおける識別子として現れた場合、もしくはそのFunctionBodyがstrictモードのコードである場合に、SyntaxErrorとします(11.1.5)。
+
+- strictモードのevalコードは、evalを呼び出す変数環境において変数や関数をインスタンス化することはできません。その代わりに、新しい変数環境が作られ、その環境はevalコードにとって宣言的なバインディングのインスタンス化のために使われます(10.4.2)。
+
+- strictモードのコードにおいてthisが評価される場合には、this値はオブジェクトであることを強制されません。nullやundefinedのthis値がglobalオブジェクトへ変換されることはありませんし、プリミティブ値がラッパーオブジェクトに変換されることもありません。(Function.prototype.applyやFunction.prototype.callを使った行われた呼び出しを含む)関数呼び出しを通して渡されたthis値は、渡されたthis値をオブジェクトへ渡すことは強制されません(10.4.3, 11.1.1., 15.3.4.3, 15.3.4.4)。
+
+- strictモードのコードにおいてdelete演算子が現れた場合、UnaryExpressionが、変数への直接の参照、関数引数、関数名ならばSyntaxErrorがスローされます。
+
+- strictモードのコードにおいてdelete演算子が現れた場合、削除されるプロパティが{ [[Configurable]]:false } という属性をもっているならばTypeErrorをスローします。
+
+- strictモードのコードでVariableDeclarationもしくはVariableDeclarationListNoInが現れ、そのIdentifierがevalもしくはargumentsならばSyntaxErrorとなります(12.2.1)。
+
+- strictモードのコードはWithStatementを含んではいけません。WithStatementの出現はSyntaxErrorとなります(12.10)。
+
+- strictモードのコードでCatchを伴うTryStatementが現れ、生成規則CatchのIdentifierがevalもしくはargumentsならばSyntaxErrorとなります(12.14.1)。
+
+- strictモードのコードでFunctionDeclarationやFunctionExpressionのFormalParameterListで、識別子evalもしくはargumentsが現れたらSyntaxErrorとなります(13.1)。
+
+- strictモードの関数は同じ名前を持つ二つ以上の形式的なパラメタを持つことはできません。FunctionDeclaration, FunctionExpression, Functionコンストラクタを使ってそう言った関数を作ろうとする試みはSyntaxErrorとなります(13.1, 15.3.2)。
+
+- strictモードの関数において、関数インスタンスのcallerもしくはargumentsと名前付けられたプロパティに対して、特別な意味を関連付けるような実装をしてはいけません。ECMAScriptのコードは、strictモードの関数に対応する関数オブジェクトのこれらの名前のプロパティの作成も修正もしてはいけません(13.2)。
+
+- strictモードのコードで識別子evalもしくはargumentsを、FunctionDeclarationもしくはFunctionExpressionのIdentifierとして、もしくは形式的なパラメタの名前として使用することはSyntaxErrorとなります(13.1)。Functionコンストラクタ(15.3.2)を使ったstrictモードの関数を動的に定義する試みはSyntaxErrorがスローされます。

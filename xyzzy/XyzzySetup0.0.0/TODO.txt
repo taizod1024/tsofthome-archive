@@ -1,0 +1,8 @@
+【未】
+□NetInstaller同梱したい？
+　⇒したい
+□Xyzzy本体とNetInstallerの件をどうするか？
+　⇒インストーラの分離
+□XyzzyGates.exeを作りたい？
+　⇒したい
+□NetInstallerを同梱すると初期化ファイルへの言及は避けられない。どうする？

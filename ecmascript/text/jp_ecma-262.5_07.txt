@@ -1,0 +1,788 @@
+7 字句
+
+
+ECMAScriptプログラムのソーステキストは、最初にトークン、行終端記号、コメント、空白文字、といった入力要素の並びに変換されます。ソーステキストは左から右にスキャンされ、次の入力要素として可能なもっとも長い並びを取得することを繰り返します。
+
+字句文法には二つの目標記号があります。InputElementDivシンボルは除算演算子(/)もしくは除算代入演算子(/=)で続けることが許可されている構文文法で使用されます。InputElementRegExpシンボルはそれ以外の構文文法で使用されます。
+
+注意：除算演算子もしくは除算代入演算子と、RegularExpressionLiteralの両方を続けることが許されるような構文文法は存在しません。これはセミコロンの自動挿入(7.9)に影響うけることはありません。以下は例です。
+
+a = b
+/hi/g.exec(c).map(d);
+
+LineTerminatorに続く最初の非空白文字かつ非コメント文字がスラッシュ(/)であり構文文脈上除算演算子や除算代入演算子が許される箇所では、LineTerminatorの場所にセミコロンは挿入されません。つまり上記の例は以下と同じように解釈されます。
+
+a = b / hi / g.exec(c).map(d);
+
+構文
+
+  InputElementDiv ::
+    WhiteSpace
+    LineTerminator
+    Comment
+    Token
+    DivPunctuator
+
+  InputElementRegExp ::
+    WhiteSpace
+    LineTerminator
+    Comment
+    Token
+    RegularExpressionLiteral
+
+
+7.1 Unicodeフォーマット制御文字
+
+
+Unicodeフォーマット制御文字(例えば、LEFT-TO-RIGHT MARKもしくはRIGHT-TO-LEFT MARKのようなUnicode文字データベースにおけるカテゴリ"Cf"の文字)は、(例えばマークアップ言語のような)より高次のプロトコルでは欠落するような文字の範囲のフォーマットを制御するために使われる制御コードです。
+
+ソーステキスト中のフォーマット制御文字を許すことは編集機能や表示機能にとって役に立ちます。すべてのフォーマット制御文字はコメントや文字列リテラルや正規表現リテラルにおいて使われるでしょう。
+
+<ZWNJ>と<ZWJ>は、特定の言語で単語や語句を形成する時に、それらを区別するのに不可欠なフォーマット制御文字です。<ZWNJ>と<ZWJ>は最初の文字の後に識別されるよう使われます。
+
+<BOM>は主にテキストの先頭で、Unicodeであると示したり、テキストの符号化方法やバイトオーダーを判断できるようにするフォーマット制御文字です。この目的で使われる<BOM>文字はテキストの先頭に現れます、例えばファイルを結合した結果をみると、<BOM>文字は空白文字として扱われます(7.2)。
+
+このような、コメント、文字列リテラル、正規表現リテラルの外側におけるフォーマット制御文字の特別な扱いは、表1にまとめられています。
+
+表1 - フォーマット制御文字の使い方
+--------------- ----------------------- ----------- ----------------------------
+コード単位      名前                    形式名称    使用箇所
+--------------- ----------------------- ----------- ----------------------------
+\u200C          Zero width non-joiner   <ZWNJ>      IdentifierPart
+\u200C          Zero width joiner       <ZWJ>       IdentifierPart
+\uFEFF          Byte Order Mark         <BOM>       Whitespace   
+--------------- ----------------------- ----------- ----------------------------
+
+
+7.2 空白文字
+
+
+空白文字はソーステキストの可読性を高めると共に、それらを(目に見えない字句上の単位である)トークンに分割しますが、それ以外は大して重要ではありません。空白文字は二つのトークンの間や、入力の最初と最後に現れる文字です。また、StringLiteralやRegularExpressionLiteral(その場合にはリテラル値の一部分を構成する意味のある文字と思われます)、コメントの中にも現れますが、それ以外のどんな種類のトークンの中には現れることはありません。
+
+ECMAScriptの空白文字を表2に示します。
+
+表2 - 空白文字
+--------------- --------------------------- ----------------------------------
+コード単位      名称                        形式名称
+--------------- --------------------------- ------------------------------------
+\u0009          Tab                         <TAB>
+\u000B          Vertical Tab                <VT>
+\u000C          Form Feed                   <FF>
+\u0020          Space                       <SP>
+\u00A0          No-break space              <NBSP>
+\uFEFF          Byte Order Mark             <BOM>
+カテゴリZs      Unicodeの他の空白文字区切り <USP>
+------------ ------------------------------ ------------------------------------
+
+ECMAScriptの実装はUnicode 3.0で定義されている空白文字のすべてを認識しなければなりません。Unicode Standardの以後の版では、この他の空白文字が定義されているかもしれませんが、ECMAScriptの実装ではUnicode Standardの最新の版の空白文字を認識できるでしょう。
+
+構文
+
+  WhiteSpace ::
+    <TAB>
+    <VT>
+    <FF>
+    <SP>
+    <NBSP>
+    <BOM>
+    <USP>
+
+
+7.3 改行文字
+
+
+改行文字は、空白文字のようにソーステキストの可読性を高めると共に、それらを(目に見えない字句上の単位である)トークンに分割します。ただし、空白文字とは異なり、改行文字は構文文法の振る舞いに影響を与えます。一般的に、改行文字は二つのトークンの間に現れますが、構文文法によって禁止されている箇所がいくつかあります。また、改行文字はセミコロンの自動挿入(7.9)に影響を与えます。改行文字はStringLiteralを除くトークンの間には現れることはできません。改行文字はStringLiteralトークンの中にLineContinuationの一部としてのみ現れることができます。
+
+改行文字はMultiLineComment(7.4)の中に現れることができますが、SingleLineCommentの中には現れることはできません。
+
+改行文字は正規表現における\sクラスにマッチする空白文字の集合に含まれます。
+
+ECMAScriptの改行文字を表3に示します。
+
+表3 - 改行文字
+--------------- ------------------- --------------------------------------------
+コード単位      名称                形式名称
+--------------- ------------------- --------------------------------------------
+\u000A          Line Feed           <LF>
+\u000D          Carriage Return     <CR>
+\u2028          Line separator      <LS>
+\u2029          Paragraph separator <PS>
+--------------- ------------------- --------------------------------------------
+
+表3の文字だけが改行文字として扱われます。他の新規行や改行を表す文字は空白文字として扱われ、改行文字としては扱われません。<CR><LF>という文字の並びは、一般的に改行コードとして扱われます。<CR><LF>は番号を出力する目的においてはひとつの改行文字として扱われるべきです。
+
+構文
+
+  LineTerminator ::
+    <LF>
+    <CR>
+    <LS>
+    <PS>
+
+  LineTerminatorSequence ::
+    <LF>
+    <CR> [lookahead not_a_member_of <LF> ]
+    <LS>
+    <PS>
+    <CR> <LF>
+
+
+7.4 コメント
+
+
+コメント(Comment)は単一行もしくは複数行のいずれかです。複数行コメントはネストすることはできません。
+
+行コメントは改行文字を除くいかなる文字も含むことができることと、トークンはいつでもできる限り長くマッチさせるという一般的なルールにより、行コメントはいつも//マーカーから行末までのすべての文字から構成されます。ただし、行末のLineTerminatorは行コメントの一部として扱われません。行コメントと改行文字は字句構文によって別々に認識され、構文文法にとっては入力要素のストリームの一部となります。この点は、行コメントの存在するしないに関わらず、セミコロンの自動挿入(7.9)には何の影響も与えないことになるため重要です。
+
+コメントは空白文字のように振る舞ます。また、複数行コメントに改行文字が含まれている場合に構文文法の解析の都合上LineTerminatorとして扱われることを除けば、コメントは読み捨てられます。
+
+構文
+
+  Comment ::
+    MultiLineComment
+    SingleLineComment
+
+  MultiLineComment ::
+    /* MultiLineCommentChars[opt] */
+
+  MultiLineCommentChars ::
+    MultiLineNotAsteriskChar MultiLineCommentChars[opt]
+    * PostAsteriskCommentChars[opt]
+
+  PostAsteriskCommentChars ::
+    MultiLineNotForwardSlashOrAsteriskChar MultiLineCommentChars[opt]
+    * PostAsteriskCommentChars[opt]
+
+  MultiLineNotAsteriskChar ::
+    SourceCharacter but not asterisk *
+
+  MultiLineNotForwardSlashOrAsteriskChar ::
+    SourceCharacter but not forward-slash /or asterisk *
+
+  SingleLineComment ::
+    // SingleLineCommentChars[opt]
+
+  SingleLineCommentChars ::
+    SingleLineCommentChar SingleLineCommentChars[opt]
+
+  SingleLineCommentChar ::
+    SourceCharacter but not LineTerminator
+
+
+7.5 トークン
+
+
+構文
+
+  Token ::
+    IdentifierName
+    Punctuator
+    NumericLiteral
+    StringLiteral
+
+注意：DivPunctuatorとRegularExpressionLiteralの生成規則はトークン(Token)を定義しますが、トークンの生成規則に含まれません。
+
+
+7.6 識別名と識別子
+
+
+識別名はUnicode standardの第5節"Indentifiers"の構文を少し修正したものとして解釈されます。識別子はReservedWord(7.6.1)ではないUnicode識別名です。Unicode識別子の構文は、Unicode Standardによって指定されたnormativeとinformative文字のカテゴリに基盤にしています。Unicode standardの第3版で指定された文字は、すべてのECMAScriptの適合する実装でそれらのカテゴリとして扱われなければなりません。標準仕様は特定の文字を追加します。ドル記号($)とアンダースコア(_)は、識別名として指定できるどこでも使えます。
+
+Unicodeのエスケープシーケンスもまた識別名の中での使うことができます。そこでは、それらはUnicodeEscapeSequence(7.8.4)のCVによって計算された識別名の一文字となります。UnicodeEscapeSequenceの前の\は識別名の一部にはなりません。ただし、UnicodeEscapeSequenceを使って違反させるように、識別名へ文字を入れることはできません。言い換えると、もし\とUnicodeEscapeSequenceという並びをそのCVで置き換えた場合に、その結果が依然として識別名として正確に同じ文字の並びである有効な識別名でなければなりません。この仕様における識別子のすべての解釈方法は、どの文字でエスケープシーケンスが使用されているかに関係なく、実際の文字に掛かっています。
+
+Unicode standard上で正規化され等価な二つの識別名は、正確に同じコード単位の並びで表現されない限り同じではなりません(言い換えると、ECMAScriptに適合した実装は、識別名に関する値のビット単位の比較だけが求められています)。これは入力されるソーステキストはコンパイラに到達する前に正規化形式Cに変換されていることを意図しています。
+
+ECMAScriptの実装によってはUnicode Standardの以後の版で定義されている識別子の文字を認識するかもしれません。移植性を考慮するのであれば場合には、プログラマはUnicode 3.0で定義されている識別子の文字だけを採用すべきでしょう。
+
+構文
+
+  Identifier ::
+    IdentifierName but not ReservedWord
+
+  IdentifierName ::
+    IdentifierStart
+    IdentifierName IdentifierPart
+
+  IdentifierStart ::
+    UnicodeLetter
+    $
+    _
+    \ UnicodeEscapeSequence
+
+  IdentifierPart ::
+    IdentifierStart
+    UnicodeCombiningMark
+    UnicodeDigit
+    UnicodeConnectorPunctuation
+    <ZWNJ>
+    <ZWJ>
+
+  UnicodeLetter
+    any character in the Unicode categories “Uppercase letter (Lu)”, “Lowercase letter (Ll)”, “Titlecase letter (Lt)”, “Modifier letter (Lm)”, “Other letter (Lo)”, or “Letter number (Nl)”.
+
+  UnicodeCombiningMark
+    any character in the Unicode categories “Non-spacing mark (Mn)” or “Combining spacing mark (Mc)”
+
+  UnicodeDigit
+    any character in the Unicode category “Decimal number (Nd)”
+
+  UnicodeConnectorPunctuation
+    any character in the Unicode category “Connector punctuation (Pc)”
+
+  UnicodeEscapeSequence
+    see 7.8.4.
+
+
+7.6.1 予約語
+
+
+予約語とは識別子としては使うことができない識別名のことです。
+
+構文
+
+  ReservedWord ::
+    Keyword
+    FutureReservedWord
+    NullLiteral
+    BooleanLiteral
+
+
+7.6.1.1 キーワード
+
+
+以下のトークンはECMAScriptのキーワードです。ECMAScriptプログラムでは識別子としては使えません。
+
+構文
+
+  Keyword :: one of
+    break       do          instanceof  typeof
+    case        else        new         var
+    catch       finally     return      void
+    continue    for         switch      while
+    debugger    function    this        with
+    default     if          throw
+    delete      in          try
+
+
+7.6.1.2 将来の予約語
+
+
+以下の単語は提案済みの拡張の中でキーワードとして使われています。将来におけるそれらの拡張の採用の可能性を許すために予約されています。
+
+構文
+
+  FutureReservedWord :: one of
+    class       enum        extends     super
+    const       export      import
+
+以下のトークンもstrictモード(10.1.1)ではFutureReservedWordとして扱われます。strictモードのコードの範囲であれば、FutureReservedWordが現れることでエラーが発生しうる文脈でこれらのトークンが現れたならば、同じようにエラーを発生させなければいけません。
+
+    implements  let         private     public      yield
+    interface   package     protected   static
+
+
+7.7 区切り文字
+
+
+構文
+
+  Punctuator :: one of
+    {       }       (       )       [       ]
+    .       ;       ,       <       >       <=
+    >=      ==      !=      ===     !==
+    +       -       *       %       ++      --
+    <<      >>      >>>     &       |       ^
+    !       ~       &&      ||      ?       :
+    =       +=      -=      *=      %=      <<=
+    >>=     >>>=    &=      |=      ^=
+
+  DivPunctuator :: one of
+    /       /=
+
+
+7.8 リテラル
+
+
+構文
+
+  Literal ::
+    NullLiteral
+    BooleanLiteral
+    NumericLiteral
+    StringLiteral
+    RegularExpressionLiteral
+
+
+7.8.1 Nullリテラル
+
+
+構文
+
+  NullLiteral ::
+    null
+
+意味
+
+nullリテラルの値であるnullはNull型の唯一の値、つまりnullです。
+
+
+7.8.2 Booleanリテラル
+
+
+構文
+
+  BooleanLiteral ::
+    true
+    false
+
+意味
+
+Booleanリテラルの値であるtrueはBoolean型の値、つまりtrueです。
+Booleanリテラルの値であるfalseはBoolean型の値、つまりfalseです。
+
+
+7.8.3 数値リテラル
+
+
+構文
+
+  NumericLiteral ::
+    DecimalLiteral
+    HexIntegerLiteral
+
+  DecimalLiteral ::
+    DecimalIntegerLiteral . DecimalDigits[opt] ExponentPart[opt]
+    . DecimalDigits ExponentPart[opt]
+    DecimalIntegerLiteral ExponentPart[opt]
+
+  DecimalIntegerLiteral ::
+    0
+    NonZeroDigit DecimalDigits[opt]
+
+  DecimalDigits ::
+    DecimalDigit
+    DecimalDigits DecimalDigit
+
+  DecimalDigit :: one of
+    0 1 2 3 4 5 6 7 8 9
+
+  NonZeroDigit :: one of
+    1 2 3 4 5 6 7 8 9
+
+  ExponentPart ::
+    ExponentIndicator SignedInteger
+
+  ExponentIndicator :: one of
+    e E
+
+  SignedInteger ::
+    DecimalDigits
+    + DecimalDigits
+    - DecimalDigits
+
+  HexIntegerLiteral ::
+    0x HexDigit
+    0X HexDigit
+    HexIntegerLiteral HexDigit
+
+  HexDigit :: one of
+    0 1 2 3 4 5 6 7 8 9 a b c d e f A B C D E F
+
+数値リテラルに直ぐに続くソース文字は、IdentifierStartもしくはDecimalDigitであることはありません。
+
+注意：例えば...
+
+    3in
+
+..."3in"はエラーとなります。"3"と"in"という二つの入力にはなりません。
+
+意味
+
+数値リテラルはNumber型の値を表します。この値は二つのステップで決められます。まず始めにリテラルに由来する数学的値(MV)、続いてこの数学的値が以下のルールで丸められます。
+
+以下では、nはDicimalDigitsの文字の長さ、eはExponentPartのMVの値です。
+- NumericLiteralが DecimalLiteral の場合、
+    MVの値はDecimalLiteralの値です。
+- NumericLiteralが HexIntegerLiteral の場合、
+    MVの値はHexIntegerLiteralの値です。
+      例：0xffff
+- DecimalLiteralが DecimalIntegerLiteral . の場合、
+    MVの値はDecimalIntegerLiteralの値です。
+      例：1234.
+- DecimalLiteralが DecimalIntegerLiteral . DecimalDigits の場合、
+    MVの値は (DecimalIntegerLiteral + DecimalDigits * 10^(-n)) です。
+      例：1234.567 = (1234 + 567 * 10^(-3))
+- DecimalLiteralが DecimalIntegerLiteral . ExponentPart の場合、
+    MVの値は (DecimalIntegerLiteral * 10^e) です。
+      例：1234.e+5 = (1234 * 10^5)
+- DecimalLiteralが DecimalIntegerLiteral . DecimalDigits ExponentPart の場合、
+    MVの値は ((DecimalIntegerLiteral + DecimalDigits * 10^(-n)) * 10^e) です。
+      例：1234.567e+8 = (1234 + 567 * 10^8)
+- DecimalLiteralが . DecimalDigits ExponentPart の場合、
+    MVの値は (DecimalDigits * 10^(-n)) です。
+      例：123 = (123 * 10^(-3))
+- DecimalLiteralが . DecimalDigits ExponentPart の場合、
+    MVの値は (DecimalDigits * 10^(e-n)) です。
+      例：123+e4 = (123 * 10 (4-3))
+- DecimalLiteralが DecimalIntegerLiteral の場合、
+    MVの値は DecimalIntegerLiteral の値です。
+      例：1234
+- DecimalLiteralが DecimalIntegerLiteral ExponentPart の場合、
+    MVの値は (DecimalIntegerLiteral * 10^e)) です。
+      例：1234e+5 = (1234 * 10^5)
+- DecimalLiteralが 0 の場合、
+    MVの値は 0 です。
+      例：0
+- DecimalLiteralが NonZeroDigit DecimalDigits の場合、
+    MVの値は (NonZeroDigit * 10^n + DecimalDigits) です。
+      例：1234 = (1 * 10^3 + 234)
+- DecimalDigitsが DecimalDigit の場合、
+    MVの値は DecimalDigit です。
+      例：1
+- DecimalDigitsが DecimalDigits DecimalDigit の場合、
+    MVの値は (DecimalDigits * 10 + DecimalDigit) です。
+      例：1234 = ((((1 * 10 + 2) * 10 + 3) * 10 + 4)))
+- ExponentPartが ExponentIndicator SignedInteger の場合、
+    MVの値は SignedInteger の値です。
+- SignedIntegerが DecimalDigits の場合、
+    MVの値は DecimalDigits の値です。
+- SignedIntegerが + DecimalDigits の場合、
+    MVの値は DecimalDigits の値です。
+- SignedIntegerが - DecimalDigits の場合、
+    MVの値は (DecimalDigits * (-1)) の値です。
+- DecimalDigitもしくはHexDigitが 0 の場合、
+    MVの値は 0 です。
+- DecimalDigitもしくはNonZeroDigitもしくはHexDigitが 1...9 の場合、
+    MVの値はそれぞれ 1...9 です。
+- HexDigitが a...f もしくは A...F の場合、
+    MVの値はそれぞれ 10...15 です。
+- HexIntegerLiteralが 0x HexDigit もしくは 0X HexDigit の場合、
+    MVの値は HexDigit の値です。
+- HexIntegerLiteralが HexIntegerLiteral HexDigit の場合、
+    MVの値は (HexIntegerLiteral * 16 + HexDigit) の値です。
+
+数値リテラルに対して厳密なMVの値が定まると、次に数値への丸めが行われます。もしMVが0ならば、丸められた値は+0になります。そうでなければ、リテラルがDecimalLiteralで有効桁数が20桁を越える場合でなければ、丸められた値は(8.5で示されるように)MVに対する数値にならなければなりません。有効桁数が20桁を越えるような場合では、数値は、有効桁数の20桁より後の桁を0で置き換えて作られたリテラルのMVに対する数値、もしくは、有効桁数の20桁より後の桁を0で置き換えて作られたリテラルのMVに対する数値の20桁目を1加算した数値となります。数字は、それがExponentPartでなければ有効桁になります。かつ...
+- 0ではない。もしくは...
+- その桁の左側に0でない数字があること、かつ、ExponentPartを除くその桁の右側に0でない数字があること。
+...であれば有効桁になります。
+
+適合する実装では、strictモード(10.1.1)で処理している場合には、B.1.1で述べているようにOctalIntegerLiteralを含むようにNumericLiteralの構文を拡張してはいけません。
+
+
+7.8.4 文字列リテラル
+
+
+文字列リテラルは、単一引用符もしくは二重引用符で括られたゼロもしくはそれ以上の長さの文字です。文字はエスケープシーケンスで表現されているかもしれません。文字列を閉じる引用符や、バックスラッシュ、carriage return、行区切り文字、段落の区切り文字、line feedを除くすべての文字は、文字列リテラルの中にそのまま現れます。どの文字もエスケープシーケンスの形式で現れることができます。
+
+構文
+
+  StringLiteral ::
+    " DoubleStringCharacters[opt] "
+    ' SingleStringCharacters[opt] '
+
+  DoubleStringCharacters ::
+    DoubleStringCharacter DoubleStringCharacters[opt]
+
+  SingleStringCharacters ::
+    SingleStringCharacter SingleStringCharacters[opt]
+
+  DoubleStringCharacter ::
+    SourceCharacter but not double-quote "or backslash \or LineTerminator
+    \ EscapeSequence
+    LineContinuation
+
+  SingleStringCharacter ::
+    SourceCharacter but not single-quote 'or backslash \or LineTerminator
+    \ EscapeSequence
+    LineContinuation
+
+  LineContinuation ::
+    \ LineTerminatorSequence
+
+  EscapeSequence ::
+    CharacterEscapeSequence0 [lookahead not_a_member_of DecimalDigit]
+    HexEscapeSequence
+    UnicodeEscapeSequence
+
+  CharacterEscapeSequence ::
+    SingleEscapeCharacter
+    NonEscapeCharacter
+
+  SingleEscapeCharacter :: one of
+    ' " \ b f n r t v
+
+  NonEscapeCharacter ::
+    SourceCharacter but not EscapeCharacter or LineTerminator
+
+  EscapeCharacter ::
+    SingleEscapeCharacter
+    DecimalDigit
+    x
+    u
+
+  HexEscapeSequence ::
+    x HexDigit HexDigit
+
+  UnicodeEscapeSequence ::
+    u HexDigit HexDigit HexDigit HexDigit
+
+非終端記号HexDigitの定義は7.6節で与えました。SourceCharacterは6節で与えました。
+
+意味
+
+文字列リテラルは文字列値を表します。リテラルの文字列値(String Value, SV)は文字列リテラルの様々な種類から構成される文字値(Character Value, CV)という意味で述べられている。この過程において、文字列リテラルのいくつかの文字は、7.8.3節で以前述べたようなMV値を保持しているかのように解釈されます。
+
+- StringLiteral が "" の場合、
+    SVの値は空の文字の並びです。
+- StringLiteral が '' の場合、
+    SVの値は空の文字の並びです。
+- StringLiteral が " DoubleStringCharacters " の場合、
+    SVの値はDoubleStringCharactersの値です。
+- StringLiteral が ' SingleStringCharacters ' の場合、
+    SVの値はSingleStringCharactersの値です。
+- DoubleStringCharacters が DoubleStringCharacter 一文字の場合、
+    SVの値はDoubleStringCharacterのCVの値からなるひとつの文字の並びになります。
+- DoubleStringCharacters が DoubleStringCharacter DoubleStringCharacters の場合
+    SVの値はDoubleStringCharacterのCVの値にDoubleStringCharactersのSVの値のすべての文字を続けたものの並びになります。
+- SingleStringCharacters が SingleStringCharacter 一文字の場合、
+    SVの値はSingleStringCharacterのCVの値からなるひとつの文字の並びになります。
+- SingleStringCharacters が SingleStringCharacter SingleStringCharacters の場合
+    SVの値はSingleStringCharacterのCVの値にSingleStringCharactersのSVの値のすべての文字を続けたものの並びになります。
+- LineContinuation が \ LineTerminatorSequence の場合、
+    SVの値は空の文字の並びです。
+- DoubleStringCharacter が、二重引用符 " でも、バックスラッシュ \ でも LineTerminator でもない SourceCharacter の場合、
+    CVの値はその文字自身になります。
+- DoubleStringCharacter が \ EscapeSequence の場合、
+    CVの値はEscapeSequenceの値です。
+- SingleStringCharacter が、引用符 ' でも、バックスラッシュ \ でも LineTerminator でもない SourceCharacter の場合、
+    CVの値はその文字自身になります。
+- SingleStringCharacter が \ EscapeSequence の場合、
+    CVの値はEscapeSequenceの値です。
+- EscapeSequence が CharacterEscapeSequence の場合、
+    CVの値はCharacterEscapeSequenceの値です。
+- EscapeSequence が 0 [lookahead not_a_member_of DecimalDigit] の場合、
+    CVの値は<NUL>文字です。(Unicode値 0000)
+- EscapeSequence が HexEscapeSequence の場合、
+    CVの値はHexEscapeSequenceの値です。
+- EscapeSequence が UnicodeEscapeSequence の場合、
+    CVの値はUnicodeEscapeSequenceの値です。
+- CharacterEscapeSequence が SingleEscapeCharacter の場合、
+    CVの値は表4のSingleEscapeCharacterによってそのコード単位が決まる文字です。
+
+表4 - 文字列の単一文字のエスケープシーケンス
+----------------------- ----------- ----------------------- --------------------
+エスケープシーケンス    コード単位  名前                    シンボル
+----------------------- ----------- --- ------------------- --------------------
+\b                      \u0008      backspace               <BS>
+\t                      \u0009      horizontal tab          <HT>
+\n                      \u000A      line feed (new line)    <LF>
+\v                      \u000B      vertical tab            <VT>
+\f                      \u000C      form feed               <FF>
+\r                      \u000D      carriage return         <CR>
+\"                      \u0022      double quote            "
+\'                      \u0027      single quote            '
+\\                      \u005C      backslash               \
+----------------------- ----------- ----------------------- --------------------
+
+- CharacterEscapeSequence が NonEscapeCharacter の場合、
+    CVの値はNonEscapeCharacterの値です。
+- NonEscapeCharacter が、EscapeCharacter もしくは LineTerminator 以外の SourceCharacter の場合、
+    CVの値はSourceCharacterの文字のそのものです。
+- HexEscapeSequence が、x HexDigit HexDigit の場合、
+    CVの値は (最初のHexDigitのMVの値 * 16) + 次のHexDigitのMVの値であるコード単位の文字になります。
+- UnicodeEscapeSequence が、u HexDigit HexDigit HexDigit HexDigit の場合、
+    CVの値は (最初のHexDigitのMVの値 * 4096) + (二つ目のHexDigitのMVの値 * 256) + (三つ目のHexDigitのMVの値 x 16) + 四つ目のHexDigitのMV値であるコード単位の文字になります。
+
+適合する実装では、strictモードのコード(10.1.1)を処理する場合は、B.1.2で述べられているOctalEscapeSequenceを含むEscapeSequenceの構文の拡張は行わないかもしれません。
+
+注意：空の文字の並びを作り出すためのLineContinuationの一部である場合を除いて、文字列リテラルには改行文字は現れることはできません。文字列リテラルrの文字列値の一部として改行文字を含ませる正しい方法は、\n や \u000A といったエスケープシーケンスを使うことです。
+
+
+7.8.5 正規表現リテラル
+
+
+正規表現リテラルは、リテラルが評価されるたびにRegExpオブジェクト(15.10)へと変換される入力要素です。プログラム上の二つの正規表現リテラルは
+二つのリテラルの内容が互いに同一であっても、===で比較しても同じにならないようにオブジェクトへと評価します。RegExpオブジェクトはnew RegExp(15.10.4)によって実行時に作られるかもしれませんし、RegExpコンストラクタを関数として呼び出すかもしれません。
+
+以下の生成規則は正規表現リテラルの構文を述べており、正規表現リテラルの終端を探すために入力要素のスキャナによって使われます。RegularExpressionBodyとRegularExpressionFlagsを含む文字列は解釈されないまま正規表現コンストラクタに渡され、そこで更に厳しい文法で解釈されます。
+実装では正規表現コンストラクタの文法を拡張しているかもしれませんが、RegularExpressionBodyとRegularExpressoinFlagの生成規則やこれらを使っている生成規則を拡張してはいけません。
+
+構文
+
+  RegularExpressionLiteral ::
+    / RegularExpressionBody / RegularExpressionFlags
+
+  RegularExpressionBody ::
+    RegularExpressionFirstChar RegularExpressionChars
+
+  RegularExpressionChars ::
+    [empty]
+
+  RegularExpressionChars RegularExpressionChar
+    RegularExpressionFirstChar ::
+    RegularExpressionNonTerminator but not *or \or / or [
+    RegularExpressionBackslashSequence
+    RegularExpressionClass
+
+  RegularExpressionChar ::
+    RegularExpressionNonTerminator but not \or / or [
+    RegularExpressionBackslashSequence
+    RegularExpressionClass
+
+  RegularExpressionBackslashSequence ::
+    \ RegularExpressionNonTerminator
+
+  RegularExpressionNonTerminator ::
+    SourceCharacter but not LineTerminator
+
+  RegularExpressionClass ::
+    [ RegularExpressionClassChars ]
+
+  RegularExpressionClassChars ::
+    [empty]
+
+  RegularExpressionClassChars RegularExpressionClassChar
+    RegularExpressionClassChar ::
+    RegularExpressionNonTerminator but not ]or \
+    RegularExpressionBackslashSequence
+
+  RegularExpressionFlags ::
+    [empty]
+    RegularExpressionFlags IdentifierPart
+
+注意：正規表現リテラルは空ではないだろうことから、空の正規表現リテラルを表現する代わりに、//という文字の並びは行コメントを開始します。空の正規表現を指定する場合には/(?:)/を使います。
+
+意味
+
+正規表現リテラルは標準組み込みのコンストラクタRegExpのインスタンスであるオブジェクトの値へと評価します。値は二つのステップで決められます。まず最初に、正規表現のRegularExpressionBodyとRegularExpressionFlagsの生成規則の展開したものを含む文字の並びは、未解釈のまま二つの文字列PatternとFlagsへとそれぞれ集められます。次に、リテラルが評価されるたびに、標準組み込みのコンストラクタであるRegExpを、式new Regexp(Pattern, Flags)で呼び出されたかのようにして新しいオブジェクトが作られます。新しく作られたオブジェクトはRegularExpressionLiteralの値になります。new Regexpへの呼び出しが15.10.4.1で示されているエラーを起こした場合には、エラーは初期エラー(16)として扱わなければいけません。
+
+
+7.9 セミコロンの自動挿入
+
+
+いくつかのECMAScriptのステートメントは...
+- 空のステートメント
+- 変数のステートメント
+- 式ステートメント
+- do-whileステートメント
+- continueステートメント
+- breakステートメント
+- returnステートメント
+- throwステートメント
+...セミコロンで終わらなければいけません。そういったセミコロンはソーステキスト上にいつも明示的に現れます。しかしながら、利便性のために特定の状況ではそういったセミコロンはソーステキストから省略されます。これらの状況は「そういう状況下でソースコードのトークンのストリームにセミコロンが自動挿入された」と言うことによって述べられます。
+
+
+7.9.1 セミコロンの自動挿入のルール
+
+
+セミコロンの自動挿入には3つの基本的なルールがあります。
+
+1. プログラムが左から右へと解析されるとして、文法のどの生成規則でも許されない(offendingと呼ばれる)トークンが現れたときに、以下のひとつ以上の条件を満たしたらoffendingトークンの前に自動的にセミコロンが挿入されます。
+
+- offendingトークンが前のトークンと少なくともひとつのLineTerminatorによって分けられていること。
+- offendingトークンが } であること。
+
+2. プログラムが左から右へと解析されるとして、トークンの入力ストリームの終わりが現れ、解析器が入力トークンのストリームを単一の完全なECMAScriptプログラムとして解析できなかった場合に、そのときに入力ストリームの終わりにセミコロンが自動的に挿入されます。
+
+3. プログラムが左から右へと解析されるとして、文法上のある生成規則で許されるトークンが現れた場合に、ただし、その生成規則は制限された生成規則であり、制限された生成規則上で"[no LineTerminator here]"という注記にすぐに続く最初の終端記号もしくは非終端記号のトークン(そのためトークンは制限されたトークンと呼ばれます)であり、制限されたトークンが少なくともひとつ以上のLineTerminatorによって前のトークンから分けられている場合には、制限されたトークンの前にセミコロンが自動挿入されます。しかしながら、このルールには追加の上書きされる条件があります。セミコロンが空のステートメントとして解析されたり、セミコロンがforステートメント(12.6.3)の先頭部分の二つのセミコロンになったりする場合には、セミコロンは自動挿入されません。
+
+注意：以下は文法において制限されている生成規則だけです。
+
+  PostfixExpression :
+    LeftHandSideExpression [no LineTerminator here] ++
+    LeftHandSideExpression [no LineTerminator here] --
+
+  ContinueStatement :
+    continue [no LineTerminator here] Identifier[opt] ;
+
+  BreakStatement :
+    break [no LineTerminator here] Identifier[opt] ;
+
+  ReturnStatement :
+    return [no LineTerminator here] Expression[opt] ;
+
+  ThrowStatement :
+    throw [no LineTerminator here] Expression ;
+
+これらの制限された生成規則の影響は以下のとおりです。
+
+解析器が後置演算子として扱う場所で ++ もしくは -- トークンが現れた場合、かつ、前のトークンと ++ もしくは -- トークンの間に少なくともひとつ以上のLineTerminatorが現れていた場合、そのときには ++ もしくは -- トークンの前にセミコロンが自動挿入されます。
+
+continue、break、return、throwトークンが現れた場合、かつ、次のトークンの前にLineTerminatorが現れた場、contineu、break、return、throwトークンの後にセミコロンが自動挿入されます。
+
+ECMAScriptのプログラマ向けに実践的なアドバイスをするとすれば...
+
+後置演算子の ++ や -- は、オペランドとして同じ行に現れるべきです。
+
+returnやthrowステートメントの中の式は、returnやthrowトークンと同じ行から始めるべきです。
+
+breakやcontinueステートメントの中の識別子は、breakやcontinueトークンと同じ行にあるべきです。
+
+
+7.9.2 セミコロンの自動挿入の例
+
+
+このソースコードは...
+
+{ 1 2 } 3
+
+...ECMAScriptの文法では有効ではありませんし、セミコロンの自動挿入を行ってさえ有効にはなりません。対照的に...
+
+{ 1
+2 } 3
+
+...このソースコードもECMAScriptの文法では有効ではありませんが、セミコロンが自動挿入され以下のように変形されることで...
+
+{ 1
+;2 ;} 3;
+
+...有効なECMAScriptの文になります。
+
+このソースコードは...
+
+for (a; b
+)
+
+...ECMAScriptの有効な文ではありませんし、セミコロンがforステートメントの先頭部分に必要なので、セミコロンの自動挿入によって変更されることもありません。セミコロンの自動挿入が、forステートメントの先頭部分の二つのセミコロンのうちのひとつを挿入するということは決してありません。
+
+このソースコードは...
+
+return
+a + b
+
+...セミコロンの自動挿入によって以下のように変形されます。
+
+return;
+a + b;
+
+注意：式 a + b はreturnステートメントによって返されるべき値として扱われません。何故ならば、LineTerminatorがそれらをトークンreturnから分けているからです。
+
+このソースコードは...
+
+a = b
+++c
+
+...セミコロンの自動挿入によって以下のように変形されます。
+
+a = b;
+++c;
+
+注意：トークン++は変数bに対する後置演算子としては扱われません。何故ならば、LineTerminatorがbと++の間に現れているからです。
+
+このソースコードは...
+
+if (a > b)
+else c = d
+
+...ECMAScriptの有効な文ではありませんし、この箇所に文法の生成規則が適用されることもありませんが、自動挿入されたセミコロンは空のステートメントとして解析されるため、elseトークンの前にセミコロンが自動挿入されて変更されることもありません。
+
+このソースコードは...
+
+a = b + c
+(d + e).print()
+
+...セミコロンの自動挿入によって変更されることはありません。何故ならば、二行目から始まる括弧でくくられた式が関数呼び出しの引数のリストとして解釈されるかもしれないからです。
+
+a = b + c(d + e).print()
+
+ある状況においては代入文を左括弧で始めなければならないことを考慮すると、セミコロンの自動挿入に頼るよりも前のステートメントの最後に明示的にセミコロンを入れる方がプログラマにとってはよいやり方です。

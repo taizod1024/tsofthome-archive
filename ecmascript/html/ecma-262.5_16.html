@@ -1,0 +1,84 @@
+<!doctype html public "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html lang="ja-JP">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta http-equiv="Content-Style-Type" content="text/css">
+    <meta http-equiv="Content-Script-Type" content="text/javascript">
+    <base href="http://tsofthome.appspot.com/">
+    <link rel="stylesheet" href="style/base.css" type="text/css">
+    <link rel="shortcut icon" href="image/favicon.ico">
+    <title>ecma-262.5_16</title>
+  </head>
+  <body>
+    <div class="s0">
+      <h1>ecma-262.5_16</h1>
+    </div>
+    <hr>
+    <div class="s0">
+      <a href="/">インデックス</a> ≫
+      <a href="ecmascript.html">ECMA-262第5版 日本語訳</a> ≫
+      ecma-262.5_16
+    </div>
+    <hr>
+    <pre>
+* 16 Errors 
+
+* 16 エラー
+
+
+An implementation must report most errors at the time the relevant ECMAScript language construct is evaluated. 
+An early error is an error that can be detected and reported prior to the evaluation of any construct in the Program containing the error. 
+An implementation must report early errors in a Program prior to the first evaluation of that Program. 
+Early errors in eval code are reported at the time eval is called but prior to evaluation of any construct within the eval code. 
+All errors that are not early errors are runtime errors. 
+An implementation must treat any instance of the following kinds of errors as an early error: 
+
+ECMAScript言語の構築が評価されるときに発生するほとんどのエラーを報告するように実装しなければいけません。初期エラーとは、エラーを含むプログラムにおいて構築の評価に先だって検出され報告されるエラーです。初期エラーはプログラムの最初の評価に先立って報告されるように実装しなければいけません。evalコードの初期エラーはevalが呼ばれたときに報告されますが、evalコードのいかなる構築の評価に先だって報告されます。初期エラーではないすべてのエラーはランタイムエラーです。以下の種類のエラーは初期エラーとして扱わなければいけません。
+
+
+- Any syntax error. 
+- Attempts to define an ObjectLiteral that has multiple get property assignments with the same name or multiple set property assignments with the same name. 
+- Attempts to define an ObjectLiteral that has both a data property assignment and a get or set property assignment with the same name. 
+- Errors in regular expression literals that are not implementation-defined syntax extensions. 
+- Attempts in strict mode code to define an ObjectLiteral that has multiple data property assignments with the same name. 
+- The occurrence of a WithStatement in strict mode code. 
+- The occurrence of an Identifier value appearing more than once within a FormalParameterList of an individual strict mode FunctionDeclaration or FunctionExpression. 
+- Improper uses of return, break, and continue. 
+- Attempts to call PutValue on any value for which an early determination can be made that the value is not a Reference (for example, executing the assignment statement 3=4). 
+
+- 構文エラー
+- 同じ名前の複数のgetもしくはsetプロパティへの代入を行うようなObjectLiteralを定義しようと試みること
+- 同じ名前をデータプロパティへの代入とgetもしくはsetプロパティへの代入を同時に行うようなObjectLiteralを定義しようと試みること
+- 正規表現リテラルの処理系未定義の拡張に関するエラー
+- strictモードのコードにおいて同じ名前の複数のデータプロパティへ代入しようとするObjectLiteralを定義しようと試みること
+- strictモードのコードにおいてWithStatementがあること
+- 独立したstrictモードのFunctionDeclarationもしくはFunctionExpressionのFormalParameterListにおいて二回以上現れるようなIdentifierの値があること
+- return, break, continueが不適切な使われ方をされていること
+- 初期段階でReferenceではないことが判断できる値に対してPutValueの呼び出しを試みること(例えば、3=4 という代入文の実行など)
+
+
+An implementation shall not treat other kinds of errors as early errors even if the compiler can prove that a construct cannot execute without error under any circumstances. An implementation may issue an early warning in such a case, but it should not report the error until the relevant construct is actually executed. 
+
+どんな状況であってもエラー無しに構築を実行できないことをコンパイラが証明できたとしても、この他のエラーを初期エラーとして扱うように実装してはいけません。そういった場合には早期に警告を出力するように実装されるかもしれませんが、その構築が実際に実行されるまでエラーをリポートするよう実装してはいけません。
+
+
+An implementation shall report all errors as specified, except for the following: 
+
+指定されたすべてのエラーを報告しますが、以下のエラーを除きます。
+
+
+- An implementation may extend program syntax and regular expression pattern or flag syntax. To permit this, all operations (such as calling eval, using a regular expression literal, or using the Function or RegExp constructor) that are allowed to throw SyntaxError are permitted to exhibit implementation-defined behaviour instead of throwing SyntaxError when they encounter an implementation-defined extension to the program syntax or regular expression pattern or flag syntax. 
+- An implementation may provide additional types, values, objects, properties, and functions beyond those described in this specification. This may cause constructs (such as looking up a variable in the global scope) to have implementation-defined behaviour instead of throwing an error (such as ReferenceError). 
+- An implementation may define behaviour other than throwing RangeError for toFixed, toExponential, and toPrecision when the fractionDigits or precision argument is outside the specified range. 
+
+- プログラムの構文と正規表現のパターンやフラグの構文を拡張して実装されているかもしれません。これを許すために、SyntaxErroをスローすることが許されているすべての操作(例えば、evalを呼ぶ、正規表現リテラルを使う、Functionを使う、RegExpコンストラクタを使う)で、SyntaxErrorをスローする代わりに、プログラムの構文と正規表現のパターンやフラグの構文で処理系依存の拡張が現れたときに、処理系依存の振る舞いをすることが許されています。
+- この仕様で述べられている範囲を越えて、追加の型、値、オブジェクト、プロパティ、関数が実装されているかもしれません。これは(例えば、globalスコープで変数を探すなどの)構築が、(例えば、ReferenceErrorといった)エラーをスローする代わりに処理系依存の振る舞いを引き起こすことになります。
+- fractionDigitsもしくはprecision argumentが指定された範囲外の場合に、toFixed, toExponential, toPrecisionがRangeErrorをスローする以外の振る舞いを定義し実装されているかもしれません。
+
+    </pre>
+    <hr>
+    <div class="s0">
+      Copyright 2013 YAMAMOTO TAIZO All Rights Reserved.
+    </div>
+  </body>
+</html>

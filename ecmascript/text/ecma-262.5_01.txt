@@ -1,0 +1,13 @@
+ECMAScript Language Specification
+
+ECMAScript言語仕様
+
+
+* 1 Scope
+
+* 1 範囲
+
+
+This Standard defines the ECMAScript scripting language.
+
+この標準仕様ではECMAScriptスクリプト言語を定義します。

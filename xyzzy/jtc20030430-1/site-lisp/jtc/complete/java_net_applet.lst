@@ -1,0 +1,2052 @@
+パッケージ java.net のソースファイルを読み込んでいます...
+パッケージ java.applet のソースファイルを読み込んでいます...
+Javadoc 情報を構築しています...
+ProtocolException
+class ProtocolException extends IOException;
+IOException
+java/net/ProtocolException.html
+java.net.ProtocolException
+c
+
+ProtocolException
+java/net/ProtocolException.html
+ProtocolException(String host);
+ProtocolException();
+InetAddress
+class InetAddress extends Object;
+Object
+java/net/InetAddress.html
+java.net.InetAddress
+m
+boolean
+isMulticastAddress
+java/net/InetAddress.html#isMulticastAddress()
+boolean isMulticastAddress();
+m
+String
+getHostName
+java/net/InetAddress.html#getHostName()
+String getHostName();
+m
+byte
+getAddress
+java/net/InetAddress.html#getAddress()
+byte[] getAddress();
+m
+String
+getHostAddress
+java/net/InetAddress.html#getHostAddress()
+String getHostAddress();
+m
+int
+hashCode
+java/net/InetAddress.html#hashCode()
+int hashCode();
+m
+boolean
+equals
+java/net/InetAddress.html#equals(java.lang.Object)
+boolean equals(Object obj);
+m
+String
+toString
+java/net/InetAddress.html#toString()
+String toString();
+m
+InetAddress
+getByName
+java/net/InetAddress.html#getByName(java.lang.String)
+InetAddress getByName(String host) throws UnknownHostException;
+m
+InetAddress
+getAllByName
+java/net/InetAddress.html#getAllByName(java.lang.String)
+InetAddress[] getAllByName(String host) throws UnknownHostException;
+m
+InetAddress
+getLocalHost
+java/net/InetAddress.html#getLocalHost()
+InetAddress getLocalHost() throws UnknownHostException;
+DatagramSocketImplFactory
+class DatagramSocketImplFactory;
+
+java/net/DatagramSocketImplFactory.html
+java.net.DatagramSocketImplFactory
+m
+DatagramSocketImpl
+createDatagramSocketImpl
+java/net/DatagramSocketImplFactory.html#createDatagramSocketImpl()
+DatagramSocketImpl createDatagramSocketImpl();
+URLConnection
+class URLConnection extends Object;
+Object
+java/net/URLConnection.html
+java.net.URLConnection
+c
+
+URLConnection
+java/net/URLConnection.html
+URLConnection(URL url);
+f
+URL
+url
+java/net/URLConnection.html#url
+URL url;
+f
+boolean
+doInput
+java/net/URLConnection.html#doInput
+boolean doInput;
+f
+boolean
+doOutput
+java/net/URLConnection.html#doOutput
+boolean doOutput;
+f
+boolean
+allowUserInteraction
+java/net/URLConnection.html#allowUserInteraction
+boolean allowUserInteraction;
+f
+boolean
+useCaches
+java/net/URLConnection.html#useCaches
+boolean useCaches;
+f
+long
+ifModifiedSince
+java/net/URLConnection.html#ifModifiedSince
+long ifModifiedSince;
+f
+boolean
+connected
+java/net/URLConnection.html#connected
+boolean connected;
+m
+FileNameMap
+getFileNameMap
+java/net/URLConnection.html#getFileNameMap()
+FileNameMap getFileNameMap();
+m
+void
+setFileNameMap
+java/net/URLConnection.html#setFileNameMap(java.net.FileNameMap)
+void setFileNameMap(FileNameMap map);
+m
+void
+connect
+java/net/URLConnection.html#connect()
+void connect() throws IOException;
+m
+URL
+getURL
+java/net/URLConnection.html#getURL()
+URL getURL();
+m
+int
+getContentLength
+java/net/URLConnection.html#getContentLength()
+int getContentLength();
+m
+String
+getContentType
+java/net/URLConnection.html#getContentType()
+String getContentType();
+m
+String
+getContentEncoding
+java/net/URLConnection.html#getContentEncoding()
+String getContentEncoding();
+m
+long
+getExpiration
+java/net/URLConnection.html#getExpiration()
+long getExpiration();
+m
+long
+getDate
+java/net/URLConnection.html#getDate()
+long getDate();
+m
+long
+getLastModified
+java/net/URLConnection.html#getLastModified()
+long getLastModified();
+m
+String
+getHeaderField
+java/net/URLConnection.html#getHeaderField(java.lang.String)
+String getHeaderField(String name);
+m
+int
+getHeaderFieldInt
+java/net/URLConnection.html#getHeaderFieldInt(java.lang.String, int)
+int getHeaderFieldInt(String name, int Default);
+m
+long
+getHeaderFieldDate
+java/net/URLConnection.html#getHeaderFieldDate(java.lang.String, long)
+long getHeaderFieldDate(String name, long Default);
+m
+String
+getHeaderFieldKey
+java/net/URLConnection.html#getHeaderFieldKey(int)
+String getHeaderFieldKey(int n);
+m
+String
+getHeaderField
+java/net/URLConnection.html#getHeaderField(int)
+String getHeaderField(int n);
+m
+Object
+getContent
+java/net/URLConnection.html#getContent()
+Object getContent() throws IOException;
+Object getContent(Class[] classes) throws IOException;
+m
+Permission
+getPermission
+java/net/URLConnection.html#getPermission()
+Permission getPermission() throws IOException;
+m
+InputStream
+getInputStream
+java/net/URLConnection.html#getInputStream()
+InputStream getInputStream() throws IOException;
+m
+OutputStream
+getOutputStream
+java/net/URLConnection.html#getOutputStream()
+OutputStream getOutputStream() throws IOException;
+m
+String
+toString
+java/net/URLConnection.html#toString()
+String toString();
+m
+void
+setDoInput
+java/net/URLConnection.html#setDoInput(boolean)
+void setDoInput(boolean doinput);
+m
+boolean
+getDoInput
+java/net/URLConnection.html#getDoInput()
+boolean getDoInput();
+m
+void
+setDoOutput
+java/net/URLConnection.html#setDoOutput(boolean)
+void setDoOutput(boolean dooutput);
+m
+boolean
+getDoOutput
+java/net/URLConnection.html#getDoOutput()
+boolean getDoOutput();
+m
+void
+setAllowUserInteraction
+java/net/URLConnection.html#setAllowUserInteraction(boolean)
+void setAllowUserInteraction(boolean allowuserinteraction);
+m
+boolean
+getAllowUserInteraction
+java/net/URLConnection.html#getAllowUserInteraction()
+boolean getAllowUserInteraction();
+m
+void
+setDefaultAllowUserInteraction
+java/net/URLConnection.html#setDefaultAllowUserInteraction(boolean)
+void setDefaultAllowUserInteraction(boolean defaultallowuserinteraction);
+m
+boolean
+getDefaultAllowUserInteraction
+java/net/URLConnection.html#getDefaultAllowUserInteraction()
+boolean getDefaultAllowUserInteraction();
+m
+void
+setUseCaches
+java/net/URLConnection.html#setUseCaches(boolean)
+void setUseCaches(boolean usecaches);
+m
+boolean
+getUseCaches
+java/net/URLConnection.html#getUseCaches()
+boolean getUseCaches();
+m
+void
+setIfModifiedSince
+java/net/URLConnection.html#setIfModifiedSince(long)
+void setIfModifiedSince(long ifmodifiedsince);
+m
+long
+getIfModifiedSince
+java/net/URLConnection.html#getIfModifiedSince()
+long getIfModifiedSince();
+m
+boolean
+getDefaultUseCaches
+java/net/URLConnection.html#getDefaultUseCaches()
+boolean getDefaultUseCaches();
+m
+void
+setDefaultUseCaches
+java/net/URLConnection.html#setDefaultUseCaches(boolean)
+void setDefaultUseCaches(boolean defaultusecaches);
+m
+void
+setRequestProperty
+java/net/URLConnection.html#setRequestProperty(java.lang.String, java.lang.String)
+void setRequestProperty(String key, String value);
+m
+String
+getRequestProperty
+java/net/URLConnection.html#getRequestProperty(java.lang.String)
+String getRequestProperty(String key);
+m
+void
+setDefaultRequestProperty
+java/net/URLConnection.html#setDefaultRequestProperty(java.lang.String, java.lang.String)
+void setDefaultRequestProperty(String key, String value);
+m
+String
+getDefaultRequestProperty
+java/net/URLConnection.html#getDefaultRequestProperty(java.lang.String)
+String getDefaultRequestProperty(String key);
+m
+void
+setContentHandlerFactory
+java/net/URLConnection.html#setContentHandlerFactory(java.net.ContentHandlerFactory)
+void setContentHandlerFactory(ContentHandlerFactory fac);
+m
+String
+guessContentTypeFromName
+java/net/URLConnection.html#guessContentTypeFromName(java.lang.String)
+String guessContentTypeFromName(String fname);
+m
+String
+guessContentTypeFromStream
+java/net/URLConnection.html#guessContentTypeFromStream(java.io.InputStream)
+String guessContentTypeFromStream(InputStream is) throws IOException;
+HttpURLConnection
+class HttpURLConnection extends URLConnection;
+URLConnection
+java/net/HttpURLConnection.html
+java.net.HttpURLConnection
+c
+
+HttpURLConnection
+java/net/HttpURLConnection.html
+HttpURLConnection(URL u);
+f
+String
+method
+java/net/HttpURLConnection.html#method
+String method;
+f
+int
+responseCode
+java/net/HttpURLConnection.html#responseCode
+int responseCode;
+f
+String
+responseMessage
+java/net/HttpURLConnection.html#responseMessage
+String responseMessage;
+f
+boolean
+instanceFollowRedirects
+java/net/HttpURLConnection.html#instanceFollowRedirects
+boolean instanceFollowRedirects;
+f
+int
+HTTP_OK
+java/net/HttpURLConnection.html#HTTP_OK
+int HTTP_OK;
+f
+int
+HTTP_CREATED
+java/net/HttpURLConnection.html#HTTP_CREATED
+int HTTP_CREATED;
+f
+int
+HTTP_ACCEPTED
+java/net/HttpURLConnection.html#HTTP_ACCEPTED
+int HTTP_ACCEPTED;
+f
+int
+HTTP_NOT_AUTHORITATIVE
+java/net/HttpURLConnection.html#HTTP_NOT_AUTHORITATIVE
+int HTTP_NOT_AUTHORITATIVE;
+f
+int
+HTTP_NO_CONTENT
+java/net/HttpURLConnection.html#HTTP_NO_CONTENT
+int HTTP_NO_CONTENT;
+f
+int
+HTTP_RESET
+java/net/HttpURLConnection.html#HTTP_RESET
+int HTTP_RESET;
+f
+int
+HTTP_PARTIAL
+java/net/HttpURLConnection.html#HTTP_PARTIAL
+int HTTP_PARTIAL;
+f
+int
+HTTP_MULT_CHOICE
+java/net/HttpURLConnection.html#HTTP_MULT_CHOICE
+int HTTP_MULT_CHOICE;
+f
+int
+HTTP_MOVED_PERM
+java/net/HttpURLConnection.html#HTTP_MOVED_PERM
+int HTTP_MOVED_PERM;
+f
+int
+HTTP_MOVED_TEMP
+java/net/HttpURLConnection.html#HTTP_MOVED_TEMP
+int HTTP_MOVED_TEMP;
+f
+int
+HTTP_SEE_OTHER
+java/net/HttpURLConnection.html#HTTP_SEE_OTHER
+int HTTP_SEE_OTHER;
+f
+int
+HTTP_NOT_MODIFIED
+java/net/HttpURLConnection.html#HTTP_NOT_MODIFIED
+int HTTP_NOT_MODIFIED;
+f
+int
+HTTP_USE_PROXY
+java/net/HttpURLConnection.html#HTTP_USE_PROXY
+int HTTP_USE_PROXY;
+f
+int
+HTTP_BAD_REQUEST
+java/net/HttpURLConnection.html#HTTP_BAD_REQUEST
+int HTTP_BAD_REQUEST;
+f
+int
+HTTP_UNAUTHORIZED
+java/net/HttpURLConnection.html#HTTP_UNAUTHORIZED
+int HTTP_UNAUTHORIZED;
+f
+int
+HTTP_PAYMENT_REQUIRED
+java/net/HttpURLConnection.html#HTTP_PAYMENT_REQUIRED
+int HTTP_PAYMENT_REQUIRED;
+f
+int
+HTTP_FORBIDDEN
+java/net/HttpURLConnection.html#HTTP_FORBIDDEN
+int HTTP_FORBIDDEN;
+f
+int
+HTTP_NOT_FOUND
+java/net/HttpURLConnection.html#HTTP_NOT_FOUND
+int HTTP_NOT_FOUND;
+f
+int
+HTTP_BAD_METHOD
+java/net/HttpURLConnection.html#HTTP_BAD_METHOD
+int HTTP_BAD_METHOD;
+f
+int
+HTTP_NOT_ACCEPTABLE
+java/net/HttpURLConnection.html#HTTP_NOT_ACCEPTABLE
+int HTTP_NOT_ACCEPTABLE;
+f
+int
+HTTP_PROXY_AUTH
+java/net/HttpURLConnection.html#HTTP_PROXY_AUTH
+int HTTP_PROXY_AUTH;
+f
+int
+HTTP_CLIENT_TIMEOUT
+java/net/HttpURLConnection.html#HTTP_CLIENT_TIMEOUT
+int HTTP_CLIENT_TIMEOUT;
+f
+int
+HTTP_CONFLICT
+java/net/HttpURLConnection.html#HTTP_CONFLICT
+int HTTP_CONFLICT;
+f
+int
+HTTP_GONE
+java/net/HttpURLConnection.html#HTTP_GONE
+int HTTP_GONE;
+f
+int
+HTTP_LENGTH_REQUIRED
+java/net/HttpURLConnection.html#HTTP_LENGTH_REQUIRED
+int HTTP_LENGTH_REQUIRED;
+f
+int
+HTTP_PRECON_FAILED
+java/net/HttpURLConnection.html#HTTP_PRECON_FAILED
+int HTTP_PRECON_FAILED;
+f
+int
+HTTP_ENTITY_TOO_LARGE
+java/net/HttpURLConnection.html#HTTP_ENTITY_TOO_LARGE
+int HTTP_ENTITY_TOO_LARGE;
+f
+int
+HTTP_REQ_TOO_LONG
+java/net/HttpURLConnection.html#HTTP_REQ_TOO_LONG
+int HTTP_REQ_TOO_LONG;
+f
+int
+HTTP_UNSUPPORTED_TYPE
+java/net/HttpURLConnection.html#HTTP_UNSUPPORTED_TYPE
+int HTTP_UNSUPPORTED_TYPE;
+f
+int
+HTTP_SERVER_ERROR
+java/net/HttpURLConnection.html#HTTP_SERVER_ERROR
+int HTTP_SERVER_ERROR;
+f
+int
+HTTP_INTERNAL_ERROR
+java/net/HttpURLConnection.html#HTTP_INTERNAL_ERROR
+int HTTP_INTERNAL_ERROR;
+f
+int
+HTTP_NOT_IMPLEMENTED
+java/net/HttpURLConnection.html#HTTP_NOT_IMPLEMENTED
+int HTTP_NOT_IMPLEMENTED;
+f
+int
+HTTP_BAD_GATEWAY
+java/net/HttpURLConnection.html#HTTP_BAD_GATEWAY
+int HTTP_BAD_GATEWAY;
+f
+int
+HTTP_UNAVAILABLE
+java/net/HttpURLConnection.html#HTTP_UNAVAILABLE
+int HTTP_UNAVAILABLE;
+f
+int
+HTTP_GATEWAY_TIMEOUT
+java/net/HttpURLConnection.html#HTTP_GATEWAY_TIMEOUT
+int HTTP_GATEWAY_TIMEOUT;
+f
+int
+HTTP_VERSION
+java/net/HttpURLConnection.html#HTTP_VERSION
+int HTTP_VERSION;
+m
+void
+setFollowRedirects
+java/net/HttpURLConnection.html#setFollowRedirects(boolean)
+void setFollowRedirects(boolean set);
+m
+boolean
+getFollowRedirects
+java/net/HttpURLConnection.html#getFollowRedirects()
+boolean getFollowRedirects();
+m
+void
+setInstanceFollowRedirects
+java/net/HttpURLConnection.html#setInstanceFollowRedirects(boolean)
+void setInstanceFollowRedirects(boolean followRedirects);
+m
+boolean
+getInstanceFollowRedirects
+java/net/HttpURLConnection.html#getInstanceFollowRedirects()
+boolean getInstanceFollowRedirects();
+m
+void
+setRequestMethod
+java/net/HttpURLConnection.html#setRequestMethod(java.lang.String)
+void setRequestMethod(String method) throws ProtocolException;
+m
+String
+getRequestMethod
+java/net/HttpURLConnection.html#getRequestMethod()
+String getRequestMethod();
+m
+int
+getResponseCode
+java/net/HttpURLConnection.html#getResponseCode()
+int getResponseCode() throws IOException;
+m
+String
+getResponseMessage
+java/net/HttpURLConnection.html#getResponseMessage()
+String getResponseMessage() throws IOException;
+m
+long
+getHeaderFieldDate
+java/net/HttpURLConnection.html#getHeaderFieldDate(java.lang.String, long)
+long getHeaderFieldDate(String name, long Default);
+m
+void
+disconnect
+java/net/HttpURLConnection.html#disconnect()
+void disconnect();
+m
+boolean
+usingProxy
+java/net/HttpURLConnection.html#usingProxy()
+boolean usingProxy();
+m
+Permission
+getPermission
+java/net/HttpURLConnection.html#getPermission()
+Permission getPermission() throws IOException;
+m
+InputStream
+getErrorStream
+java/net/HttpURLConnection.html#getErrorStream()
+InputStream getErrorStream();
+URL
+class URL extends Object;
+Object
+java/net/URL.html
+java.net.URL
+c
+
+URL
+java/net/URL.html
+URL(String protocol, String host, int port, String file) throws MalformedURLException;
+URL(String protocol, String host, String file) throws MalformedURLException;
+URL(String protocol, String host, int port, String file, URLStreamHandler handler) throws MalformedURLException;
+URL(String spec) throws MalformedURLException;
+URL(URL context, String spec) throws MalformedURLException;
+URL(URL context, String spec, URLStreamHandler handler) throws MalformedURLException;
+m
+void
+set
+java/net/URL.html#set(java.lang.String, java.lang.String, int, java.lang.String, java.lang.String)
+void set(String protocol, String host, int port, String file, String ref);
+void set(String protocol, String host, int port, String authority, String userInfo, String path, String query, String ref);
+m
+String
+getQuery
+java/net/URL.html#getQuery()
+String getQuery();
+m
+String
+getPath
+java/net/URL.html#getPath()
+String getPath();
+m
+String
+getUserInfo
+java/net/URL.html#getUserInfo()
+String getUserInfo();
+m
+String
+getAuthority
+java/net/URL.html#getAuthority()
+String getAuthority();
+m
+int
+getPort
+java/net/URL.html#getPort()
+int getPort();
+m
+String
+getProtocol
+java/net/URL.html#getProtocol()
+String getProtocol();
+m
+String
+getHost
+java/net/URL.html#getHost()
+String getHost();
+m
+String
+getFile
+java/net/URL.html#getFile()
+String getFile();
+m
+String
+getRef
+java/net/URL.html#getRef()
+String getRef();
+m
+boolean
+equals
+java/net/URL.html#equals(java.lang.Object)
+boolean equals(Object obj);
+m
+int
+hashCode
+java/net/URL.html#hashCode()
+int hashCode();
+m
+boolean
+sameFile
+java/net/URL.html#sameFile(java.net.URL)
+boolean sameFile(URL other);
+m
+String
+toString
+java/net/URL.html#toString()
+String toString();
+m
+String
+toExternalForm
+java/net/URL.html#toExternalForm()
+String toExternalForm();
+m
+URLConnection
+openConnection
+java/net/URL.html#openConnection()
+URLConnection openConnection() throws IOException;
+m
+InputStream
+openStream
+java/net/URL.html#openStream()
+InputStream openStream() throws IOException;
+m
+Object
+getContent
+java/net/URL.html#getContent()
+Object getContent() throws IOException;
+Object getContent(Class[] classes) throws IOException;
+m
+void
+setURLStreamHandlerFactory
+java/net/URL.html#setURLStreamHandlerFactory(java.net.URLStreamHandlerFactory)
+void setURLStreamHandlerFactory(URLStreamHandlerFactory fac);
+SocketException
+class SocketException extends IOException;
+IOException
+java/net/SocketException.html
+java.net.SocketException
+c
+
+SocketException
+java/net/SocketException.html
+SocketException(String msg);
+SocketException();
+NoRouteToHostException
+class NoRouteToHostException extends SocketException;
+SocketException
+java/net/NoRouteToHostException.html
+java.net.NoRouteToHostException
+c
+
+NoRouteToHostException
+java/net/NoRouteToHostException.html
+NoRouteToHostException(String msg);
+NoRouteToHostException();
+UnknownHostException
+class UnknownHostException extends IOException;
+IOException
+java/net/UnknownHostException.html
+java.net.UnknownHostException
+c
+
+UnknownHostException
+java/net/UnknownHostException.html
+UnknownHostException(String host);
+UnknownHostException();
+Authenticator
+class Authenticator extends Object;
+Object
+java/net/Authenticator.html
+java.net.Authenticator
+c
+
+Authenticator
+java/net/Authenticator.html
+Authenticator();
+m
+void
+setDefault
+java/net/Authenticator.html#setDefault(java.net.Authenticator)
+void setDefault(Authenticator a);
+m
+PasswordAuthentication
+requestPasswordAuthentication
+java/net/Authenticator.html#requestPasswordAuthentication(java.net.InetAddress, int, java.lang.String, java.lang.String, java.lang.String)
+PasswordAuthentication requestPasswordAuthentication(InetAddress addr, int port, String protocol, String prompt, String scheme);
+m
+InetAddress
+getRequestingSite
+java/net/Authenticator.html#getRequestingSite()
+InetAddress getRequestingSite();
+m
+int
+getRequestingPort
+java/net/Authenticator.html#getRequestingPort()
+int getRequestingPort();
+m
+String
+getRequestingProtocol
+java/net/Authenticator.html#getRequestingProtocol()
+String getRequestingProtocol();
+m
+String
+getRequestingPrompt
+java/net/Authenticator.html#getRequestingPrompt()
+String getRequestingPrompt();
+m
+String
+getRequestingScheme
+java/net/Authenticator.html#getRequestingScheme()
+String getRequestingScheme();
+m
+PasswordAuthentication
+getPasswordAuthentication
+java/net/Authenticator.html#getPasswordAuthentication()
+PasswordAuthentication getPasswordAuthentication();
+FileNameMap
+class FileNameMap;
+
+java/net/FileNameMap.html
+java.net.FileNameMap
+m
+String
+getContentTypeFor
+java/net/FileNameMap.html#getContentTypeFor(java.lang.String)
+String getContentTypeFor(String fileName);
+SocketOptions
+class SocketOptions;
+
+java/net/SocketOptions.html
+java.net.SocketOptions
+f
+int
+TCP_NODELAY
+java/net/SocketOptions.html#TCP_NODELAY
+int TCP_NODELAY;
+f
+int
+SO_BINDADDR
+java/net/SocketOptions.html#SO_BINDADDR
+int SO_BINDADDR;
+f
+int
+SO_REUSEADDR
+java/net/SocketOptions.html#SO_REUSEADDR
+int SO_REUSEADDR;
+f
+int
+IP_MULTICAST_IF
+java/net/SocketOptions.html#IP_MULTICAST_IF
+int IP_MULTICAST_IF;
+f
+int
+SO_LINGER
+java/net/SocketOptions.html#SO_LINGER
+int SO_LINGER;
+f
+int
+SO_TIMEOUT
+java/net/SocketOptions.html#SO_TIMEOUT
+int SO_TIMEOUT;
+f
+int
+SO_SNDBUF
+java/net/SocketOptions.html#SO_SNDBUF
+int SO_SNDBUF;
+f
+int
+SO_RCVBUF
+java/net/SocketOptions.html#SO_RCVBUF
+int SO_RCVBUF;
+f
+int
+SO_KEEPALIVE
+java/net/SocketOptions.html#SO_KEEPALIVE
+int SO_KEEPALIVE;
+m
+void
+setOption
+java/net/SocketOptions.html#setOption(int, java.lang.Object)
+void setOption(int optID, Object value) throws SocketException;
+m
+Object
+getOption
+java/net/SocketOptions.html#getOption(int)
+Object getOption(int optID) throws SocketException;
+JarURLConnection
+class JarURLConnection extends URLConnection;
+URLConnection
+java/net/JarURLConnection.html
+java.net.JarURLConnection
+c
+
+JarURLConnection
+java/net/JarURLConnection.html
+JarURLConnection(URL url) throws MalformedURLException;
+f
+URLConnection
+jarFileURLConnection
+java/net/JarURLConnection.html#jarFileURLConnection
+URLConnection jarFileURLConnection;
+m
+URL
+getJarFileURL
+java/net/JarURLConnection.html#getJarFileURL()
+URL getJarFileURL();
+m
+String
+getEntryName
+java/net/JarURLConnection.html#getEntryName()
+String getEntryName();
+m
+JarFile
+getJarFile
+java/net/JarURLConnection.html#getJarFile()
+JarFile getJarFile() throws IOException;
+m
+Manifest
+getManifest
+java/net/JarURLConnection.html#getManifest()
+Manifest getManifest() throws IOException;
+m
+JarEntry
+getJarEntry
+java/net/JarURLConnection.html#getJarEntry()
+JarEntry getJarEntry() throws IOException;
+m
+Attributes
+getAttributes
+java/net/JarURLConnection.html#getAttributes()
+Attributes getAttributes() throws IOException;
+m
+Attributes
+getMainAttributes
+java/net/JarURLConnection.html#getMainAttributes()
+Attributes getMainAttributes() throws IOException;
+m
+Certificate
+getCertificates
+java/net/JarURLConnection.html#getCertificates()
+Certificate[] getCertificates() throws IOException;
+ServerSocket
+class ServerSocket extends Object;
+Object
+java/net/ServerSocket.html
+java.net.ServerSocket
+c
+
+ServerSocket
+java/net/ServerSocket.html
+ServerSocket(int port) throws IOException;
+ServerSocket(int port, int backlog) throws IOException;
+ServerSocket(int port, int backlog, InetAddress bindAddr) throws IOException;
+m
+InetAddress
+getInetAddress
+java/net/ServerSocket.html#getInetAddress()
+InetAddress getInetAddress();
+m
+int
+getLocalPort
+java/net/ServerSocket.html#getLocalPort()
+int getLocalPort();
+m
+Socket
+accept
+java/net/ServerSocket.html#accept()
+Socket accept() throws IOException;
+m
+void
+implAccept
+java/net/ServerSocket.html#implAccept(java.net.Socket)
+void implAccept(Socket s) throws IOException;
+m
+void
+close
+java/net/ServerSocket.html#close()
+void close() throws IOException;
+m
+void
+setSoTimeout
+java/net/ServerSocket.html#setSoTimeout(int)
+void setSoTimeout(int timeout) throws SocketException;
+m
+int
+getSoTimeout
+java/net/ServerSocket.html#getSoTimeout()
+int getSoTimeout() throws IOException;
+m
+String
+toString
+java/net/ServerSocket.html#toString()
+String toString();
+m
+void
+setSocketFactory
+java/net/ServerSocket.html#setSocketFactory(java.net.SocketImplFactory)
+void setSocketFactory(SocketImplFactory fac) throws IOException;
+URLDecoder
+class URLDecoder extends Object;
+Object
+java/net/URLDecoder.html
+java.net.URLDecoder
+c
+
+URLDecoder
+java/net/URLDecoder.html
+URLDecoder();
+m
+String
+decode
+java/net/URLDecoder.html#decode(java.lang.String)
+String decode(String s);
+DatagramSocket
+class DatagramSocket extends Object;
+Object
+java/net/DatagramSocket.html
+java.net.DatagramSocket
+c
+
+DatagramSocket
+java/net/DatagramSocket.html
+DatagramSocket() throws SocketException;
+DatagramSocket(int port) throws SocketException;
+DatagramSocket(int port, InetAddress laddr) throws SocketException;
+m
+void
+connect
+java/net/DatagramSocket.html#connect(java.net.InetAddress, int)
+void connect(InetAddress address, int port);
+m
+void
+disconnect
+java/net/DatagramSocket.html#disconnect()
+void disconnect();
+m
+InetAddress
+getInetAddress
+java/net/DatagramSocket.html#getInetAddress()
+InetAddress getInetAddress();
+m
+int
+getPort
+java/net/DatagramSocket.html#getPort()
+int getPort();
+m
+void
+send
+java/net/DatagramSocket.html#send(java.net.DatagramPacket)
+void send(DatagramPacket p) throws IOException;
+m
+void
+receive
+java/net/DatagramSocket.html#receive(java.net.DatagramPacket)
+void receive(DatagramPacket p) throws IOException;
+m
+InetAddress
+getLocalAddress
+java/net/DatagramSocket.html#getLocalAddress()
+InetAddress getLocalAddress();
+m
+int
+getLocalPort
+java/net/DatagramSocket.html#getLocalPort()
+int getLocalPort();
+m
+void
+setSoTimeout
+java/net/DatagramSocket.html#setSoTimeout(int)
+void setSoTimeout(int timeout) throws SocketException;
+m
+int
+getSoTimeout
+java/net/DatagramSocket.html#getSoTimeout()
+int getSoTimeout() throws SocketException;
+m
+void
+setSendBufferSize
+java/net/DatagramSocket.html#setSendBufferSize(int)
+void setSendBufferSize(int size) throws SocketException;
+m
+int
+getSendBufferSize
+java/net/DatagramSocket.html#getSendBufferSize()
+int getSendBufferSize() throws SocketException;
+m
+void
+setReceiveBufferSize
+java/net/DatagramSocket.html#setReceiveBufferSize(int)
+void setReceiveBufferSize(int size) throws SocketException;
+m
+int
+getReceiveBufferSize
+java/net/DatagramSocket.html#getReceiveBufferSize()
+int getReceiveBufferSize() throws SocketException;
+m
+void
+close
+java/net/DatagramSocket.html#close()
+void close();
+m
+void
+setDatagramSocketImplFactory
+java/net/DatagramSocket.html#setDatagramSocketImplFactory(java.net.DatagramSocketImplFactory)
+void setDatagramSocketImplFactory(DatagramSocketImplFactory fac) throws IOException;
+MulticastSocket
+class MulticastSocket extends DatagramSocket;
+DatagramSocket
+java/net/MulticastSocket.html
+java.net.MulticastSocket
+c
+
+MulticastSocket
+java/net/MulticastSocket.html
+MulticastSocket() throws IOException;
+MulticastSocket(int port) throws IOException;
+m
+void
+setTTL
+java/net/MulticastSocket.html#setTTL(byte)
+void setTTL(byte ttl) throws IOException;
+m
+void
+setTimeToLive
+java/net/MulticastSocket.html#setTimeToLive(int)
+void setTimeToLive(int ttl) throws IOException;
+m
+byte
+getTTL
+java/net/MulticastSocket.html#getTTL()
+byte getTTL() throws IOException;
+m
+int
+getTimeToLive
+java/net/MulticastSocket.html#getTimeToLive()
+int getTimeToLive() throws IOException;
+m
+void
+joinGroup
+java/net/MulticastSocket.html#joinGroup(java.net.InetAddress)
+void joinGroup(InetAddress mcastaddr) throws IOException;
+m
+void
+leaveGroup
+java/net/MulticastSocket.html#leaveGroup(java.net.InetAddress)
+void leaveGroup(InetAddress mcastaddr) throws IOException;
+m
+void
+setInterface
+java/net/MulticastSocket.html#setInterface(java.net.InetAddress)
+void setInterface(InetAddress inf) throws SocketException;
+m
+InetAddress
+getInterface
+java/net/MulticastSocket.html#getInterface()
+InetAddress getInterface() throws SocketException;
+m
+void
+send
+java/net/MulticastSocket.html#send(java.net.DatagramPacket, byte)
+void send(DatagramPacket p, byte ttl) throws IOException;
+URLStreamHandlerFactory
+class URLStreamHandlerFactory;
+
+java/net/URLStreamHandlerFactory.html
+java.net.URLStreamHandlerFactory
+m
+URLStreamHandler
+createURLStreamHandler
+java/net/URLStreamHandlerFactory.html#createURLStreamHandler(java.lang.String)
+URLStreamHandler createURLStreamHandler(String protocol);
+SocketImpl
+class SocketImpl extends Object;
+Object
+java/net/SocketImpl.html
+java.net.SocketImpl
+c
+
+SocketImpl
+java/net/SocketImpl.html
+SocketImpl();
+f
+FileDescriptor
+fd
+java/net/SocketImpl.html#fd
+FileDescriptor fd;
+f
+InetAddress
+address
+java/net/SocketImpl.html#address
+InetAddress address;
+f
+int
+port
+java/net/SocketImpl.html#port
+int port;
+f
+int
+localport
+java/net/SocketImpl.html#localport
+int localport;
+m
+void
+create
+java/net/SocketImpl.html#create(boolean)
+void create(boolean stream) throws IOException;
+m
+void
+connect
+java/net/SocketImpl.html#connect(java.lang.String, int)
+void connect(String host, int port) throws IOException;
+void connect(InetAddress address, int port) throws IOException;
+m
+void
+bind
+java/net/SocketImpl.html#bind(java.net.InetAddress, int)
+void bind(InetAddress host, int port) throws IOException;
+m
+void
+listen
+java/net/SocketImpl.html#listen(int)
+void listen(int backlog) throws IOException;
+m
+void
+accept
+java/net/SocketImpl.html#accept(java.net.SocketImpl)
+void accept(SocketImpl s) throws IOException;
+m
+InputStream
+getInputStream
+java/net/SocketImpl.html#getInputStream()
+InputStream getInputStream() throws IOException;
+m
+OutputStream
+getOutputStream
+java/net/SocketImpl.html#getOutputStream()
+OutputStream getOutputStream() throws IOException;
+m
+int
+available
+java/net/SocketImpl.html#available()
+int available() throws IOException;
+m
+void
+close
+java/net/SocketImpl.html#close()
+void close() throws IOException;
+m
+void
+shutdownInput
+java/net/SocketImpl.html#shutdownInput()
+void shutdownInput() throws IOException;
+m
+void
+shutdownOutput
+java/net/SocketImpl.html#shutdownOutput()
+void shutdownOutput() throws IOException;
+m
+FileDescriptor
+getFileDescriptor
+java/net/SocketImpl.html#getFileDescriptor()
+FileDescriptor getFileDescriptor();
+m
+InetAddress
+getInetAddress
+java/net/SocketImpl.html#getInetAddress()
+InetAddress getInetAddress();
+m
+int
+getPort
+java/net/SocketImpl.html#getPort()
+int getPort();
+m
+int
+getLocalPort
+java/net/SocketImpl.html#getLocalPort()
+int getLocalPort();
+m
+String
+toString
+java/net/SocketImpl.html#toString()
+String toString();
+MalformedURLException
+class MalformedURLException extends IOException;
+IOException
+java/net/MalformedURLException.html
+java.net.MalformedURLException
+c
+
+MalformedURLException
+java/net/MalformedURLException.html
+MalformedURLException();
+MalformedURLException(String msg);
+BindException
+class BindException extends SocketException;
+SocketException
+java/net/BindException.html
+java.net.BindException
+c
+
+BindException
+java/net/BindException.html
+BindException(String msg);
+BindException();
+SocketPermission
+class SocketPermission extends Permission;
+Permission
+java/net/SocketPermission.html
+java.net.SocketPermission
+c
+
+SocketPermission
+java/net/SocketPermission.html
+SocketPermission(String host, String action);
+m
+boolean
+implies
+java/net/SocketPermission.html#implies(java.security.Permission)
+boolean implies(Permission p);
+m
+boolean
+equals
+java/net/SocketPermission.html#equals(java.lang.Object)
+boolean equals(Object obj);
+m
+int
+hashCode
+java/net/SocketPermission.html#hashCode()
+int hashCode();
+m
+String
+getActions
+java/net/SocketPermission.html#getActions()
+String getActions();
+m
+PermissionCollection
+newPermissionCollection
+java/net/SocketPermission.html#newPermissionCollection()
+PermissionCollection newPermissionCollection();
+ContentHandler
+class ContentHandler extends Object;
+Object
+java/net/ContentHandler.html
+java.net.ContentHandler
+c
+
+ContentHandler
+java/net/ContentHandler.html
+ContentHandler();
+m
+Object
+getContent
+java/net/ContentHandler.html#getContent(java.net.URLConnection)
+Object getContent(URLConnection urlc) throws IOException;
+Object getContent(URLConnection urlc, Class[] classes) throws IOException;
+Socket
+class Socket extends Object;
+Object
+java/net/Socket.html
+java.net.Socket
+c
+
+Socket
+java/net/Socket.html
+Socket();
+Socket(SocketImpl impl) throws SocketException;
+Socket(String host, int port) throws UnknownHostException, IOException;
+Socket(InetAddress address, int port) throws IOException;
+Socket(String host, int port, InetAddress localAddr, int localPort) throws IOException;
+Socket(InetAddress address, int port, InetAddress localAddr, int localPort) throws IOException;
+Socket(String host, int port, boolean stream) throws IOException;
+Socket(InetAddress host, int port, boolean stream) throws IOException;
+m
+InetAddress
+getInetAddress
+java/net/Socket.html#getInetAddress()
+InetAddress getInetAddress();
+m
+InetAddress
+getLocalAddress
+java/net/Socket.html#getLocalAddress()
+InetAddress getLocalAddress();
+m
+int
+getPort
+java/net/Socket.html#getPort()
+int getPort();
+m
+int
+getLocalPort
+java/net/Socket.html#getLocalPort()
+int getLocalPort();
+m
+InputStream
+getInputStream
+java/net/Socket.html#getInputStream()
+InputStream getInputStream() throws IOException;
+m
+OutputStream
+getOutputStream
+java/net/Socket.html#getOutputStream()
+OutputStream getOutputStream() throws IOException;
+m
+void
+setTcpNoDelay
+java/net/Socket.html#setTcpNoDelay(boolean)
+void setTcpNoDelay(boolean on) throws SocketException;
+m
+boolean
+getTcpNoDelay
+java/net/Socket.html#getTcpNoDelay()
+boolean getTcpNoDelay() throws SocketException;
+m
+void
+setSoLinger
+java/net/Socket.html#setSoLinger(boolean, int)
+void setSoLinger(boolean on, int linger) throws SocketException;
+m
+int
+getSoLinger
+java/net/Socket.html#getSoLinger()
+int getSoLinger() throws SocketException;
+m
+void
+setSoTimeout
+java/net/Socket.html#setSoTimeout(int)
+void setSoTimeout(int timeout) throws SocketException;
+m
+int
+getSoTimeout
+java/net/Socket.html#getSoTimeout()
+int getSoTimeout() throws SocketException;
+m
+void
+setSendBufferSize
+java/net/Socket.html#setSendBufferSize(int)
+void setSendBufferSize(int size) throws SocketException;
+m
+int
+getSendBufferSize
+java/net/Socket.html#getSendBufferSize()
+int getSendBufferSize() throws SocketException;
+m
+void
+setReceiveBufferSize
+java/net/Socket.html#setReceiveBufferSize(int)
+void setReceiveBufferSize(int size) throws SocketException;
+m
+int
+getReceiveBufferSize
+java/net/Socket.html#getReceiveBufferSize()
+int getReceiveBufferSize() throws SocketException;
+m
+void
+setKeepAlive
+java/net/Socket.html#setKeepAlive(boolean)
+void setKeepAlive(boolean on) throws SocketException;
+m
+boolean
+getKeepAlive
+java/net/Socket.html#getKeepAlive()
+boolean getKeepAlive() throws SocketException;
+m
+void
+close
+java/net/Socket.html#close()
+void close() throws IOException;
+m
+void
+shutdownInput
+java/net/Socket.html#shutdownInput()
+void shutdownInput() throws IOException;
+m
+void
+shutdownOutput
+java/net/Socket.html#shutdownOutput()
+void shutdownOutput() throws IOException;
+m
+String
+toString
+java/net/Socket.html#toString()
+String toString();
+m
+void
+setSocketImplFactory
+java/net/Socket.html#setSocketImplFactory(java.net.SocketImplFactory)
+void setSocketImplFactory(SocketImplFactory fac) throws IOException;
+ContentHandlerFactory
+class ContentHandlerFactory;
+
+java/net/ContentHandlerFactory.html
+java.net.ContentHandlerFactory
+m
+ContentHandler
+createContentHandler
+java/net/ContentHandlerFactory.html#createContentHandler(java.lang.String)
+ContentHandler createContentHandler(String mimetype);
+DatagramSocketImpl
+class DatagramSocketImpl extends Object;
+Object
+java/net/DatagramSocketImpl.html
+java.net.DatagramSocketImpl
+c
+
+DatagramSocketImpl
+java/net/DatagramSocketImpl.html
+DatagramSocketImpl();
+f
+int
+localPort
+java/net/DatagramSocketImpl.html#localPort
+int localPort;
+f
+FileDescriptor
+fd
+java/net/DatagramSocketImpl.html#fd
+FileDescriptor fd;
+m
+void
+create
+java/net/DatagramSocketImpl.html#create()
+void create() throws SocketException;
+m
+void
+bind
+java/net/DatagramSocketImpl.html#bind(int, java.net.InetAddress)
+void bind(int lport, InetAddress laddr) throws SocketException;
+m
+void
+send
+java/net/DatagramSocketImpl.html#send(java.net.DatagramPacket)
+void send(DatagramPacket p) throws IOException;
+m
+int
+peek
+java/net/DatagramSocketImpl.html#peek(java.net.InetAddress)
+int peek(InetAddress i) throws IOException;
+m
+void
+receive
+java/net/DatagramSocketImpl.html#receive(java.net.DatagramPacket)
+void receive(DatagramPacket p) throws IOException;
+m
+void
+setTTL
+java/net/DatagramSocketImpl.html#setTTL(byte)
+void setTTL(byte ttl) throws IOException;
+m
+byte
+getTTL
+java/net/DatagramSocketImpl.html#getTTL()
+byte getTTL() throws IOException;
+m
+void
+setTimeToLive
+java/net/DatagramSocketImpl.html#setTimeToLive(int)
+void setTimeToLive(int ttl) throws IOException;
+m
+int
+getTimeToLive
+java/net/DatagramSocketImpl.html#getTimeToLive()
+int getTimeToLive() throws IOException;
+m
+void
+join
+java/net/DatagramSocketImpl.html#join(java.net.InetAddress)
+void join(InetAddress inetaddr) throws IOException;
+m
+void
+leave
+java/net/DatagramSocketImpl.html#leave(java.net.InetAddress)
+void leave(InetAddress inetaddr) throws IOException;
+m
+void
+close
+java/net/DatagramSocketImpl.html#close()
+void close();
+m
+int
+getLocalPort
+java/net/DatagramSocketImpl.html#getLocalPort()
+int getLocalPort();
+m
+FileDescriptor
+getFileDescriptor
+java/net/DatagramSocketImpl.html#getFileDescriptor()
+FileDescriptor getFileDescriptor();
+NetPermission
+class NetPermission extends BasicPermission;
+BasicPermission
+java/net/NetPermission.html
+java.net.NetPermission
+c
+
+NetPermission
+java/net/NetPermission.html
+NetPermission(String name);
+NetPermission(String name, String actions);
+ConnectException
+class ConnectException extends SocketException;
+SocketException
+java/net/ConnectException.html
+java.net.ConnectException
+c
+
+ConnectException
+java/net/ConnectException.html
+ConnectException(String msg);
+ConnectException();
+DatagramPacket
+class DatagramPacket extends Object;
+Object
+java/net/DatagramPacket.html
+java.net.DatagramPacket
+c
+
+DatagramPacket
+java/net/DatagramPacket.html
+DatagramPacket(byte[] buf, int offset, int length);
+DatagramPacket(byte[] buf, int length);
+DatagramPacket(byte[] buf, int offset, int length, InetAddress address, int port);
+DatagramPacket(byte[] buf, int length, InetAddress address, int port);
+m
+InetAddress
+getAddress
+java/net/DatagramPacket.html#getAddress()
+InetAddress getAddress();
+m
+int
+getPort
+java/net/DatagramPacket.html#getPort()
+int getPort();
+m
+byte
+getData
+java/net/DatagramPacket.html#getData()
+byte[] getData();
+m
+int
+getOffset
+java/net/DatagramPacket.html#getOffset()
+int getOffset();
+m
+int
+getLength
+java/net/DatagramPacket.html#getLength()
+int getLength();
+m
+void
+setData
+java/net/DatagramPacket.html#setData(byte[], int, int)
+void setData(byte[] buf, int offset, int length);
+m
+void
+setAddress
+java/net/DatagramPacket.html#setAddress(java.net.InetAddress)
+void setAddress(InetAddress iaddr);
+m
+void
+setPort
+java/net/DatagramPacket.html#setPort(int)
+void setPort(int iport);
+m
+void
+setData
+java/net/DatagramPacket.html#setData(byte[])
+void setData(byte[] buf);
+m
+void
+setLength
+java/net/DatagramPacket.html#setLength(int)
+void setLength(int length);
+UnknownServiceException
+class UnknownServiceException extends IOException;
+IOException
+java/net/UnknownServiceException.html
+java.net.UnknownServiceException
+c
+
+UnknownServiceException
+java/net/UnknownServiceException.html
+UnknownServiceException();
+UnknownServiceException(String msg);
+SocketImplFactory
+class SocketImplFactory;
+
+java/net/SocketImplFactory.html
+java.net.SocketImplFactory
+m
+SocketImpl
+createSocketImpl
+java/net/SocketImplFactory.html#createSocketImpl()
+SocketImpl createSocketImpl();
+URLClassLoader
+class URLClassLoader extends SecureClassLoader;
+SecureClassLoader
+java/net/URLClassLoader.html
+java.net.URLClassLoader
+c
+
+URLClassLoader
+java/net/URLClassLoader.html
+URLClassLoader(URL[] urls, ClassLoader parent);
+URLClassLoader(URL[] urls);
+URLClassLoader(URL[] urls, ClassLoader parent, URLStreamHandlerFactory factory);
+m
+void
+addURL
+java/net/URLClassLoader.html#addURL(java.net.URL)
+void addURL(URL url);
+m
+URL
+getURLs
+java/net/URLClassLoader.html#getURLs()
+URL[] getURLs();
+m
+Class
+findClass
+java/net/URLClassLoader.html#findClass(java.lang.String)
+Class findClass(String name) throws ClassNotFoundException;
+m
+Package
+definePackage
+java/net/URLClassLoader.html#definePackage(java.lang.String, java.util.jar.Manifest, java.net.URL)
+Package definePackage(String name, Manifest man, URL url) throws IllegalArgumentException;
+m
+URL
+findResource
+java/net/URLClassLoader.html#findResource(java.lang.String)
+URL findResource(String name);
+m
+Enumeration
+findResources
+java/net/URLClassLoader.html#findResources(java.lang.String)
+Enumeration findResources(String name) throws IOException;
+m
+PermissionCollection
+getPermissions
+java/net/URLClassLoader.html#getPermissions(java.security.CodeSource)
+PermissionCollection getPermissions(CodeSource codesource);
+m
+URLClassLoader
+newInstance
+java/net/URLClassLoader.html#newInstance(java.net.URL[], java.lang.ClassLoader)
+URLClassLoader newInstance(URL[] urls, ClassLoader parent);
+URLClassLoader newInstance(URL[] urls);
+URLEncoder
+class URLEncoder extends Object;
+Object
+java/net/URLEncoder.html
+java.net.URLEncoder
+m
+String
+encode
+java/net/URLEncoder.html#encode(java.lang.String)
+String encode(String s);
+PasswordAuthentication
+class PasswordAuthentication extends Object;
+Object
+java/net/PasswordAuthentication.html
+java.net.PasswordAuthentication
+c
+
+PasswordAuthentication
+java/net/PasswordAuthentication.html
+PasswordAuthentication(String userName, char[] password);
+m
+String
+getUserName
+java/net/PasswordAuthentication.html#getUserName()
+String getUserName();
+m
+char
+getPassword
+java/net/PasswordAuthentication.html#getPassword()
+char[] getPassword();
+URLStreamHandler
+class URLStreamHandler extends Object;
+Object
+java/net/URLStreamHandler.html
+java.net.URLStreamHandler
+c
+
+URLStreamHandler
+java/net/URLStreamHandler.html
+URLStreamHandler();
+m
+URLConnection
+openConnection
+java/net/URLStreamHandler.html#openConnection(java.net.URL)
+URLConnection openConnection(URL u) throws IOException;
+m
+void
+parseURL
+java/net/URLStreamHandler.html#parseURL(java.net.URL, java.lang.String, int, int)
+void parseURL(URL u, String spec, int start, int limit);
+m
+int
+getDefaultPort
+java/net/URLStreamHandler.html#getDefaultPort()
+int getDefaultPort();
+m
+boolean
+equals
+java/net/URLStreamHandler.html#equals(java.net.URL, java.net.URL)
+boolean equals(URL u1, URL u2);
+m
+int
+hashCode
+java/net/URLStreamHandler.html#hashCode(java.net.URL)
+int hashCode(URL u);
+m
+boolean
+sameFile
+java/net/URLStreamHandler.html#sameFile(java.net.URL, java.net.URL)
+boolean sameFile(URL u1, URL u2);
+m
+InetAddress
+getHostAddress
+java/net/URLStreamHandler.html#getHostAddress(java.net.URL)
+InetAddress getHostAddress(URL u);
+m
+boolean
+hostsEqual
+java/net/URLStreamHandler.html#hostsEqual(java.net.URL, java.net.URL)
+boolean hostsEqual(URL u1, URL u2);
+m
+String
+toExternalForm
+java/net/URLStreamHandler.html#toExternalForm(java.net.URL)
+String toExternalForm(URL u);
+m
+void
+setURL
+java/net/URLStreamHandler.html#setURL(java.net.URL, java.lang.String, java.lang.String, int, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String)
+void setURL(URL u, String protocol, String host, int port, String authority, String userInfo, String path, String query, String ref);
+void setURL(URL u, String protocol, String host, int port, String file, String ref);
+AudioClip
+class AudioClip;
+
+java/applet/AudioClip.html
+java.applet.AudioClip
+m
+void
+play
+java/applet/AudioClip.html#play()
+void play();
+m
+void
+loop
+java/applet/AudioClip.html#loop()
+void loop();
+m
+void
+stop
+java/applet/AudioClip.html#stop()
+void stop();
+AppletStub
+class AppletStub;
+
+java/applet/AppletStub.html
+java.applet.AppletStub
+m
+boolean
+isActive
+java/applet/AppletStub.html#isActive()
+boolean isActive();
+m
+URL
+getDocumentBase
+java/applet/AppletStub.html#getDocumentBase()
+URL getDocumentBase();
+m
+URL
+getCodeBase
+java/applet/AppletStub.html#getCodeBase()
+URL getCodeBase();
+m
+String
+getParameter
+java/applet/AppletStub.html#getParameter(java.lang.String)
+String getParameter(String name);
+m
+AppletContext
+getAppletContext
+java/applet/AppletStub.html#getAppletContext()
+AppletContext getAppletContext();
+m
+void
+appletResize
+java/applet/AppletStub.html#appletResize(int, int)
+void appletResize(int width, int height);
+Applet
+class Applet extends Panel;
+Panel
+java/applet/Applet.html
+java.applet.Applet
+c
+
+Applet
+java/applet/Applet.html
+Applet();
+l
+Applet.AccessibleApplet
+AccessibleApplet
+java/applet/Applet.AccessibleApplet.html
+inner class Applet.AccessibleApplet;
+m
+void
+setStub
+java/applet/Applet.html#setStub(java.applet.AppletStub)
+void setStub(AppletStub stub);
+m
+boolean
+isActive
+java/applet/Applet.html#isActive()
+boolean isActive();
+m
+URL
+getDocumentBase
+java/applet/Applet.html#getDocumentBase()
+URL getDocumentBase();
+m
+URL
+getCodeBase
+java/applet/Applet.html#getCodeBase()
+URL getCodeBase();
+m
+String
+getParameter
+java/applet/Applet.html#getParameter(java.lang.String)
+String getParameter(String name);
+m
+AppletContext
+getAppletContext
+java/applet/Applet.html#getAppletContext()
+AppletContext getAppletContext();
+m
+void
+resize
+java/applet/Applet.html#resize(int, int)
+void resize(int width, int height);
+void resize(Dimension d);
+m
+void
+showStatus
+java/applet/Applet.html#showStatus(java.lang.String)
+void showStatus(String msg);
+m
+Image
+getImage
+java/applet/Applet.html#getImage(java.net.URL)
+Image getImage(URL url);
+Image getImage(URL url, String name);
+m
+AudioClip
+newAudioClip
+java/applet/Applet.html#newAudioClip(java.net.URL)
+AudioClip newAudioClip(URL url);
+m
+AudioClip
+getAudioClip
+java/applet/Applet.html#getAudioClip(java.net.URL)
+AudioClip getAudioClip(URL url);
+AudioClip getAudioClip(URL url, String name);
+m
+String
+getAppletInfo
+java/applet/Applet.html#getAppletInfo()
+String getAppletInfo();
+m
+Locale
+getLocale
+java/applet/Applet.html#getLocale()
+Locale getLocale();
+m
+String
+getParameterInfo
+java/applet/Applet.html#getParameterInfo()
+String[][] getParameterInfo();
+m
+void
+play
+java/applet/Applet.html#play(java.net.URL)
+void play(URL url);
+void play(URL url, String name);
+m
+void
+init
+java/applet/Applet.html#init()
+void init();
+m
+void
+start
+java/applet/Applet.html#start()
+void start();
+m
+void
+stop
+java/applet/Applet.html#stop()
+void stop();
+m
+void
+destroy
+java/applet/Applet.html#destroy()
+void destroy();
+m
+AccessibleContext
+getAccessibleContext
+java/applet/Applet.html#getAccessibleContext()
+AccessibleContext getAccessibleContext();
+Applet.AccessibleApplet
+class Applet.AccessibleApplet extends Panel.AccessibleAWTPanel;
+Panel.AccessibleAWTPanel
+java/applet/Applet.AccessibleApplet.html
+java.applet.Applet.AccessibleApplet
+c
+
+Applet.AccessibleApplet
+java/applet/Applet.AccessibleApplet.html
+Applet.AccessibleApplet(Applet this$0);
+m
+AccessibleRole
+getAccessibleRole
+java/applet/Applet.AccessibleApplet.html#getAccessibleRole()
+AccessibleRole getAccessibleRole();
+m
+AccessibleStateSet
+getAccessibleStateSet
+java/applet/Applet.AccessibleApplet.html#getAccessibleStateSet()
+AccessibleStateSet getAccessibleStateSet();
+AppletContext
+class AppletContext;
+
+java/applet/AppletContext.html
+java.applet.AppletContext
+m
+AudioClip
+getAudioClip
+java/applet/AppletContext.html#getAudioClip(java.net.URL)
+AudioClip getAudioClip(URL url);
+m
+Image
+getImage
+java/applet/AppletContext.html#getImage(java.net.URL)
+Image getImage(URL url);
+m
+Applet
+getApplet
+java/applet/AppletContext.html#getApplet(java.lang.String)
+Applet getApplet(String name);
+m
+Enumeration
+getApplets
+java/applet/AppletContext.html#getApplets()
+Enumeration getApplets();
+m
+void
+showDocument
+java/applet/AppletContext.html#showDocument(java.net.URL)
+void showDocument(URL url);
+void showDocument(URL url, String target);
+m
+void
+showStatus
+java/applet/AppletContext.html#showStatus(java.lang.String)
+void showStatus(String status);
+

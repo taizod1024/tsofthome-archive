@@ -1,0 +1,33 @@
+;;; -*- Mode: lisp; Package: irc -*-
+
+(defvar *irc-server* "irc.tokyo.wide.ad.jp")
+(defvar *irc-nick* "irc")
+(defvar *irc-channel-startup* '("#irc_test"))
+
+(defvar *irc-log-no-pingpong* nil)
+(defvar *irc-log-no-inout* nil)
+(defvar *irc-log-no-privmsg* nil)
+
+;;; フックのサンプル
+;;; なると無条件配布機能
+(defun naruto (msg channel nick text)
+  (when (and channel
+	     (string-equal (irc-message-command msg) "PRIVMSG")
+	     (string-equal  "なると" text))
+    (irc-escape-window-buffer
+     (set-buffer (irc-dialog-buffer channel))
+     (cond
+      ; 誰も持っていない場合
+      ((not (irc-dialog-chop-list))
+       (irc-dialog-post-buffered-notice (irc-channel-name channel)
+					 "誰も持っていません[AR]"))
+      ; 本人が既に持っている場合
+      ((irc-dialog-chop-p nick)
+       (irc-dialog-post-buffered-notice (irc-channel-name channel)
+					 "既にお持ちのようですが[AR]"))
+      ; 自分が持っている場合
+      ((irc-dialog-chop-p)
+       (irc-dialog-post-buffered-notice (irc-channel-name channel)
+					 "どうぞ[AR]")
+       (irc-dialog-send-mode-+o nick))))))
+(add-hook '*irc-command-privmsg-hook* 'naruto)

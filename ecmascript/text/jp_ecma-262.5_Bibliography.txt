@@ -1,0 +1,6 @@
+参考文献
+
+
+[1] ANSI/IEEE Std 754-1985: IEEE Standard for Binary Floating-Point Arithmetic. Institute of Electrical and Electronic Engineers, New York (1985)
+[2] The Unicode Consortium. The Unicode Standard, Version 3.0, defined by: The Unicode Standard, Version 3.0 (Boston, MA, Addison-Wesley, 2000. ISBN 0-201-61635-5)
+[3] Unicode Inc. (1998), Unicode Technical Report #15: Unicode Normalization Forms
