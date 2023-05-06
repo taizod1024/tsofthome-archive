@@ -1,0 +1,103 @@
+
+:ALL
+
+    %task_depend_on% :COMMON :RUNINSTALLER
+    %task_exit%
+
+
+
+:COMMON
+
+    REM 注意：makeで文字化けするためPRODUCT_NAMEは暫定。
+    set PRODUCT_NAME=Dropboxリンクユーティリティ
+    set PRODUCT_NAME=dropboxlink
+    set PRODUCT_SYMBOL=dropboxlink
+    set PRODUCT_VERSION=0.1.13.0131
+    set PATH=%HOMEPATH%\dropbox\app\svn_client\;%PATH%
+    %task_exit%
+
+
+
+:CLEAN
+
+    %task_depend_on% :COMMON
+    %task_exit_if_error%
+
+    pushd product\src
+    make clean
+    set ERRORCODE=%ERRORLEVEL%
+    popd
+    %task_exit_with% %ERRORCODE%
+
+
+
+:MODULE
+
+    %task_depend_on% :COMMON
+    %task_exit_if_error%
+
+    pushd product\src
+    make
+    set ERRORCODE=%ERRORLEVEL%
+    popd
+    %task_exit_with% %ERRORCODE%
+
+
+
+:RUNMODULE
+
+    %task_depend_on% :COMMON :MODULE
+    %task_exit_if_error%
+
+    pushd product\src
+    make install
+    set ERRORCODE=%ERRORLEVEL%
+    popd
+    %task_exit_with% %ERRORCODE%
+
+
+
+:INSTALLER
+
+    %task_depend_on% :COMMON :MODULE
+    %task_exit_if_error%
+
+    pushd product\install
+    make
+    set ERRORCODE=%ERRORLEVEL%
+    popd
+    %task_exit_with% %ERRORCODE%
+
+
+
+:RUNINSTALLER
+
+    %task_depend_on% :COMMON :INSTALLER
+    %task_exit_if_error%
+
+    pushd product\install
+    make install
+    set ERRORCODE=%ERRORLEVEL%
+    popd
+    %task_exit_with% %ERRORCODE%
+
+
+
+:COMMIT
+
+    %task_depend_on% :COMMON
+    %task_exit_if_error%
+
+    echo --- updating ...
+    svn update
+    %task_exit_if_error%
+
+rem echo --- adding ...
+rem svn add *
+rem %task_exit_if_error%
+
+    echo --- commiting ...
+    svn commit -m ""
+    %task_exit_if_error%
+
+    %task_exit%
